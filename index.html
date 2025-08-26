@@ -98,8 +98,8 @@
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Main Light Intensity</label>
-                    <input id="mainLightSlider" type="range" min="0" max="5" step="0.1" value="2.5" class="slider" title="Adjust primary light source intensity for overall brightness">
-                    <div class="slider-value" id="mainLightValue">2.5</div>
+                    <input id="mainLightSlider" type="range" min="0" max="5" step="0.1" value="1.5" class="slider" title="Adjust primary light source intensity for overall brightness">
+                    <div class="slider-value" id="mainLightValue">1.5</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Ambient Light</label>
@@ -108,18 +108,18 @@
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Red Light Intensity</label>
-                    <input id="redLightSlider" type="range" min="0" max="2" step="0.1" value="0.8" class="slider" title="Adjust red colored light intensity for warm tones">
-                    <div class="slider-value" id="redLightValue">0.8</div>
+                    <input id="redLightSlider" type="range" min="0" max="3" step="0.1" value="1.5" class="slider" title="Adjust red colored light intensity for warm tones">
+                    <div class="slider-value" id="redLightValue">1.5</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Blue Light Intensity</label>
-                    <input id="blueLightSlider" type="range" min="0" max="2" step="0.1" value="0.8" class="slider" title="Adjust blue colored light intensity for cool tones">
-                    <div class="slider-value" id="blueLightValue">0.8</div>
+                    <input id="blueLightSlider" type="range" min="0" max="3" step="0.1" value="1.5" class="slider" title="Adjust blue colored light intensity for cool tones">
+                    <div class="slider-value" id="blueLightValue">1.5</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Spotlight Intensity</label>
-                    <input id="spotLightSlider" type="range" min="0" max="5" step="0.1" value="2.5" class="slider" title="Control focused spotlight intensity for dramatic highlights">
-                    <div class="slider-value" id="spotLightValue">2.5</div>
+                    <input id="spotLightSlider" type="range" min="0" max="5" step="0.1" value="3.0" class="slider" title="Control focused spotlight intensity for dramatic highlights">
+                    <div class="slider-value" id="spotLightValue">3.0</div>
                 </div>
             </div>
 
@@ -308,9 +308,9 @@
             scene = new THREE.Scene();
             scene.background = new THREE.Color(0, 0, 0);
 
-            // Main light (was light1)
-            lights.main = new THREE.PointLight(0xffffff, 2.5);
-            lights.main.position.set(500, 500, 500);
+            // Main light (was light1) - reduced default intensity to make other lights more visible
+            lights.main = new THREE.PointLight(0xffffff, 1.5);
+            lights.main.position.set(300, 300, 300);
             scene.add(lights.main);
             
             // Ambient light
@@ -338,13 +338,13 @@
             lights.support.push(supportLight4);
             scene.add(supportLight4);
 
-            // Colored lights
-            lights.red = new THREE.PointLight(0xff4444, 0.8);
-            lights.red.position.set(400, 100, 400);
+            // Colored lights - increased intensity and better positioning
+            lights.red = new THREE.PointLight(0xff2222, 1.5);
+            lights.red.position.set(200, 200, 200);
             scene.add(lights.red);
 
-            lights.blue = new THREE.PointLight(0x4444ff, 0.8);
-            lights.blue.position.set(-400, 100, -400);
+            lights.blue = new THREE.PointLight(0x2222ff, 1.5);
+            lights.blue.position.set(-200, 200, -200);
             scene.add(lights.blue);
 
             // Directional lights
@@ -356,9 +356,9 @@
             lights.directional2.position.set(-200, 300, -100);
             scene.add(lights.directional2);
 
-            // Spotlight
-            lights.spotlight = new THREE.SpotLight(0xffffff, 2.5);
-            lights.spotlight.position.set(0, 500, 0);
+            // Spotlight - closer and more focused
+            lights.spotlight = new THREE.SpotLight(0xffffff, 3.0);
+            lights.spotlight.position.set(0, 300, 100);
             lights.spotlight.angle = Math.PI / 6;
             lights.spotlight.penumbra = 0.1;
             lights.spotlight.decay = 2;
