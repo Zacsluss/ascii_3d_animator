@@ -103,8 +103,8 @@
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Ambient Light</label>
-                    <input id="ambientLightSlider" type="range" min="0" max="1" step="0.05" value="0.1" class="slider" title="Control ambient lighting - fills in shadows and provides base illumination">
-                    <div class="slider-value" id="ambientLightValue">0.1</div>
+                    <input id="ambientLightSlider" type="range" min="0" max="1" step="0.05" value="0.05" class="slider" title="Control ambient lighting - fills in shadows and provides base illumination">
+                    <div class="slider-value" id="ambientLightValue">0.05</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Red Light Intensity</label>
@@ -314,7 +314,7 @@
             scene.add(lights.main);
             
             // Ambient light
-            lights.ambient = new THREE.AmbientLight(0xffffff, 0.1);
+            lights.ambient = new THREE.AmbientLight(0xffffff, 0.05);
             scene.add(lights.ambient);
 
             // Support lights (for general illumination)
@@ -878,8 +878,10 @@
             mainLightSlider.addEventListener('input', function() {
                 const intensity = parseFloat(this.value);
                 mainLightValue.textContent = intensity.toFixed(1);
+                console.log('Main light slider:', intensity, 'lights.main exists:', !!lights.main);
                 if (lights.main) {
                     lights.main.intensity = intensity;
+                    console.log('Set main light intensity to:', lights.main.intensity);
                 }
                 // Clear preset selection when manually adjusting
                 document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
@@ -901,8 +903,10 @@
             redLightSlider.addEventListener('input', function() {
                 const intensity = parseFloat(this.value);
                 redLightValue.textContent = intensity.toFixed(1);
+                console.log('Red light slider:', intensity, 'lights.red exists:', !!lights.red);
                 if (lights.red) {
                     lights.red.intensity = intensity;
+                    console.log('Set red light intensity to:', lights.red.intensity);
                 }
                 document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
             });
@@ -912,8 +916,10 @@
             blueLightSlider.addEventListener('input', function() {
                 const intensity = parseFloat(this.value);
                 blueLightValue.textContent = intensity.toFixed(1);
+                console.log('Blue light slider:', intensity, 'lights.blue exists:', !!lights.blue);
                 if (lights.blue) {
                     lights.blue.intensity = intensity;
+                    console.log('Set blue light intensity to:', lights.blue.intensity);
                 }
                 document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
             });
@@ -923,8 +929,10 @@
             spotLightSlider.addEventListener('input', function() {
                 const intensity = parseFloat(this.value);
                 spotLightValue.textContent = intensity.toFixed(1);
+                console.log('Spotlight slider:', intensity, 'lights.spotlight exists:', !!lights.spotlight);
                 if (lights.spotlight) {
                     lights.spotlight.intensity = intensity;
+                    console.log('Set spotlight intensity to:', lights.spotlight.intensity);
                 }
                 document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
             });
