@@ -436,8 +436,8 @@
             controls.rotateSpeed = 0.8;
             controls.minDistance = 250;
             controls.maxDistance = 3000;
-            controls.minPolarAngle = Math.PI / 2;
-            controls.maxPolarAngle = Math.PI / 2;
+            controls.minPolarAngle = 0; // Allow full rotation from top view
+            controls.maxPolarAngle = Math.PI; // Allow full rotation to bottom view
             controls.target.set(0, 0, 0);
             window.addEventListener('resize', onWindowResize);
             toggleTheme(); // Set initial theme to dark
