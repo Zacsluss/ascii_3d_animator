@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ASCII Animator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Modern Left Sidebar UI -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h1>ASCII ANIMATOR</h1>
+            <div class="subtitle">3D Models</div>
+        </div>
+        
+        <div class="sidebar-content">
+            <!-- Theme & Display Section -->
+            <div class="control-section">
+                <h3>Display</h3>
+                <div class="control-group">
+                    <button id="themeToggle" class="btn btn-primary" title="Switch between light and dark themes">
+                        <span class="btn-icon">🌓</span>
+                        Toggle Theme
+                    </button>
+                </div>
+                <div class="control-group">
+                    <button id="helpBtn" class="btn btn-info" title="Show help guide with all controls and features">
+                        <span class="btn-icon">❓</span>
+                        Help & Controls
+                    </button>
+                </div>
+                <div class="control-group">
+                    <label class="slider-label">ASCII Density</label>
+                    <input id="densitySlider" type="range" min="0.5" max="2" step="0.1" value="1.5" class="slider" title="Adjust ASCII character density - higher values = more detail but may cause lag">
+                    <div class="slider-value" id="densityValue">1.5</div>
+                </div>
+            </div>
+
+            <!-- Model Section -->
+            <div class="control-section">
+                <h3>Model</h3>
+                <div class="control-group">
+                    <button id="nextModel" class="btn btn-primary" title="Cycle through available 3D models (Model1 → Model2 → Model3 → Model4)">
+                        <span class="btn-icon">🔄</span>
+                        Next Model
+                    </button>
+                    <div class="model-info" id="modelInfo">Model1</div>
+                </div>
+                <div class="control-group">
+                    <label class="slider-label">Animation Speed</label>
+                    <input id="animSpeedSlider" type="range" min="0.1" max="3" step="0.1" value="0.6" class="slider" title="Control animation playback speed - affects walk cycles and movements">
+                    <div class="slider-value" id="animSpeedValue">0.6</div>
+                </div>
+            </div>
+
+            <!-- Camera Section -->
+            <div class="control-section">
+                <h3>Camera</h3>
+                <div class="control-group">
+                    <button id="rotationToggle" class="btn btn-secondary" title="Enable or disable automatic camera rotation around the model">
+                        <span class="btn-icon">⟲</span>
+                        Stop Rotation
+                    </button>
+                </div>
+                <div class="control-group">
+                    <label class="slider-label">Rotation Speed</label>
+                    <input id="rotSpeedSlider" type="range" min="0" max="2" step="0.1" value="0.3" class="slider" title="Adjust the speed of automatic camera rotation">
+                    <div class="slider-value" id="rotSpeedValue">0.3</div>
+                </div>
+                <div class="control-group">
+                    <label class="slider-label">Camera Distance</label>
+                    <input id="distanceSlider" type="range" min="250" max="3000" step="50" value="1000" class="slider" title="Set camera distance from model - closer values for detail, farther for full view">
+                    <div class="slider-value" id="distanceValue">1000</div>
+                </div>
+                <div class="control-group">
+                    <button id="resetCamera" class="btn btn-warning" title="Reset all camera settings and sliders to default values">
+                        <span class="btn-icon">⌂</span>
+                        Reset Camera
+                    </button>
+                </div>
+            </div>
+
+            <!-- Lighting Section -->
+            <div class="control-section">
+                <h3>Lighting</h3>
+                <div class="control-group">
+                    <div class="lighting-presets">
+                        <button id="presetStudio" class="btn btn-secondary preset-btn" title="Balanced professional lighting setup">Studio</button>
+                        <button id="presetDramatic" class="btn btn-secondary preset-btn" title="High contrast dramatic lighting with strong shadows">Dramatic</button>
+                        <button id="presetNatural" class="btn btn-secondary preset-btn" title="Soft natural lighting for realistic appearance">Natural</button>
+                        <button id="presetMinimal" class="btn btn-secondary preset-btn" title="Minimal lighting setup with reduced complexity">Minimal</button>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="slider-label">Main Light Intensity</label>
+                    <input id="mainLightSlider" type="range" min="0" max="5" step="0.1" value="2.5" class="slider" title="Adjust primary light source intensity for overall brightness">
+                    <div class="slider-value" id="mainLightValue">2.5</div>
+                </div>
+                <div class="control-group">
+                    <label class="slider-label">Ambient Light</label>
+                    <input id="ambientLightSlider" type="range" min="0" max="1" step="0.05" value="0.1" class="slider" title="Control ambient lighting - fills in shadows and provides base illumination">
+                    <div class="slider-value" id="ambientLightValue">0.1</div>
+                </div>
+                <div class="control-group">
+                    <label class="slider-label">Red Light Intensity</label>
+                    <input id="redLightSlider" type="range" min="0" max="2" step="0.1" value="0.8" class="slider" title="Adjust red colored light intensity for warm tones">
+                    <div class="slider-value" id="redLightValue">0.8</div>
+                </div>
+                <div class="control-group">
+                    <label class="slider-label">Blue Light Intensity</label>
+                    <input id="blueLightSlider" type="range" min="0" max="2" step="0.1" value="0.8" class="slider" title="Adjust blue colored light intensity for cool tones">
+                    <div class="slider-value" id="blueLightValue">0.8</div>
+                </div>
+                <div class="control-group">
+                    <label class="slider-label">Spotlight Intensity</label>
+                    <input id="spotLightSlider" type="range" min="0" max="5" step="0.1" value="2.5" class="slider" title="Control focused spotlight intensity for dramatic highlights">
+                    <div class="slider-value" id="spotLightValue">2.5</div>
+                </div>
+            </div>
+
+            <!-- Export Section -->
+            <div class="control-section">
+                <h3>Export</h3>
+                <div class="control-group">
+                    <button id="copyBtn" class="btn btn-success" title="Copy current ASCII art to clipboard for pasting elsewhere">
+                        <span class="btn-icon">📋</span>
+                        Copy ASCII
+                    </button>
+                </div>
+                <div class="control-group">
+                    <button id="downloadBtn" class="btn btn-success" title="Download ASCII art as a text file to your computer">
+                        <span class="btn-icon">💾</span>
+                        Download
+                    </button>
+                </div>
+                <div class="control-group">
+                    <button id="screenshotBtn" class="btn btn-success" title="Take a screenshot of the current ASCII view (requires additional library)">
+                        <span class="btn-icon">📸</span>
+                        Screenshot
+                    </button>
+                </div>
+            </div>
+
+            <!-- File Section -->
+            <div class="control-section">
+                <h3>File</h3>
+                <div class="control-group">
+                    <input id="fileInput" type="file" style="display: none" accept=".glb,.gltf">
+                    <button id="uploadBtn" class="btn btn-info" onclick="document.getElementById('fileInput').click()" title="Upload your own 3D model file (.glb or .gltf format)">
+                        <span class="btn-icon">📁</span>
+                        Upload Model
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Canvas Container -->
+    <div id="canvasContainer"></div>
+
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three@0.178.0/build/three.module.js';
+        import { AsciiEffect } from 'https://unpkg.com/three@0.178.0/examples/jsm/effects/AsciiEffect.js?module';
+        import { OrbitControls } from 'https://unpkg.com/three@0.178.0/examples/jsm/controls/OrbitControls.js?module';
+        import { GLTFLoader } from 'https://unpkg.com/three@0.178.0/examples/jsm/loaders/GLTFLoader.js?module';
+        
+        let camera, controls, scene, renderer, effect;
+        let mixer, eyeModel;
+        let canvasContainer;
+        let scaleFactor = 1.5; // Higher default ASCII density (1 = original)
+        const minScaleFactor = 0.5;
+        const maxScaleFactor = 3.0;
+        let lastDensityUpdate = 0; // For throttling updates
+        const clock = new THREE.Clock();
+        
+        // Light references for controls
+        let lights = {
+            main: null,
+            ambient: null,
+            red: null,
+            blue: null,
+            spotlight: null,
+            directional1: null,
+            directional2: null,
+            support: [] // Array for support lights
+        };
+        // Model and animation state
+        const modelNames = ['model1', 'model2', 'model3', 'model4'];
+        let currentModelIndex = 0;
+        let currentModelName = modelNames[currentModelIndex];
+        let modelLoadVersion = 0;
+        let duckAnimations = { walk: null };
+        let ratAnimations = { walkDefault: null, walkStart: null, walkEnd: null, idle: null };
+        let dogeAnimations = { sitting: null, playDead: null };
+        // Helper to clear rat actions
+        function stopAllRatActions() {
+            Object.values(ratAnimations).forEach(action => {
+                if (action) action.stop();
+            });
+        }
+        let lastPointerOnModel = false;
+        
+        // New global variable declarations near other globals
+        let pointerOnModel = false;
+        const pointerSpeedMultiplier = 2; // reduced speed up factor when pointer on model
+        let baseRotationSpeed = 0.3; // higher normal auto-rotation speed for more visible difference
+        let scrollSpeed = 0; // additional speed modifier from scroll gestures
+        let mouseOverModel = false;
+        
+        // Helper to show camera status messages
+        function showCameraMessage(message) {
+            // Create a temporary message overlay
+            const messageDiv = document.createElement('div');
+            messageDiv.style.position = 'fixed';
+            messageDiv.style.top = '20px';
+            messageDiv.style.left = '50%';
+            messageDiv.style.transform = 'translateX(-50%)';
+            messageDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+            messageDiv.style.color = 'white';
+            messageDiv.style.padding = '10px 20px';
+            messageDiv.style.borderRadius = '5px';
+            messageDiv.style.fontSize = '14px';
+            messageDiv.style.zIndex = '1000';
+            messageDiv.style.fontFamily = 'Geist, sans-serif';
+            messageDiv.textContent = message;
+            
+            document.body.appendChild(messageDiv);
+            
+            // Remove message after 5 seconds
+            setTimeout(() => {
+                if (document.body.contains(messageDiv)) {
+                    document.body.removeChild(messageDiv);
+                }
+            }, 5000);
+        }
+        
+        // Helper to apply current scaleFactor
+        function updateAsciiScale() {
+            if (!effect || !canvasContainer) return;
+            const rect = canvasContainer.getBoundingClientRect();
+            effect.setSize(rect.width * scaleFactor, rect.height * scaleFactor);
+            effect.domElement.style.transform = `translate(-50%, -50%) scale(${1 / scaleFactor})`;
+        }
+
+        // Easy customization: Change this number to adjust character density
+        // Higher numbers = more characters (more detail)
+        // Lower numbers = fewer characters (less detail)
+        const baseCharacterDensity = 50000; // Even higher density for more detail
+
+        init();
+
+
+
+
+
+
+
+        function getDistance(p1, p2) {
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+            return Math.hypot(dx, dy);
+        }
+
+        function init() {
+            // Use full screen dimensions
+            const canvasWidth = window.innerWidth;
+            const canvasHeight = window.innerHeight;
+
+            camera = new THREE.PerspectiveCamera(70, canvasWidth / canvasHeight, 1, 5000);
+            camera.position.set(0, 150, 900);
+
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0, 0, 0);
+
+            // Main light (was light1)
+            lights.main = new THREE.PointLight(0xffffff, 2.5);
+            lights.main.position.set(500, 500, 500);
+            scene.add(lights.main);
+            
+            // Ambient light
+            lights.ambient = new THREE.AmbientLight(0xffffff, 0.1);
+            scene.add(lights.ambient);
+
+            // Support lights (for general illumination)
+            const supportLight1 = new THREE.PointLight(0xffffff, 1.0);
+            supportLight1.position.set(-500, -500, -500);
+            lights.support.push(supportLight1);
+            scene.add(supportLight1);
+
+            const supportLight2 = new THREE.PointLight(0xffffff, 2.0);
+            supportLight2.position.set(0, 300, 200);
+            lights.support.push(supportLight2);
+            scene.add(supportLight2);
+
+            const supportLight3 = new THREE.PointLight(0xffffff, 1.5);
+            supportLight3.position.set(-300, 200, -200);
+            lights.support.push(supportLight3);
+            scene.add(supportLight3);
+
+            const supportLight4 = new THREE.PointLight(0xffffff, 1.2);
+            supportLight4.position.set(300, -200, 300);
+            lights.support.push(supportLight4);
+            scene.add(supportLight4);
+
+            // Colored lights
+            lights.red = new THREE.PointLight(0xff4444, 0.8);
+            lights.red.position.set(400, 100, 400);
+            scene.add(lights.red);
+
+            lights.blue = new THREE.PointLight(0x4444ff, 0.8);
+            lights.blue.position.set(-400, 100, -400);
+            scene.add(lights.blue);
+
+            // Directional lights
+            lights.directional1 = new THREE.DirectionalLight(0xffffff, 3.0);
+            lights.directional1.position.set(200, 400, 100);
+            scene.add(lights.directional1);
+
+            lights.directional2 = new THREE.DirectionalLight(0xffffff, 2.0);
+            lights.directional2.position.set(-200, 300, -100);
+            scene.add(lights.directional2);
+
+            // Spotlight
+            lights.spotlight = new THREE.SpotLight(0xffffff, 2.5);
+            lights.spotlight.position.set(0, 500, 0);
+            lights.spotlight.angle = Math.PI / 6;
+            lights.spotlight.penumbra = 0.1;
+            lights.spotlight.decay = 2;
+            lights.spotlight.distance = 1000;
+            scene.add(lights.spotlight);
+
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(canvasWidth, canvasHeight);
+            renderer.setAnimationLoop(animate);
+
+            loadModel(currentModelName);
+
+            const customChars = " .'`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$".slice(0, baseCharacterDensity); // Adjustable character density
+            
+            // Create ASCII effect with duck-themed colors
+            effect = new AsciiEffect(renderer, customChars, { invert: true });
+            effect.domElement.style.color = 'black'; // Black duck in light mode
+            effect.domElement.style.backgroundColor = 'white';
+            effect.domElement.style.fontWeight = '900';
+            effect.domElement.style.fontFamily = 'Geist, monospace';
+            effect.domElement.style.fontSize = '20px'; // Slightly smaller font size for tighter density
+            effect.domElement.style.textShadow = 'none';
+            effect.domElement.style.position = 'absolute';
+            effect.domElement.style.top = '50%';
+            effect.domElement.style.left = '50%';
+            effect.domElement.style.transformOrigin = 'center center';
+            // initial translate to centre combined with scale applied later
+
+            canvasContainer = document.getElementById('canvasContainer');
+            canvasContainer.style.width = canvasWidth + 'px';
+            canvasContainer.style.height = canvasHeight + 'px';
+            
+            canvasContainer.appendChild(effect.domElement);
+            updateAsciiScale();
+
+            
+            // Add mouse controls for PC users
+            function isMouseOverModel(event) {
+                const rect = canvasContainer.getBoundingClientRect();
+                const mouseX = event.clientX - rect.left;
+                const mouseY = event.clientY - rect.top;
+                
+                // Check if mouse is near center (where model is)
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const dx = mouseX - centerX;
+                const dy = mouseY - centerY;
+                const dist = Math.hypot(dx, dy);
+                const threshold = Math.min(rect.width, rect.height) * 0.2;
+                
+                return dist < threshold;
+            }
+            
+            
+            canvasContainer.addEventListener('contextmenu', (event) => {
+                // Right click for hover effects
+                event.preventDefault(); // Prevent context menu
+                
+                if (isMouseOverModel(event)) {
+                    // Toggle hover state on right click
+                    mouseOverModel = !mouseOverModel;
+                    
+                    // Handle model-specific hover effects
+                    if (currentModelName === 'rat') {
+                        if (mouseOverModel && !lastPointerOnModel) {
+                            ratPointerEnter();
+                        } else if (!mouseOverModel && lastPointerOnModel) {
+                            ratPointerLeave();
+                        }
+                        lastPointerOnModel = mouseOverModel;
+                    } else if (currentModelName === 'doge') {
+                        lastPointerOnModel = mouseOverModel;
+                    }
+                    
+                    // Update global pointer state for other systems
+                    pointerOnModel = mouseOverModel;
+                }
+            });
+
+            controls = new OrbitControls(camera, effect.domElement);
+            controls.autoRotate = true; // enable continuous rotation
+            controls.autoRotateSpeed = baseRotationSpeed;
+            controls.enableDamping = true;
+            controls.enablePan = false;
+            controls.enableRotate = true;
+            controls.rotateSpeed = 0.8;
+            controls.minDistance = 250;
+            controls.maxDistance = 3000;
+            controls.minPolarAngle = Math.PI / 2;
+            controls.maxPolarAngle = Math.PI / 2;
+            controls.target.set(0, 0, 0);
+            window.addEventListener('resize', onWindowResize);
+            toggleTheme(); // Set initial theme to dark
+        }
+
+        function switchModel(offset) {
+            currentModelIndex = (currentModelIndex + offset + modelNames.length) % modelNames.length;
+            currentModelName = modelNames[currentModelIndex];
+            loadModel(currentModelName);
+            // Update the model info in the new UI
+            const modelInfo = document.getElementById('modelInfo');
+            if (modelInfo) {
+                modelInfo.textContent = currentModelName.charAt(0).toUpperCase() + currentModelName.slice(1);
+            }
+        }
+
+        function loadModel(name) {
+            if (eyeModel) {
+                scene.remove(eyeModel);
+                eyeModel = null;
+                mixer = null;
+            }
+            const thisLoadVersion = ++modelLoadVersion;
+            const loader = new GLTFLoader();
+
+            const modelConfig = {
+                model1: { path: './1.glb', scaleMultiplier: 5.0 },
+                model2: { path: './2.glb', scaleMultiplier: 8.0 },
+                model3: { path: './3.glb', scaleMultiplier: 6.0 },
+                model4: { path: './alien.glb', scaleMultiplier: 6.0 }
+            };
+
+            const config = modelConfig[name] || modelConfig.model1;
+            const modelPath = config.path;
+            const modelScaleMultiplier = config.scaleMultiplier;
+
+            const isDuck = name === 'duck';
+            const isRat = name === 'rat';
+            const isDoge = name === 'doge';
+            const attribution = isDuck ? '<!-- "Duck_Walk (Free)" (https://skfb.ly/owq7o) by Nyilonelycompany is licensed under CC BY 4.0 -->'
+                                : isRat ? '<!-- "Black Rat ( Free download )" (https://skfb.ly/p9TYP) by Nestaeric is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->'
+                                : isDoge ? '<!-- "Animated Dog, Shiba Inu" (https://skfb.ly/6SrJO) by quander is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->'
+                                : '<!-- Default model -->';
+            
+            loader.load(modelPath, (gltf) => {
+                if (thisLoadVersion !== modelLoadVersion) return; // Skip if a newer load has occurred
+                eyeModel = gltf.scene;
+                const box = new THREE.Box3().setFromObject(eyeModel);
+                const size = new THREE.Vector3();
+                const center = new THREE.Vector3();
+                box.getSize(size);
+                box.getCenter(center);
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const desiredSize = 150;
+                const scale = desiredSize / maxDim;
+                eyeModel.scale.setScalar(scale * modelScaleMultiplier);
+                eyeModel.position.set(
+                    -center.x * scale * modelScaleMultiplier,
+                    -center.y * scale * modelScaleMultiplier,
+                    -center.z * scale * modelScaleMultiplier
+                );
+                eyeModel.originalPosition = eyeModel.position.clone();
+                eyeModel.traverse((child) => {
+                    if (child.isMesh) {
+                        if (child.material) {
+                            if (child.material.metalness !== undefined) {
+                                child.material.metalness = 0.8;
+                                child.material.roughness = 0.2;
+                            }
+                            child.material.needsUpdate = true;
+                        }
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                    }
+                });
+                scene.add(eyeModel);
+                camera.lookAt(0, 0, 0);
+                if (gltf.animations && gltf.animations.length) {
+                    mixer = new THREE.AnimationMixer(eyeModel);
+                    if (isDuck) {
+                        const walkAction = mixer.clipAction(gltf.animations.find(clip => clip.name === 'walk'));
+                        if (walkAction) {
+                            duckAnimations.walk = walkAction;
+                            duckAnimations.walk.setLoop(THREE.LoopRepeat, Infinity);
+                            duckAnimations.walk.setEffectiveTimeScale(0.6);
+                            duckAnimations.walk.play();
+                        }
+                    } else if (isRat) {
+                        // Map rat animations
+                        const clipsByName = {};
+                        gltf.animations.forEach(c => clipsByName[c.name.toLowerCase()] = c);
+
+                        const walkDefaultClip = gltf.animations.find(c => c.name === 'Mammals|walk_A1');
+                        const walkStartClip = gltf.animations.find(c => c.name === 'Mammals|walk_start_A');
+                        const walkEndClip   = gltf.animations.find(c => c.name === 'Mammals|walk_end_A');
+                        const idleClip      = gltf.animations.find(c => c.name === 'Mammals|idle_A3');
+
+                        ratAnimations.walkDefault = walkDefaultClip ? mixer.clipAction(walkDefaultClip) : null;
+                        ratAnimations.walkStart   = walkStartClip   ? mixer.clipAction(walkStartClip)   : null;
+                        ratAnimations.walkEnd     = walkEndClip     ? mixer.clipAction(walkEndClip)     : null;
+                        ratAnimations.idle        = idleClip        ? mixer.clipAction(idleClip)        : null;
+
+                        // Configure looping
+                        if (ratAnimations.walkDefault) ratAnimations.walkDefault.setLoop(THREE.LoopRepeat, Infinity);
+                        if (ratAnimations.walkStart)   ratAnimations.walkStart.setLoop(THREE.LoopOnce, 1).clampWhenFinished = true;
+                        if (ratAnimations.walkEnd)     ratAnimations.walkEnd.setLoop(THREE.LoopOnce, 1).clampWhenFinished = true;
+                        if (ratAnimations.idle)        ratAnimations.idle.setLoop(THREE.LoopRepeat, Infinity);
+
+                        // Make the rat animations slower
+                        const ratBaseTimeScale = 0.6; // Default speed
+                        Object.values(ratAnimations).forEach(action => {
+                            if (action) action.setEffectiveTimeScale(ratBaseTimeScale);
+                        });
+
+                        // Play default walk
+                        stopAllRatActions();
+                        if (ratAnimations.walkDefault) ratAnimations.walkDefault.reset().play();
+                    } else if (isDoge) {
+                        // Map doge animations
+                        const clipsByName = {};
+                        gltf.animations.forEach(c => clipsByName[c.name.toLowerCase()] = c);
+
+                        const sittingClip = gltf.animations.find(c => c.name === '0|sitting_0');
+                        const playDeadClip = gltf.animations.find(c => c.name === '0|play_dead_0');
+
+                        dogeAnimations.sitting = sittingClip ? mixer.clipAction(sittingClip) : null;
+                        dogeAnimations.playDead = playDeadClip ? mixer.clipAction(playDeadClip) : null;
+
+                        // Configure looping
+                        if (dogeAnimations.sitting) dogeAnimations.sitting.setLoop(THREE.LoopRepeat, Infinity);
+                        if (dogeAnimations.playDead) dogeAnimations.playDead.setLoop(THREE.LoopOnce, 1).clampWhenFinished = true;
+
+                        // Set default speed
+                        if (dogeAnimations.sitting) dogeAnimations.sitting.setEffectiveTimeScale(0.6);
+                        if (dogeAnimations.playDead) dogeAnimations.playDead.setEffectiveTimeScale(0.6);
+
+                        // Play default sitting animation
+                        if (dogeAnimations.sitting) dogeAnimations.sitting.reset().play();
+                    }
+                }
+            }, undefined, (err) => console.error(`${name} GLB load error:`, err));
+        }
+
+        function onWindowResize() {
+            // Use full screen dimensions
+            const newWidth = window.innerWidth;
+            const newHeight = window.innerHeight;
+            
+            camera.aspect = newWidth / newHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(newWidth, newHeight);
+            if (canvasContainer) {
+                canvasContainer.style.width = newWidth + 'px';
+                canvasContainer.style.height = newHeight + 'px';
+            }
+            updateAsciiScale();
+        }
+
+        function animate() {
+            let delta = clock.getDelta();
+            delta = Math.min(delta, 0.033);
+            if (mixer) mixer.update(delta);
+
+            
+            // Adjust animation speed based on pointer proximity
+            if (mixer) {
+                if (currentModelName === 'duck') {
+                    const speed = pointerOnModel ? pointerSpeedMultiplier : 0.3; // Slower default speed
+                    if (duckAnimations.walk) duckAnimations.walk.setEffectiveTimeScale(speed);
+                }
+                // mixer.update(delta); // This is a duplicate call, remove it
+            }
+
+            controls.update();
+            effect.render(scene, camera);
+        }
+
+        function toggleTheme() {
+            const isDark = document.body.classList.contains('dark');
+            
+            if (isDark) {
+                // Switch to light theme
+                document.body.classList.remove('dark');
+                effect.domElement.style.color = 'black';
+                effect.domElement.style.backgroundColor = 'white';
+            } else {
+                // Switch to dark theme
+                document.body.classList.add('dark');
+                effect.domElement.style.color = 'white';
+                effect.domElement.style.backgroundColor = 'black';
+            }
+        }
+
+        function ratPointerEnter() {
+            if (!ratAnimations.walkEnd) return;
+            stopAllRatActions();
+            const endAction = ratAnimations.walkEnd;
+            const idleAction = ratAnimations.idle;
+            endAction.reset().play();
+            const duration = endAction.getClip().duration * 1000;
+            // After walkEnd finishes, play idle looping as long as pointer still on
+            setTimeout(() => {
+                if (pointerOnModel && currentModelName === 'rat' && idleAction) {
+                    stopAllRatActions();
+                    idleAction.reset().play();
+                }
+            }, duration + 50);
+        }
+
+        function ratPointerLeave() {
+            if (!ratAnimations.walkStart) {
+                // Fallback to default walk directly
+                if (ratAnimations.walkDefault) {
+                    stopAllRatActions();
+                    ratAnimations.walkDefault.reset().play();
+                }
+                return;
+            }
+            stopAllRatActions();
+            const startAction = ratAnimations.walkStart;
+            const walkDefaultAction = ratAnimations.walkDefault;
+            startAction.reset().play();
+            const duration = startAction.getClip().duration * 1000;
+            setTimeout(() => {
+                if (!pointerOnModel && currentModelName === 'rat' && walkDefaultAction) {
+                    stopAllRatActions();
+                    walkDefaultAction.reset().play();
+                }
+            }, duration + 50);
+        }
+
+        // Lighting control functions
+        function setLightingPreset(preset) {
+            // Remove active class from all preset buttons
+            document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+            
+            switch(preset) {
+                case 'studio':
+                    // Balanced professional lighting
+                    lights.main.intensity = 3.0;
+                    lights.ambient.intensity = 0.2;
+                    lights.red.intensity = 0.3;
+                    lights.blue.intensity = 0.3;
+                    lights.spotlight.intensity = 2.0;
+                    lights.directional1.intensity = 2.0;
+                    lights.directional2.intensity = 1.5;
+                    document.getElementById('presetStudio').classList.add('active');
+                    break;
+                    
+                case 'dramatic':
+                    // High contrast dramatic lighting
+                    lights.main.intensity = 4.0;
+                    lights.ambient.intensity = 0.05;
+                    lights.red.intensity = 1.5;
+                    lights.blue.intensity = 1.2;
+                    lights.spotlight.intensity = 3.5;
+                    lights.directional1.intensity = 3.5;
+                    lights.directional2.intensity = 2.5;
+                    document.getElementById('presetDramatic').classList.add('active');
+                    break;
+                    
+                case 'natural':
+                    // Soft natural lighting
+                    lights.main.intensity = 1.5;
+                    lights.ambient.intensity = 0.3;
+                    lights.red.intensity = 0.1;
+                    lights.blue.intensity = 0.1;
+                    lights.spotlight.intensity = 1.0;
+                    lights.directional1.intensity = 1.2;
+                    lights.directional2.intensity = 0.8;
+                    document.getElementById('presetNatural').classList.add('active');
+                    break;
+                    
+                case 'minimal':
+                    // Minimal lighting setup
+                    lights.main.intensity = 2.0;
+                    lights.ambient.intensity = 0.15;
+                    lights.red.intensity = 0.0;
+                    lights.blue.intensity = 0.0;
+                    lights.spotlight.intensity = 0.5;
+                    lights.directional1.intensity = 1.0;
+                    lights.directional2.intensity = 0.5;
+                    document.getElementById('presetMinimal').classList.add('active');
+                    break;
+                    
+                default:
+                    // Current/default settings
+                    lights.main.intensity = 2.5;
+                    lights.ambient.intensity = 0.1;
+                    lights.red.intensity = 0.8;
+                    lights.blue.intensity = 0.8;
+                    lights.spotlight.intensity = 2.5;
+                    lights.directional1.intensity = 3.0;
+                    lights.directional2.intensity = 2.0;
+            }
+            
+            // Update UI sliders to match preset values
+            updateLightingSliders();
+        }
+        
+        function updateLightingSliders() {
+            // Update slider values and displays
+            const mainSlider = document.getElementById('mainLightSlider');
+            const mainValue = document.getElementById('mainLightValue');
+            const ambientSlider = document.getElementById('ambientLightSlider');
+            const ambientValue = document.getElementById('ambientLightValue');
+            const redSlider = document.getElementById('redLightSlider');
+            const redValue = document.getElementById('redLightValue');
+            const blueSlider = document.getElementById('blueLightSlider');
+            const blueValue = document.getElementById('blueLightValue');
+            const spotSlider = document.getElementById('spotLightSlider');
+            const spotValue = document.getElementById('spotLightValue');
+            
+            if (mainSlider && lights.main) {
+                mainSlider.value = lights.main.intensity;
+                mainValue.textContent = lights.main.intensity.toFixed(1);
+            }
+            if (ambientSlider && lights.ambient) {
+                ambientSlider.value = lights.ambient.intensity;
+                ambientValue.textContent = lights.ambient.intensity.toFixed(2);
+            }
+            if (redSlider && lights.red) {
+                redSlider.value = lights.red.intensity;
+                redValue.textContent = lights.red.intensity.toFixed(1);
+            }
+            if (blueSlider && lights.blue) {
+                blueSlider.value = lights.blue.intensity;
+                blueValue.textContent = lights.blue.intensity.toFixed(1);
+            }
+            if (spotSlider && lights.spotlight) {
+                spotSlider.value = lights.spotlight.intensity;
+                spotValue.textContent = lights.spotlight.intensity.toFixed(1);
+            }
+        }
+
+        // Event handlers for new UI controls
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+            // Help button
+            document.getElementById('helpBtn').addEventListener('click', showHelpModal);
+
+            // ASCII Density slider
+            const densitySlider = document.getElementById('densitySlider');
+            const densityValue = document.getElementById('densityValue');
+            densitySlider.addEventListener('input', function() {
+                scaleFactor = parseFloat(this.value);
+                updateAsciiScale();
+                densityValue.textContent = this.value;
+            });
+
+            // Next model
+            document.getElementById('nextModel').addEventListener('click', function() {
+                switchModel(1);
+            });
+
+            // Animation Speed slider
+            const animSpeedSlider = document.getElementById('animSpeedSlider');
+            const animSpeedValue = document.getElementById('animSpeedValue');
+            animSpeedSlider.addEventListener('input', function() {
+                const speed = parseFloat(this.value);
+                animSpeedValue.textContent = speed.toFixed(1);
+                if (mixer && duckAnimations.walk) {
+                    duckAnimations.walk.setEffectiveTimeScale(speed);
+                }
+                if (mixer && ratAnimations.walkDefault) {
+                    ratAnimations.walkDefault.setEffectiveTimeScale(speed);
+                }
+                if (mixer && dogeAnimations.sitting) {
+                    dogeAnimations.sitting.setEffectiveTimeScale(speed);
+                }
+            });
+
+            // Rotation toggle
+            document.getElementById('rotationToggle').addEventListener('click', function() {
+                if (controls) {
+                    controls.autoRotate = !controls.autoRotate;
+                    this.innerHTML = controls.autoRotate ? 
+                        '<span class="btn-icon">⏸</span>Stop Rotation' : 
+                        '<span class="btn-icon">⟲</span>Start Rotation';
+                }
+            });
+
+            // Rotation Speed slider
+            const rotSpeedSlider = document.getElementById('rotSpeedSlider');
+            const rotSpeedValue = document.getElementById('rotSpeedValue');
+            rotSpeedSlider.addEventListener('input', function() {
+                baseRotationSpeed = parseFloat(this.value);
+                rotSpeedValue.textContent = this.value;
+                if (controls) {
+                    controls.autoRotateSpeed = baseRotationSpeed;
+                }
+            });
+
+            // Camera Distance slider
+            const distanceSlider = document.getElementById('distanceSlider');
+            const distanceValue = document.getElementById('distanceValue');
+            distanceSlider.addEventListener('input', function() {
+                const distance = parseFloat(this.value);
+                distanceValue.textContent = this.value;
+                if (camera && controls) {
+                    const direction = camera.position.clone().normalize();
+                    camera.position.copy(direction.multiplyScalar(distance));
+                    controls.update();
+                }
+            });
+
+            // Reset Camera
+            document.getElementById('resetCamera').addEventListener('click', function() {
+                if (controls) {
+                    controls.reset();
+                    scaleFactor = 1.5;
+                    updateAsciiScale();
+                    
+                    // Reset all sliders to default values
+                    densitySlider.value = 1.5;
+                    densityValue.textContent = '1.5';
+                    rotSpeedSlider.value = baseRotationSpeed;
+                    rotSpeedValue.textContent = baseRotationSpeed;
+                    distanceSlider.value = 1000;
+                    distanceValue.textContent = '1000';
+                    animSpeedSlider.value = 0.6;
+                    animSpeedValue.textContent = '0.6';
+                    
+                    // Reset lighting to default
+                    setLightingPreset('default');
+                }
+            });
+
+            // Lighting preset buttons
+            document.getElementById('presetStudio').addEventListener('click', () => setLightingPreset('studio'));
+            document.getElementById('presetDramatic').addEventListener('click', () => setLightingPreset('dramatic'));
+            document.getElementById('presetNatural').addEventListener('click', () => setLightingPreset('natural'));
+            document.getElementById('presetMinimal').addEventListener('click', () => setLightingPreset('minimal'));
+
+            // Lighting sliders
+            const mainLightSlider = document.getElementById('mainLightSlider');
+            const mainLightValue = document.getElementById('mainLightValue');
+            mainLightSlider.addEventListener('input', function() {
+                const intensity = parseFloat(this.value);
+                mainLightValue.textContent = intensity.toFixed(1);
+                if (lights.main) {
+                    lights.main.intensity = intensity;
+                }
+                // Clear preset selection when manually adjusting
+                document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+            });
+
+            const ambientLightSlider = document.getElementById('ambientLightSlider');
+            const ambientLightValue = document.getElementById('ambientLightValue');
+            ambientLightSlider.addEventListener('input', function() {
+                const intensity = parseFloat(this.value);
+                ambientLightValue.textContent = intensity.toFixed(2);
+                if (lights.ambient) {
+                    lights.ambient.intensity = intensity;
+                }
+                document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+            });
+
+            const redLightSlider = document.getElementById('redLightSlider');
+            const redLightValue = document.getElementById('redLightValue');
+            redLightSlider.addEventListener('input', function() {
+                const intensity = parseFloat(this.value);
+                redLightValue.textContent = intensity.toFixed(1);
+                if (lights.red) {
+                    lights.red.intensity = intensity;
+                }
+                document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+            });
+
+            const blueLightSlider = document.getElementById('blueLightSlider');
+            const blueLightValue = document.getElementById('blueLightValue');
+            blueLightSlider.addEventListener('input', function() {
+                const intensity = parseFloat(this.value);
+                blueLightValue.textContent = intensity.toFixed(1);
+                if (lights.blue) {
+                    lights.blue.intensity = intensity;
+                }
+                document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+            });
+
+            const spotLightSlider = document.getElementById('spotLightSlider');
+            const spotLightValue = document.getElementById('spotLightValue');
+            spotLightSlider.addEventListener('input', function() {
+                const intensity = parseFloat(this.value);
+                spotLightValue.textContent = intensity.toFixed(1);
+                if (lights.spotlight) {
+                    lights.spotlight.intensity = intensity;
+                }
+                document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+            });
+
+            // Export controls
+            document.getElementById('copyBtn').addEventListener('click', function() {
+                if (effect && effect.domElement) {
+                    const text = effect.domElement.textContent;
+                    navigator.clipboard.writeText(text).then(() => {
+                        showNotification('ASCII art copied to clipboard!', 'success');
+                    }).catch(err => {
+                        console.error('Failed to copy:', err);
+                        showNotification('Failed to copy to clipboard', 'error');
+                    });
+                }
+            });
+
+            document.getElementById('downloadBtn').addEventListener('click', function() {
+                if (effect && effect.domElement) {
+                    const text = effect.domElement.textContent;
+                    const blob = new Blob([text], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `ascii-art-${currentModelName}-${Date.now()}.txt`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    showNotification('ASCII art downloaded!', 'success');
+                }
+            });
+
+            document.getElementById('screenshotBtn').addEventListener('click', function() {
+                if (effect && effect.domElement) {
+                    // Simple fallback since html2canvas is not included
+                    showNotification('Screenshot feature requires html2canvas library', 'info');
+                    console.log('Screenshot attempted for current view');
+                }
+            });
+
+            // File upload
+            document.getElementById('fileInput').addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    showNotification(`Selected file: ${file.name}`, 'info');
+                    // File upload functionality would go here
+                    console.log('File selected:', file.name);
+                }
+            });
+            
+            // Initialize lighting UI with current values
+            updateLightingSliders();
+        });
+
+        // Help modal function
+        function showHelpModal() {
+            const helpContent = `
+                <div style="font-family: 'Geist', sans-serif; line-height: 1.6;">
+                    <h2 style="margin-top: 0; color: #333; font-size: 1.5em;">ASCII Animator - Controls Guide</h2>
+                    
+                    <h3 style="color: #555; margin-bottom: 10px;">🖱️ Mouse Controls:</h3>
+                    <ul style="margin: 0 0 20px 20px; padding: 0;">
+                        <li><strong>Left Click + Drag:</strong> Rotate the camera around the model</li>
+                        <li><strong>Right Click:</strong> Toggle hover effects on model (when over model area)</li>
+                        <li><strong>Scroll Wheel:</strong> Zoom in/out</li>
+                        <li><strong>Middle Click + Drag:</strong> Pan the view (if enabled)</li>
+                    </ul>
+                    
+                    <h3 style="color: #555; margin-bottom: 10px;">⌨️ Models & Animations:</h3>
+                    <ul style="margin: 0 0 20px 20px; padding: 0;">
+                        <li><strong>Duck:</strong> Walking animation (speeds up on hover)</li>
+                        <li><strong>Rat:</strong> Walk → Idle transition on hover</li>
+                        <li><strong>Doge:</strong> Sitting animation</li>
+                    </ul>
+                    
+                    <h3 style="color: #555; margin-bottom: 10px;">🎛️ Panel Controls:</h3>
+                    <ul style="margin: 0 0 20px 20px; padding: 0;">
+                        <li><strong>ASCII Density:</strong> Controls detail level (0.5-2.0)</li>
+                        <li><strong>Animation Speed:</strong> Adjusts animation playback rate</li>
+                        <li><strong>Camera Distance:</strong> Sets zoom level</li>
+                        <li><strong>Lighting Presets:</strong> Studio, Dramatic, Natural, Minimal</li>
+                        <li><strong>Export:</strong> Copy, Download, or Screenshot ASCII art</li>
+                    </ul>
+                    
+                    <p style="margin: 20px 0 0 0; font-size: 0.9em; color: #666;">
+                        <strong>Tip:</strong> Right-click near the center of the screen to trigger model-specific animations!
+                    </p>
+                </div>
+            `;
+            
+            showModal('Help & Controls', helpContent);
+        }
+
+        // Generic modal function
+        function showModal(title, content) {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 10000;
+                font-family: 'Geist', sans-serif;
+            `;
+            
+            const modalContent = document.createElement('div');
+            modalContent.style.cssText = `
+                background: white;
+                padding: 30px;
+                border-radius: 12px;
+                max-width: 600px;
+                max-height: 80vh;
+                overflow-y: auto;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                position: relative;
+            `;
+            
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '✕';
+            closeBtn.style.cssText = `
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+                color: #666;
+                padding: 5px;
+                line-height: 1;
+            `;
+            
+            closeBtn.addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            });
+            
+            modalContent.innerHTML = content;
+            modalContent.appendChild(closeBtn);
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+        }
+
+        // Helper function to show notifications
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                border-radius: 8px;
+                color: white;
+                font-family: 'Geist', sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                z-index: 10000;
+                max-width: 300px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                transition: all 0.3s ease;
+                transform: translateX(100%);
+            `;
+            
+            const colors = {
+                success: 'linear-gradient(135deg, #48bb78 0%, #38a169 100%)',
+                error: 'linear-gradient(135deg, #f56565 0%, #e53e3e 100%)',
+                info: 'linear-gradient(135deg, #4299e1 0%, #3182ce 100%)',
+                warning: 'linear-gradient(135deg, #ed8936 0%, #dd6b20 100%)'
+            };
+            
+            notification.style.background = colors[type] || colors.info;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 10);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
