@@ -210,6 +210,27 @@
             });
         }
         
+        // Debug function to check all lights in scene
+        function debugLights() {
+            console.log('🔍 LIGHTING DEBUG:');
+            console.log('Scene children count:', scene.children.length);
+            console.log('Lights object:', lights);
+            
+            const sceneLights = scene.children.filter(child => 
+                child.type === 'PointLight' || 
+                child.type === 'AmbientLight' || 
+                child.type === 'DirectionalLight' || 
+                child.type === 'SpotLight'
+            );
+            console.log('Lights found in scene:', sceneLights);
+            
+            if (lights.main) console.log('Main light intensity:', lights.main.intensity);
+            if (lights.red) console.log('Red light intensity:', lights.red.intensity);
+            if (lights.blue) console.log('Blue light intensity:', lights.blue.intensity);
+            if (lights.spotlight) console.log('Spotlight intensity:', lights.spotlight.intensity);
+            if (lights.ambient) console.log('Ambient light intensity:', lights.ambient.intensity);
+        }
+        
         // Function to switch to next animation
         function switchToNextAnimation() {
             if (currentAnimations.length === 0 || !mixer) return;
@@ -312,10 +333,12 @@
             lights.main = new THREE.PointLight(0xffffff, 1.5);
             lights.main.position.set(300, 300, 300);
             scene.add(lights.main);
+            console.log('✅ Created main light:', lights.main, 'intensity:', lights.main.intensity);
             
             // Ambient light
             lights.ambient = new THREE.AmbientLight(0xffffff, 0.05);
             scene.add(lights.ambient);
+            console.log('✅ Created ambient light:', lights.ambient, 'intensity:', lights.ambient.intensity);
 
             // Support lights (for general illumination)
             const supportLight1 = new THREE.PointLight(0xffffff, 1.0);
@@ -342,10 +365,12 @@
             lights.red = new THREE.PointLight(0xff2222, 1.5);
             lights.red.position.set(200, 200, 200);
             scene.add(lights.red);
+            console.log('✅ Created red light:', lights.red, 'intensity:', lights.red.intensity);
 
             lights.blue = new THREE.PointLight(0x2222ff, 1.5);
             lights.blue.position.set(-200, 200, -200);
             scene.add(lights.blue);
+            console.log('✅ Created blue light:', lights.blue, 'intensity:', lights.blue.intensity);
 
             // Directional lights
             lights.directional1 = new THREE.DirectionalLight(0xffffff, 3.0);
@@ -364,6 +389,7 @@
             lights.spotlight.decay = 2;
             lights.spotlight.distance = 1000;
             scene.add(lights.spotlight);
+            console.log('✅ Created spotlight:', lights.spotlight, 'intensity:', lights.spotlight.intensity);
 
             renderer = new THREE.WebGLRenderer();
             renderer.setSize(canvasWidth, canvasHeight);
@@ -458,6 +484,9 @@
                         canvasContainer.innerHTML = '';
                         canvasContainer.appendChild(effect.domElement);
                     }
+                } else if (event.key === 'l' || event.key === 'L') {
+                    // Press 'L' to debug lights
+                    debugLights();
                 }
             });
             
@@ -922,6 +951,9 @@
                 if (lights.main) {
                     lights.main.intensity = intensity;
                     console.log('Set main light intensity to:', lights.main.intensity);
+                } else {
+                    console.error('❌ lights.main is null/undefined!');
+                    debugLights();
                 }
                 // Clear preset selection when manually adjusting
                 document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
