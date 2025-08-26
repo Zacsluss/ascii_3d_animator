@@ -521,15 +521,34 @@
                     currentAnimations = [...gltf.animations]; // Copy all animations
                     currentAnimationIndex = 0;
                     console.log(`Available animations for ${name}:`, currentAnimations.map(a => a.name));
-                    // Universal animation system - start with first available animation
-                    // All models can now cycle through animations with right-click
+                    // Start with model-specific default animation or first available
                     if (currentAnimations.length > 0) {
-                        const firstClip = currentAnimations[0];
-                        currentPlayingAction = mixer.clipAction(firstClip);
+                        let defaultClip = currentAnimations[0]; // Fallback to first animation
+                        let defaultIndex = 0;
+                        
+                        // Set specific default animations for certain models
+                        if (name === 'rat') {
+                            const ratWalkClip = currentAnimations.find(clip => clip.name === 'Mammals|walk_A1');
+                            if (ratWalkClip) {
+                                defaultClip = ratWalkClip;
+                                defaultIndex = currentAnimations.indexOf(ratWalkClip);
+                                console.log(`${name}: Using preferred animation: ${defaultClip.name}`);
+                            }
+                        } else if (name === 'doge') {
+                            const dogeShakeClip = currentAnimations.find(clip => clip.name === '0|shake_0');
+                            if (dogeShakeClip) {
+                                defaultClip = dogeShakeClip;
+                                defaultIndex = currentAnimations.indexOf(dogeShakeClip);
+                                console.log(`${name}: Using preferred animation: ${defaultClip.name}`);
+                            }
+                        }
+                        
+                        currentAnimationIndex = defaultIndex;
+                        currentPlayingAction = mixer.clipAction(defaultClip);
                         currentPlayingAction.setLoop(THREE.LoopRepeat, Infinity);
                         currentPlayingAction.setEffectiveTimeScale(0.6);
                         currentPlayingAction.play();
-                        console.log(`${name}: Playing animation: ${firstClip.name} (1/${currentAnimations.length})`);
+                        console.log(`${name}: Playing animation: ${defaultClip.name} (${defaultIndex + 1}/${currentAnimations.length})`);
                         console.log(`${name}: Right-click to cycle through ${currentAnimations.length} animations`);
                     } else {
                         console.log(`${name}: No animations found in this model`);
