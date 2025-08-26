@@ -340,26 +340,26 @@
             scene.add(lights.ambient);
             console.log('✅ Created ambient light:', lights.ambient, 'intensity:', lights.ambient.intensity);
 
-            // Support lights (for general illumination)
-            const supportLight1 = new THREE.PointLight(0xffffff, 1.0);
-            supportLight1.position.set(-500, -500, -500);
-            lights.support.push(supportLight1);
-            scene.add(supportLight1);
+            // TEMPORARILY DISABLED: Support lights might be overwhelming other lights
+            // const supportLight1 = new THREE.PointLight(0xffffff, 1.0);
+            // supportLight1.position.set(-500, -500, -500);
+            // lights.support.push(supportLight1);
+            // scene.add(supportLight1);
 
-            const supportLight2 = new THREE.PointLight(0xffffff, 2.0);
-            supportLight2.position.set(0, 300, 200);
-            lights.support.push(supportLight2);
-            scene.add(supportLight2);
+            // const supportLight2 = new THREE.PointLight(0xffffff, 2.0);
+            // supportLight2.position.set(0, 300, 200);
+            // lights.support.push(supportLight2);
+            // scene.add(supportLight2);
 
-            const supportLight3 = new THREE.PointLight(0xffffff, 1.5);
-            supportLight3.position.set(-300, 200, -200);
-            lights.support.push(supportLight3);
-            scene.add(supportLight3);
+            // const supportLight3 = new THREE.PointLight(0xffffff, 1.5);
+            // supportLight3.position.set(-300, 200, -200);
+            // lights.support.push(supportLight3);
+            // scene.add(supportLight3);
 
-            const supportLight4 = new THREE.PointLight(0xffffff, 1.2);
-            supportLight4.position.set(300, -200, 300);
-            lights.support.push(supportLight4);
-            scene.add(supportLight4);
+            // const supportLight4 = new THREE.PointLight(0xffffff, 1.2);
+            // supportLight4.position.set(300, -200, 300);
+            // lights.support.push(supportLight4);
+            // scene.add(supportLight4);
 
             // Colored lights - increased intensity and better positioning
             lights.red = new THREE.PointLight(0xff2222, 1.5);
