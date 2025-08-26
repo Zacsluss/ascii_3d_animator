@@ -189,14 +189,15 @@
             directional2: null,
             support: [] // Array for support lights
         };
-        // Model and animation state
-        const modelNames = ['model1', 'model2', 'model3', 'model4'];
+        // Model and animation state - Updated to match animation system
+        const modelNames = ['duck', 'rat', 'doge', 'alien'];
         let currentModelIndex = 0;
         let currentModelName = modelNames[currentModelIndex];
         let modelLoadVersion = 0;
         let duckAnimations = { walk: null };
         let ratAnimations = { walkDefault: null, walkStart: null, walkEnd: null, idle: null };
         let dogeAnimations = { sitting: null, playDead: null };
+        let alienAnimations = { default: null };
         // Helper to clear rat actions
         function stopAllRatActions() {
             Object.values(ratAnimations).forEach(action => {
@@ -444,13 +445,13 @@
             const loader = new GLTFLoader();
 
             const modelConfig = {
-                model1: { path: './1.glb', scaleMultiplier: 5.0 },
-                model2: { path: './2.glb', scaleMultiplier: 8.0 },
-                model3: { path: './3.glb', scaleMultiplier: 6.0 },
-                model4: { path: './alien.glb', scaleMultiplier: 6.0 }
+                duck: { path: './1.glb', scaleMultiplier: 5.0 },
+                rat: { path: './2.glb', scaleMultiplier: 8.0 },
+                doge: { path: './3.glb', scaleMultiplier: 6.0 },
+                alien: { path: './alien.glb', scaleMultiplier: 6.0 }
             };
 
-            const config = modelConfig[name] || modelConfig.model1;
+            const config = modelConfig[name] || modelConfig.duck;
             const modelPath = config.path;
             const modelScaleMultiplier = config.scaleMultiplier;
 
@@ -556,6 +557,15 @@
 
                         // Play default sitting animation
                         if (dogeAnimations.sitting) dogeAnimations.sitting.reset().play();
+                    } else {
+                        // Handle alien or any other model - try to play first available animation
+                        if (gltf.animations && gltf.animations.length > 0) {
+                            const firstAnimation = mixer.clipAction(gltf.animations[0]);
+                            alienAnimations.default = firstAnimation;
+                            firstAnimation.setLoop(THREE.LoopRepeat, Infinity);
+                            firstAnimation.setEffectiveTimeScale(0.6);
+                            firstAnimation.play();
+                        }
                     }
                 }
             }, undefined, (err) => console.error(`${name} GLB load error:`, err));
@@ -781,14 +791,22 @@
             animSpeedSlider.addEventListener('input', function() {
                 const speed = parseFloat(this.value);
                 animSpeedValue.textContent = speed.toFixed(1);
-                if (mixer && duckAnimations.walk) {
-                    duckAnimations.walk.setEffectiveTimeScale(speed);
-                }
-                if (mixer && ratAnimations.walkDefault) {
-                    ratAnimations.walkDefault.setEffectiveTimeScale(speed);
-                }
-                if (mixer && dogeAnimations.sitting) {
-                    dogeAnimations.sitting.setEffectiveTimeScale(speed);
+                
+                // Update animation speeds based on current model
+                if (mixer) {
+                    if (currentModelName === 'duck' && duckAnimations.walk) {
+                        duckAnimations.walk.setEffectiveTimeScale(speed);
+                    } else if (currentModelName === 'rat') {
+                        Object.values(ratAnimations).forEach(action => {
+                            if (action) action.setEffectiveTimeScale(speed);
+                        });
+                    } else if (currentModelName === 'doge') {
+                        Object.values(dogeAnimations).forEach(action => {
+                            if (action) action.setEffectiveTimeScale(speed);
+                        });
+                    } else if (currentModelName === 'alien' && alienAnimations.default) {
+                        alienAnimations.default.setEffectiveTimeScale(speed);
+                    }
                 }
             });
 
