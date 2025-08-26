@@ -465,6 +465,11 @@
             
             loader.load(modelPath, (gltf) => {
                 if (thisLoadVersion !== modelLoadVersion) return; // Skip if a newer load has occurred
+                
+                // DEBUG: Log animation info
+                console.log(`Loading ${name} model:`, modelPath);
+                console.log(`Found ${gltf.animations.length} animations:`, gltf.animations.map(a => a.name));
+                
                 eyeModel = gltf.scene;
                 const box = new THREE.Box3().setFromObject(eyeModel);
                 const size = new THREE.Vector3();
@@ -499,12 +504,25 @@
                 if (gltf.animations && gltf.animations.length) {
                     mixer = new THREE.AnimationMixer(eyeModel);
                     if (isDuck) {
-                        const walkAction = mixer.clipAction(gltf.animations.find(clip => clip.name === 'walk'));
-                        if (walkAction) {
+                        const walkClip = gltf.animations.find(clip => clip.name === 'walk');
+                        console.log(`Duck: Looking for 'walk' animation, found:`, walkClip);
+                        if (walkClip) {
+                            const walkAction = mixer.clipAction(walkClip);
                             duckAnimations.walk = walkAction;
                             duckAnimations.walk.setLoop(THREE.LoopRepeat, Infinity);
                             duckAnimations.walk.setEffectiveTimeScale(0.6);
                             duckAnimations.walk.play();
+                            console.log('Duck walk animation started');
+                        } else {
+                            // Try to play first available animation
+                            if (gltf.animations.length > 0) {
+                                console.log('Duck: Using first available animation:', gltf.animations[0].name);
+                                const firstAction = mixer.clipAction(gltf.animations[0]);
+                                duckAnimations.walk = firstAction;
+                                firstAction.setLoop(THREE.LoopRepeat, Infinity);
+                                firstAction.setEffectiveTimeScale(0.6);
+                                firstAction.play();
+                            }
                         }
                     } else if (isRat) {
                         // Map rat animations
@@ -559,12 +577,17 @@
                         if (dogeAnimations.sitting) dogeAnimations.sitting.reset().play();
                     } else {
                         // Handle alien or any other model - try to play first available animation
+                        console.log(`${name}: Trying first available animation`);
                         if (gltf.animations && gltf.animations.length > 0) {
+                            console.log(`${name}: Playing animation:`, gltf.animations[0].name);
                             const firstAnimation = mixer.clipAction(gltf.animations[0]);
                             alienAnimations.default = firstAnimation;
                             firstAnimation.setLoop(THREE.LoopRepeat, Infinity);
                             firstAnimation.setEffectiveTimeScale(0.6);
                             firstAnimation.play();
+                            console.log(`${name} animation started`);
+                        } else {
+                            console.log(`${name}: No animations found in this model`);
                         }
                     }
                 }
