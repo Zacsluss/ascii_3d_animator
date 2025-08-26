@@ -440,6 +440,27 @@
             controls.maxPolarAngle = Math.PI; // Allow full rotation to bottom view
             controls.target.set(0, 0, 0);
             window.addEventListener('resize', onWindowResize);
+            
+            // TEMPORARY TEST: Add keyboard listener for testing WebGL vs ASCII rendering
+            window.testWebGLMode = false;
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 't' || event.key === 'T') {
+                    window.testWebGLMode = !window.testWebGLMode;
+                    console.log('Rendering mode:', window.testWebGLMode ? 'WebGL (normal)' : 'ASCII');
+                    
+                    // Show/hide canvas container appropriately
+                    if (window.testWebGLMode) {
+                        // For WebGL mode, append the renderer's canvas
+                        canvasContainer.innerHTML = '';
+                        canvasContainer.appendChild(renderer.domElement);
+                    } else {
+                        // For ASCII mode, show the ASCII effect
+                        canvasContainer.innerHTML = '';
+                        canvasContainer.appendChild(effect.domElement);
+                    }
+                }
+            });
+            
             toggleTheme(); // Set initial theme to dark
         }
 
@@ -508,9 +529,22 @@
                 eyeModel.traverse((child) => {
                     if (child.isMesh) {
                         if (child.material) {
-                            if (child.material.metalness !== undefined) {
-                                child.material.metalness = 0.8;
-                                child.material.roughness = 0.2;
+                            console.log('Material type:', child.material.type, 'Material:', child.material);
+                            
+                            // Force material to respond to lighting
+                            if (child.material.type === 'MeshStandardMaterial' || child.material.type === 'MeshPhysicalMaterial') {
+                                child.material.metalness = 0.1;
+                                child.material.roughness = 0.8;
+                            } else if (child.material.type === 'MeshBasicMaterial') {
+                                // MeshBasicMaterial doesn't respond to lights - convert to MeshLambertMaterial
+                                console.log('Converting MeshBasicMaterial to MeshLambertMaterial for lighting');
+                                const oldMaterial = child.material;
+                                child.material = new THREE.MeshLambertMaterial({
+                                    color: oldMaterial.color,
+                                    map: oldMaterial.map,
+                                    transparent: oldMaterial.transparent,
+                                    opacity: oldMaterial.opacity
+                                });
                             }
                             child.material.needsUpdate = true;
                         }
@@ -594,7 +628,13 @@
             }
 
             controls.update();
-            effect.render(scene, camera);
+            
+            // TEMPORARY TEST: Press 'T' to toggle between ASCII and normal WebGL rendering
+            if (window.testWebGLMode) {
+                renderer.render(scene, camera);
+            } else {
+                effect.render(scene, camera);
+            }
         }
 
         function toggleTheme() {
