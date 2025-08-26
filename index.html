@@ -760,10 +760,20 @@
             // ASCII Density slider
             const densitySlider = document.getElementById('densitySlider');
             const densityValue = document.getElementById('densityValue');
-            densitySlider.addEventListener('input', function() {
-                scaleFactor = parseFloat(this.value);
+            // Density update function
+            function updateDensity() {
+                scaleFactor = parseFloat(densitySlider.value);
                 updateAsciiScale();
-                densityValue.textContent = this.value;
+                densityValue.textContent = densitySlider.value;
+            }
+            
+            // Add multiple event listeners for better responsiveness
+            densitySlider.addEventListener('input', updateDensity);
+            densitySlider.addEventListener('change', updateDensity);
+            densitySlider.addEventListener('mousemove', function(e) {
+                if (e.buttons === 1) { // Left mouse button is pressed
+                    updateDensity();
+                }
             });
 
             // Next model
@@ -774,13 +784,23 @@
             // Animation Speed slider
             const animSpeedSlider = document.getElementById('animSpeedSlider');
             const animSpeedValue = document.getElementById('animSpeedValue');
-            animSpeedSlider.addEventListener('input', function() {
-                const speed = parseFloat(this.value);
+            // Animation speed update function
+            function updateAnimationSpeed() {
+                const speed = parseFloat(animSpeedSlider.value);
                 animSpeedValue.textContent = speed.toFixed(1);
                 
                 // Update current playing animation speed
                 if (currentPlayingAction) {
                     currentPlayingAction.setEffectiveTimeScale(speed);
+                }
+            }
+            
+            // Add multiple event listeners for better responsiveness
+            animSpeedSlider.addEventListener('input', updateAnimationSpeed);
+            animSpeedSlider.addEventListener('change', updateAnimationSpeed);
+            animSpeedSlider.addEventListener('mousemove', function(e) {
+                if (e.buttons === 1) { // Left mouse button is pressed
+                    updateAnimationSpeed();
                 }
             });
 

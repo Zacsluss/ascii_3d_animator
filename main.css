@@ -169,7 +169,11 @@ body.dark {
     background: rgba(255, 255, 255, 0.1);
     outline: none;
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     margin-bottom: 8px;
+    cursor: pointer;
+    touch-action: none; /* Prevents touch scrolling interference */
 }
 
 .slider::-webkit-slider-thumb {
@@ -197,6 +201,14 @@ body.dark {
     cursor: pointer;
     border: none;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    -moz-appearance: none;
+}
+
+.slider::-moz-range-track {
+    background: rgba(255, 255, 255, 0.1);
+    height: 6px;
+    border-radius: 3px;
+    border: none;
 }
 
 .slider-value {
