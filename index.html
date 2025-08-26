@@ -45,11 +45,11 @@
             <div class="control-section">
                 <h3>Model</h3>
                 <div class="control-group">
-                    <button id="nextModel" class="btn btn-primary" title="Cycle through available 3D models (Model1 → Model2 → Model3 → Model4)">
+                    <button id="nextModel" class="btn btn-primary" title="Cycle through available 3D models (Duck → Rat → Doge → Alien)">
                         <span class="btn-icon">🔄</span>
                         Next Model
                     </button>
-                    <div class="model-info" id="modelInfo">Model1</div>
+                    <div class="model-info" id="modelInfo">Duck</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Animation Speed</label>
@@ -370,6 +370,12 @@
             renderer.setAnimationLoop(animate);
 
             loadModel(currentModelName);
+            
+            // Initialize model info display
+            const modelInfo = document.getElementById('modelInfo');
+            if (modelInfo) {
+                modelInfo.textContent = currentModelName.charAt(0).toUpperCase() + currentModelName.slice(1);
+            }
 
             const customChars = " .'`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$".slice(0, baseCharacterDensity); // Adjustable character density
             
