@@ -198,11 +198,41 @@
         let ratAnimations = { walkDefault: null, walkStart: null, walkEnd: null, idle: null };
         let dogeAnimations = { sitting: null, playDead: null };
         let alienAnimations = { default: null };
+        
+        // Global animation system for right-click switching
+        let currentAnimations = []; // All available animations for current model
+        let currentAnimationIndex = 0;
+        let currentPlayingAction = null;
         // Helper to clear rat actions
         function stopAllRatActions() {
             Object.values(ratAnimations).forEach(action => {
                 if (action) action.stop();
             });
+        }
+        
+        // Function to switch to next animation
+        function switchToNextAnimation() {
+            if (currentAnimations.length === 0 || !mixer) return;
+            
+            // Stop current animation
+            if (currentPlayingAction) {
+                currentPlayingAction.stop();
+            }
+            
+            // Move to next animation
+            currentAnimationIndex = (currentAnimationIndex + 1) % currentAnimations.length;
+            const nextClip = currentAnimations[currentAnimationIndex];
+            
+            console.log(`Switching to animation: ${nextClip.name} (${currentAnimationIndex + 1}/${currentAnimations.length})`);
+            
+            // Play new animation
+            currentPlayingAction = mixer.clipAction(nextClip);
+            currentPlayingAction.setLoop(THREE.LoopRepeat, Infinity);
+            currentPlayingAction.setEffectiveTimeScale(0.6);
+            currentPlayingAction.reset().play();
+            
+            // Show notification
+            showCameraMessage(`Animation: ${nextClip.name} (${currentAnimationIndex + 1}/${currentAnimations.length})`);
         }
         let lastPointerOnModel = false;
         
@@ -384,28 +414,11 @@
             
             
             canvasContainer.addEventListener('contextmenu', (event) => {
-                // Right click for hover effects
+                // Right click for animation switching
                 event.preventDefault(); // Prevent context menu
                 
-                if (isMouseOverModel(event)) {
-                    // Toggle hover state on right click
-                    mouseOverModel = !mouseOverModel;
-                    
-                    // Handle model-specific hover effects
-                    if (currentModelName === 'rat') {
-                        if (mouseOverModel && !lastPointerOnModel) {
-                            ratPointerEnter();
-                        } else if (!mouseOverModel && lastPointerOnModel) {
-                            ratPointerLeave();
-                        }
-                        lastPointerOnModel = mouseOverModel;
-                    } else if (currentModelName === 'doge') {
-                        lastPointerOnModel = mouseOverModel;
-                    }
-                    
-                    // Update global pointer state for other systems
-                    pointerOnModel = mouseOverModel;
-                }
+                // Switch to next animation
+                switchToNextAnimation();
             });
 
             controls = new OrbitControls(camera, effect.domElement);
@@ -445,9 +458,9 @@
             const loader = new GLTFLoader();
 
             const modelConfig = {
-                duck: { path: './1.glb', scaleMultiplier: 5.0 },
-                rat: { path: './2.glb', scaleMultiplier: 8.0 },
-                doge: { path: './3.glb', scaleMultiplier: 6.0 },
+                duck: { path: './2.glb', scaleMultiplier: 5.0 },  // 2.glb has the duck
+                rat: { path: './3.glb', scaleMultiplier: 8.0 },   // 3.glb has the rat  
+                doge: { path: './1.glb', scaleMultiplier: 6.0 },  // 1.glb has the dog
                 alien: { path: './alien.glb', scaleMultiplier: 6.0 }
             };
 
@@ -503,87 +516,23 @@
                 camera.lookAt(0, 0, 0);
                 if (gltf.animations && gltf.animations.length) {
                     mixer = new THREE.AnimationMixer(eyeModel);
-                    if (isDuck) {
-                        const walkClip = gltf.animations.find(clip => clip.name === 'walk');
-                        console.log(`Duck: Looking for 'walk' animation, found:`, walkClip);
-                        if (walkClip) {
-                            const walkAction = mixer.clipAction(walkClip);
-                            duckAnimations.walk = walkAction;
-                            duckAnimations.walk.setLoop(THREE.LoopRepeat, Infinity);
-                            duckAnimations.walk.setEffectiveTimeScale(0.6);
-                            duckAnimations.walk.play();
-                            console.log('Duck walk animation started');
-                        } else {
-                            // Try to play first available animation
-                            if (gltf.animations.length > 0) {
-                                console.log('Duck: Using first available animation:', gltf.animations[0].name);
-                                const firstAction = mixer.clipAction(gltf.animations[0]);
-                                duckAnimations.walk = firstAction;
-                                firstAction.setLoop(THREE.LoopRepeat, Infinity);
-                                firstAction.setEffectiveTimeScale(0.6);
-                                firstAction.play();
-                            }
-                        }
-                    } else if (isRat) {
-                        // Map rat animations - use actual animation names from the model
-                        console.log('Rat: Available animations:', gltf.animations.map(a => a.name));
-                        
-                        // Look for walk animation (your model has "walk")
-                        const walkClip = gltf.animations.find(c => c.name === 'walk' || c.name.toLowerCase().includes('walk'));
-                        
-                        if (walkClip) {
-                            console.log('Rat: Using walk animation:', walkClip.name);
-                            ratAnimations.walkDefault = mixer.clipAction(walkClip);
-                            ratAnimations.walkDefault.setLoop(THREE.LoopRepeat, Infinity);
-                            ratAnimations.walkDefault.setEffectiveTimeScale(0.6);
-                            ratAnimations.walkDefault.play();
-                            console.log('Rat walk animation started');
-                        } else {
-                            // Fallback: use first available animation
-                            if (gltf.animations.length > 0) {
-                                console.log('Rat: Using first available animation:', gltf.animations[0].name);
-                                const firstAction = mixer.clipAction(gltf.animations[0]);
-                                ratAnimations.walkDefault = firstAction;
-                                firstAction.setLoop(THREE.LoopRepeat, Infinity);
-                                firstAction.setEffectiveTimeScale(0.6);
-                                firstAction.play();
-                            }
-                        }
-                    } else if (isDoge) {
-                        // Map doge animations
-                        const clipsByName = {};
-                        gltf.animations.forEach(c => clipsByName[c.name.toLowerCase()] = c);
-
-                        const sittingClip = gltf.animations.find(c => c.name === '0|sitting_0');
-                        const playDeadClip = gltf.animations.find(c => c.name === '0|play_dead_0');
-
-                        dogeAnimations.sitting = sittingClip ? mixer.clipAction(sittingClip) : null;
-                        dogeAnimations.playDead = playDeadClip ? mixer.clipAction(playDeadClip) : null;
-
-                        // Configure looping
-                        if (dogeAnimations.sitting) dogeAnimations.sitting.setLoop(THREE.LoopRepeat, Infinity);
-                        if (dogeAnimations.playDead) dogeAnimations.playDead.setLoop(THREE.LoopOnce, 1).clampWhenFinished = true;
-
-                        // Set default speed
-                        if (dogeAnimations.sitting) dogeAnimations.sitting.setEffectiveTimeScale(0.6);
-                        if (dogeAnimations.playDead) dogeAnimations.playDead.setEffectiveTimeScale(0.6);
-
-                        // Play default sitting animation
-                        if (dogeAnimations.sitting) dogeAnimations.sitting.reset().play();
+                    
+                    // Initialize animation switching system
+                    currentAnimations = [...gltf.animations]; // Copy all animations
+                    currentAnimationIndex = 0;
+                    console.log(`Available animations for ${name}:`, currentAnimations.map(a => a.name));
+                    // Universal animation system - start with first available animation
+                    // All models can now cycle through animations with right-click
+                    if (currentAnimations.length > 0) {
+                        const firstClip = currentAnimations[0];
+                        currentPlayingAction = mixer.clipAction(firstClip);
+                        currentPlayingAction.setLoop(THREE.LoopRepeat, Infinity);
+                        currentPlayingAction.setEffectiveTimeScale(0.6);
+                        currentPlayingAction.play();
+                        console.log(`${name}: Playing animation: ${firstClip.name} (1/${currentAnimations.length})`);
+                        console.log(`${name}: Right-click to cycle through ${currentAnimations.length} animations`);
                     } else {
-                        // Handle alien or any other model - try to play first available animation
-                        console.log(`${name}: Trying first available animation`);
-                        if (gltf.animations && gltf.animations.length > 0) {
-                            console.log(`${name}: Playing animation:`, gltf.animations[0].name);
-                            const firstAnimation = mixer.clipAction(gltf.animations[0]);
-                            alienAnimations.default = firstAnimation;
-                            firstAnimation.setLoop(THREE.LoopRepeat, Infinity);
-                            firstAnimation.setEffectiveTimeScale(0.6);
-                            firstAnimation.play();
-                            console.log(`${name} animation started`);
-                        } else {
-                            console.log(`${name}: No animations found in this model`);
-                        }
+                        console.log(`${name}: No animations found in this model`);
                     }
                 }
             }, undefined, (err) => console.error(`${name} GLB load error:`, err));
@@ -810,21 +759,9 @@
                 const speed = parseFloat(this.value);
                 animSpeedValue.textContent = speed.toFixed(1);
                 
-                // Update animation speeds based on current model
-                if (mixer) {
-                    if (currentModelName === 'duck' && duckAnimations.walk) {
-                        duckAnimations.walk.setEffectiveTimeScale(speed);
-                    } else if (currentModelName === 'rat') {
-                        Object.values(ratAnimations).forEach(action => {
-                            if (action) action.setEffectiveTimeScale(speed);
-                        });
-                    } else if (currentModelName === 'doge') {
-                        Object.values(dogeAnimations).forEach(action => {
-                            if (action) action.setEffectiveTimeScale(speed);
-                        });
-                    } else if (currentModelName === 'alien' && alienAnimations.default) {
-                        alienAnimations.default.setEffectiveTimeScale(speed);
-                    }
+                // Update current playing animation speed
+                if (currentPlayingAction) {
+                    currentPlayingAction.setEffectiveTimeScale(speed);
                 }
             });
 
