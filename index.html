@@ -525,35 +525,30 @@
                             }
                         }
                     } else if (isRat) {
-                        // Map rat animations
-                        const clipsByName = {};
-                        gltf.animations.forEach(c => clipsByName[c.name.toLowerCase()] = c);
-
-                        const walkDefaultClip = gltf.animations.find(c => c.name === 'Mammals|walk_A1');
-                        const walkStartClip = gltf.animations.find(c => c.name === 'Mammals|walk_start_A');
-                        const walkEndClip   = gltf.animations.find(c => c.name === 'Mammals|walk_end_A');
-                        const idleClip      = gltf.animations.find(c => c.name === 'Mammals|idle_A3');
-
-                        ratAnimations.walkDefault = walkDefaultClip ? mixer.clipAction(walkDefaultClip) : null;
-                        ratAnimations.walkStart   = walkStartClip   ? mixer.clipAction(walkStartClip)   : null;
-                        ratAnimations.walkEnd     = walkEndClip     ? mixer.clipAction(walkEndClip)     : null;
-                        ratAnimations.idle        = idleClip        ? mixer.clipAction(idleClip)        : null;
-
-                        // Configure looping
-                        if (ratAnimations.walkDefault) ratAnimations.walkDefault.setLoop(THREE.LoopRepeat, Infinity);
-                        if (ratAnimations.walkStart)   ratAnimations.walkStart.setLoop(THREE.LoopOnce, 1).clampWhenFinished = true;
-                        if (ratAnimations.walkEnd)     ratAnimations.walkEnd.setLoop(THREE.LoopOnce, 1).clampWhenFinished = true;
-                        if (ratAnimations.idle)        ratAnimations.idle.setLoop(THREE.LoopRepeat, Infinity);
-
-                        // Make the rat animations slower
-                        const ratBaseTimeScale = 0.6; // Default speed
-                        Object.values(ratAnimations).forEach(action => {
-                            if (action) action.setEffectiveTimeScale(ratBaseTimeScale);
-                        });
-
-                        // Play default walk
-                        stopAllRatActions();
-                        if (ratAnimations.walkDefault) ratAnimations.walkDefault.reset().play();
+                        // Map rat animations - use actual animation names from the model
+                        console.log('Rat: Available animations:', gltf.animations.map(a => a.name));
+                        
+                        // Look for walk animation (your model has "walk")
+                        const walkClip = gltf.animations.find(c => c.name === 'walk' || c.name.toLowerCase().includes('walk'));
+                        
+                        if (walkClip) {
+                            console.log('Rat: Using walk animation:', walkClip.name);
+                            ratAnimations.walkDefault = mixer.clipAction(walkClip);
+                            ratAnimations.walkDefault.setLoop(THREE.LoopRepeat, Infinity);
+                            ratAnimations.walkDefault.setEffectiveTimeScale(0.6);
+                            ratAnimations.walkDefault.play();
+                            console.log('Rat walk animation started');
+                        } else {
+                            // Fallback: use first available animation
+                            if (gltf.animations.length > 0) {
+                                console.log('Rat: Using first available animation:', gltf.animations[0].name);
+                                const firstAction = mixer.clipAction(gltf.animations[0]);
+                                ratAnimations.walkDefault = firstAction;
+                                firstAction.setLoop(THREE.LoopRepeat, Infinity);
+                                firstAction.setEffectiveTimeScale(0.6);
+                                firstAction.play();
+                            }
+                        }
                     } else if (isDoge) {
                         // Map doge animations
                         const clipsByName = {};
