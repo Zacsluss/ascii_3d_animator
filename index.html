@@ -33,7 +33,7 @@
                 <div class="control-group">
                     <label class="slider-label">ASCII Density</label>
                     <input id="densitySlider" type="range" min="0.5" max="2" step="0.1" value="1.5" class="slider" title="Adjust ASCII character density - higher values = more detail but may cause lag">
-                    <div class="slider-value" id="densityValue">1.5</div>
+                    <div class="slider-value" id="densityValue" title="Current ASCII density value - shows how detailed the rendering is">1.5</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Custom ASCII Characters</label>
@@ -49,16 +49,16 @@
             <div class="control-section">
                 <h3>Model</h3>
                 <div class="control-group">
-                    <button id="nextModel" class="btn btn-primary" title="Cycle through available 3D models (Model 1 → Rat → Doge → Alien)">
+                    <button id="nextModel" class="btn btn-primary" title="Cycle through available 3D models (Duck → Rat → Doge → Alien)">
                         <span class="btn-icon">🔄</span>
                         Next Model
                     </button>
-                    <div class="model-info" id="modelInfo">Model 1</div>
+                    <div class="model-info" id="modelInfo" title="Currently selected 3D model - click Next Model to change">Duck</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Animation Speed</label>
                     <input id="animSpeedSlider" type="range" min="0.1" max="3" step="0.1" value="0.6" class="slider" title="Control animation playback speed - affects walk cycles and movements">
-                    <div class="slider-value" id="animSpeedValue">0.6</div>
+                    <div class="slider-value" id="animSpeedValue" title="Current animation speed multiplier - 1.0 is normal speed">0.6</div>
                 </div>
             </div>
 
@@ -74,12 +74,12 @@
                 <div class="control-group">
                     <label class="slider-label">Rotation Speed</label>
                     <input id="rotSpeedSlider" type="range" min="0" max="2" step="0.1" value="0.3" class="slider" title="Adjust the speed of automatic camera rotation">
-                    <div class="slider-value" id="rotSpeedValue">0.3</div>
+                    <div class="slider-value" id="rotSpeedValue" title="Current auto-rotation speed - higher values spin faster">0.3</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Camera Distance</label>
                     <input id="distanceSlider" type="range" min="250" max="3000" step="50" value="1000" class="slider" title="Set camera distance from model - closer values for detail, farther for full view">
-                    <div class="slider-value" id="distanceValue">1000</div>
+                    <div class="slider-value" id="distanceValue" title="Current camera distance from model in units">1000</div>
                 </div>
                 <div class="control-group">
                     <button id="resetCamera" class="btn btn-warning" title="Reset all camera settings and sliders to default values">
@@ -103,27 +103,27 @@
                 <div class="control-group">
                     <label class="slider-label">Front Light Intensity</label>
                     <input id="mainLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="SHOULD SEE: Natural directional lighting from FRONT. Creates depth/shadows. At 0=no front light, at 15=bright front illumination. Different from ambient - this creates contrast.">
-                    <div class="slider-value" id="mainLightValue">10</div>
+                    <div class="slider-value" id="mainLightValue" title="Current front light intensity - main illumination strength">10</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Ambient Light</label>
                     <input id="ambientLightSlider" type="range" min="0" max="2" step="0.05" value="0.1" class="slider" title="SHOULD SEE: UNIFORM brightness everywhere. No shadows/contrast. At 0=deep shadows, at 2=very flat/bright evenly lit. This is base lighting that affects everything equally.">
-                    <div class="slider-value" id="ambientLightValue">0.1</div>
+                    <div class="slider-value" id="ambientLightValue" title="Current ambient light level - base lighting that affects everything equally">0.1</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Right Light Intensity</label>
                     <input id="redLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="SHOULD SEE: Directional lighting from RIGHT SIDE of model. At 0=no right lighting, at 15=strong illumination from right side.">
-                    <div class="slider-value" id="redLightValue">10</div>
+                    <div class="slider-value" id="redLightValue" title="Current right side light intensity - illumination from the right">10</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Left Light Intensity</label>
                     <input id="blueLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="SHOULD SEE: Directional lighting from LEFT SIDE of model. At 0=no left lighting, at 15=strong illumination from left side.">
-                    <div class="slider-value" id="blueLightValue">10</div>
+                    <div class="slider-value" id="blueLightValue" title="Current left side light intensity - illumination from the left">10</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Overhead Spotlight Intensity</label>
                     <input id="spotLightSlider" type="range" min="0" max="15" step="0.5" value="3" class="slider" title="SHOULD SEE: Focused bright circle from ABOVE. At 0=no top lighting, at 15=very strong bright circle on top surfaces of model.">
-                    <div class="slider-value" id="spotLightValue">3</div>
+                    <div class="slider-value" id="spotLightValue" title="Current overhead spotlight intensity - focused light from above">3</div>
                 </div>
             </div>
 
@@ -194,11 +194,11 @@
             support: [] // Array for support lights
         };
         // Model and animation state - Updated to match animation system
-        const modelNames = ['model1', 'rat', 'doge', 'alien'];
+        const modelNames = ['duck', 'rat', 'doge', 'alien'];
         let currentModelIndex = 0;
         let currentModelName = modelNames[currentModelIndex];
         let modelLoadVersion = 0;
-        let model1Animations = { walk: null };
+        let duckAnimations = { walk: null };
         let ratAnimations = { walkDefault: null, walkStart: null, walkEnd: null, idle: null };
         let dogeAnimations = { sitting: null, playDead: null };
         let alienAnimations = { default: null };
@@ -640,20 +640,20 @@
             const loader = new GLTFLoader();
 
             const modelConfig = {
-                model1: { path: './2.glb', scaleMultiplier: 5.0 },  // 2.glb has the first model
+                duck: { path: './2.glb', scaleMultiplier: 5.0 },  // 2.glb has the duck model
                 rat: { path: './3.glb', scaleMultiplier: 8.0 },   // 3.glb has the rat  
                 doge: { path: './1.glb', scaleMultiplier: 6.0 },  // 1.glb has the dog
                 alien: { path: './alien.glb', scaleMultiplier: 6.0 }
             };
 
-            const config = modelConfig[name] || modelConfig.model1;
+            const config = modelConfig[name] || modelConfig.duck;
             const modelPath = config.path;
             const modelScaleMultiplier = config.scaleMultiplier;
 
-            const isModel1 = name === 'model1';
+            const isDuck = name === 'duck';
             const isRat = name === 'rat';
             const isDoge = name === 'doge';
-            const attribution = isModel1 ? '<!-- "Model_Walk (Free)" (https://skfb.ly/owq7o) by Nyilonelycompany is licensed under CC BY 4.0 -->'
+            const attribution = isDuck ? '<!-- "Model_Walk (Free)" (https://skfb.ly/owq7o) by Nyilonelycompany is licensed under CC BY 4.0 -->'
                                 : isRat ? '<!-- "Black Rat ( Free download )" (https://skfb.ly/p9TYP) by Nestaeric is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->'
                                 : isDoge ? '<!-- "Animated Dog, Shiba Inu" (https://skfb.ly/6SrJO) by quander is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->'
                                 : '<!-- Default model -->';
@@ -790,9 +790,9 @@
             
             // Adjust animation speed based on pointer proximity
             if (mixer) {
-                if (currentModelName === 'model1') {
+                if (currentModelName === 'duck') {
                     const speed = pointerOnModel ? pointerSpeedMultiplier : 0.3; // Slower default speed
-                    if (model1Animations.walk) model1Animations.walk.setEffectiveTimeScale(speed);
+                    if (duckAnimations.walk) duckAnimations.walk.setEffectiveTimeScale(speed);
                 }
                 // mixer.update(delta); // This is a duplicate call, remove it
             }
@@ -1238,37 +1238,98 @@
         // Help modal function
         function showHelpModal() {
             const helpContent = `
-                <div style="font-family: 'Geist', sans-serif; line-height: 1.6;">
-                    <h2 style="margin-top: 0; color: #333; font-size: 1.5em;">ASCII Animator - Controls Guide</h2>
+                <div style="font-family: 'Geist', sans-serif; line-height: 1.6; color: #333;">
+                    <h2 style="margin-top: 0; color: #2d3748; font-size: 1.8em; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">ASCII Animator - Complete Guide</h2>
                     
-                    <h3 style="color: #555; margin-bottom: 10px;">🖱️ Mouse Controls:</h3>
-                    <ul style="margin: 0 0 20px 20px; padding: 0;">
-                        <li><strong>Left Click + Drag:</strong> Rotate the camera around the model</li>
-                        <li><strong>Right Click:</strong> Toggle hover effects on model (when over model area)</li>
-                        <li><strong>Scroll Wheel:</strong> Zoom in/out</li>
-                        <li><strong>Middle Click + Drag:</strong> Pan the view (if enabled)</li>
-                    </ul>
+                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">🖱️ Mouse & Navigation Controls</h3>
+                    <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+                            <li style="margin-bottom: 8px;"><strong>Left Click + Drag:</strong> Rotate camera around the 3D model - explore from every angle</li>
+                            <li style="margin-bottom: 8px;"><strong>Right Click:</strong> Cycle through model animations (when clicked over model area)</li>
+                            <li style="margin-bottom: 8px;"><strong>Scroll Wheel:</strong> Zoom in/out to see fine details or get the full view</li>
+                            <li style="margin-bottom: 8px;"><strong>Middle Click + Drag:</strong> Pan the view around (if enabled)</li>
+                        </ul>
+                    </div>
                     
-                    <h3 style="color: #555; margin-bottom: 10px;">⌨️ Models & Animations:</h3>
-                    <ul style="margin: 0 0 20px 20px; padding: 0;">
-                        <li><strong>Model 1:</strong> Walking animation (speeds up on hover)</li>
-                        <li><strong>Rat:</strong> Walk → Idle transition on hover</li>
-                        <li><strong>Doge:</strong> Sitting animation</li>
-                    </ul>
+                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">🎨 Display & Theme</h3>
+                    <div style="background: #f0fff4; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+                            <li style="margin-bottom: 8px;"><strong>Toggle Theme:</strong> Switch between dark mode (white text on black) and light mode (black text on white)</li>
+                            <li style="margin-bottom: 8px;"><strong>ASCII Density:</strong> Adjust detail level from 0.5 (less detail, faster) to 2.0 (more detail, may lag)</li>
+                            <li style="margin-bottom: 8px;"><strong>Custom ASCII Characters:</strong> Enter your own text (like "HELLO WORLD") to use as ASCII art characters instead of default symbols</li>
+                        </ul>
+                    </div>
                     
-                    <h3 style="color: #555; margin-bottom: 10px;">🎛️ Panel Controls:</h3>
-                    <ul style="margin: 0 0 20px 20px; padding: 0;">
-                        <li><strong>ASCII Density:</strong> Controls detail level (0.5-2.0)</li>
-                        <li><strong>Custom ASCII Characters:</strong> Type custom text to use as rendering characters</li>
-                        <li><strong>Animation Speed:</strong> Adjusts animation playback rate</li>
-                        <li><strong>Camera Distance:</strong> Sets zoom level</li>
-                        <li><strong>Lighting Presets:</strong> Studio, Dramatic, Natural, Minimal</li>
-                        <li><strong>Export:</strong> Copy, Download, or Screenshot ASCII art</li>
-                    </ul>
+                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">🏗️ 3D Models & Animation</h3>
+                    <div style="background: #fff5f5; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+                            <li style="margin-bottom: 8px;"><strong>Next Model:</strong> Cycle through available 3D models (Duck → Rat → Doge → Alien)</li>
+                            <li style="margin-bottom: 8px;"><strong>Animation Speed:</strong> Control how fast animations play (0.1 = very slow, 3.0 = very fast)</li>
+                            <li style="margin-bottom: 8px;"><strong>Upload Model:</strong> Load your own .glb or .gltf 3D model files</li>
+                        </ul>
+                        <div style="margin-top: 12px; padding: 10px; background: rgba(255,255,255,0.7); border-radius: 6px; border-left: 4px solid #e53e3e;">
+                            <strong>Model Animations:</strong><br>
+                            • <strong>Duck:</strong> Walking animation<br>
+                            • <strong>Rat:</strong> Multiple walking animations and idle poses<br>
+                            • <strong>Doge:</strong> Sitting, shaking, and play animations<br>
+                            • <strong>Alien:</strong> Default pose animation
+                        </div>
+                    </div>
                     
-                    <p style="margin: 20px 0 0 0; font-size: 0.9em; color: #666;">
-                        <strong>Tip:</strong> Right-click near the center of the screen to trigger model-specific animations!
-                    </p>
+                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">📷 Camera Controls</h3>
+                    <div style="background: #fef5e7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+                            <li style="margin-bottom: 8px;"><strong>Auto-Rotation:</strong> Enable/disable automatic spinning of the camera around the model</li>
+                            <li style="margin-bottom: 8px;"><strong>Rotation Speed:</strong> How fast the auto-rotation spins (0 = stopped, 2 = very fast)</li>
+                            <li style="margin-bottom: 8px;"><strong>Camera Distance:</strong> How far the camera is from the model (250 = very close, 3000 = far away)</li>
+                            <li style="margin-bottom: 8px;"><strong>Reset Camera:</strong> Return all camera settings and sliders to their default values</li>
+                        </ul>
+                    </div>
+                    
+                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">💡 Lighting System</h3>
+                    <div style="background: #edf2f7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <div style="margin-bottom: 15px;">
+                            <strong>Quick Presets:</strong><br>
+                            • <strong>Studio:</strong> Professional balanced lighting<br>
+                            • <strong>Dramatic:</strong> High contrast with strong shadows<br>
+                            • <strong>Natural:</strong> Soft, realistic lighting<br>
+                            • <strong>Minimal:</strong> Simple front lighting only
+                        </div>
+                        <div style="margin-top: 12px;">
+                            <strong>Individual Light Controls:</strong><br>
+                            • <strong>Front Light:</strong> Main illumination from camera direction (0-15)<br>
+                            • <strong>Ambient Light:</strong> Uniform background lighting that reduces shadows (0-2)<br>
+                            • <strong>Right Light:</strong> Side lighting from the right (0-15)<br>
+                            • <strong>Left Light:</strong> Side lighting from the left (0-15)<br>
+                            • <strong>Overhead Spotlight:</strong> Focused light from above creating dramatic top-lighting (0-15)
+                        </div>
+                    </div>
+                    
+                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">📤 Export & Sharing</h3>
+                    <div style="background: #f0f4ff; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+                            <li style="margin-bottom: 8px;"><strong>Copy ASCII:</strong> Copy the current ASCII art to your clipboard for pasting in messages, documents, etc.</li>
+                            <li style="margin-bottom: 8px;"><strong>Download:</strong> Save the ASCII art as a .txt file to your computer</li>
+                            <li style="margin-bottom: 8px;"><strong>Screenshot:</strong> Capture an image of the current view (requires additional library)</li>
+                        </ul>
+                    </div>
+                    
+                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">⌨️ Keyboard Shortcuts (Hidden Features)</h3>
+                    <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
+                            <li style="margin-bottom: 8px;"><strong>T key:</strong> Toggle between ASCII mode and normal 3D rendering (for debugging)</li>
+                            <li style="margin-bottom: 8px;"><strong>L key:</strong> Show lighting debug information in browser console</li>
+                            <li style="margin-bottom: 8px;"><strong>X key:</strong> Test light intensity changes</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; text-align: center;">
+                        <h4 style="margin-top: 0; font-size: 1.2em;">💡 Pro Tips</h4>
+                        <p style="margin: 10px 0; font-size: 0.95em;">• Right-click over the model to cycle through different animations</p>
+                        <p style="margin: 10px 0; font-size: 0.95em;">• Try typing your name in Custom ASCII Characters for personalized art</p>
+                        <p style="margin: 10px 0; font-size: 0.95em;">• Use the Dramatic lighting preset for the most striking ASCII effects</p>
+                        <p style="margin: 10px 0 0 0; font-size: 0.95em;">• Lower ASCII Density if the animation feels sluggish on slower devices</p>
+                    </div>
                 </div>
             `;
             
