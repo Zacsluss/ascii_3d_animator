@@ -82,10 +82,10 @@ HHHEELLLLOOOWWOORRLLDDD
 
 ## 🛠️ **TECH SPECS**
 
-- **⚡ Three.js Engine** - Fast 3D rendering
+- **⚡ Three.js Engine** - Fast 3D rendering (bundled locally)
 - **🚀 Browser-based** - No installation needed  
 - **📱 Mobile ready** - Touch optimized
-- **💾 Client-side** - No backend required
+- **💾 Self-contained** - All dependencies bundled, works offline
 
 ---
 
