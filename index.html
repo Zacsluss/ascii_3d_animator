@@ -39,6 +39,14 @@
                     <input id="densitySlider" type="range" min="0.5" max="2" step="0.1" value="1.5" class="slider" title="Adjust ASCII character density - higher values = more detail but may cause lag">
                     <div class="slider-value" id="densityValue">1.5</div>
                 </div>
+                <div class="control-group">
+                    <label class="slider-label">Custom ASCII Characters</label>
+                    <input id="customCharsInput" type="text" placeholder="Type custom characters (e.g. HELLO WORLD)" class="text-input" title="Enter custom text to use for ASCII rendering. Your text will be used for bright areas, spaces for dark areas. Try words, names, or short phrases!">
+                    <div class="button-row">
+                        <button id="applyCharsBtn" class="btn btn-primary btn-small" title="Apply the custom characters to the model">Apply</button>
+                        <button id="resetCharsBtn" class="btn btn-secondary btn-small" title="Reset to default ASCII character set">Reset</button>
+                    </div>
+                </div>
             </div>
 
             <!-- Model Section -->
@@ -97,29 +105,29 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Main Light Intensity</label>
-                    <input id="mainLightSlider" type="range" min="0" max="5" step="0.1" value="1.5" class="slider" title="Adjust primary light source intensity for overall brightness">
-                    <div class="slider-value" id="mainLightValue">1.5</div>
+                    <label class="slider-label">Front Light Intensity</label>
+                    <input id="mainLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="SHOULD SEE: Natural directional lighting from FRONT. Creates depth/shadows. At 0=no front light, at 15=bright front illumination. Different from ambient - this creates contrast.">
+                    <div class="slider-value" id="mainLightValue">10</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Ambient Light</label>
-                    <input id="ambientLightSlider" type="range" min="0" max="1" step="0.05" value="0.05" class="slider" title="Control ambient lighting - fills in shadows and provides base illumination">
-                    <div class="slider-value" id="ambientLightValue">0.05</div>
+                    <input id="ambientLightSlider" type="range" min="0" max="2" step="0.05" value="0.1" class="slider" title="SHOULD SEE: UNIFORM brightness everywhere. No shadows/contrast. At 0=deep shadows, at 2=very flat/bright evenly lit. This is base lighting that affects everything equally.">
+                    <div class="slider-value" id="ambientLightValue">0.1</div>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Red Light Intensity</label>
-                    <input id="redLightSlider" type="range" min="0" max="3" step="0.1" value="1.5" class="slider" title="Adjust red colored light intensity for warm tones">
-                    <div class="slider-value" id="redLightValue">1.5</div>
+                    <label class="slider-label">Right Light Intensity</label>
+                    <input id="redLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="SHOULD SEE: Directional lighting from RIGHT SIDE of model. At 0=no right lighting, at 15=strong illumination from right side.">
+                    <div class="slider-value" id="redLightValue">10</div>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Blue Light Intensity</label>
-                    <input id="blueLightSlider" type="range" min="0" max="3" step="0.1" value="1.5" class="slider" title="Adjust blue colored light intensity for cool tones">
-                    <div class="slider-value" id="blueLightValue">1.5</div>
+                    <label class="slider-label">Left Light Intensity</label>
+                    <input id="blueLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="SHOULD SEE: Directional lighting from LEFT SIDE of model. At 0=no left lighting, at 15=strong illumination from left side.">
+                    <div class="slider-value" id="blueLightValue">10</div>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Spotlight Intensity</label>
-                    <input id="spotLightSlider" type="range" min="0" max="5" step="0.1" value="3.0" class="slider" title="Control focused spotlight intensity for dramatic highlights">
-                    <div class="slider-value" id="spotLightValue">3.0</div>
+                    <label class="slider-label">Overhead Spotlight Intensity</label>
+                    <input id="spotLightSlider" type="range" min="0" max="15" step="0.5" value="3" class="slider" title="SHOULD SEE: Focused bright circle from ABOVE. At 0=no top lighting, at 15=very strong bright circle on top surfaces of model.">
+                    <div class="slider-value" id="spotLightValue">3</div>
                 </div>
             </div>
 
@@ -299,6 +307,91 @@
             effect.domElement.style.transform = `translate(-50%, -50%) scale(${1 / scaleFactor})`;
         }
 
+        // Global variables for character management
+        let defaultChars = " .'`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
+        let currentCustomChars = defaultChars;
+
+        // Function to update ASCII characters
+        function updateAsciiCharacters(newChars) {
+            console.log('🔤 updateAsciiCharacters called with:', newChars);
+            
+            if (!newChars || newChars.trim() === '') {
+                newChars = defaultChars;
+                console.log('Using default chars');
+            } else {
+                // CRITICAL: Create a proper gradient from user text
+                // ASCII needs light-to-dark characters for proper shading
+                const userText = newChars.trim();
+                
+                // Create gradient: spaces (dark) -> user characters (bright)
+                // The order matters: darkest to brightest
+                newChars = '   ' + userText;  // Start with spaces for shadows/background
+                
+                // If user text is short, create more gradations
+                if (userText.length < 3) {
+                    // For very short text, create multiple brightness levels
+                    newChars = '    .' + userText + userText.toUpperCase();
+                }
+                
+                // Repeat the gradient to have enough characters
+                const targetLength = 50;
+                if (newChars.length < targetLength) {
+                    const repeats = Math.ceil(targetLength / newChars.length);
+                    newChars = newChars.repeat(repeats);
+                }
+                
+                console.log('Custom gradient created:', JSON.stringify(newChars.substring(0, 20)));
+            }
+            
+            currentCustomChars = newChars;
+            console.log('Final characters to use:', currentCustomChars.substring(0, 30) + '...');
+            
+            try {
+                // Recreate the ASCII effect with new characters
+                const oldEffect = effect;
+                effect = new AsciiEffect(renderer, currentCustomChars, { invert: true });
+                console.log('✅ New AsciiEffect created');
+                
+                // Copy styling from old effect
+                effect.domElement.style.color = oldEffect.domElement.style.color;
+                effect.domElement.style.backgroundColor = oldEffect.domElement.style.backgroundColor;
+                effect.domElement.style.fontWeight = oldEffect.domElement.style.fontWeight;
+                effect.domElement.style.fontFamily = oldEffect.domElement.style.fontFamily;
+                effect.domElement.style.fontSize = oldEffect.domElement.style.fontSize;
+                effect.domElement.style.textShadow = oldEffect.domElement.style.textShadow;
+                effect.domElement.style.position = oldEffect.domElement.style.position;
+                effect.domElement.style.top = oldEffect.domElement.style.top;
+                effect.domElement.style.left = oldEffect.domElement.style.left;
+                effect.domElement.style.transformOrigin = oldEffect.domElement.style.transformOrigin;
+                
+                // Replace in DOM
+                if (canvasContainer && canvasContainer.contains(oldEffect.domElement)) {
+                    canvasContainer.removeChild(oldEffect.domElement);
+                    canvasContainer.appendChild(effect.domElement);
+                    updateAsciiScale();
+                    console.log('✅ DOM updated');
+                }
+                
+                // Update controls to use new effect
+                controls = new OrbitControls(camera, effect.domElement);
+                controls.autoRotate = true;
+                controls.autoRotateSpeed = baseRotationSpeed;
+                controls.enableDamping = true;
+                controls.enablePan = false;
+                controls.enableRotate = true;
+                controls.rotateSpeed = 0.8;
+                controls.minDistance = 250;
+                controls.maxDistance = 3000;
+                controls.minPolarAngle = 0;
+                controls.maxPolarAngle = Math.PI;
+                controls.target.set(0, 0, 0);
+                
+                console.log('✅ Updated ASCII characters successfully');
+            } catch (error) {
+                console.error('❌ Error updating ASCII characters:', error);
+            }
+        }
+
         // Easy customization: Change this number to adjust character density
         // Higher numbers = more characters (more detail)
         // Lower numbers = fewer characters (less detail)
@@ -329,14 +422,14 @@
             scene = new THREE.Scene();
             scene.background = new THREE.Color(0, 0, 0);
 
-            // Main light (was light1) - reduced default intensity to make other lights more visible
-            lights.main = new THREE.PointLight(0xffffff, 1.5);
-            lights.main.position.set(300, 300, 300);
+            // Main light - NATURAL front lighting from camera direction
+            lights.main = new THREE.PointLight(0xffffff, 10.0, 0, 0); // intensity, distance, decay
+            lights.main.position.set(0, 150, 800); // Near camera position for natural front lighting
             scene.add(lights.main);
             console.log('✅ Created main light:', lights.main, 'intensity:', lights.main.intensity);
             
-            // Ambient light
-            lights.ambient = new THREE.AmbientLight(0xffffff, 0.05);
+            // Ambient light - keep some for base lighting
+            lights.ambient = new THREE.AmbientLight(0xffffff, 0.1);
             scene.add(lights.ambient);
             console.log('✅ Created ambient light:', lights.ambient, 'intensity:', lights.ambient.intensity);
 
@@ -361,38 +454,69 @@
             // lights.support.push(supportLight4);
             // scene.add(supportLight4);
 
-            // Colored lights - increased intensity and better positioning
-            lights.red = new THREE.PointLight(0xff2222, 1.5);
-            lights.red.position.set(200, 200, 200);
+            // Colored lights - NO DECAY, closer positions
+            lights.red = new THREE.PointLight(0xff2222, 10.0, 0, 0); // No distance falloff
+            lights.red.position.set(200, 50, 200); // Right side, closer
             scene.add(lights.red);
             console.log('✅ Created red light:', lights.red, 'intensity:', lights.red.intensity);
 
-            lights.blue = new THREE.PointLight(0x2222ff, 1.5);
-            lights.blue.position.set(-200, 200, -200);
+            lights.blue = new THREE.PointLight(0x2222ff, 10.0, 0, 0); // No distance falloff  
+            lights.blue.position.set(-200, 50, 200); // Left side, closer
             scene.add(lights.blue);
             console.log('✅ Created blue light:', lights.blue, 'intensity:', lights.blue.intensity);
 
-            // Directional lights
-            lights.directional1 = new THREE.DirectionalLight(0xffffff, 3.0);
-            lights.directional1.position.set(200, 400, 100);
-            scene.add(lights.directional1);
+            // TEMPORARILY DISABLE directional lights - they were overwhelming the controllable lights
+            // lights.directional1 = new THREE.DirectionalLight(0xffffff, 3.0);
+            // lights.directional1.position.set(200, 400, 100);
+            // lights.directional1.target.position.set(0, 0, 0); // Point at model center
+            // scene.add(lights.directional1);
+            // scene.add(lights.directional1.target);
 
-            lights.directional2 = new THREE.DirectionalLight(0xffffff, 2.0);
-            lights.directional2.position.set(-200, 300, -100);
-            scene.add(lights.directional2);
+            // lights.directional2 = new THREE.DirectionalLight(0xffffff, 2.0);
+            // lights.directional2.position.set(-200, 300, -100);
+            // lights.directional2.target.position.set(0, 0, 0); // Point at model center
+            // scene.add(lights.directional2);
+            // scene.add(lights.directional2.target);
 
-            // Spotlight - closer and more focused
+            // Spotlight - DIRECTLY ABOVE model pointing down, NO DECAY like other lights
             lights.spotlight = new THREE.SpotLight(0xffffff, 3.0);
-            lights.spotlight.position.set(0, 300, 100);
-            lights.spotlight.angle = Math.PI / 6;
-            lights.spotlight.penumbra = 0.1;
-            lights.spotlight.decay = 2;
-            lights.spotlight.distance = 1000;
+            lights.spotlight.position.set(0, 400, 0); // Directly above
+            lights.spotlight.target.position.set(0, 0, 0); // Point at model center
+            lights.spotlight.angle = Math.PI / 4; // Wider cone
+            lights.spotlight.penumbra = 0.2;
+            lights.spotlight.decay = 0; // NO DECAY - same as PointLights
+            lights.spotlight.distance = 0; // NO DISTANCE LIMIT - same as PointLights
             scene.add(lights.spotlight);
+            scene.add(lights.spotlight.target); // Add the target to the scene
             console.log('✅ Created spotlight:', lights.spotlight, 'intensity:', lights.spotlight.intensity);
 
             renderer = new THREE.WebGLRenderer();
             renderer.setSize(canvasWidth, canvasHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+            // Use the global defaultChars, sliced for density
+            defaultChars = defaultChars.slice(0, baseCharacterDensity);
+            currentCustomChars = defaultChars;
+            
+            // Create ASCII effect with duck-themed colors - BEFORE loading model
+            effect = new AsciiEffect(renderer, currentCustomChars, { invert: true });
+            
+            // CRITICAL: Ensure AsciiEffect uses our properly configured renderer
+            console.log('🔍 AsciiEffect created. Internal renderer:', effect.domElement);
+            console.log('🔍 Main renderer shadow settings:', renderer.shadowMap.enabled, renderer.shadowMap.type);
+            
+            // Try to access and configure the internal renderer if it exists
+            if (effect && effect.domElement && effect.domElement.renderer) {
+                const internalRenderer = effect.domElement.renderer;
+                console.log('🔍 Found internal renderer:', internalRenderer);
+                if (internalRenderer.shadowMap) {
+                    internalRenderer.shadowMap.enabled = true;
+                    internalRenderer.shadowMap.type = THREE.PCFSoftShadowMap;
+                    console.log('✅ Configured internal renderer shadows');
+                }
+            }
+            
             renderer.setAnimationLoop(animate);
 
             loadModel(currentModelName);
@@ -402,11 +526,6 @@
             if (modelInfo) {
                 modelInfo.textContent = currentModelName.charAt(0).toUpperCase() + currentModelName.slice(1);
             }
-
-            const customChars = " .'`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$".slice(0, baseCharacterDensity); // Adjustable character density
-            
-            // Create ASCII effect with duck-themed colors
-            effect = new AsciiEffect(renderer, customChars, { invert: true });
             effect.domElement.style.color = 'black'; // Black duck in light mode
             effect.domElement.style.backgroundColor = 'white';
             effect.domElement.style.fontWeight = '900';
@@ -487,6 +606,17 @@
                 } else if (event.key === 'l' || event.key === 'L') {
                     // Press 'L' to debug lights
                     debugLights();
+                } else if (event.key === 'x' || event.key === 'X') {
+                    // Press 'X' to manually test light changes
+                    console.log('🧪 MANUAL LIGHT TEST');
+                    if (lights.main) {
+                        console.log('Setting main light to 0, then 5');
+                        lights.main.intensity = 0;
+                        setTimeout(() => {
+                            lights.main.intensity = 5;
+                            console.log('Main light now at:', lights.main.intensity);
+                        }, 1000);
+                    }
                 }
             });
             
@@ -558,15 +688,16 @@
                 eyeModel.traverse((child) => {
                     if (child.isMesh) {
                         if (child.material) {
-                            console.log('Material type:', child.material.type, 'Material:', child.material);
+                            console.log('🔍 MATERIAL DEBUG - Type:', child.material.type, 'Material:', child.material);
                             
-                            // Force material to respond to lighting
+                            // CRITICAL: Force ALL materials to respond to lighting
                             if (child.material.type === 'MeshStandardMaterial' || child.material.type === 'MeshPhysicalMaterial') {
                                 child.material.metalness = 0.1;
                                 child.material.roughness = 0.8;
+                                console.log('✅ Configured PBR material for lighting');
                             } else if (child.material.type === 'MeshBasicMaterial') {
                                 // MeshBasicMaterial doesn't respond to lights - convert to MeshLambertMaterial
-                                console.log('Converting MeshBasicMaterial to MeshLambertMaterial for lighting');
+                                console.log('🔄 Converting MeshBasicMaterial to MeshLambertMaterial for lighting');
                                 const oldMaterial = child.material;
                                 child.material = new THREE.MeshLambertMaterial({
                                     color: oldMaterial.color,
@@ -574,6 +705,20 @@
                                     transparent: oldMaterial.transparent,
                                     opacity: oldMaterial.opacity
                                 });
+                                console.log('✅ Material converted to Lambert for lighting');
+                            } else if (child.material.type === 'MeshLambertMaterial') {
+                                console.log('✅ Lambert material already supports lighting');
+                            } else {
+                                // For any other material type, try to convert to Lambert as well
+                                console.log('🔄 Converting unknown material type to Lambert for lighting');
+                                const oldMaterial = child.material;
+                                child.material = new THREE.MeshLambertMaterial({
+                                    color: oldMaterial.color || new THREE.Color(0xffffff),
+                                    map: oldMaterial.map,
+                                    transparent: oldMaterial.transparent || false,
+                                    opacity: oldMaterial.opacity || 1.0
+                                });
+                                console.log('✅ Unknown material converted to Lambert');
                             }
                             child.material.needsUpdate = true;
                         }
@@ -662,6 +807,15 @@
             if (window.testWebGLMode) {
                 renderer.render(scene, camera);
             } else {
+                // Ensure the AsciiEffect's internal renderer matches our main renderer settings
+                if (effect.domElement && effect.domElement._renderer) {
+                    // Copy renderer settings to ASCII effect renderer if possible
+                    const asciiRenderer = effect.domElement._renderer;
+                    if (asciiRenderer && asciiRenderer !== renderer) {
+                        // Try to sync lighting settings
+                        console.log('🔍 ASCII renderer differs from main renderer');
+                    }
+                }
                 effect.render(scene, camera);
             }
         }
@@ -727,50 +881,42 @@
             
             switch(preset) {
                 case 'studio':
-                    // Balanced professional lighting
-                    lights.main.intensity = 3.0;
-                    lights.ambient.intensity = 0.2;
-                    lights.red.intensity = 0.3;
-                    lights.blue.intensity = 0.3;
-                    lights.spotlight.intensity = 2.0;
-                    lights.directional1.intensity = 2.0;
-                    lights.directional2.intensity = 1.5;
+                    // Balanced professional lighting - Front key light + rim lights + moderate fill
+                    lights.main.intensity = 12.0;      // Strong front key light
+                    lights.ambient.intensity = 0.3;    // Moderate fill to reduce harsh shadows
+                    lights.red.intensity = 4.0;        // Right rim light for separation
+                    lights.blue.intensity = 4.0;       // Left rim light for separation  
+                    lights.spotlight.intensity = 8.0;  // Top light for dimension
                     document.getElementById('presetStudio').classList.add('active');
                     break;
                     
                 case 'dramatic':
-                    // High contrast dramatic lighting
-                    lights.main.intensity = 4.0;
-                    lights.ambient.intensity = 0.05;
-                    lights.red.intensity = 1.5;
-                    lights.blue.intensity = 1.2;
-                    lights.spotlight.intensity = 3.5;
-                    lights.directional1.intensity = 3.5;
-                    lights.directional2.intensity = 2.5;
+                    // High contrast dramatic lighting - Strong directional, minimal fill
+                    lights.main.intensity = 15.0;      // Very strong front light
+                    lights.ambient.intensity = 0.05;   // Minimal fill for deep shadows
+                    lights.red.intensity = 8.0;        // Strong right accent
+                    lights.blue.intensity = 2.0;       // Subtle left fill
+                    lights.spotlight.intensity = 12.0; // Strong top drama
                     document.getElementById('presetDramatic').classList.add('active');
                     break;
                     
                 case 'natural':
-                    // Soft natural lighting
-                    lights.main.intensity = 1.5;
-                    lights.ambient.intensity = 0.3;
-                    lights.red.intensity = 0.1;
-                    lights.blue.intensity = 0.1;
-                    lights.spotlight.intensity = 1.0;
-                    lights.directional1.intensity = 1.2;
-                    lights.directional2.intensity = 0.8;
+                    // Soft natural lighting - Gentle, even illumination
+                    lights.main.intensity = 8.0;       // Moderate front light
+                    lights.ambient.intensity = 0.6;    // High fill for soft look
+                    lights.red.intensity = 2.0;        // Gentle right side
+                    lights.blue.intensity = 2.0;       // Gentle left side
+                    lights.spotlight.intensity = 4.0;  // Soft top light
                     document.getElementById('presetNatural').classList.add('active');
                     break;
                     
                 case 'minimal':
-                    // Minimal lighting setup
-                    lights.main.intensity = 2.0;
-                    lights.ambient.intensity = 0.15;
-                    lights.red.intensity = 0.0;
-                    lights.blue.intensity = 0.0;
-                    lights.spotlight.intensity = 0.5;
-                    lights.directional1.intensity = 1.0;
-                    lights.directional2.intensity = 0.5;
+                    // Minimal lighting setup - Simple front + ambient only
+                    lights.main.intensity = 10.0;      // Clean front light
+                    lights.ambient.intensity = 0.2;    // Basic fill
+                    lights.red.intensity = 0.0;        // No side lights
+                    lights.blue.intensity = 0.0;       // No side lights  
+                    lights.spotlight.intensity = 0.0;  // No top light
                     document.getElementById('presetMinimal').classList.add('active');
                     break;
                     
@@ -781,8 +927,8 @@
                     lights.red.intensity = 0.8;
                     lights.blue.intensity = 0.8;
                     lights.spotlight.intensity = 2.5;
-                    lights.directional1.intensity = 3.0;
-                    lights.directional2.intensity = 2.0;
+                    // lights.directional1.intensity = 3.0; // DISABLED
+                    // lights.directional2.intensity = 2.0; // DISABLED
             }
             
             // Update UI sliders to match preset values
@@ -945,12 +1091,15 @@
             const mainLightSlider = document.getElementById('mainLightSlider');
             const mainLightValue = document.getElementById('mainLightValue');
             mainLightSlider.addEventListener('input', function() {
+                console.log('🔥 MAIN LIGHT SLIDER EVENT FIRED!');
                 const intensity = parseFloat(this.value);
                 mainLightValue.textContent = intensity.toFixed(1);
-                console.log('Main light slider:', intensity, 'lights.main exists:', !!lights.main);
+                console.log('Main light slider VALUE:', intensity, 'lights.main exists:', !!lights.main);
                 if (lights.main) {
+                    console.log('BEFORE: Main light intensity was:', lights.main.intensity);
                     lights.main.intensity = intensity;
-                    console.log('Set main light intensity to:', lights.main.intensity);
+                    console.log('AFTER: Set main light intensity to:', lights.main.intensity);
+                    console.log('Light object:', lights.main);
                 } else {
                     console.error('❌ lights.main is null/undefined!');
                     debugLights();
@@ -973,12 +1122,14 @@
             const redLightSlider = document.getElementById('redLightSlider');
             const redLightValue = document.getElementById('redLightValue');
             redLightSlider.addEventListener('input', function() {
+                console.log('🔥 RED LIGHT SLIDER EVENT FIRED!');
                 const intensity = parseFloat(this.value);
                 redLightValue.textContent = intensity.toFixed(1);
-                console.log('Red light slider:', intensity, 'lights.red exists:', !!lights.red);
+                console.log('Red light slider VALUE:', intensity, 'lights.red exists:', !!lights.red);
                 if (lights.red) {
+                    console.log('BEFORE: Red light intensity was:', lights.red.intensity);
                     lights.red.intensity = intensity;
-                    console.log('Set red light intensity to:', lights.red.intensity);
+                    console.log('AFTER: Set red light intensity to:', lights.red.intensity);
                 }
                 document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
             });
@@ -1056,6 +1207,34 @@
                 }
             });
             
+            // Custom ASCII Characters input
+            const customCharsInput = document.getElementById('customCharsInput');
+            const applyCharsBtn = document.getElementById('applyCharsBtn');
+            const resetCharsBtn = document.getElementById('resetCharsBtn');
+            
+            // Apply custom characters when Apply button is clicked
+            applyCharsBtn.addEventListener('click', function() {
+                const customText = customCharsInput.value.trim();
+                console.log('🔤 Applying custom characters:', customText || '(using default)');
+                updateAsciiCharacters(customText);
+            });
+            
+            // Also apply when Enter key is pressed in the input
+            customCharsInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const customText = this.value.trim();
+                    console.log('🔤 Applying custom characters (Enter):', customText || '(using default)');
+                    updateAsciiCharacters(customText);
+                }
+            });
+            
+            // Reset to default characters
+            resetCharsBtn.addEventListener('click', function() {
+                customCharsInput.value = '';
+                updateAsciiCharacters('');
+                console.log('🔄 Reset to default ASCII characters');
+            });
+
             // Initialize lighting UI with current values
             updateLightingSliders();
         });
@@ -1084,6 +1263,7 @@
                     <h3 style="color: #555; margin-bottom: 10px;">🎛️ Panel Controls:</h3>
                     <ul style="margin: 0 0 20px 20px; padding: 0;">
                         <li><strong>ASCII Density:</strong> Controls detail level (0.5-2.0)</li>
+                        <li><strong>Custom ASCII Characters:</strong> Type custom text to use as rendering characters</li>
                         <li><strong>Animation Speed:</strong> Adjusts animation playback rate</li>
                         <li><strong>Camera Distance:</strong> Sets zoom level</li>
                         <li><strong>Lighting Presets:</strong> Studio, Dramatic, Natural, Minimal</li>
