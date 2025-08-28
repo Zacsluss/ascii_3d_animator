@@ -7,11 +7,6 @@
 [![📥 DOWNLOAD](https://img.shields.io/badge/📥-DOWNLOAD-00ff88?style=for-the-badge&labelColor=000000)](https://github.com/Zacsluss/ASCII_3D_Animator/archive/refs/heads/main.zip)
 [![⭐ STAR](https://img.shields.io/badge/⭐-STAR%20ON%20GITHUB-ffff00?style=for-the-badge&labelColor=000000)](https://github.com/Zacsluss/ASCII_3D_Animator)
 
-![ASCII Art Demo](https://img.shields.io/badge/ASCII-MAGIC-cyan?style=flat)
-![Real-time](https://img.shields.io/badge/⚡-Real--time-orange?style=flat)
-![No Installation](https://img.shields.io/badge/🚀-Browser%20Ready-green?style=flat)
-![Mobile Friendly](https://img.shields.io/badge/📱-Mobile%20Ready-blue?style=flat)
-
 </div>
 
 ## ✨ **KEY FEATURES**
