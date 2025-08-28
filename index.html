@@ -4,8 +4,14 @@
     <title>ASCII Animator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link type="text/css" rel="stylesheet" href="lib/fonts/fonts.css">
     <link type="text/css" rel="stylesheet" href="main.css">
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.178.0/build/three.module.js"
+        }
+    }
+    </script>
 </head>
 <body>
     <!-- Modern Left Sidebar UI -->
@@ -169,7 +175,7 @@
     <div id="canvasContainer"></div>
 
     <script type="module">
-        import * as THREE from 'https://unpkg.com/three@0.178.0/build/three.module.js';
+        import * as THREE from 'three';
         import { AsciiEffect } from 'https://unpkg.com/three@0.178.0/examples/jsm/effects/AsciiEffect.js';
         import { OrbitControls } from 'https://unpkg.com/three@0.178.0/examples/jsm/controls/OrbitControls.js';
         import { GLTFLoader } from 'https://unpkg.com/three@0.178.0/examples/jsm/loaders/GLTFLoader.js';
