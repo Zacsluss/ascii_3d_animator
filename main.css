@@ -220,7 +220,7 @@ body.dark {
 
 /* Text Input Styles */
 .text-input {
-    width: 100%;
+    width: calc(100% - 24px);
     padding: 10px 12px;
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -230,6 +230,7 @@ body.dark {
     font-family: 'Geist', sans-serif;
     transition: all 0.2s ease;
     margin-bottom: 8px;
+    box-sizing: border-box;
 }
 
 .text-input::placeholder {
