@@ -3,6 +3,10 @@
 # 🎨 ASCII 3D ANIMATOR
 ### Transform 3D models into stunning animated ASCII art in real-time!
 
+**Create mesmerizing ASCII art animations from 3D models right in your browser!** This interactive web app converts animated 3D models (like walking characters, animals, and creatures) into beautiful text-based art using customizable lighting and your own text characters. Perfect for developers, artists, gamers, and anyone who loves retro ASCII aesthetics.
+
+**🎯 What makes it special?** Unlike static ASCII converters, this tool renders **live 3D animations** as ASCII art with full camera controls, professional lighting systems, and the ability to use your own text (like your name, favorite words, or symbols) as the ASCII characters. Watch a duck walk, a rat scurry, or a doge sit - all rendered as moving text art!
+
 [![🎮 LIVE DEMO](https://img.shields.io/badge/🎮-LIVE%20DEMO-ff69b4?style=for-the-badge&labelColor=000000)](https://zacsluss.github.io/ASCII_3D_Animator)
 [![📥 DOWNLOAD](https://img.shields.io/badge/📥-DOWNLOAD-00ff88?style=for-the-badge&labelColor=000000)](https://github.com/Zacsluss/ASCII_3D_Animator/archive/refs/heads/main.zip)
 [![⭐ STAR](https://img.shields.io/badge/⭐-STAR%20ON%20GITHUB-ffff00?style=for-the-badge&labelColor=000000)](https://github.com/Zacsluss/ASCII_3D_Animator)
