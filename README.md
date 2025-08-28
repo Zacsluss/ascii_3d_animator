@@ -44,7 +44,7 @@
 - `HELLO WORLD` → Classic text art
 - `★☆★☆★` → Starry effect  
 - Your name → Personalized ASCII art
-- `🔥💯🔥` → Fire and emojis
+- `GAME OVER` → Retro gaming vibes
 
 ```
 HHHEELLLLOOOWWOORRLLDDD
