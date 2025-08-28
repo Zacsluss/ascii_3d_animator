@@ -53,11 +53,11 @@
             <div class="control-section">
                 <h3>Model</h3>
                 <div class="control-group">
-                    <button id="nextModel" class="btn btn-primary" title="Cycle through available 3D models (Duck → Rat → Doge → Alien)">
+                    <button id="nextModel" class="btn btn-primary" title="Cycle through available 3D models (Model 1 → Rat → Doge → Alien)">
                         <span class="btn-icon">🔄</span>
                         Next Model
                     </button>
-                    <div class="model-info" id="modelInfo">Duck</div>
+                    <div class="model-info" id="modelInfo">Model 1</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Animation Speed</label>
@@ -198,11 +198,11 @@
             support: [] // Array for support lights
         };
         // Model and animation state - Updated to match animation system
-        const modelNames = ['duck', 'rat', 'doge', 'alien'];
+        const modelNames = ['model1', 'rat', 'doge', 'alien'];
         let currentModelIndex = 0;
         let currentModelName = modelNames[currentModelIndex];
         let modelLoadVersion = 0;
-        let duckAnimations = { walk: null };
+        let model1Animations = { walk: null };
         let ratAnimations = { walkDefault: null, walkStart: null, walkEnd: null, idle: null };
         let dogeAnimations = { sitting: null, playDead: null };
         let alienAnimations = { default: null };
@@ -499,7 +499,7 @@
             defaultChars = defaultChars.slice(0, baseCharacterDensity);
             currentCustomChars = defaultChars;
             
-            // Create ASCII effect with duck-themed colors - BEFORE loading model
+            // Create ASCII effect - BEFORE loading model
             effect = new AsciiEffect(renderer, currentCustomChars, { invert: true });
             
             // CRITICAL: Ensure AsciiEffect uses our properly configured renderer
@@ -526,7 +526,7 @@
             if (modelInfo) {
                 modelInfo.textContent = currentModelName.charAt(0).toUpperCase() + currentModelName.slice(1);
             }
-            effect.domElement.style.color = 'black'; // Black duck in light mode
+            effect.domElement.style.color = 'black'; // Black text in light mode
             effect.domElement.style.backgroundColor = 'white';
             effect.domElement.style.fontWeight = '900';
             effect.domElement.style.fontFamily = 'Geist, monospace';
@@ -644,20 +644,20 @@
             const loader = new GLTFLoader();
 
             const modelConfig = {
-                duck: { path: './2.glb', scaleMultiplier: 5.0 },  // 2.glb has the duck
+                model1: { path: './2.glb', scaleMultiplier: 5.0 },  // 2.glb has the first model
                 rat: { path: './3.glb', scaleMultiplier: 8.0 },   // 3.glb has the rat  
                 doge: { path: './1.glb', scaleMultiplier: 6.0 },  // 1.glb has the dog
                 alien: { path: './alien.glb', scaleMultiplier: 6.0 }
             };
 
-            const config = modelConfig[name] || modelConfig.duck;
+            const config = modelConfig[name] || modelConfig.model1;
             const modelPath = config.path;
             const modelScaleMultiplier = config.scaleMultiplier;
 
-            const isDuck = name === 'duck';
+            const isModel1 = name === 'model1';
             const isRat = name === 'rat';
             const isDoge = name === 'doge';
-            const attribution = isDuck ? '<!-- "Duck_Walk (Free)" (https://skfb.ly/owq7o) by Nyilonelycompany is licensed under CC BY 4.0 -->'
+            const attribution = isModel1 ? '<!-- "Model_Walk (Free)" (https://skfb.ly/owq7o) by Nyilonelycompany is licensed under CC BY 4.0 -->'
                                 : isRat ? '<!-- "Black Rat ( Free download )" (https://skfb.ly/p9TYP) by Nestaeric is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->'
                                 : isDoge ? '<!-- "Animated Dog, Shiba Inu" (https://skfb.ly/6SrJO) by quander is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->'
                                 : '<!-- Default model -->';
@@ -794,9 +794,9 @@
             
             // Adjust animation speed based on pointer proximity
             if (mixer) {
-                if (currentModelName === 'duck') {
+                if (currentModelName === 'model1') {
                     const speed = pointerOnModel ? pointerSpeedMultiplier : 0.3; // Slower default speed
-                    if (duckAnimations.walk) duckAnimations.walk.setEffectiveTimeScale(speed);
+                    if (model1Animations.walk) model1Animations.walk.setEffectiveTimeScale(speed);
                 }
                 // mixer.update(delta); // This is a duplicate call, remove it
             }
@@ -1255,7 +1255,7 @@
                     
                     <h3 style="color: #555; margin-bottom: 10px;">⌨️ Models & Animations:</h3>
                     <ul style="margin: 0 0 20px 20px; padding: 0;">
-                        <li><strong>Duck:</strong> Walking animation (speeds up on hover)</li>
+                        <li><strong>Model 1:</strong> Walking animation (speeds up on hover)</li>
                         <li><strong>Rat:</strong> Walk → Idle transition on hover</li>
                         <li><strong>Doge:</strong> Sitting animation</li>
                     </ul>
