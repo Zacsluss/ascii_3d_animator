@@ -10,8 +10,27 @@
     <!-- Modern Left Sidebar UI -->
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header">
-            <h1>ASCII ANIMATOR</h1>
-            <div class="subtitle">3D Models</div>
+            <div class="title-wrapper">
+                <div class="title-decoration">[ ]</div>
+                <h1 class="main-title">
+                    <span class="title-letter">A</span>
+                    <span class="title-letter">S</span>
+                    <span class="title-letter">C</span>
+                    <span class="title-letter">I</span>
+                    <span class="title-letter">I</span>
+                    <span class="title-space"> </span>
+                    <span class="title-letter">A</span>
+                    <span class="title-letter">N</span>
+                    <span class="title-letter">I</span>
+                    <span class="title-letter">M</span>
+                    <span class="title-letter">A</span>
+                    <span class="title-letter">T</span>
+                    <span class="title-letter">O</span>
+                    <span class="title-letter">R</span>
+                </h1>
+                <div class="title-decoration">[ ]</div>
+            </div>
+            <div class="title-tagline">Transform 3D to ASCII Art</div>
         </div>
         
         <div class="sidebar-content">
@@ -19,28 +38,28 @@
             <div class="control-section">
                 <h3>Display</h3>
                 <div class="control-group">
-                    <button id="themeToggle" class="btn btn-primary" title="Switch between light and dark themes">
+                    <button id="themeToggle" class="btn btn-primary" title="Switch colors: dark or light background">
                         <span class="btn-icon">🌓</span>
                         Toggle Theme
                     </button>
                 </div>
                 <div class="control-group">
-                    <button id="helpBtn" class="btn btn-info" title="Show help guide with all controls and features">
+                    <button id="helpBtn" class="btn btn-info" title="Click for help - learn how to use this tool">
                         <span class="btn-icon">❓</span>
                         Help & Controls
                     </button>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">ASCII Density</label>
-                    <input id="densitySlider" type="range" min="0.5" max="2" step="0.1" value="1.5" class="slider" title="Adjust ASCII character density - higher values = more detail but may cause lag">
-                    <div class="slider-value" id="densityValue" title="Current ASCII density value - shows how detailed the rendering is">1.5</div>
+                    <input id="densitySlider" type="range" min="0.5" max="2" step="0.1" value="1.5" class="slider" title="More detail or faster speed? Drag to adjust">
+                    <div class="slider-value" id="densityValue" title="Detail level">1.5</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Custom ASCII Characters</label>
-                    <input id="customCharsInput" type="text" placeholder="Type custom characters (e.g. HELLO WORLD)" class="text-input" title="Enter custom text to use for ASCII rendering. Your text will be used for bright areas, spaces for dark areas. Try words, names, or short phrases!">
+                    <input id="customCharsInput" type="text" placeholder="Type custom characters (e.g. HELLO WORLD)" class="text-input" title="Type your name or any text - it becomes the art!">
                     <div class="button-row">
-                        <button id="applyCharsBtn" class="btn btn-primary btn-small" title="Apply the custom characters to the model">Apply</button>
-                        <button id="resetCharsBtn" class="btn btn-secondary btn-small" title="Reset to default ASCII character set">Reset</button>
+                        <button id="applyCharsBtn" class="btn btn-primary btn-small" title="Use your text">Apply</button>
+                        <button id="resetCharsBtn" class="btn btn-secondary btn-small" title="Go back to normal characters">Reset</button>
                     </div>
                 </div>
             </div>
@@ -49,16 +68,16 @@
             <div class="control-section">
                 <h3>Model</h3>
                 <div class="control-group">
-                    <button id="nextModel" class="btn btn-primary" title="Cycle through available 3D models (Duck → Rat → Doge → Alien)">
+                    <button id="nextModel" class="btn btn-primary" title="Change to next model">
                         <span class="btn-icon">🔄</span>
                         Next Model
                     </button>
-                    <div class="model-info" id="modelInfo" title="Currently selected 3D model - click Next Model to change">Duck</div>
+                    <div class="model-info" id="modelInfo" title="Current model">Duck</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Animation Speed</label>
-                    <input id="animSpeedSlider" type="range" min="0.1" max="3" step="0.1" value="0.6" class="slider" title="Control animation playback speed - affects walk cycles and movements">
-                    <div class="slider-value" id="animSpeedValue" title="Current animation speed multiplier - 1.0 is normal speed">0.6</div>
+                    <input id="animSpeedSlider" type="range" min="0.1" max="3" step="0.1" value="0.6" class="slider" title="Make animations faster or slower">
+                    <div class="slider-value" id="animSpeedValue" title="Animation speed">0.6</div>
                 </div>
             </div>
 
@@ -66,23 +85,23 @@
             <div class="control-section">
                 <h3>Camera</h3>
                 <div class="control-group">
-                    <button id="rotationToggle" class="btn btn-secondary" title="Enable or disable automatic camera rotation around the model">
+                    <button id="rotationToggle" class="btn btn-secondary" title="Start/stop auto spinning">
                         <span class="btn-icon">⟲</span>
                         Stop Rotation
                     </button>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Rotation Speed</label>
-                    <input id="rotSpeedSlider" type="range" min="0" max="2" step="0.1" value="0.3" class="slider" title="Adjust the speed of automatic camera rotation">
-                    <div class="slider-value" id="rotSpeedValue" title="Current auto-rotation speed - higher values spin faster">0.3</div>
+                    <input id="rotSpeedSlider" type="range" min="0" max="2" step="0.1" value="0.3" class="slider" title="How fast to spin around">
+                    <div class="slider-value" id="rotSpeedValue" title="Spin speed">0.3</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Camera Distance</label>
-                    <input id="distanceSlider" type="range" min="250" max="3000" step="50" value="1000" class="slider" title="Set camera distance from model - closer values for detail, farther for full view">
-                    <div class="slider-value" id="distanceValue" title="Current camera distance from model in units">1000</div>
+                    <input id="distanceSlider" type="range" min="250" max="3000" step="50" value="1000" class="slider" title="Zoom: drag left = closer, right = farther">
+                    <div class="slider-value" id="distanceValue" title="Zoom level">1000</div>
                 </div>
                 <div class="control-group">
-                    <button id="resetCamera" class="btn btn-warning" title="Reset all camera settings and sliders to default values">
+                    <button id="resetCamera" class="btn btn-warning" title="Reset view to normal">
                         <span class="btn-icon">⌂</span>
                         Reset Camera
                     </button>
@@ -94,36 +113,36 @@
                 <h3>Lighting</h3>
                 <div class="control-group">
                     <div class="lighting-presets">
-                        <button id="presetStudio" class="btn btn-secondary preset-btn" title="Balanced professional lighting setup">Studio</button>
-                        <button id="presetDramatic" class="btn btn-secondary preset-btn" title="High contrast dramatic lighting with strong shadows">Dramatic</button>
-                        <button id="presetNatural" class="btn btn-secondary preset-btn" title="Soft natural lighting for realistic appearance">Natural</button>
-                        <button id="presetMinimal" class="btn btn-secondary preset-btn" title="Minimal lighting setup with reduced complexity">Minimal</button>
+                        <button id="presetStudio" class="btn btn-secondary preset-btn" title="Balanced lighting - looks professional">Studio</button>
+                        <button id="presetDramatic" class="btn btn-secondary preset-btn" title="Dramatic shadows - high contrast">Dramatic</button>
+                        <button id="presetNatural" class="btn btn-secondary preset-btn" title="Soft lighting - looks natural">Natural</button>
+                        <button id="presetMinimal" class="btn btn-secondary preset-btn" title="Simple clean lighting">Minimal</button>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Front Light Intensity</label>
-                    <input id="mainLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="SHOULD SEE: Natural directional lighting from FRONT. Creates depth/shadows. At 0=no front light, at 15=bright front illumination. Different from ambient - this creates contrast.">
-                    <div class="slider-value" id="mainLightValue" title="Current front light intensity - main illumination strength">10</div>
+                    <input id="mainLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="Main light from front - creates shadows">
+                    <div class="slider-value" id="mainLightValue" title="Front light brightness">10</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Ambient Light</label>
-                    <input id="ambientLightSlider" type="range" min="0" max="2" step="0.05" value="0.1" class="slider" title="SHOULD SEE: UNIFORM brightness everywhere. No shadows/contrast. At 0=deep shadows, at 2=very flat/bright evenly lit. This is base lighting that affects everything equally.">
-                    <div class="slider-value" id="ambientLightValue" title="Current ambient light level - base lighting that affects everything equally">0.1</div>
+                    <input id="ambientLightSlider" type="range" min="0" max="2" step="0.05" value="0.1" class="slider" title="Overall brightness - affects everything equally">
+                    <div class="slider-value" id="ambientLightValue" title="Overall brightness">0.1</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Right Light Intensity</label>
-                    <input id="redLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="SHOULD SEE: Directional lighting from RIGHT SIDE of model. At 0=no right lighting, at 15=strong illumination from right side.">
-                    <div class="slider-value" id="redLightValue" title="Current right side light intensity - illumination from the right">10</div>
+                    <input id="redLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="Light from the right side">
+                    <div class="slider-value" id="redLightValue" title="Right light brightness">10</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Left Light Intensity</label>
-                    <input id="blueLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="SHOULD SEE: Directional lighting from LEFT SIDE of model. At 0=no left lighting, at 15=strong illumination from left side.">
-                    <div class="slider-value" id="blueLightValue" title="Current left side light intensity - illumination from the left">10</div>
+                    <input id="blueLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="Light from the left side">
+                    <div class="slider-value" id="blueLightValue" title="Left light brightness">10</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Overhead Spotlight Intensity</label>
-                    <input id="spotLightSlider" type="range" min="0" max="15" step="0.5" value="3" class="slider" title="SHOULD SEE: Focused bright circle from ABOVE. At 0=no top lighting, at 15=very strong bright circle on top surfaces of model.">
-                    <div class="slider-value" id="spotLightValue" title="Current overhead spotlight intensity - focused light from above">3</div>
+                    <input id="spotLightSlider" type="range" min="0" max="15" step="0.5" value="3" class="slider" title="Spotlight from above - like stage lighting">
+                    <div class="slider-value" id="spotLightValue" title="Top spotlight brightness">3</div>
                 </div>
             </div>
 
@@ -131,19 +150,19 @@
             <div class="control-section">
                 <h3>Export</h3>
                 <div class="control-group">
-                    <button id="copyBtn" class="btn btn-success" title="Copy current ASCII art to clipboard for pasting elsewhere">
+                    <button id="copyBtn" class="btn btn-success" title="Copy art to paste anywhere">
                         <span class="btn-icon">📋</span>
                         Copy ASCII
                     </button>
                 </div>
                 <div class="control-group">
-                    <button id="downloadBtn" class="btn btn-success" title="Download ASCII art as a text file to your computer">
+                    <button id="downloadBtn" class="btn btn-success" title="Save as text file">
                         <span class="btn-icon">💾</span>
                         Download
                     </button>
                 </div>
                 <div class="control-group">
-                    <button id="screenshotBtn" class="btn btn-success" title="Take a screenshot of the current ASCII view (requires additional library)">
+                    <button id="screenshotBtn" class="btn btn-success" title="Take a picture (coming soon)">
                         <span class="btn-icon">📸</span>
                         Screenshot
                     </button>
@@ -155,7 +174,7 @@
                 <h3>File</h3>
                 <div class="control-group">
                     <input id="fileInput" type="file" style="display: none" accept=".glb,.gltf">
-                    <button id="uploadBtn" class="btn btn-info" onclick="document.getElementById('fileInput').click()" title="Upload your own 3D model file (.glb or .gltf format)">
+                    <button id="uploadBtn" class="btn btn-info" onclick="document.getElementById('fileInput').click()" title="Add your own 3D model">
                         <span class="btn-icon">📁</span>
                         Upload Model
                     </button>
@@ -1239,96 +1258,93 @@
         function showHelpModal() {
             const helpContent = `
                 <div style="font-family: 'Geist', sans-serif; line-height: 1.6; color: #333;">
-                    <h2 style="margin-top: 0; color: #2d3748; font-size: 1.8em; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">ASCII Animator - Complete Guide</h2>
+                    <h2 style="margin-top: 0; color: #2d3748; font-size: 1.8em; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">How to Use ASCII Animator</h2>
                     
-                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">🖱️ Mouse & Navigation Controls</h3>
-                    <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                        <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
-                            <li style="margin-bottom: 8px;"><strong>Left Click + Drag:</strong> Rotate camera around the 3D model - explore from every angle</li>
-                            <li style="margin-bottom: 8px;"><strong>Right Click:</strong> Cycle through model animations (when clicked over model area)</li>
-                            <li style="margin-bottom: 8px;"><strong>Scroll Wheel:</strong> Zoom in/out to see fine details or get the full view</li>
-                            <li style="margin-bottom: 8px;"><strong>Middle Click + Drag:</strong> Pan the view around (if enabled)</li>
+                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">🎯 Quick Start</h3>
+                    <div style="background: #e6f7ff; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #1890ff;">
+                        <p style="margin: 0 0 10px 0; font-weight: bold;">3 Simple Steps to Get Started:</p>
+                        <ol style="margin: 0; padding-left: 20px;">
+                            <li style="margin-bottom: 8px;">Click and drag to rotate the 3D model</li>
+                            <li style="margin-bottom: 8px;">Scroll to zoom in/out</li>
+                            <li style="margin-bottom: 8px;">Right-click on the model to change animations</li>
+                        </ol>
+                    </div>
+                    
+                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">🖱️ Mouse Controls</h3>
+                    <div style="background: #f7fafc; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+                        <ul style="margin: 0; padding-left: 20px; list-style: none;">
+                            <li style="margin-bottom: 6px;">🖱️ <strong>Left Click + Drag</strong> = Rotate view</li>
+                            <li style="margin-bottom: 6px;">🖱️ <strong>Right Click</strong> = Change animation</li>
+                            <li style="margin-bottom: 6px;">⚙️ <strong>Scroll</strong> = Zoom in/out</li>
                         </ul>
                     </div>
                     
-                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">🎨 Display & Theme</h3>
-                    <div style="background: #f0fff4; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                        <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
-                            <li style="margin-bottom: 8px;"><strong>Toggle Theme:</strong> Switch between dark mode (white text on black) and light mode (black text on white)</li>
-                            <li style="margin-bottom: 8px;"><strong>ASCII Density:</strong> Adjust detail level from 0.5 (less detail, faster) to 2.0 (more detail, may lag)</li>
-                            <li style="margin-bottom: 8px;"><strong>Custom ASCII Characters:</strong> Enter your own text (like "HELLO WORLD") to use as ASCII art characters instead of default symbols</li>
+                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">🎨 Make It Your Own</h3>
+                    <div style="background: #f0fff4; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+                        <p style="margin: 0 0 8px 0;"><strong>Custom Text:</strong> Type your name or any text in "Custom ASCII Characters" to create personalized art!</p>
+                        <p style="margin: 0 0 8px 0;"><strong>Theme:</strong> Click "Toggle Theme" to switch between light/dark mode</p>
+                        <p style="margin: 0;"><strong>Detail Level:</strong> Adjust "ASCII Density" slider (lower = faster, higher = more detailed)</p>
+                    </div>
+                    
+                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">🦆 Available Models</h3>
+                    <div style="background: #fff5f5; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+                        <p style="margin: 0 0 8px 0;">Click "Next Model" to cycle through:</p>
+                        <ul style="margin: 0; padding-left: 20px;">
+                            <li>🦆 Duck - Walking animation</li>
+                            <li>🐀 Rat - Multiple animations</li>
+                            <li>🐕 Doge - Sitting, shaking, playing</li>
+                            <li>👽 Alien - Idle pose</li>
+                        </ul>
+                        <p style="margin: 8px 0 0 0; font-size: 0.9em;"><em>Tip: Upload your own .glb/.gltf files with "Upload Model"</em></p>
+                    </div>
+                    
+                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">📷 Camera Settings</h3>
+                    <div style="background: #fef5e7; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+                        <ul style="margin: 0; padding-left: 20px; list-style: none;">
+                            <li style="margin-bottom: 6px;">🔄 <strong>Auto-Rotation</strong> - Toggle automatic spinning</li>
+                            <li style="margin-bottom: 6px;">⚡ <strong>Rotation Speed</strong> - How fast it spins</li>
+                            <li style="margin-bottom: 6px;">📏 <strong>Camera Distance</strong> - How close/far you are</li>
+                            <li style="margin-bottom: 6px;">🔄 <strong>Reset Camera</strong> - Return to default view</li>
                         </ul>
                     </div>
                     
-                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">🏗️ 3D Models & Animation</h3>
-                    <div style="background: #fff5f5; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                        <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
-                            <li style="margin-bottom: 8px;"><strong>Next Model:</strong> Cycle through available 3D models (Duck → Rat → Doge → Alien)</li>
-                            <li style="margin-bottom: 8px;"><strong>Animation Speed:</strong> Control how fast animations play (0.1 = very slow, 3.0 = very fast)</li>
-                            <li style="margin-bottom: 8px;"><strong>Upload Model:</strong> Load your own .glb or .gltf 3D model files</li>
+                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">💡 Lighting Effects</h3>
+                    <div style="background: #edf2f7; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+                        <p style="margin: 0 0 8px 0;"><strong>Quick Presets:</strong></p>
+                        <ul style="margin: 0 0 8px 0; padding-left: 20px;">
+                            <li><strong>Studio</strong> - Balanced, professional</li>
+                            <li><strong>Dramatic</strong> - High contrast, shadows</li>
+                            <li><strong>Natural</strong> - Soft, realistic</li>
+                            <li><strong>Minimal</strong> - Simple, clean</li>
                         </ul>
-                        <div style="margin-top: 12px; padding: 10px; background: rgba(255,255,255,0.7); border-radius: 6px; border-left: 4px solid #e53e3e;">
-                            <strong>Model Animations:</strong><br>
-                            • <strong>Duck:</strong> Walking animation<br>
-                            • <strong>Rat:</strong> Multiple walking animations and idle poses<br>
-                            • <strong>Doge:</strong> Sitting, shaking, and play animations<br>
-                            • <strong>Alien:</strong> Default pose animation
-                        </div>
+                        <p style="margin: 0; font-size: 0.9em;"><em>Or adjust individual light sliders for custom effects!</em></p>
                     </div>
                     
-                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">📷 Camera Controls</h3>
-                    <div style="background: #fef5e7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                        <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
-                            <li style="margin-bottom: 8px;"><strong>Auto-Rotation:</strong> Enable/disable automatic spinning of the camera around the model</li>
-                            <li style="margin-bottom: 8px;"><strong>Rotation Speed:</strong> How fast the auto-rotation spins (0 = stopped, 2 = very fast)</li>
-                            <li style="margin-bottom: 8px;"><strong>Camera Distance:</strong> How far the camera is from the model (250 = very close, 3000 = far away)</li>
-                            <li style="margin-bottom: 8px;"><strong>Reset Camera:</strong> Return all camera settings and sliders to their default values</li>
+                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">💾 Save & Share</h3>
+                    <div style="background: #f0f4ff; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+                        <ul style="margin: 0; padding-left: 20px; list-style: none;">
+                            <li style="margin-bottom: 6px;">📋 <strong>Copy ASCII</strong> - Copy to clipboard</li>
+                            <li style="margin-bottom: 6px;">💾 <strong>Download</strong> - Save as .txt file</li>
+                            <li style="margin-bottom: 6px;">📸 <strong>Screenshot</strong> - Capture image (coming soon)</li>
                         </ul>
                     </div>
                     
-                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">💡 Lighting System</h3>
-                    <div style="background: #edf2f7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                        <div style="margin-bottom: 15px;">
-                            <strong>Quick Presets:</strong><br>
-                            • <strong>Studio:</strong> Professional balanced lighting<br>
-                            • <strong>Dramatic:</strong> High contrast with strong shadows<br>
-                            • <strong>Natural:</strong> Soft, realistic lighting<br>
-                            • <strong>Minimal:</strong> Simple front lighting only
-                        </div>
-                        <div style="margin-top: 12px;">
-                            <strong>Individual Light Controls:</strong><br>
-                            • <strong>Front Light:</strong> Main illumination from camera direction (0-15)<br>
-                            • <strong>Ambient Light:</strong> Uniform background lighting that reduces shadows (0-2)<br>
-                            • <strong>Right Light:</strong> Side lighting from the right (0-15)<br>
-                            • <strong>Left Light:</strong> Side lighting from the left (0-15)<br>
-                            • <strong>Overhead Spotlight:</strong> Focused light from above creating dramatic top-lighting (0-15)
-                        </div>
-                    </div>
-                    
-                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">📤 Export & Sharing</h3>
-                    <div style="background: #f0f4ff; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                        <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
-                            <li style="margin-bottom: 8px;"><strong>Copy ASCII:</strong> Copy the current ASCII art to your clipboard for pasting in messages, documents, etc.</li>
-                            <li style="margin-bottom: 8px;"><strong>Download:</strong> Save the ASCII art as a .txt file to your computer</li>
-                            <li style="margin-bottom: 8px;"><strong>Screenshot:</strong> Capture an image of the current view (requires additional library)</li>
+                    <div style="margin-top: 25px; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px;">
+                        <h4 style="margin-top: 0; font-size: 1.1em;">✨ Quick Tips</h4>
+                        <ul style="margin: 0; padding-left: 20px; font-size: 0.9em;">
+                            <li style="margin-bottom: 5px;">Type your name in "Custom ASCII" for personalized art!</li>
+                            <li style="margin-bottom: 5px;">Right-click the model to see all its animations</li>
+                            <li style="margin-bottom: 5px;">Try "Dramatic" lighting for the coolest effects</li>
+                            <li style="margin-bottom: 5px;">Lower density if it's running slow</li>
+                            <li style="margin-bottom: 0;">The animations keep playing - perfect for screen recordings!</li>
                         </ul>
                     </div>
                     
-                    <h3 style="color: #4a5568; margin: 25px 0 12px 0; font-size: 1.3em;">⌨️ Keyboard Shortcuts (Hidden Features)</h3>
-                    <div style="background: #f7fafc; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
-                        <ul style="margin: 0; padding-left: 20px; list-style-type: disc;">
-                            <li style="margin-bottom: 8px;"><strong>T key:</strong> Toggle between ASCII mode and normal 3D rendering (for debugging)</li>
-                            <li style="margin-bottom: 8px;"><strong>L key:</strong> Show lighting debug information in browser console</li>
-                            <li style="margin-bottom: 8px;"><strong>X key:</strong> Test light intensity changes</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px; text-align: center;">
-                        <h4 style="margin-top: 0; font-size: 1.2em;">💡 Pro Tips</h4>
-                        <p style="margin: 10px 0; font-size: 0.95em;">• Right-click over the model to cycle through different animations</p>
-                        <p style="margin: 10px 0; font-size: 0.95em;">• Try typing your name in Custom ASCII Characters for personalized art</p>
-                        <p style="margin: 10px 0; font-size: 0.95em;">• Use the Dramatic lighting preset for the most striking ASCII effects</p>
-                        <p style="margin: 10px 0 0 0; font-size: 0.95em;">• Lower ASCII Density if the animation feels sluggish on slower devices</p>
+                    <div style="margin-top: 15px; padding: 10px; background: #f0f0f0; border-radius: 8px; text-align: center;">
+                        <p style="margin: 0; font-size: 0.9em; color: #666;">
+                            <strong>Need more help?</strong><br>
+                            Just experiment - you can't break anything! 🎨
+                        </p>
                     </div>
                 </div>
             `;
