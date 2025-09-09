@@ -53,8 +53,8 @@
                 </div>
                 <div class="control-group">
                     <label class="slider-label">ASCII Density</label>
-                    <input id="densitySlider" type="range" min="0.5" max="2" step="0.1" value="1.5" class="slider" title="More detail or faster speed? Drag to adjust">
-                    <div class="slider-value" id="densityValue" title="Detail level">1.5</div>
+                    <input id="densitySlider" type="range" min="0.5" max="2" step="0.1" value="1.2" class="slider" title="More detail or faster speed? Drag to adjust">
+                    <div class="slider-value" id="densityValue" title="Detail level">1.2</div>
                 </div>
                 <div class="control-group">
                     <label class="slider-label">Custom ASCII Characters</label>
@@ -197,7 +197,7 @@
         let camera, controls, scene, renderer, effect;
         let mixer, eyeModel;
         let canvasContainer;
-        let scaleFactor = 1.5; // Higher default ASCII density (1 = original)
+        let scaleFactor = 1.2; // Balanced ASCII density for better performance
         const minScaleFactor = 0.5;
         const maxScaleFactor = 3.0;
         let lastDensityUpdate = 0; // For throttling updates
@@ -414,6 +414,7 @@
         // Lower numbers = fewer characters (less detail)
         const baseCharacterDensity = 50000; // Even higher density for more detail
 
+        // Initialize with a lightweight start
         init();
 
 
@@ -603,40 +604,6 @@
             controls.target.set(0, 0, 0);
             window.addEventListener('resize', onWindowResize);
             
-            // TEMPORARY TEST: Add keyboard listener for testing WebGL vs ASCII rendering
-            window.testWebGLMode = false;
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 't' || event.key === 'T') {
-                    window.testWebGLMode = !window.testWebGLMode;
-                    console.log('Rendering mode:', window.testWebGLMode ? 'WebGL (normal)' : 'ASCII');
-                    
-                    // Show/hide canvas container appropriately
-                    if (window.testWebGLMode) {
-                        // For WebGL mode, append the renderer's canvas
-                        canvasContainer.innerHTML = '';
-                        canvasContainer.appendChild(renderer.domElement);
-                    } else {
-                        // For ASCII mode, show the ASCII effect
-                        canvasContainer.innerHTML = '';
-                        canvasContainer.appendChild(effect.domElement);
-                    }
-                } else if (event.key === 'l' || event.key === 'L') {
-                    // Press 'L' to debug lights
-                    debugLights();
-                } else if (event.key === 'x' || event.key === 'X') {
-                    // Press 'X' to manually test light changes
-                    console.log('🧪 MANUAL LIGHT TEST');
-                    if (lights.main) {
-                        console.log('Setting main light to 0, then 5');
-                        lights.main.intensity = 0;
-                        setTimeout(() => {
-                            lights.main.intensity = 5;
-                            console.log('Main light now at:', lights.main.intensity);
-                        }, 1000);
-                    }
-                }
-            });
-            
             toggleTheme(); // Set initial theme to dark
         }
 
@@ -653,10 +620,31 @@
 
         function loadModel(name) {
             if (eyeModel) {
+                // Properly dispose of old model to free memory
+                eyeModel.traverse((child) => {
+                    if (child.isMesh) {
+                        if (child.geometry) child.geometry.dispose();
+                        if (child.material) {
+                            if (Array.isArray(child.material)) {
+                                child.material.forEach(mat => {
+                                    if (mat.map) mat.map.dispose();
+                                    mat.dispose();
+                                });
+                            } else {
+                                if (child.material.map) child.material.map.dispose();
+                                child.material.dispose();
+                            }
+                        }
+                    }
+                });
                 scene.remove(eyeModel);
                 eyeModel = null;
                 mixer = null;
             }
+            
+            // Show loading indicator
+            showNotification(`Loading ${name} model...`, 'info');
+            
             const thisLoadVersion = ++modelLoadVersion;
             const loader = new GLTFLoader();
 
@@ -806,35 +794,19 @@
         function animate() {
             let delta = clock.getDelta();
             delta = Math.min(delta, 0.033);
-            if (mixer) mixer.update(delta);
-
             
-            // Adjust animation speed based on pointer proximity
+            // Update animations only if mixer exists
             if (mixer) {
-                if (currentModelName === 'duck') {
-                    const speed = pointerOnModel ? pointerSpeedMultiplier : 0.3; // Slower default speed
-                    if (duckAnimations.walk) duckAnimations.walk.setEffectiveTimeScale(speed);
-                }
-                // mixer.update(delta); // This is a duplicate call, remove it
+                mixer.update(delta);
             }
 
-            controls.update();
-            
-            // TEMPORARY TEST: Press 'T' to toggle between ASCII and normal WebGL rendering
-            if (window.testWebGLMode) {
-                renderer.render(scene, camera);
-            } else {
-                // Ensure the AsciiEffect's internal renderer matches our main renderer settings
-                if (effect.domElement && effect.domElement._renderer) {
-                    // Copy renderer settings to ASCII effect renderer if possible
-                    const asciiRenderer = effect.domElement._renderer;
-                    if (asciiRenderer && asciiRenderer !== renderer) {
-                        // Try to sync lighting settings
-                        console.log('🔍 ASCII renderer differs from main renderer');
-                    }
-                }
-                effect.render(scene, camera);
+            // Update controls only if needed
+            if (controls.enabled) {
+                controls.update();
             }
+            
+            // Render the ASCII effect
+            effect.render(scene, camera);
         }
 
         function toggleTheme() {
