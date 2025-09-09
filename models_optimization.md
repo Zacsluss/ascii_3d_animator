@@ -1,9 +1,9 @@
 # Model Optimization Guide
 
 ## Current Model Sizes
-- 1.glb (Doge): 16MB
-- 2.glb (Duck): 6.3MB  
-- 3.glb (Rat): 16MB
+- dog_shiba.glb (Doge): 16MB
+- duck_walk.glb (Duck): 6.3MB  
+- rat_animated.glb (Rat): 16MB
 - alien.glb: 4.9MB
 **Total: 43.2MB**
 
@@ -34,9 +34,9 @@ Use Draco compression for GLB files:
 npm install -g @gltf-transform/cli
 
 # Optimize all models
-gltf-transform optimize 1.glb 1_optimized.glb
-gltf-transform optimize 2.glb 2_optimized.glb
-gltf-transform optimize 3.glb 3_optimized.glb
+gltf-transform optimize dog_shiba.glb dog_shiba_optimized.glb
+gltf-transform optimize duck_walk.glb duck_walk_optimized.glb
+gltf-transform optimize rat_animated.glb rat_animated_optimized.glb
 gltf-transform optimize alien.glb alien_optimized.glb
 ```
 
