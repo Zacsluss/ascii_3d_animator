@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link type="text/css" rel="stylesheet" href="main.css">
+    <link rel="modulepreload" href="./lib/three/three.core.js">
+    <link rel="modulepreload" href="./lib/three/three.module.js">
 </head>
 <body>
     <!-- Modern Left Sidebar UI -->
@@ -187,10 +189,10 @@
     <div id="canvasContainer"></div>
 
     <script type="module">
-        import * as THREE from 'https://unpkg.com/three@0.178.0/build/three.module.js';
-        import { AsciiEffect } from 'https://unpkg.com/three@0.178.0/examples/jsm/effects/AsciiEffect.js?module';
-        import { OrbitControls } from 'https://unpkg.com/three@0.178.0/examples/jsm/controls/OrbitControls.js?module';
-        import { GLTFLoader } from 'https://unpkg.com/three@0.178.0/examples/jsm/loaders/GLTFLoader.js?module';
+        import * as THREE from './lib/three/three.module.js';
+        import { AsciiEffect } from './lib/three/AsciiEffect.js';
+        import { OrbitControls } from './lib/three/OrbitControls.js';
+        import { GLTFLoader } from './lib/three/GLTFLoader.js';
         
         let camera, controls, scene, renderer, effect;
         let mixer, eyeModel;
@@ -986,7 +988,8 @@
         }
 
         // Event handlers for new UI controls
-        document.addEventListener('DOMContentLoaded', function() {
+        // Module scripts run after DOM is ready, so we don't need DOMContentLoaded
+        function setupEventListeners() {
             // Theme toggle
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
@@ -1252,7 +1255,7 @@
 
             // Initialize lighting UI with current values
             updateLightingSliders();
-        });
+        }
 
         // Help modal function
         function showHelpModal() {
@@ -1459,6 +1462,9 @@
                 }, 300);
             }, 3000);
         }
+        
+        // Call setupEventListeners after all functions are defined
+        setupEventListeners();
     </script>
 </body>
 </html>
