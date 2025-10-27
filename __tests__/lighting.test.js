@@ -5,9 +5,6 @@
 import { LightingManager } from '../js/lighting.js';
 import { CONFIG } from '../js/constants.js';
 
-// Mock Three.js
-jest.mock('../lib/three/three.module.js', () => require('../__mocks__/three.js'));
-
 describe('LightingManager', () => {
   let scene;
   let lightingManager;

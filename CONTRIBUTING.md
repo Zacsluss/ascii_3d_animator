@@ -107,6 +107,7 @@ git checkout -b feature/your-feature-name
 ```
 
 Branch naming conventions:
+
 - `feature/` - New features
 - `fix/` - Bug fixes
 - `docs/` - Documentation updates
@@ -175,6 +176,7 @@ git commit -m "feat: Add custom lighting preset editor
 ```
 
 **Types:**
+
 - `feat` - New feature
 - `fix` - Bug fix
 - `docs` - Documentation changes
@@ -292,6 +294,7 @@ describe('ModuleName', () => {
 ### What to Test
 
 **DO test:**
+
 - Business logic
 - State management
 - Error handling
@@ -299,6 +302,7 @@ describe('ModuleName', () => {
 - Public API methods
 
 **DON'T test:**
+
 - Third-party libraries (Three.js)
 - Browser APIs
 - Simple getters/setters
@@ -335,21 +339,26 @@ feat: Add custom lighting preset editor
 
 ```markdown
 ## Description
+
 Brief description of changes
 
 ## Type of Change
+
 - [ ] Bug fix
 - [ ] New feature
 - [ ] Breaking change
 - [ ] Documentation update
 
 ## Testing
+
 Describe how you tested your changes
 
 ## Screenshots (if applicable)
+
 Add screenshots for UI changes
 
 ## Checklist
+
 - [ ] Tests pass
 - [ ] Code is linted and formatted
 - [ ] Documentation updated
@@ -366,6 +375,7 @@ Add screenshots for UI changes
 ### CI Checks
 
 All PRs must pass:
+
 - ✅ ESLint checks
 - ✅ Prettier formatting
 - ✅ Jest tests
@@ -415,6 +425,7 @@ npm run test:watch
 ### Debugging
 
 Use browser DevTools:
+
 - Set breakpoints in source files
 - Use `console.log` for quick debugging (remove before committing)
 - Check Network tab for model loading issues
@@ -422,6 +433,7 @@ Use browser DevTools:
 ### Performance Profiling
 
 Use Chrome DevTools Performance tab to profile:
+
 - Frame rate
 - JavaScript execution time
 - Memory usage

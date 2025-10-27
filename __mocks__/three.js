@@ -71,11 +71,27 @@ export const SpotLight = jest.fn().mockImplementation((color, intensity) => ({
   type: 'SpotLight'
 }));
 
-export const AnimationMixer = jest.fn().mockImplementation(() => ({
-  clipAction: jest.fn(),
-  update: jest.fn(),
-  stopAllAction: jest.fn()
-}));
+export const AnimationMixer = jest.fn().mockImplementation(() => {
+  const mockAction = {
+    setLoop: jest.fn().mockReturnThis(),
+    setEffectiveTimeScale: jest.fn().mockReturnThis(),
+    setEffectiveWeight: jest.fn().mockReturnThis(),
+    reset: jest.fn().mockReturnThis(),
+    play: jest.fn().mockReturnThis(),
+    stop: jest.fn().mockReturnThis(),
+    fadeIn: jest.fn().mockReturnThis(),
+    fadeOut: jest.fn().mockReturnThis(),
+    crossFadeFrom: jest.fn().mockReturnThis(),
+    crossFadeTo: jest.fn().mockReturnThis(),
+    timeScale: 1
+  };
+
+  return {
+    clipAction: jest.fn().mockReturnValue(mockAction),
+    update: jest.fn(),
+    stopAllAction: jest.fn()
+  };
+});
 
 export const Clock = jest.fn().mockImplementation(() => ({
   getDelta: jest.fn(() => 0.016)

@@ -127,9 +127,9 @@ export class UIManager {
     // Rotation toggle
     document.getElementById('rotationToggle')?.addEventListener('click', (e) => {
       const isRotating = this.app.toggleAutoRotation();
-      e.target.innerHTML = isRotating ?
-        '<span class="btn-icon">⏸</span>Stop Rotation' :
-        '<span class="btn-icon">⟲</span>Start Rotation';
+      e.target.innerHTML = isRotating
+        ? '<span class="btn-icon">⏸</span>Stop Rotation'
+        : '<span class="btn-icon">⟲</span>Start Rotation';
     });
 
     // Rotation speed slider
@@ -186,6 +186,10 @@ export class UIManager {
 
   /**
    * Setup individual light slider
+   * @param sliderId
+   * @param valueId
+   * @param lightName
+   * @param decimals
    */
   setupLightSlider(sliderId, valueId, lightName, decimals) {
     const slider = document.getElementById(sliderId);
@@ -201,24 +205,29 @@ export class UIManager {
 
   /**
    * Apply lighting preset and update UI
+   * @param presetName
    */
   applyLightingPreset(presetName) {
     this.app.setLightingPreset(presetName);
     this.updateLightingSlidersFromApp();
 
     // Update active state on buttons
-    document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById(`preset${presetName.charAt(0).toUpperCase() + presetName.slice(1)}`)
+    document.querySelectorAll('.preset-btn').forEach((btn) => btn.classList.remove('active'));
+    document
+      .getElementById(`preset${presetName.charAt(0).toUpperCase() + presetName.slice(1)}`)
       ?.classList.add('active');
 
-    this.showNotification(`${presetName.charAt(0).toUpperCase() + presetName.slice(1)} lighting applied`, 'success');
+    this.showNotification(
+      `${presetName.charAt(0).toUpperCase() + presetName.slice(1)} lighting applied`,
+      'success'
+    );
   }
 
   /**
    * Clear preset button selection
    */
   clearPresetSelection() {
-    document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.preset-btn').forEach((btn) => btn.classList.remove('active'));
   }
 
   /**
@@ -236,6 +245,10 @@ export class UIManager {
 
   /**
    * Update slider and value display
+   * @param sliderId
+   * @param valueId
+   * @param value
+   * @param decimals
    */
   updateSliderValue(sliderId, valueId, value, decimals) {
     const slider = document.getElementById(sliderId);
@@ -324,6 +337,7 @@ export class UIManager {
 
   /**
    * Update model info display
+   * @param modelName
    */
   updateModelInfo(modelName) {
     const modelInfo = document.getElementById('modelInfo');
@@ -406,6 +420,8 @@ export class UIManager {
 
   /**
    * Show a modal dialog
+   * @param title
+   * @param content
    */
   showModal(title, content) {
     const modal = document.createElement('div');
@@ -444,6 +460,8 @@ export class UIManager {
 
   /**
    * Show a notification message
+   * @param message
+   * @param type
    */
   showNotification(message, type = 'info') {
     const notification = document.createElement('div');
@@ -459,14 +477,14 @@ export class UIManager {
       success: 'linear-gradient(135deg, #48bb78 0%, #38a169 100%)',
       error: 'linear-gradient(135deg, #f56565 0%, #e53e3e 100%)',
       info: 'linear-gradient(135deg, #4299e1 0%, #3182ce 100%)',
-      warning: 'linear-gradient(135deg, #ed8936 0%, #dd6b20 100%)'
+      warning: 'linear-gradient(135deg, #ed8936 0%, #dd6b20 100%)',
     };
 
     notification.style.background = colors[type] || colors.info;
     notification.textContent = message;
 
     document.body.appendChild(notification);
-    setTimeout(() => notification.style.transform = 'translateX(0)', 10);
+    setTimeout(() => (notification.style.transform = 'translateX(0)'), 10);
 
     setTimeout(() => {
       notification.style.transform = 'translateX(100%)';
@@ -480,6 +498,7 @@ export class UIManager {
 
   /**
    * Show a temporary message overlay
+   * @param message
    */
   showMessage(message) {
     const messageDiv = document.createElement('div');

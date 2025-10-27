@@ -60,10 +60,7 @@ export class AsciiManager {
    * @param {number} factor - Scale factor (0.5 - 3.0)
    */
   setScale(factor) {
-    this.scaleFactor = Math.max(
-      CONFIG.ASCII.MIN_SCALE,
-      Math.min(CONFIG.ASCII.MAX_SCALE, factor)
-    );
+    this.scaleFactor = Math.max(CONFIG.ASCII.MIN_SCALE, Math.min(CONFIG.ASCII.MAX_SCALE, factor));
     this.updateScale();
   }
 
@@ -118,8 +115,8 @@ export class AsciiManager {
 
   /**
    * Copy styles from old effect to new effect
-   * @param {Object} oldEffect - Old ASCII effect
-   * @param {Object} newEffect - New ASCII effect
+   * @param {object} oldEffect - Old ASCII effect
+   * @param {object} newEffect - New ASCII effect
    */
   copyStyles(oldEffect, newEffect) {
     const oldStyle = oldEffect.domElement.style;

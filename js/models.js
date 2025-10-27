@@ -49,7 +49,7 @@ export class ModelManager {
           resolve({
             model: this.currentModel,
             animations: gltf.animations,
-            preferredAnimation: config.preferredAnimation
+            preferredAnimation: config.preferredAnimation,
           });
         },
         undefined,
@@ -62,8 +62,8 @@ export class ModelManager {
 
   /**
    * Process loaded model (scale, center, configure materials)
-   * @param {Object} gltf - Loaded GLTF object
-   * @param {Object} config - Model configuration
+   * @param {object} gltf - Loaded GLTF object
+   * @param {object} config - Model configuration
    */
   processModel(gltf, config) {
     const model = gltf.scene;
@@ -79,11 +79,7 @@ export class ModelManager {
     const scale = (CONFIG.MODELS.DESIRED_SIZE / maxDim) * config.scaleMultiplier;
 
     model.scale.setScalar(scale);
-    model.position.set(
-      -center.x * scale,
-      -center.y * scale,
-      -center.z * scale
-    );
+    model.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
     model.originalPosition = model.position.clone();
 
     // Configure materials for proper lighting
@@ -118,7 +114,7 @@ export class ModelManager {
           color: oldMaterial.color,
           map: oldMaterial.map,
           transparent: oldMaterial.transparent,
-          opacity: oldMaterial.opacity
+          opacity: oldMaterial.opacity,
         });
       }
     }
@@ -129,7 +125,7 @@ export class ModelManager {
         color: oldMaterial.color || new THREE.Color(0xffffff),
         map: oldMaterial.map,
         transparent: oldMaterial.transparent || false,
-        opacity: oldMaterial.opacity || 1.0
+        opacity: oldMaterial.opacity || 1.0,
       });
     }
 
@@ -148,7 +144,7 @@ export class ModelManager {
 
         if (child.material) {
           if (Array.isArray(child.material)) {
-            child.material.forEach(mat => {
+            child.material.forEach((mat) => {
               if (mat.map) mat.map.dispose();
               mat.dispose();
             });
