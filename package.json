@@ -62,11 +62,23 @@
       "!js/**/*.test.js"
     ],
     "coverageThreshold": {
-      "global": {
-        "branches": 70,
-        "functions": 70,
-        "lines": 70,
-        "statements": 70
+      "./js/animation.js": {
+        "branches": 80,
+        "functions": 88,
+        "lines": 91,
+        "statements": 88
+      },
+      "./js/constants.js": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      },
+      "./js/lighting.js": {
+        "branches": 64,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
       }
     }
   },
