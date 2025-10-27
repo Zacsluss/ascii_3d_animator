@@ -19,7 +19,7 @@
 <p align="center">
   <img src="https://img.shields.io/github/stars/Zacsluss/ASCII_3D_Animator?style=social" alt="Stars"/>
   <img src="https://img.shields.io/github/forks/Zacsluss/ASCII_3D_Animator?style=social" alt="Forks"/>
-  <img src="https://img.shields.io/github/license/Zacsluss/ASCII_3D_Animator?style=flat-square&color=555555" alt="License"/>
+  <img src="https://img.shields.io/github/license/Zacsluss/ASCII_3D_Animator?style=flat-square" alt="License"/>
   <img src="https://img.shields.io/github/last-commit/Zacsluss/ASCII_3D_Animator?style=flat-square&color=666666" alt="Last Commit"/>
 </p>
 
