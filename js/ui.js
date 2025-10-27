@@ -186,10 +186,10 @@ export class UIManager {
 
   /**
    * Setup individual light slider
-   * @param sliderId
-   * @param valueId
-   * @param lightName
-   * @param decimals
+   * @param {string} sliderId - The ID of the slider element
+   * @param {string} valueId - The ID of the value display element
+   * @param {string} lightName - The name of the light to control
+   * @param {number} decimals - Number of decimal places to display
    */
   setupLightSlider(sliderId, valueId, lightName, decimals) {
     const slider = document.getElementById(sliderId);
@@ -205,7 +205,7 @@ export class UIManager {
 
   /**
    * Apply lighting preset and update UI
-   * @param presetName
+   * @param {string} presetName - The name of the lighting preset to apply
    */
   applyLightingPreset(presetName) {
     this.app.setLightingPreset(presetName);
@@ -245,10 +245,10 @@ export class UIManager {
 
   /**
    * Update slider and value display
-   * @param sliderId
-   * @param valueId
-   * @param value
-   * @param decimals
+   * @param {string} sliderId - The ID of the slider element
+   * @param {string} valueId - The ID of the value display element
+   * @param {number} value - The value to set
+   * @param {number} decimals - Number of decimal places to display
    */
   updateSliderValue(sliderId, valueId, value, decimals) {
     const slider = document.getElementById(sliderId);
@@ -337,7 +337,7 @@ export class UIManager {
 
   /**
    * Update model info display
-   * @param modelName
+   * @param {string} modelName - The name of the model to display
    */
   updateModelInfo(modelName) {
     const modelInfo = document.getElementById('modelInfo');
@@ -420,8 +420,8 @@ export class UIManager {
 
   /**
    * Show a modal dialog
-   * @param title
-   * @param content
+   * @param {string} title - The title of the modal
+   * @param {string} content - The HTML content to display in the modal
    */
   showModal(title, content) {
     const modal = document.createElement('div');
@@ -460,8 +460,8 @@ export class UIManager {
 
   /**
    * Show a notification message
-   * @param message
-   * @param type
+   * @param {string} message - The message to display
+   * @param {string} type - The notification type (success, error, info, warning)
    */
   showNotification(message, type = 'info') {
     const notification = document.createElement('div');
@@ -498,7 +498,7 @@ export class UIManager {
 
   /**
    * Show a temporary message overlay
-   * @param message
+   * @param {string} message - The message to display
    */
   showMessage(message) {
     const messageDiv = document.createElement('div');

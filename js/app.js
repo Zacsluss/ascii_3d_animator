@@ -174,6 +174,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Switch to next model
+   * @returns {Promise<string>} The name of the newly loaded model
    */
   async switchModel() {
     const modelName = await this.modelManager.switchToNext();
@@ -186,6 +187,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Switch to next animation
+   * @returns {string} The name of the newly loaded animation
    */
   switchAnimation() {
     return this.animationManager.switchToNext();
@@ -193,7 +195,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Set ASCII density
-   * @param scale
+   * @param {number} scale - The ASCII scale/density value
    */
   setAsciiDensity(scale) {
     this.asciiManager.setScale(scale);
@@ -201,7 +203,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Update ASCII characters
-   * @param chars
+   * @param {string} chars - The character set to use for ASCII rendering
    */
   updateAsciiCharacters(chars) {
     this.asciiManager.updateCharacters(chars);
@@ -212,7 +214,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Set animation speed
-   * @param speed
+   * @param {number} speed - The animation speed multiplier
    */
   setAnimationSpeed(speed) {
     this.animationManager.setSpeed(speed);
@@ -220,6 +222,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Toggle auto rotation
+   * @returns {boolean} The new auto-rotation state
    */
   toggleAutoRotation() {
     this.controls.autoRotate = !this.controls.autoRotate;
@@ -228,7 +231,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Set rotation speed
-   * @param speed
+   * @param {number} speed - The rotation speed value
    */
   setRotationSpeed(speed) {
     this.controls.autoRotateSpeed = speed;
@@ -236,7 +239,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Set camera distance
-   * @param distance
+   * @param {number} distance - The distance from camera to target
    */
   setCameraDistance(distance) {
     const direction = this.camera.position.clone().normalize();
@@ -255,7 +258,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Set lighting preset
-   * @param preset
+   * @param {string} preset - The name of the lighting preset
    */
   setLightingPreset(preset) {
     this.lightingManager.setPreset(preset);
@@ -263,8 +266,8 @@ export class AsciiAnimatorApp {
 
   /**
    * Set individual light intensity
-   * @param lightName
-   * @param intensity
+   * @param {string} lightName - The name of the light to modify
+   * @param {number} intensity - The intensity value for the light
    */
   setLightIntensity(lightName, intensity) {
     this.lightingManager.setIntensity(lightName, intensity);
@@ -272,6 +275,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Get current light intensities
+   * @returns {object} Object containing current light intensity values
    */
   getLightIntensities() {
     return this.lightingManager.getIntensities();
@@ -279,7 +283,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Set theme (dark or light)
-   * @param isDark
+   * @param {boolean} isDark - True for dark theme, false for light theme
    */
   setTheme(isDark) {
     this.asciiManager.setTheme(isDark);
@@ -287,6 +291,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Get ASCII art as text
+   * @returns {string} The current ASCII art as text
    */
   getAsciiText() {
     return this.asciiManager.getText();
@@ -294,6 +299,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Get current model name
+   * @returns {string} The name of the currently loaded model
    */
   getCurrentModelName() {
     return this.modelManager.getCurrentModelName();
