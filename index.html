@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ASCII Animator</title>
+    <title>ASCII 3D Animator</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="Transform 3D animated models into real-time ASCII art. Fully interactive and customizable.">
     <link type="text/css" rel="stylesheet" href="main.css">
     <link rel="modulepreload" href="./lib/three/three.core.js">
     <link rel="modulepreload" href="./lib/three/three.module.js">
 </head>
 <body>
     <!-- Modern Left Sidebar UI -->
-    <div id="sidebar" class="sidebar">
+    <div id="sidebar" class="sidebar" role="navigation" aria-label="Main controls">
         <div class="sidebar-header">
             <div class="title-wrapper">
-                <div class="title-decoration">[ ]</div>
+                <div class="title-decoration" aria-hidden="true">[ ]</div>
                 <h1 class="main-title">
                     <span class="title-letter">A</span>
                     <span class="title-letter">S</span>
@@ -30,38 +31,38 @@
                     <span class="title-letter">O</span>
                     <span class="title-letter">R</span>
                 </h1>
-                <div class="title-decoration">[ ]</div>
+                <div class="title-decoration" aria-hidden="true">[ ]</div>
             </div>
             <div class="title-tagline">Transform 3D to ASCII Art</div>
         </div>
-        
+
         <div class="sidebar-content">
             <!-- Theme & Display Section -->
             <div class="control-section">
                 <h3>Display</h3>
                 <div class="control-group">
-                    <button id="themeToggle" class="btn btn-primary" title="Switch colors: dark or light background">
-                        <span class="btn-icon">🌓</span>
+                    <button id="themeToggle" class="btn btn-primary" title="Switch colors: dark or light background" aria-label="Toggle theme">
+                        <span class="btn-icon" aria-hidden="true">🌓</span>
                         Toggle Theme
                     </button>
                 </div>
                 <div class="control-group">
-                    <button id="helpBtn" class="btn btn-info" title="Click for help - learn how to use this tool">
-                        <span class="btn-icon">❓</span>
+                    <button id="helpBtn" class="btn btn-info" title="Click for help - learn how to use this tool" aria-label="Show help">
+                        <span class="btn-icon" aria-hidden="true">❓</span>
                         Help & Controls
                     </button>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">ASCII Density</label>
-                    <input id="densitySlider" type="range" min="0.5" max="2" step="0.1" value="1.2" class="slider" title="More detail or faster speed? Drag to adjust">
-                    <div class="slider-value" id="densityValue" title="Detail level">1.2</div>
+                    <label class="slider-label" for="densitySlider">ASCII Density</label>
+                    <input id="densitySlider" type="range" min="0.5" max="2" step="0.1" value="1.2" class="slider" title="More detail or faster speed? Drag to adjust" aria-label="ASCII density" aria-valuemin="0.5" aria-valuemax="2" aria-valuenow="1.2">
+                    <div class="slider-value" id="densityValue" title="Detail level" aria-live="polite">1.2</div>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Custom ASCII Characters</label>
-                    <input id="customCharsInput" type="text" placeholder="Type custom characters (e.g. HELLO WORLD)" class="text-input" title="Type your name or any text - it becomes the art!">
+                    <label class="slider-label" for="customCharsInput">Custom ASCII Characters</label>
+                    <input id="customCharsInput" type="text" placeholder="Type custom characters (e.g. HELLO WORLD)" class="text-input" title="Type your name or any text - it becomes the art!" aria-label="Custom ASCII characters">
                     <div class="button-row">
-                        <button id="applyCharsBtn" class="btn btn-primary btn-small" title="Use your text">Apply</button>
-                        <button id="resetCharsBtn" class="btn btn-secondary btn-small" title="Go back to normal characters">Reset</button>
+                        <button id="applyCharsBtn" class="btn btn-primary btn-small" title="Use your text" aria-label="Apply custom characters">Apply</button>
+                        <button id="resetCharsBtn" class="btn btn-secondary btn-small" title="Go back to normal characters" aria-label="Reset to default characters">Reset</button>
                     </div>
                 </div>
             </div>
@@ -70,16 +71,16 @@
             <div class="control-section">
                 <h3>Model</h3>
                 <div class="control-group">
-                    <button id="nextModel" class="btn btn-primary" title="Change to next model">
-                        <span class="btn-icon">🔄</span>
+                    <button id="nextModel" class="btn btn-primary" title="Change to next model" aria-label="Load next model">
+                        <span class="btn-icon" aria-hidden="true">🔄</span>
                         Next Model
                     </button>
-                    <div class="model-info" id="modelInfo" title="Current model">Duck</div>
+                    <div class="model-info" id="modelInfo" title="Current model" aria-live="polite">Duck</div>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Animation Speed</label>
-                    <input id="animSpeedSlider" type="range" min="0.1" max="3" step="0.1" value="0.6" class="slider" title="Make animations faster or slower">
-                    <div class="slider-value" id="animSpeedValue" title="Animation speed">0.6</div>
+                    <label class="slider-label" for="animSpeedSlider">Animation Speed</label>
+                    <input id="animSpeedSlider" type="range" min="0.1" max="3" step="0.1" value="0.6" class="slider" title="Make animations faster or slower" aria-label="Animation speed" aria-valuemin="0.1" aria-valuemax="3" aria-valuenow="0.6">
+                    <div class="slider-value" id="animSpeedValue" title="Animation speed" aria-live="polite">0.6</div>
                 </div>
             </div>
 
@@ -87,24 +88,24 @@
             <div class="control-section">
                 <h3>Camera</h3>
                 <div class="control-group">
-                    <button id="rotationToggle" class="btn btn-secondary" title="Start/stop auto spinning">
-                        <span class="btn-icon">⟲</span>
+                    <button id="rotationToggle" class="btn btn-secondary" title="Start/stop auto spinning" aria-label="Toggle auto-rotation" aria-pressed="true">
+                        <span class="btn-icon" aria-hidden="true">⟲</span>
                         Stop Rotation
                     </button>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Rotation Speed</label>
-                    <input id="rotSpeedSlider" type="range" min="0" max="2" step="0.1" value="0.3" class="slider" title="How fast to spin around">
-                    <div class="slider-value" id="rotSpeedValue" title="Spin speed">0.3</div>
+                    <label class="slider-label" for="rotSpeedSlider">Rotation Speed</label>
+                    <input id="rotSpeedSlider" type="range" min="0" max="2" step="0.1" value="0.3" class="slider" title="How fast to spin around" aria-label="Rotation speed" aria-valuemin="0" aria-valuemax="2" aria-valuenow="0.3">
+                    <div class="slider-value" id="rotSpeedValue" title="Spin speed" aria-live="polite">0.3</div>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Camera Distance</label>
-                    <input id="distanceSlider" type="range" min="250" max="3000" step="50" value="1000" class="slider" title="Zoom: drag left = closer, right = farther">
-                    <div class="slider-value" id="distanceValue" title="Zoom level">1000</div>
+                    <label class="slider-label" for="distanceSlider">Camera Distance</label>
+                    <input id="distanceSlider" type="range" min="250" max="3000" step="50" value="1000" class="slider" title="Zoom: drag left = closer, right = farther" aria-label="Camera distance" aria-valuemin="250" aria-valuemax="3000" aria-valuenow="1000">
+                    <div class="slider-value" id="distanceValue" title="Zoom level" aria-live="polite">1000</div>
                 </div>
                 <div class="control-group">
-                    <button id="resetCamera" class="btn btn-warning" title="Reset view to normal">
-                        <span class="btn-icon">⌂</span>
+                    <button id="resetCamera" class="btn btn-warning" title="Reset view to normal" aria-label="Reset camera to default">
+                        <span class="btn-icon" aria-hidden="true">⌂</span>
                         Reset Camera
                     </button>
                 </div>
@@ -114,37 +115,37 @@
             <div class="control-section">
                 <h3>Lighting</h3>
                 <div class="control-group">
-                    <div class="lighting-presets">
-                        <button id="presetStudio" class="btn btn-secondary preset-btn" title="Balanced lighting - looks professional">Studio</button>
-                        <button id="presetDramatic" class="btn btn-secondary preset-btn" title="Dramatic shadows - high contrast">Dramatic</button>
-                        <button id="presetNatural" class="btn btn-secondary preset-btn" title="Soft lighting - looks natural">Natural</button>
-                        <button id="presetMinimal" class="btn btn-secondary preset-btn" title="Simple clean lighting">Minimal</button>
+                    <div class="lighting-presets" role="group" aria-label="Lighting presets">
+                        <button id="presetStudio" class="btn btn-secondary preset-btn" title="Balanced lighting - looks professional" aria-label="Studio lighting">Studio</button>
+                        <button id="presetDramatic" class="btn btn-secondary preset-btn" title="Dramatic shadows - high contrast" aria-label="Dramatic lighting">Dramatic</button>
+                        <button id="presetNatural" class="btn btn-secondary preset-btn" title="Soft lighting - looks natural" aria-label="Natural lighting">Natural</button>
+                        <button id="presetMinimal" class="btn btn-secondary preset-btn" title="Simple clean lighting" aria-label="Minimal lighting">Minimal</button>
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Front Light Intensity</label>
-                    <input id="mainLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="Main light from front - creates shadows">
-                    <div class="slider-value" id="mainLightValue" title="Front light brightness">10</div>
+                    <label class="slider-label" for="mainLightSlider">Front Light Intensity</label>
+                    <input id="mainLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="Main light from front - creates shadows" aria-label="Front light intensity" aria-valuemin="0" aria-valuemax="15" aria-valuenow="10">
+                    <div class="slider-value" id="mainLightValue" title="Front light brightness" aria-live="polite">10</div>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Ambient Light</label>
-                    <input id="ambientLightSlider" type="range" min="0" max="2" step="0.05" value="0.1" class="slider" title="Overall brightness - affects everything equally">
-                    <div class="slider-value" id="ambientLightValue" title="Overall brightness">0.1</div>
+                    <label class="slider-label" for="ambientLightSlider">Ambient Light</label>
+                    <input id="ambientLightSlider" type="range" min="0" max="2" step="0.05" value="0.1" class="slider" title="Overall brightness - affects everything equally" aria-label="Ambient light intensity" aria-valuemin="0" aria-valuemax="2" aria-valuenow="0.1">
+                    <div class="slider-value" id="ambientLightValue" title="Overall brightness" aria-live="polite">0.1</div>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Right Light Intensity</label>
-                    <input id="redLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="Light from the right side">
-                    <div class="slider-value" id="redLightValue" title="Right light brightness">10</div>
+                    <label class="slider-label" for="redLightSlider">Right Light Intensity</label>
+                    <input id="redLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="Light from the right side" aria-label="Right light intensity" aria-valuemin="0" aria-valuemax="15" aria-valuenow="10">
+                    <div class="slider-value" id="redLightValue" title="Right light brightness" aria-live="polite">10</div>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Left Light Intensity</label>
-                    <input id="blueLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="Light from the left side">
-                    <div class="slider-value" id="blueLightValue" title="Left light brightness">10</div>
+                    <label class="slider-label" for="blueLightSlider">Left Light Intensity</label>
+                    <input id="blueLightSlider" type="range" min="0" max="15" step="0.5" value="10" class="slider" title="Light from the left side" aria-label="Left light intensity" aria-valuemin="0" aria-valuemax="15" aria-valuenow="10">
+                    <div class="slider-value" id="blueLightValue" title="Left light brightness" aria-live="polite">10</div>
                 </div>
                 <div class="control-group">
-                    <label class="slider-label">Overhead Spotlight Intensity</label>
-                    <input id="spotLightSlider" type="range" min="0" max="15" step="0.5" value="3" class="slider" title="Spotlight from above - like stage lighting">
-                    <div class="slider-value" id="spotLightValue" title="Top spotlight brightness">3</div>
+                    <label class="slider-label" for="spotLightSlider">Overhead Spotlight Intensity</label>
+                    <input id="spotLightSlider" type="range" min="0" max="15" step="0.5" value="3" class="slider" title="Spotlight from above - like stage lighting" aria-label="Spotlight intensity" aria-valuemin="0" aria-valuemax="15" aria-valuenow="3">
+                    <div class="slider-value" id="spotLightValue" title="Top spotlight brightness" aria-live="polite">3</div>
                 </div>
             </div>
 
@@ -152,20 +153,20 @@
             <div class="control-section">
                 <h3>Export</h3>
                 <div class="control-group">
-                    <button id="copyBtn" class="btn btn-success" title="Copy art to paste anywhere">
-                        <span class="btn-icon">📋</span>
+                    <button id="copyBtn" class="btn btn-success" title="Copy art to paste anywhere" aria-label="Copy ASCII to clipboard">
+                        <span class="btn-icon" aria-hidden="true">📋</span>
                         Copy ASCII
                     </button>
                 </div>
                 <div class="control-group">
-                    <button id="downloadBtn" class="btn btn-success" title="Save as text file">
-                        <span class="btn-icon">💾</span>
+                    <button id="downloadBtn" class="btn btn-success" title="Save as text file" aria-label="Download ASCII as file">
+                        <span class="btn-icon" aria-hidden="true">💾</span>
                         Download
                     </button>
                 </div>
                 <div class="control-group">
-                    <button id="screenshotBtn" class="btn btn-success" title="Take a picture (coming soon)">
-                        <span class="btn-icon">📸</span>
+                    <button id="screenshotBtn" class="btn btn-success" title="Take a picture (coming soon)" aria-label="Take screenshot" aria-disabled="true">
+                        <span class="btn-icon" aria-hidden="true">📸</span>
                         Screenshot
                     </button>
                 </div>
@@ -175,9 +176,9 @@
             <div class="control-section">
                 <h3>File</h3>
                 <div class="control-group">
-                    <input id="fileInput" type="file" style="display: none" accept=".glb,.gltf">
-                    <button id="uploadBtn" class="btn btn-info" onclick="document.getElementById('fileInput').click()" title="Add your own 3D model">
-                        <span class="btn-icon">📁</span>
+                    <input id="fileInput" type="file" style="display: none" accept=".glb,.gltf" aria-label="Upload 3D model file">
+                    <button id="uploadBtn" class="btn btn-info" title="Add your own 3D model" aria-label="Upload custom model">
+                        <span class="btn-icon" aria-hidden="true">📁</span>
                         Upload Model
                     </button>
                 </div>
@@ -186,1257 +187,9 @@
     </div>
 
     <!-- Canvas Container -->
-    <div id="canvasContainer"></div>
+    <div id="canvasContainer" role="main" aria-label="ASCII art canvas"></div>
 
-    <script type="module">
-        import * as THREE from './lib/three/three.module.js';
-        import { AsciiEffect } from './lib/three/AsciiEffect.js';
-        import { OrbitControls } from './lib/three/OrbitControls.js';
-        import { GLTFLoader } from './lib/three/GLTFLoader.js';
-        
-        let camera, controls, scene, renderer, effect;
-        let mixer, eyeModel;
-        let canvasContainer;
-        let scaleFactor = 1.2; // Balanced ASCII density for better performance
-        const minScaleFactor = 0.5;
-        const maxScaleFactor = 3.0;
-        let lastDensityUpdate = 0; // For throttling updates
-        const clock = new THREE.Clock();
-        
-        // Light references for controls
-        let lights = {
-            main: null,
-            ambient: null,
-            red: null,
-            blue: null,
-            spotlight: null,
-            directional1: null,
-            directional2: null,
-            support: [] // Array for support lights
-        };
-        // Model and animation state - Updated to match animation system
-        const modelNames = ['duck', 'rat', 'doge', 'alien'];
-        let currentModelIndex = 0;
-        let currentModelName = modelNames[currentModelIndex];
-        let modelLoadVersion = 0;
-        let duckAnimations = { walk: null };
-        let ratAnimations = { walkDefault: null, walkStart: null, walkEnd: null, idle: null };
-        let dogeAnimations = { sitting: null, playDead: null };
-        let alienAnimations = { default: null };
-        
-        // Global animation system for right-click switching
-        let currentAnimations = []; // All available animations for current model
-        let currentAnimationIndex = 0;
-        let currentPlayingAction = null;
-        // Helper to clear rat actions
-        function stopAllRatActions() {
-            Object.values(ratAnimations).forEach(action => {
-                if (action) action.stop();
-            });
-        }
-        
-        // Debug function to check all lights in scene
-        function debugLights() {
-            console.log('🔍 LIGHTING DEBUG:');
-            console.log('Scene children count:', scene.children.length);
-            console.log('Lights object:', lights);
-            
-            const sceneLights = scene.children.filter(child => 
-                child.type === 'PointLight' || 
-                child.type === 'AmbientLight' || 
-                child.type === 'DirectionalLight' || 
-                child.type === 'SpotLight'
-            );
-            console.log('Lights found in scene:', sceneLights);
-            
-            if (lights.main) console.log('Main light intensity:', lights.main.intensity);
-            if (lights.red) console.log('Red light intensity:', lights.red.intensity);
-            if (lights.blue) console.log('Blue light intensity:', lights.blue.intensity);
-            if (lights.spotlight) console.log('Spotlight intensity:', lights.spotlight.intensity);
-            if (lights.ambient) console.log('Ambient light intensity:', lights.ambient.intensity);
-        }
-        
-        // Function to switch to next animation
-        function switchToNextAnimation() {
-            if (currentAnimations.length === 0 || !mixer) return;
-            
-            // Stop current animation
-            if (currentPlayingAction) {
-                currentPlayingAction.stop();
-            }
-            
-            // Move to next animation
-            currentAnimationIndex = (currentAnimationIndex + 1) % currentAnimations.length;
-            const nextClip = currentAnimations[currentAnimationIndex];
-            
-            console.log(`Switching to animation: ${nextClip.name} (${currentAnimationIndex + 1}/${currentAnimations.length})`);
-            
-            // Play new animation
-            currentPlayingAction = mixer.clipAction(nextClip);
-            currentPlayingAction.setLoop(THREE.LoopRepeat, Infinity);
-            currentPlayingAction.setEffectiveTimeScale(0.6);
-            currentPlayingAction.reset().play();
-            
-            // Show notification
-            showCameraMessage(`Animation: ${nextClip.name} (${currentAnimationIndex + 1}/${currentAnimations.length})`);
-        }
-        let lastPointerOnModel = false;
-        
-        // New global variable declarations near other globals
-        let pointerOnModel = false;
-        const pointerSpeedMultiplier = 2; // reduced speed up factor when pointer on model
-        let baseRotationSpeed = 0.3; // higher normal auto-rotation speed for more visible difference
-        let scrollSpeed = 0; // additional speed modifier from scroll gestures
-        let mouseOverModel = false;
-        
-        // Helper to show camera status messages
-        function showCameraMessage(message) {
-            // Create a temporary message overlay
-            const messageDiv = document.createElement('div');
-            messageDiv.style.position = 'fixed';
-            messageDiv.style.top = '20px';
-            messageDiv.style.left = '50%';
-            messageDiv.style.transform = 'translateX(-50%)';
-            messageDiv.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-            messageDiv.style.color = 'white';
-            messageDiv.style.padding = '10px 20px';
-            messageDiv.style.borderRadius = '5px';
-            messageDiv.style.fontSize = '14px';
-            messageDiv.style.zIndex = '1000';
-            messageDiv.style.fontFamily = 'Geist, sans-serif';
-            messageDiv.textContent = message;
-            
-            document.body.appendChild(messageDiv);
-            
-            // Remove message after 5 seconds
-            setTimeout(() => {
-                if (document.body.contains(messageDiv)) {
-                    document.body.removeChild(messageDiv);
-                }
-            }, 5000);
-        }
-        
-        // Helper to apply current scaleFactor
-        function updateAsciiScale() {
-            if (!effect || !canvasContainer) return;
-            const rect = canvasContainer.getBoundingClientRect();
-            effect.setSize(rect.width * scaleFactor, rect.height * scaleFactor);
-            effect.domElement.style.transform = `translate(-50%, -50%) scale(${1 / scaleFactor})`;
-        }
-
-        // Global variables for character management
-        let defaultChars = " .'`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
-        let currentCustomChars = defaultChars;
-
-        // Function to update ASCII characters
-        function updateAsciiCharacters(newChars) {
-            console.log('🔤 updateAsciiCharacters called with:', newChars);
-            
-            if (!newChars || newChars.trim() === '') {
-                newChars = defaultChars;
-                console.log('Using default chars');
-            } else {
-                // CRITICAL: Create a proper gradient from user text
-                // ASCII needs light-to-dark characters for proper shading
-                const userText = newChars.trim();
-                
-                // Create gradient: spaces (dark) -> user characters (bright)
-                // The order matters: darkest to brightest
-                newChars = '   ' + userText;  // Start with spaces for shadows/background
-                
-                // If user text is short, create more gradations
-                if (userText.length < 3) {
-                    // For very short text, create multiple brightness levels
-                    newChars = '    .' + userText + userText.toUpperCase();
-                }
-                
-                // Repeat the gradient to have enough characters
-                const targetLength = 50;
-                if (newChars.length < targetLength) {
-                    const repeats = Math.ceil(targetLength / newChars.length);
-                    newChars = newChars.repeat(repeats);
-                }
-                
-                console.log('Custom gradient created:', JSON.stringify(newChars.substring(0, 20)));
-            }
-            
-            currentCustomChars = newChars;
-            console.log('Final characters to use:', currentCustomChars.substring(0, 30) + '...');
-            
-            try {
-                // Recreate the ASCII effect with new characters
-                const oldEffect = effect;
-                effect = new AsciiEffect(renderer, currentCustomChars, { invert: true });
-                console.log('✅ New AsciiEffect created');
-                
-                // Copy styling from old effect
-                effect.domElement.style.color = oldEffect.domElement.style.color;
-                effect.domElement.style.backgroundColor = oldEffect.domElement.style.backgroundColor;
-                effect.domElement.style.fontWeight = oldEffect.domElement.style.fontWeight;
-                effect.domElement.style.fontFamily = oldEffect.domElement.style.fontFamily;
-                effect.domElement.style.fontSize = oldEffect.domElement.style.fontSize;
-                effect.domElement.style.textShadow = oldEffect.domElement.style.textShadow;
-                effect.domElement.style.position = oldEffect.domElement.style.position;
-                effect.domElement.style.top = oldEffect.domElement.style.top;
-                effect.domElement.style.left = oldEffect.domElement.style.left;
-                effect.domElement.style.transformOrigin = oldEffect.domElement.style.transformOrigin;
-                
-                // Replace in DOM
-                if (canvasContainer && canvasContainer.contains(oldEffect.domElement)) {
-                    canvasContainer.removeChild(oldEffect.domElement);
-                    canvasContainer.appendChild(effect.domElement);
-                    updateAsciiScale();
-                    console.log('✅ DOM updated');
-                }
-                
-                // Update controls to use new effect
-                controls = new OrbitControls(camera, effect.domElement);
-                controls.autoRotate = true;
-                controls.autoRotateSpeed = baseRotationSpeed;
-                controls.enableDamping = true;
-                controls.enablePan = false;
-                controls.enableRotate = true;
-                controls.rotateSpeed = 0.8;
-                controls.minDistance = 250;
-                controls.maxDistance = 3000;
-                controls.minPolarAngle = 0;
-                controls.maxPolarAngle = Math.PI;
-                controls.target.set(0, 0, 0);
-                
-                console.log('✅ Updated ASCII characters successfully');
-            } catch (error) {
-                console.error('❌ Error updating ASCII characters:', error);
-            }
-        }
-
-        // Easy customization: Change this number to adjust character density
-        // Higher numbers = more characters (more detail)
-        // Lower numbers = fewer characters (less detail)
-        const baseCharacterDensity = 50000; // Even higher density for more detail
-
-        // Initialize with a lightweight start
-        init();
-
-
-
-
-
-
-
-        function getDistance(p1, p2) {
-            const dx = p1.x - p2.x;
-            const dy = p1.y - p2.y;
-            return Math.hypot(dx, dy);
-        }
-
-        function init() {
-            // Use full screen dimensions
-            const canvasWidth = window.innerWidth;
-            const canvasHeight = window.innerHeight;
-
-            camera = new THREE.PerspectiveCamera(70, canvasWidth / canvasHeight, 1, 5000);
-            camera.position.set(0, 150, 900);
-
-            scene = new THREE.Scene();
-            scene.background = new THREE.Color(0, 0, 0);
-
-            // Main light - NATURAL front lighting from camera direction
-            lights.main = new THREE.PointLight(0xffffff, 10.0, 0, 0); // intensity, distance, decay
-            lights.main.position.set(0, 150, 800); // Near camera position for natural front lighting
-            scene.add(lights.main);
-            console.log('✅ Created main light:', lights.main, 'intensity:', lights.main.intensity);
-            
-            // Ambient light - keep some for base lighting
-            lights.ambient = new THREE.AmbientLight(0xffffff, 0.1);
-            scene.add(lights.ambient);
-            console.log('✅ Created ambient light:', lights.ambient, 'intensity:', lights.ambient.intensity);
-
-            // TEMPORARILY DISABLED: Support lights might be overwhelming other lights
-            // const supportLight1 = new THREE.PointLight(0xffffff, 1.0);
-            // supportLight1.position.set(-500, -500, -500);
-            // lights.support.push(supportLight1);
-            // scene.add(supportLight1);
-
-            // const supportLight2 = new THREE.PointLight(0xffffff, 2.0);
-            // supportLight2.position.set(0, 300, 200);
-            // lights.support.push(supportLight2);
-            // scene.add(supportLight2);
-
-            // const supportLight3 = new THREE.PointLight(0xffffff, 1.5);
-            // supportLight3.position.set(-300, 200, -200);
-            // lights.support.push(supportLight3);
-            // scene.add(supportLight3);
-
-            // const supportLight4 = new THREE.PointLight(0xffffff, 1.2);
-            // supportLight4.position.set(300, -200, 300);
-            // lights.support.push(supportLight4);
-            // scene.add(supportLight4);
-
-            // Colored lights - NO DECAY, closer positions
-            lights.red = new THREE.PointLight(0xff2222, 10.0, 0, 0); // No distance falloff
-            lights.red.position.set(200, 50, 200); // Right side, closer
-            scene.add(lights.red);
-            console.log('✅ Created red light:', lights.red, 'intensity:', lights.red.intensity);
-
-            lights.blue = new THREE.PointLight(0x2222ff, 10.0, 0, 0); // No distance falloff  
-            lights.blue.position.set(-200, 50, 200); // Left side, closer
-            scene.add(lights.blue);
-            console.log('✅ Created blue light:', lights.blue, 'intensity:', lights.blue.intensity);
-
-            // TEMPORARILY DISABLE directional lights - they were overwhelming the controllable lights
-            // lights.directional1 = new THREE.DirectionalLight(0xffffff, 3.0);
-            // lights.directional1.position.set(200, 400, 100);
-            // lights.directional1.target.position.set(0, 0, 0); // Point at model center
-            // scene.add(lights.directional1);
-            // scene.add(lights.directional1.target);
-
-            // lights.directional2 = new THREE.DirectionalLight(0xffffff, 2.0);
-            // lights.directional2.position.set(-200, 300, -100);
-            // lights.directional2.target.position.set(0, 0, 0); // Point at model center
-            // scene.add(lights.directional2);
-            // scene.add(lights.directional2.target);
-
-            // Spotlight - DIRECTLY ABOVE model pointing down, NO DECAY like other lights
-            lights.spotlight = new THREE.SpotLight(0xffffff, 3.0);
-            lights.spotlight.position.set(0, 400, 0); // Directly above
-            lights.spotlight.target.position.set(0, 0, 0); // Point at model center
-            lights.spotlight.angle = Math.PI / 4; // Wider cone
-            lights.spotlight.penumbra = 0.2;
-            lights.spotlight.decay = 0; // NO DECAY - same as PointLights
-            lights.spotlight.distance = 0; // NO DISTANCE LIMIT - same as PointLights
-            scene.add(lights.spotlight);
-            scene.add(lights.spotlight.target); // Add the target to the scene
-            console.log('✅ Created spotlight:', lights.spotlight, 'intensity:', lights.spotlight.intensity);
-
-            renderer = new THREE.WebGLRenderer();
-            renderer.setSize(canvasWidth, canvasHeight);
-            renderer.shadowMap.enabled = true;
-            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-            // Use the global defaultChars, sliced for density
-            defaultChars = defaultChars.slice(0, baseCharacterDensity);
-            currentCustomChars = defaultChars;
-            
-            // Create ASCII effect - BEFORE loading model
-            effect = new AsciiEffect(renderer, currentCustomChars, { invert: true });
-            
-            // CRITICAL: Ensure AsciiEffect uses our properly configured renderer
-            console.log('🔍 AsciiEffect created. Internal renderer:', effect.domElement);
-            console.log('🔍 Main renderer shadow settings:', renderer.shadowMap.enabled, renderer.shadowMap.type);
-            
-            // Try to access and configure the internal renderer if it exists
-            if (effect && effect.domElement && effect.domElement.renderer) {
-                const internalRenderer = effect.domElement.renderer;
-                console.log('🔍 Found internal renderer:', internalRenderer);
-                if (internalRenderer.shadowMap) {
-                    internalRenderer.shadowMap.enabled = true;
-                    internalRenderer.shadowMap.type = THREE.PCFSoftShadowMap;
-                    console.log('✅ Configured internal renderer shadows');
-                }
-            }
-            
-            renderer.setAnimationLoop(animate);
-
-            loadModel(currentModelName);
-            
-            // Initialize model info display
-            const modelInfo = document.getElementById('modelInfo');
-            if (modelInfo) {
-                modelInfo.textContent = currentModelName.charAt(0).toUpperCase() + currentModelName.slice(1);
-            }
-            effect.domElement.style.color = 'black'; // Black text in light mode
-            effect.domElement.style.backgroundColor = 'white';
-            effect.domElement.style.fontWeight = '900';
-            effect.domElement.style.fontFamily = 'Geist, monospace';
-            effect.domElement.style.fontSize = '20px'; // Slightly smaller font size for tighter density
-            effect.domElement.style.textShadow = 'none';
-            effect.domElement.style.position = 'absolute';
-            effect.domElement.style.top = '50%';
-            effect.domElement.style.left = '50%';
-            effect.domElement.style.transformOrigin = 'center center';
-            // initial translate to centre combined with scale applied later
-
-            canvasContainer = document.getElementById('canvasContainer');
-            canvasContainer.style.width = canvasWidth + 'px';
-            canvasContainer.style.height = canvasHeight + 'px';
-            
-            canvasContainer.appendChild(effect.domElement);
-            updateAsciiScale();
-
-            
-            // Add mouse controls for PC users
-            function isMouseOverModel(event) {
-                const rect = canvasContainer.getBoundingClientRect();
-                const mouseX = event.clientX - rect.left;
-                const mouseY = event.clientY - rect.top;
-                
-                // Check if mouse is near center (where model is)
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const dx = mouseX - centerX;
-                const dy = mouseY - centerY;
-                const dist = Math.hypot(dx, dy);
-                const threshold = Math.min(rect.width, rect.height) * 0.2;
-                
-                return dist < threshold;
-            }
-            
-            
-            canvasContainer.addEventListener('contextmenu', (event) => {
-                // Right click for animation switching
-                event.preventDefault(); // Prevent context menu
-                
-                // Switch to next animation
-                switchToNextAnimation();
-            });
-
-            controls = new OrbitControls(camera, effect.domElement);
-            controls.autoRotate = true; // enable continuous rotation
-            controls.autoRotateSpeed = baseRotationSpeed;
-            controls.enableDamping = true;
-            controls.enablePan = false;
-            controls.enableRotate = true;
-            controls.rotateSpeed = 0.8;
-            controls.minDistance = 250;
-            controls.maxDistance = 3000;
-            controls.minPolarAngle = 0; // Allow full rotation from top view
-            controls.maxPolarAngle = Math.PI; // Allow full rotation to bottom view
-            controls.target.set(0, 0, 0);
-            window.addEventListener('resize', onWindowResize);
-            
-            toggleTheme(); // Set initial theme to dark
-        }
-
-        function switchModel(offset) {
-            currentModelIndex = (currentModelIndex + offset + modelNames.length) % modelNames.length;
-            currentModelName = modelNames[currentModelIndex];
-            loadModel(currentModelName);
-            // Update the model info in the new UI
-            const modelInfo = document.getElementById('modelInfo');
-            if (modelInfo) {
-                modelInfo.textContent = currentModelName.charAt(0).toUpperCase() + currentModelName.slice(1);
-            }
-        }
-
-        function loadModel(name) {
-            if (eyeModel) {
-                // Properly dispose of old model to free memory
-                eyeModel.traverse((child) => {
-                    if (child.isMesh) {
-                        if (child.geometry) child.geometry.dispose();
-                        if (child.material) {
-                            if (Array.isArray(child.material)) {
-                                child.material.forEach(mat => {
-                                    if (mat.map) mat.map.dispose();
-                                    mat.dispose();
-                                });
-                            } else {
-                                if (child.material.map) child.material.map.dispose();
-                                child.material.dispose();
-                            }
-                        }
-                    }
-                });
-                scene.remove(eyeModel);
-                eyeModel = null;
-                mixer = null;
-            }
-            
-            // Show loading indicator
-            showNotification(`Loading ${name} model...`, 'info');
-            
-            const thisLoadVersion = ++modelLoadVersion;
-            const loader = new GLTFLoader();
-
-            const modelConfig = {
-                duck: { path: './duck_walk.glb', scaleMultiplier: 5.0 },
-                rat: { path: './rat_animated.glb', scaleMultiplier: 8.0 },
-                doge: { path: './dog_shiba.glb', scaleMultiplier: 6.0 },
-                alien: { path: './alien.glb', scaleMultiplier: 6.0 }
-            };
-
-            const config = modelConfig[name] || modelConfig.duck;
-            const modelPath = config.path;
-            const modelScaleMultiplier = config.scaleMultiplier;
-
-            const isDuck = name === 'duck';
-            const isRat = name === 'rat';
-            const isDoge = name === 'doge';
-            const attribution = isDuck ? '<!-- "Model_Walk (Free)" (https://skfb.ly/owq7o) by Nyilonelycompany is licensed under CC BY 4.0 -->'
-                                : isRat ? '<!-- "Black Rat ( Free download )" (https://skfb.ly/p9TYP) by Nestaeric is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->'
-                                : isDoge ? '<!-- "Animated Dog, Shiba Inu" (https://skfb.ly/6SrJO) by quander is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/). -->'
-                                : '<!-- Default model -->';
-            
-            loader.load(modelPath, (gltf) => {
-                if (thisLoadVersion !== modelLoadVersion) return; // Skip if a newer load has occurred
-                
-                // DEBUG: Log animation info
-                console.log(`Loading ${name} model:`, modelPath);
-                console.log(`Found ${gltf.animations.length} animations:`, gltf.animations.map(a => a.name));
-                
-                eyeModel = gltf.scene;
-                const box = new THREE.Box3().setFromObject(eyeModel);
-                const size = new THREE.Vector3();
-                const center = new THREE.Vector3();
-                box.getSize(size);
-                box.getCenter(center);
-                const maxDim = Math.max(size.x, size.y, size.z);
-                const desiredSize = 150;
-                const scale = desiredSize / maxDim;
-                eyeModel.scale.setScalar(scale * modelScaleMultiplier);
-                eyeModel.position.set(
-                    -center.x * scale * modelScaleMultiplier,
-                    -center.y * scale * modelScaleMultiplier,
-                    -center.z * scale * modelScaleMultiplier
-                );
-                eyeModel.originalPosition = eyeModel.position.clone();
-                eyeModel.traverse((child) => {
-                    if (child.isMesh) {
-                        if (child.material) {
-                            console.log('🔍 MATERIAL DEBUG - Type:', child.material.type, 'Material:', child.material);
-                            
-                            // CRITICAL: Force ALL materials to respond to lighting
-                            if (child.material.type === 'MeshStandardMaterial' || child.material.type === 'MeshPhysicalMaterial') {
-                                child.material.metalness = 0.1;
-                                child.material.roughness = 0.8;
-                                console.log('✅ Configured PBR material for lighting');
-                            } else if (child.material.type === 'MeshBasicMaterial') {
-                                // MeshBasicMaterial doesn't respond to lights - convert to MeshLambertMaterial
-                                console.log('🔄 Converting MeshBasicMaterial to MeshLambertMaterial for lighting');
-                                const oldMaterial = child.material;
-                                child.material = new THREE.MeshLambertMaterial({
-                                    color: oldMaterial.color,
-                                    map: oldMaterial.map,
-                                    transparent: oldMaterial.transparent,
-                                    opacity: oldMaterial.opacity
-                                });
-                                console.log('✅ Material converted to Lambert for lighting');
-                            } else if (child.material.type === 'MeshLambertMaterial') {
-                                console.log('✅ Lambert material already supports lighting');
-                            } else {
-                                // For any other material type, try to convert to Lambert as well
-                                console.log('🔄 Converting unknown material type to Lambert for lighting');
-                                const oldMaterial = child.material;
-                                child.material = new THREE.MeshLambertMaterial({
-                                    color: oldMaterial.color || new THREE.Color(0xffffff),
-                                    map: oldMaterial.map,
-                                    transparent: oldMaterial.transparent || false,
-                                    opacity: oldMaterial.opacity || 1.0
-                                });
-                                console.log('✅ Unknown material converted to Lambert');
-                            }
-                            child.material.needsUpdate = true;
-                        }
-                        child.castShadow = true;
-                        child.receiveShadow = true;
-                    }
-                });
-                scene.add(eyeModel);
-                camera.lookAt(0, 0, 0);
-                if (gltf.animations && gltf.animations.length) {
-                    mixer = new THREE.AnimationMixer(eyeModel);
-                    
-                    // Initialize animation switching system
-                    currentAnimations = [...gltf.animations]; // Copy all animations
-                    currentAnimationIndex = 0;
-                    console.log(`Available animations for ${name}:`, currentAnimations.map(a => a.name));
-                    // Start with model-specific default animation or first available
-                    if (currentAnimations.length > 0) {
-                        let defaultClip = currentAnimations[0]; // Fallback to first animation
-                        let defaultIndex = 0;
-                        
-                        // Set specific default animations for certain models
-                        if (name === 'rat') {
-                            const ratWalkClip = currentAnimations.find(clip => clip.name === 'Mammals|walk_A1');
-                            if (ratWalkClip) {
-                                defaultClip = ratWalkClip;
-                                defaultIndex = currentAnimations.indexOf(ratWalkClip);
-                                console.log(`${name}: Using preferred animation: ${defaultClip.name}`);
-                            }
-                        } else if (name === 'doge') {
-                            const dogeShakeClip = currentAnimations.find(clip => clip.name === '0|shake_0');
-                            if (dogeShakeClip) {
-                                defaultClip = dogeShakeClip;
-                                defaultIndex = currentAnimations.indexOf(dogeShakeClip);
-                                console.log(`${name}: Using preferred animation: ${defaultClip.name}`);
-                            }
-                        }
-                        
-                        currentAnimationIndex = defaultIndex;
-                        currentPlayingAction = mixer.clipAction(defaultClip);
-                        currentPlayingAction.setLoop(THREE.LoopRepeat, Infinity);
-                        currentPlayingAction.setEffectiveTimeScale(0.6);
-                        currentPlayingAction.play();
-                        console.log(`${name}: Playing animation: ${defaultClip.name} (${defaultIndex + 1}/${currentAnimations.length})`);
-                        console.log(`${name}: Right-click to cycle through ${currentAnimations.length} animations`);
-                    } else {
-                        console.log(`${name}: No animations found in this model`);
-                    }
-                }
-            }, undefined, (err) => console.error(`${name} GLB load error:`, err));
-        }
-
-        function onWindowResize() {
-            // Use full screen dimensions
-            const newWidth = window.innerWidth;
-            const newHeight = window.innerHeight;
-            
-            camera.aspect = newWidth / newHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(newWidth, newHeight);
-            if (canvasContainer) {
-                canvasContainer.style.width = newWidth + 'px';
-                canvasContainer.style.height = newHeight + 'px';
-            }
-            updateAsciiScale();
-        }
-
-        function animate() {
-            let delta = clock.getDelta();
-            delta = Math.min(delta, 0.033);
-            
-            // Update animations only if mixer exists
-            if (mixer) {
-                mixer.update(delta);
-            }
-
-            // Update controls only if needed
-            if (controls.enabled) {
-                controls.update();
-            }
-            
-            // Render the ASCII effect
-            effect.render(scene, camera);
-        }
-
-        function toggleTheme() {
-            const isDark = document.body.classList.contains('dark');
-            
-            if (isDark) {
-                // Switch to light theme
-                document.body.classList.remove('dark');
-                effect.domElement.style.color = 'black';
-                effect.domElement.style.backgroundColor = 'white';
-            } else {
-                // Switch to dark theme
-                document.body.classList.add('dark');
-                effect.domElement.style.color = 'white';
-                effect.domElement.style.backgroundColor = 'black';
-            }
-        }
-
-        function ratPointerEnter() {
-            if (!ratAnimations.walkEnd) return;
-            stopAllRatActions();
-            const endAction = ratAnimations.walkEnd;
-            const idleAction = ratAnimations.idle;
-            endAction.reset().play();
-            const duration = endAction.getClip().duration * 1000;
-            // After walkEnd finishes, play idle looping as long as pointer still on
-            setTimeout(() => {
-                if (pointerOnModel && currentModelName === 'rat' && idleAction) {
-                    stopAllRatActions();
-                    idleAction.reset().play();
-                }
-            }, duration + 50);
-        }
-
-        function ratPointerLeave() {
-            if (!ratAnimations.walkStart) {
-                // Fallback to default walk directly
-                if (ratAnimations.walkDefault) {
-                    stopAllRatActions();
-                    ratAnimations.walkDefault.reset().play();
-                }
-                return;
-            }
-            stopAllRatActions();
-            const startAction = ratAnimations.walkStart;
-            const walkDefaultAction = ratAnimations.walkDefault;
-            startAction.reset().play();
-            const duration = startAction.getClip().duration * 1000;
-            setTimeout(() => {
-                if (!pointerOnModel && currentModelName === 'rat' && walkDefaultAction) {
-                    stopAllRatActions();
-                    walkDefaultAction.reset().play();
-                }
-            }, duration + 50);
-        }
-
-        // Lighting control functions
-        function setLightingPreset(preset) {
-            // Remove active class from all preset buttons
-            document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
-            
-            switch(preset) {
-                case 'studio':
-                    // Balanced professional lighting - Front key light + rim lights + moderate fill
-                    lights.main.intensity = 12.0;      // Strong front key light
-                    lights.ambient.intensity = 0.3;    // Moderate fill to reduce harsh shadows
-                    lights.red.intensity = 4.0;        // Right rim light for separation
-                    lights.blue.intensity = 4.0;       // Left rim light for separation  
-                    lights.spotlight.intensity = 8.0;  // Top light for dimension
-                    document.getElementById('presetStudio').classList.add('active');
-                    break;
-                    
-                case 'dramatic':
-                    // High contrast dramatic lighting - Strong directional, minimal fill
-                    lights.main.intensity = 15.0;      // Very strong front light
-                    lights.ambient.intensity = 0.05;   // Minimal fill for deep shadows
-                    lights.red.intensity = 8.0;        // Strong right accent
-                    lights.blue.intensity = 2.0;       // Subtle left fill
-                    lights.spotlight.intensity = 12.0; // Strong top drama
-                    document.getElementById('presetDramatic').classList.add('active');
-                    break;
-                    
-                case 'natural':
-                    // Soft natural lighting - Gentle, even illumination
-                    lights.main.intensity = 8.0;       // Moderate front light
-                    lights.ambient.intensity = 0.6;    // High fill for soft look
-                    lights.red.intensity = 2.0;        // Gentle right side
-                    lights.blue.intensity = 2.0;       // Gentle left side
-                    lights.spotlight.intensity = 4.0;  // Soft top light
-                    document.getElementById('presetNatural').classList.add('active');
-                    break;
-                    
-                case 'minimal':
-                    // Minimal lighting setup - Simple front + ambient only
-                    lights.main.intensity = 10.0;      // Clean front light
-                    lights.ambient.intensity = 0.2;    // Basic fill
-                    lights.red.intensity = 0.0;        // No side lights
-                    lights.blue.intensity = 0.0;       // No side lights  
-                    lights.spotlight.intensity = 0.0;  // No top light
-                    document.getElementById('presetMinimal').classList.add('active');
-                    break;
-                    
-                default:
-                    // Current/default settings
-                    lights.main.intensity = 2.5;
-                    lights.ambient.intensity = 0.1;
-                    lights.red.intensity = 0.8;
-                    lights.blue.intensity = 0.8;
-                    lights.spotlight.intensity = 2.5;
-                    // lights.directional1.intensity = 3.0; // DISABLED
-                    // lights.directional2.intensity = 2.0; // DISABLED
-            }
-            
-            // Update UI sliders to match preset values
-            updateLightingSliders();
-        }
-        
-        function updateLightingSliders() {
-            // Update slider values and displays
-            const mainSlider = document.getElementById('mainLightSlider');
-            const mainValue = document.getElementById('mainLightValue');
-            const ambientSlider = document.getElementById('ambientLightSlider');
-            const ambientValue = document.getElementById('ambientLightValue');
-            const redSlider = document.getElementById('redLightSlider');
-            const redValue = document.getElementById('redLightValue');
-            const blueSlider = document.getElementById('blueLightSlider');
-            const blueValue = document.getElementById('blueLightValue');
-            const spotSlider = document.getElementById('spotLightSlider');
-            const spotValue = document.getElementById('spotLightValue');
-            
-            if (mainSlider && lights.main) {
-                mainSlider.value = lights.main.intensity;
-                mainValue.textContent = lights.main.intensity.toFixed(1);
-            }
-            if (ambientSlider && lights.ambient) {
-                ambientSlider.value = lights.ambient.intensity;
-                ambientValue.textContent = lights.ambient.intensity.toFixed(2);
-            }
-            if (redSlider && lights.red) {
-                redSlider.value = lights.red.intensity;
-                redValue.textContent = lights.red.intensity.toFixed(1);
-            }
-            if (blueSlider && lights.blue) {
-                blueSlider.value = lights.blue.intensity;
-                blueValue.textContent = lights.blue.intensity.toFixed(1);
-            }
-            if (spotSlider && lights.spotlight) {
-                spotSlider.value = lights.spotlight.intensity;
-                spotValue.textContent = lights.spotlight.intensity.toFixed(1);
-            }
-        }
-
-        // Event handlers for new UI controls
-        // Module scripts run after DOM is ready, so we don't need DOMContentLoaded
-        function setupEventListeners() {
-            // Theme toggle
-            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-
-            // Help button
-            document.getElementById('helpBtn').addEventListener('click', showHelpModal);
-
-            // ASCII Density slider
-            const densitySlider = document.getElementById('densitySlider');
-            const densityValue = document.getElementById('densityValue');
-            // Density update function
-            function updateDensity() {
-                scaleFactor = parseFloat(densitySlider.value);
-                updateAsciiScale();
-                densityValue.textContent = densitySlider.value;
-            }
-            
-            // Add multiple event listeners for better responsiveness
-            densitySlider.addEventListener('input', updateDensity);
-            densitySlider.addEventListener('change', updateDensity);
-            densitySlider.addEventListener('mousemove', function(e) {
-                if (e.buttons === 1) { // Left mouse button is pressed
-                    updateDensity();
-                }
-            });
-
-            // Next model
-            document.getElementById('nextModel').addEventListener('click', function() {
-                switchModel(1);
-            });
-
-            // Animation Speed slider
-            const animSpeedSlider = document.getElementById('animSpeedSlider');
-            const animSpeedValue = document.getElementById('animSpeedValue');
-            // Animation speed update function
-            function updateAnimationSpeed() {
-                const speed = parseFloat(animSpeedSlider.value);
-                animSpeedValue.textContent = speed.toFixed(1);
-                
-                // Update current playing animation speed
-                if (currentPlayingAction) {
-                    currentPlayingAction.setEffectiveTimeScale(speed);
-                }
-            }
-            
-            // Add multiple event listeners for better responsiveness
-            animSpeedSlider.addEventListener('input', updateAnimationSpeed);
-            animSpeedSlider.addEventListener('change', updateAnimationSpeed);
-            animSpeedSlider.addEventListener('mousemove', function(e) {
-                if (e.buttons === 1) { // Left mouse button is pressed
-                    updateAnimationSpeed();
-                }
-            });
-
-            // Rotation toggle
-            document.getElementById('rotationToggle').addEventListener('click', function() {
-                if (controls) {
-                    controls.autoRotate = !controls.autoRotate;
-                    this.innerHTML = controls.autoRotate ? 
-                        '<span class="btn-icon">⏸</span>Stop Rotation' : 
-                        '<span class="btn-icon">⟲</span>Start Rotation';
-                }
-            });
-
-            // Rotation Speed slider
-            const rotSpeedSlider = document.getElementById('rotSpeedSlider');
-            const rotSpeedValue = document.getElementById('rotSpeedValue');
-            rotSpeedSlider.addEventListener('input', function() {
-                baseRotationSpeed = parseFloat(this.value);
-                rotSpeedValue.textContent = this.value;
-                if (controls) {
-                    controls.autoRotateSpeed = baseRotationSpeed;
-                }
-            });
-
-            // Camera Distance slider
-            const distanceSlider = document.getElementById('distanceSlider');
-            const distanceValue = document.getElementById('distanceValue');
-            distanceSlider.addEventListener('input', function() {
-                const distance = parseFloat(this.value);
-                distanceValue.textContent = this.value;
-                if (camera && controls) {
-                    const direction = camera.position.clone().normalize();
-                    camera.position.copy(direction.multiplyScalar(distance));
-                    controls.update();
-                }
-            });
-
-            // Reset Camera
-            document.getElementById('resetCamera').addEventListener('click', function() {
-                if (controls) {
-                    controls.reset();
-                    scaleFactor = 1.5;
-                    updateAsciiScale();
-                    
-                    // Reset all sliders to default values
-                    densitySlider.value = 1.5;
-                    densityValue.textContent = '1.5';
-                    rotSpeedSlider.value = baseRotationSpeed;
-                    rotSpeedValue.textContent = baseRotationSpeed;
-                    distanceSlider.value = 1000;
-                    distanceValue.textContent = '1000';
-                    animSpeedSlider.value = 0.6;
-                    animSpeedValue.textContent = '0.6';
-                    
-                    // Reset lighting to default
-                    setLightingPreset('default');
-                }
-            });
-
-            // Lighting preset buttons
-            document.getElementById('presetStudio').addEventListener('click', () => setLightingPreset('studio'));
-            document.getElementById('presetDramatic').addEventListener('click', () => setLightingPreset('dramatic'));
-            document.getElementById('presetNatural').addEventListener('click', () => setLightingPreset('natural'));
-            document.getElementById('presetMinimal').addEventListener('click', () => setLightingPreset('minimal'));
-
-            // Lighting sliders
-            const mainLightSlider = document.getElementById('mainLightSlider');
-            const mainLightValue = document.getElementById('mainLightValue');
-            mainLightSlider.addEventListener('input', function() {
-                console.log('🔥 MAIN LIGHT SLIDER EVENT FIRED!');
-                const intensity = parseFloat(this.value);
-                mainLightValue.textContent = intensity.toFixed(1);
-                console.log('Main light slider VALUE:', intensity, 'lights.main exists:', !!lights.main);
-                if (lights.main) {
-                    console.log('BEFORE: Main light intensity was:', lights.main.intensity);
-                    lights.main.intensity = intensity;
-                    console.log('AFTER: Set main light intensity to:', lights.main.intensity);
-                    console.log('Light object:', lights.main);
-                } else {
-                    console.error('❌ lights.main is null/undefined!');
-                    debugLights();
-                }
-                // Clear preset selection when manually adjusting
-                document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
-            });
-
-            const ambientLightSlider = document.getElementById('ambientLightSlider');
-            const ambientLightValue = document.getElementById('ambientLightValue');
-            ambientLightSlider.addEventListener('input', function() {
-                const intensity = parseFloat(this.value);
-                ambientLightValue.textContent = intensity.toFixed(2);
-                if (lights.ambient) {
-                    lights.ambient.intensity = intensity;
-                }
-                document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
-            });
-
-            const redLightSlider = document.getElementById('redLightSlider');
-            const redLightValue = document.getElementById('redLightValue');
-            redLightSlider.addEventListener('input', function() {
-                console.log('🔥 RED LIGHT SLIDER EVENT FIRED!');
-                const intensity = parseFloat(this.value);
-                redLightValue.textContent = intensity.toFixed(1);
-                console.log('Red light slider VALUE:', intensity, 'lights.red exists:', !!lights.red);
-                if (lights.red) {
-                    console.log('BEFORE: Red light intensity was:', lights.red.intensity);
-                    lights.red.intensity = intensity;
-                    console.log('AFTER: Set red light intensity to:', lights.red.intensity);
-                }
-                document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
-            });
-
-            const blueLightSlider = document.getElementById('blueLightSlider');
-            const blueLightValue = document.getElementById('blueLightValue');
-            blueLightSlider.addEventListener('input', function() {
-                const intensity = parseFloat(this.value);
-                blueLightValue.textContent = intensity.toFixed(1);
-                console.log('Blue light slider:', intensity, 'lights.blue exists:', !!lights.blue);
-                if (lights.blue) {
-                    lights.blue.intensity = intensity;
-                    console.log('Set blue light intensity to:', lights.blue.intensity);
-                }
-                document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
-            });
-
-            const spotLightSlider = document.getElementById('spotLightSlider');
-            const spotLightValue = document.getElementById('spotLightValue');
-            spotLightSlider.addEventListener('input', function() {
-                const intensity = parseFloat(this.value);
-                spotLightValue.textContent = intensity.toFixed(1);
-                console.log('Spotlight slider:', intensity, 'lights.spotlight exists:', !!lights.spotlight);
-                if (lights.spotlight) {
-                    lights.spotlight.intensity = intensity;
-                    console.log('Set spotlight intensity to:', lights.spotlight.intensity);
-                }
-                document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
-            });
-
-            // Export controls
-            document.getElementById('copyBtn').addEventListener('click', function() {
-                if (effect && effect.domElement) {
-                    const text = effect.domElement.textContent;
-                    navigator.clipboard.writeText(text).then(() => {
-                        showNotification('ASCII art copied to clipboard!', 'success');
-                    }).catch(err => {
-                        console.error('Failed to copy:', err);
-                        showNotification('Failed to copy to clipboard', 'error');
-                    });
-                }
-            });
-
-            document.getElementById('downloadBtn').addEventListener('click', function() {
-                if (effect && effect.domElement) {
-                    const text = effect.domElement.textContent;
-                    const blob = new Blob([text], { type: 'text/plain' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = `ascii-art-${currentModelName}-${Date.now()}.txt`;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                    showNotification('ASCII art downloaded!', 'success');
-                }
-            });
-
-            document.getElementById('screenshotBtn').addEventListener('click', function() {
-                if (effect && effect.domElement) {
-                    // Simple fallback since html2canvas is not included
-                    showNotification('Screenshot feature requires html2canvas library', 'info');
-                    console.log('Screenshot attempted for current view');
-                }
-            });
-
-            // File upload
-            document.getElementById('fileInput').addEventListener('change', function(event) {
-                const file = event.target.files[0];
-                if (file) {
-                    showNotification(`Selected file: ${file.name}`, 'info');
-                    // File upload functionality would go here
-                    console.log('File selected:', file.name);
-                }
-            });
-            
-            // Custom ASCII Characters input
-            const customCharsInput = document.getElementById('customCharsInput');
-            const applyCharsBtn = document.getElementById('applyCharsBtn');
-            const resetCharsBtn = document.getElementById('resetCharsBtn');
-            
-            // Apply custom characters when Apply button is clicked
-            applyCharsBtn.addEventListener('click', function() {
-                const customText = customCharsInput.value.trim();
-                console.log('🔤 Applying custom characters:', customText || '(using default)');
-                updateAsciiCharacters(customText);
-            });
-            
-            // Also apply when Enter key is pressed in the input
-            customCharsInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    const customText = this.value.trim();
-                    console.log('🔤 Applying custom characters (Enter):', customText || '(using default)');
-                    updateAsciiCharacters(customText);
-                }
-            });
-            
-            // Reset to default characters
-            resetCharsBtn.addEventListener('click', function() {
-                customCharsInput.value = '';
-                updateAsciiCharacters('');
-                console.log('🔄 Reset to default ASCII characters');
-            });
-
-            // Initialize lighting UI with current values
-            updateLightingSliders();
-        }
-
-        // Help modal function
-        function showHelpModal() {
-            const helpContent = `
-                <div style="font-family: 'Geist', sans-serif; line-height: 1.6; color: #333;">
-                    <h2 style="margin-top: 0; color: #2d3748; font-size: 1.8em; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">How to Use ASCII Animator</h2>
-                    
-                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">🎯 Quick Start</h3>
-                    <div style="background: #e6f7ff; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #1890ff;">
-                        <p style="margin: 0 0 10px 0; font-weight: bold;">3 Simple Steps to Get Started:</p>
-                        <ol style="margin: 0; padding-left: 20px;">
-                            <li style="margin-bottom: 8px;">Click and drag to rotate the 3D model</li>
-                            <li style="margin-bottom: 8px;">Scroll to zoom in/out</li>
-                            <li style="margin-bottom: 8px;">Right-click on the model to change animations</li>
-                        </ol>
-                    </div>
-                    
-                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">🖱️ Mouse Controls</h3>
-                    <div style="background: #f7fafc; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
-                        <ul style="margin: 0; padding-left: 20px; list-style: none;">
-                            <li style="margin-bottom: 6px;">🖱️ <strong>Left Click + Drag</strong> = Rotate view</li>
-                            <li style="margin-bottom: 6px;">🖱️ <strong>Right Click</strong> = Change animation</li>
-                            <li style="margin-bottom: 6px;">⚙️ <strong>Scroll</strong> = Zoom in/out</li>
-                        </ul>
-                    </div>
-                    
-                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">🎨 Make It Your Own</h3>
-                    <div style="background: #f0fff4; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
-                        <p style="margin: 0 0 8px 0;"><strong>Custom Text:</strong> Type your name or any text in "Custom ASCII Characters" to create personalized art!</p>
-                        <p style="margin: 0 0 8px 0;"><strong>Theme:</strong> Click "Toggle Theme" to switch between light/dark mode</p>
-                        <p style="margin: 0;"><strong>Detail Level:</strong> Adjust "ASCII Density" slider (lower = faster, higher = more detailed)</p>
-                    </div>
-                    
-                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">🦆 Available Models</h3>
-                    <div style="background: #fff5f5; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
-                        <p style="margin: 0 0 8px 0;">Click "Next Model" to cycle through:</p>
-                        <ul style="margin: 0; padding-left: 20px;">
-                            <li>🦆 Duck - Walking animation</li>
-                            <li>🐀 Rat - Multiple animations</li>
-                            <li>🐕 Doge - Sitting, shaking, playing</li>
-                            <li>👽 Alien - Idle pose</li>
-                        </ul>
-                        <p style="margin: 8px 0 0 0; font-size: 0.9em;"><em>Tip: Upload your own .glb/.gltf files with "Upload Model"</em></p>
-                    </div>
-                    
-                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">📷 Camera Settings</h3>
-                    <div style="background: #fef5e7; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
-                        <ul style="margin: 0; padding-left: 20px; list-style: none;">
-                            <li style="margin-bottom: 6px;">🔄 <strong>Auto-Rotation</strong> - Toggle automatic spinning</li>
-                            <li style="margin-bottom: 6px;">⚡ <strong>Rotation Speed</strong> - How fast it spins</li>
-                            <li style="margin-bottom: 6px;">📏 <strong>Camera Distance</strong> - How close/far you are</li>
-                            <li style="margin-bottom: 6px;">🔄 <strong>Reset Camera</strong> - Return to default view</li>
-                        </ul>
-                    </div>
-                    
-                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">💡 Lighting Effects</h3>
-                    <div style="background: #edf2f7; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
-                        <p style="margin: 0 0 8px 0;"><strong>Quick Presets:</strong></p>
-                        <ul style="margin: 0 0 8px 0; padding-left: 20px;">
-                            <li><strong>Studio</strong> - Balanced, professional</li>
-                            <li><strong>Dramatic</strong> - High contrast, shadows</li>
-                            <li><strong>Natural</strong> - Soft, realistic</li>
-                            <li><strong>Minimal</strong> - Simple, clean</li>
-                        </ul>
-                        <p style="margin: 0; font-size: 0.9em;"><em>Or adjust individual light sliders for custom effects!</em></p>
-                    </div>
-                    
-                    <h3 style="color: #4a5568; margin: 20px 0 10px 0; font-size: 1.2em;">💾 Save & Share</h3>
-                    <div style="background: #f0f4ff; padding: 12px; border-radius: 8px; margin-bottom: 15px;">
-                        <ul style="margin: 0; padding-left: 20px; list-style: none;">
-                            <li style="margin-bottom: 6px;">📋 <strong>Copy ASCII</strong> - Copy to clipboard</li>
-                            <li style="margin-bottom: 6px;">💾 <strong>Download</strong> - Save as .txt file</li>
-                            <li style="margin-bottom: 6px;">📸 <strong>Screenshot</strong> - Capture image (coming soon)</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="margin-top: 25px; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 10px;">
-                        <h4 style="margin-top: 0; font-size: 1.1em;">✨ Quick Tips</h4>
-                        <ul style="margin: 0; padding-left: 20px; font-size: 0.9em;">
-                            <li style="margin-bottom: 5px;">Type your name in "Custom ASCII" for personalized art!</li>
-                            <li style="margin-bottom: 5px;">Right-click the model to see all its animations</li>
-                            <li style="margin-bottom: 5px;">Try "Dramatic" lighting for the coolest effects</li>
-                            <li style="margin-bottom: 5px;">Lower density if it's running slow</li>
-                            <li style="margin-bottom: 0;">The animations keep playing - perfect for screen recordings!</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="margin-top: 15px; padding: 10px; background: #f0f0f0; border-radius: 8px; text-align: center;">
-                        <p style="margin: 0; font-size: 0.9em; color: #666;">
-                            <strong>Need more help?</strong><br>
-                            Just experiment - you can't break anything! 🎨
-                        </p>
-                    </div>
-                </div>
-            `;
-            
-            showModal('Help & Controls', helpContent);
-        }
-
-        // Generic modal function
-        function showModal(title, content) {
-            const modal = document.createElement('div');
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.7);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 10000;
-                font-family: 'Geist', sans-serif;
-            `;
-            
-            const modalContent = document.createElement('div');
-            modalContent.style.cssText = `
-                background: white;
-                padding: 30px;
-                border-radius: 12px;
-                max-width: 600px;
-                max-height: 80vh;
-                overflow-y: auto;
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-                position: relative;
-            `;
-            
-            const closeBtn = document.createElement('button');
-            closeBtn.innerHTML = '✕';
-            closeBtn.style.cssText = `
-                position: absolute;
-                top: 15px;
-                right: 20px;
-                background: none;
-                border: none;
-                font-size: 24px;
-                cursor: pointer;
-                color: #666;
-                padding: 5px;
-                line-height: 1;
-            `;
-            
-            closeBtn.addEventListener('click', () => {
-                document.body.removeChild(modal);
-            });
-            
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    document.body.removeChild(modal);
-                }
-            });
-            
-            modalContent.innerHTML = content;
-            modalContent.appendChild(closeBtn);
-            modal.appendChild(modalContent);
-            document.body.appendChild(modal);
-        }
-
-        // Helper function to show notifications
-        function showNotification(message, type = 'info') {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                padding: 12px 20px;
-                border-radius: 8px;
-                color: white;
-                font-family: 'Geist', sans-serif;
-                font-size: 14px;
-                font-weight: 500;
-                z-index: 10000;
-                max-width: 300px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-                transition: all 0.3s ease;
-                transform: translateX(100%);
-            `;
-            
-            const colors = {
-                success: 'linear-gradient(135deg, #48bb78 0%, #38a169 100%)',
-                error: 'linear-gradient(135deg, #f56565 0%, #e53e3e 100%)',
-                info: 'linear-gradient(135deg, #4299e1 0%, #3182ce 100%)',
-                warning: 'linear-gradient(135deg, #ed8936 0%, #dd6b20 100%)'
-            };
-            
-            notification.style.background = colors[type] || colors.info;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            // Animate in
-            setTimeout(() => {
-                notification.style.transform = 'translateX(0)';
-            }, 10);
-            
-            // Remove after 3 seconds
-            setTimeout(() => {
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    if (document.body.contains(notification)) {
-                        document.body.removeChild(notification);
-                    }
-                }, 300);
-            }, 3000);
-        }
-        
-        // Call setupEventListeners after all functions are defined
-        setupEventListeners();
-    </script>
+    <!-- Main Application Script -->
+    <script type="module" src="./js/app.js"></script>
 </body>
 </html>
