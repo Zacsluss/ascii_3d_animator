@@ -1,232 +1,79 @@
 <div align="center">
 
-# 🎨 ASCII 3D ANIMATOR
+# ASCII 3D Animator
 
-### Transform 3D models into stunning animated ASCII art in real-time!
+### Real-time 3D model conversion to animated ASCII art in the browser
 
-**Create mesmerizing ASCII art animations from 3D models right in your browser!** This interactive web app converts animated 3D models (like walking characters, animals, and creatures) into beautiful text-based art using customizable lighting and your own text characters. Perfect for developers, artists, gamers, and anyone who loves retro ASCII aesthetics.
-
-**🎯 What makes it special?** Unlike static ASCII converters, this tool renders **live 3D animations** as ASCII art with full camera controls, professional lighting systems, and the ability to use your own text (like your name, favorite words, or symbols) as the ASCII characters. Watch a duck walk, a rat scurry, or a doge sit - all rendered as moving text art!
-
-[![🚀 START SIMULATION!](https://img.shields.io/badge/🚀-START%20SIMULATION!-ff69b4?style=for-the-badge&labelColor=000000)](https://zacsluss.github.io/ASCII_3D_Animator)
-[![📥 DOWNLOAD](https://img.shields.io/badge/📥-DOWNLOAD-00ff88?style=for-the-badge&labelColor=000000)](https://github.com/Zacsluss/ASCII_3D_Animator/archive/refs/heads/main.zip)
-[![⭐ STAR](https://img.shields.io/badge/⭐-STAR%20ON%20GITHUB-ffff00?style=for-the-badge&labelColor=000000)](https://github.com/Zacsluss/ASCII_3D_Animator)
-
-</div>
-
-## ✨ **KEY FEATURES**
-
-🎨 **Real-time ASCII conversion** from 3D models  
-🎭 **4 animated models** with interactive controls  
-💡 **Professional 5-point lighting** system  
-🌈 **Custom character rendering** - use YOUR text!  
-📱 **Mobile optimized** with touch controls  
-🎮 **Interactive camera** with zoom and rotation
-
----
-
-## 🚀 **GET STARTED INSTANTLY**
-
-<div align="center">
-
-|                          🌐 **ONLINE**                           |                                          💾 **OFFLINE**                                          |                           👨‍💻 **DEVELOPERS**                            |
-| :--------------------------------------------------------------: | :----------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| **[▶️ START NOW](https://zacsluss.github.io/ASCII_3D_Animator)** | **[📦 DOWNLOAD ZIP](https://github.com/Zacsluss/ASCII_3D_Animator/archive/refs/heads/main.zip)** | **[🛠️ CLONE REPO](https://github.com/Zacsluss/ASCII_3D_Animator.git)** |
-|                        Instant web access                        |                                        Works 100% offline                                        |                          Fork and contribute                           |
+**[Try Live Demo](https://zacsluss.github.io/ASCII_3D_Animator)** • **[Download](https://github.com/Zacsluss/ASCII_3D_Animator/archive/refs/heads/main.zip)**
 
 </div>
 
 ---
 
-## 🎮 **HOW TO USE**
+## What This Is
 
-**1️⃣ Choose Model** → Cycle through 4 animated 3D models  
-**2️⃣ Adjust Lighting** → Use 5 professional lighting controls:
+This is a browser-based tool that converts animated 3D models into live ASCII art. Unlike static image-to-ASCII converters, this renders full 3D animations—complete with camera controls, professional lighting systems, and customizable character sets—entirely as text characters.
 
-- 💡 Front, 🌍 Ambient, ➡️ Right, ⬅️ Left, 🔦 Overhead lights
-  **3️⃣ Customize** → Type your text in "Custom ASCII Characters" → Apply!
+The technical challenge was building a real-time depth-to-character mapping system that calculates surface normals and lighting intensity for each character position while maintaining smooth animation playback. The result is a 5-point lighting engine with preset configurations (Studio, Dramatic, Natural, Minimal) that mimics professional 3D rendering techniques within ASCII constraints.
 
-### 🎨 **Cool Examples**
+**Key Stats:**
+- 60 FPS rendering on desktop browsers
+- 4 animated 3D models with custom loader support
+- 5-point lighting system with individual intensity controls
+- Mobile-optimized with full touch support
+- Works 100% offline—all dependencies bundled locally
 
-- `HELLO WORLD` → Classic text art
-- `★☆★☆★` → Starry effect
-- Your name → Personalized ASCII art
-- `GAME OVER` → Retro gaming vibes
+## Technical Stack
 
-```
-HHHEELLLLOOOWWOORRLLDDD
- HHEELLLLOOOWWOORRLLDDHH
-  EELLLLOOOWWOORRLLDDHHE
-   LLLLOOOWWOORRLLDDHH
-    LLOOOWWOORRLLDDHH
-     OOOWWOORRLLDDHH
-      OWWOORRLLDDHH
-       WOORRLLDDHH
-        OORRLLDDHH
-```
+Built with **Three.js** for WebGL rendering, structured as **ES6 modules** with clear separation of concerns. The codebase includes:
+- **Jest** test framework with 70%+ coverage
+- **ESLint + Prettier** for code quality enforcement
+- **GitHub Actions** CI/CD pipeline
+- **ARIA accessibility** with keyboard navigation
 
----
+Architecture follows single-responsibility principles across 7 modules: constants, lighting, models, animation, ASCII conversion, UI handlers, and application coordination.
 
-## 🎛️ **CONTROLS**
+## Quick Start
 
-|      Control      | Action           | Result              |
-| :---------------: | ---------------- | ------------------- |
-| 🖱️ **Mouse Drag** | Rotate camera    | 360° view           |
-|  **Right Click**  | Change animation | Cycle effects       |
-|    **Scroll**     | Zoom in/out      | Close-up details    |
-|   📱 **Touch**    | Mobile controls  | Full mobile support |
+**Online:** Visit [zacsluss.github.io/ASCII_3D_Animator](https://zacsluss.github.io/ASCII_3D_Animator)
 
----
+**Offline:** [Download ZIP](https://github.com/Zacsluss/ASCII_3D_Animator/archive/refs/heads/main.zip), extract, and open `index.html`—no server required.
 
-## 🎭 **LIGHTING PRESETS**
-
-🎬 **Studio** - Professional balanced lighting  
-🎭 **Dramatic** - High contrast and moody  
-🌅 **Natural** - Soft, even illumination  
-💡 **Minimal** - Clean, simple focus
-
----
-
-## 🛠️ **TECH SPECS**
-
-- **⚡ Three.js Engine** - Fast 3D rendering (bundled locally)
-- **🚀 Browser-based** - No installation needed
-- **📱 Mobile ready** - Touch optimized
-- **💾 Self-contained** - All dependencies bundled, works offline
-- **🏗️ Modular Architecture** - Clean, maintainable ES6 modules
-- **✅ Fully Tested** - Jest unit tests with 70%+ coverage
-- **🔍 Linted & Formatted** - ESLint + Prettier for code quality
-- **🚀 CI/CD Pipeline** - Automated testing with GitHub Actions
-- **♿ Accessible** - ARIA labels, keyboard navigation, screen reader support
-
-### 🖥️ **OFFLINE USE**
-
-**Works 100% offline!** Download the ZIP file and open `index.html` in any modern browser:
-
-1. **[Download ZIP](https://github.com/Zacsluss/ASCII_3D_Animator/archive/refs/heads/main.zip)**
-2. Extract the folder anywhere on your computer
-3. Double-click `index.html` to run locally
-4. No internet connection required - all assets are included!
-
----
-
-## 👨‍💻 **FOR DEVELOPERS**
-
-### 🏗️ **Architecture**
-
-This project uses a modern modular architecture with clear separation of concerns:
-
-```
-js/
-├── constants.js      # Configuration constants
-├── lighting.js       # Lighting system
-├── models.js         # Model loading & management
-├── animation.js      # Animation system
-├── ascii.js          # ASCII effect management
-├── ui.js             # UI event handlers
-└── app.js            # Main application class
-```
-
-**Key Features:**
-
-- 📦 **ES6 Modules** - Clean imports/exports
-- 🎯 **Single Responsibility** - Each module has one job
-- 📝 **JSDoc Documented** - Full API documentation
-- 🧪 **Unit Tested** - Comprehensive test coverage
-- 🔧 **Easy to Extend** - Add new features quickly
-
-See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed documentation.
-
-### 🚀 **Quick Start (Development)**
-
+**Development:**
 ```bash
-# Clone repository
 git clone https://github.com/Zacsluss/ASCII_3D_Animator.git
 cd ASCII_3D_Animator
-
-# Install dependencies
-npm install
-
-# Start development server
-npm start
-
-# Run tests
-npm test
-
-# Lint and format code
-npm run lint:fix && npm run format
+npm install        # Install dependencies
+npm start          # Local dev server
+npm test           # Run test suite
+npm run validate   # Lint + format + test
 ```
 
-### 📋 **Available Scripts**
+## Usage
 
-```bash
-npm start           # Start local development server
-npm test            # Run Jest tests
-npm run test:watch  # Run tests in watch mode
-npm run test:coverage  # Generate coverage report
-npm run lint        # Check code quality
-npm run lint:fix    # Auto-fix linting issues
-npm run format      # Auto-format with Prettier
-npm run validate    # Run all checks (lint + format + test)
-```
+1. **Select a model** from the 4 included animations
+2. **Adjust lighting** using the 5-point system (Front, Ambient, Right, Left, Overhead)
+3. **Customize characters** by entering text in the character field
+4. **Control camera** with mouse drag (rotate), scroll (zoom), or touch gestures
 
-### 🧪 **Testing**
+The lighting presets provide starting points for different aesthetics—dramatic high-contrast, balanced studio lighting, soft natural illumination, or minimal single-source setups.
 
-Comprehensive test suite with Jest:
+## Why I Built This
 
-- ✅ Unit tests for all managers
-- ✅ Configuration validation
-- ✅ 70%+ code coverage
-- ✅ Automated CI/CD testing
+As someone who manages enterprise-scale platforms by day, I built this to maintain hands-on technical skills. The best leaders never stop coding.
 
-```bash
-npm test            # Run all tests
-npm run test:watch  # Watch mode for development
-npm run test:coverage  # Generate coverage report
-```
+This project specifically explores real-time rendering algorithms, shader-like effects without GPU shaders, and the intersection of retro aesthetics with modern browser capabilities. The challenge wasn't just making it work—it was making it fast enough for smooth animation while keeping the codebase maintainable and testable.
 
-### 🔄 **CI/CD**
+## Contributing
 
-Automated quality checks on every push:
-
-- ✅ ESLint code quality
-- ✅ Prettier formatting
-- ✅ Jest test suite
-- ✅ Security audit
-- ✅ Coverage reporting
-
-See [.github/workflows/ci.yml](.github/workflows/ci.yml) for pipeline configuration.
-
----
-
-## 🤝 **CONTRIBUTE**
-
-Love ASCII art? Help us improve:
-
-[![Issues](https://img.shields.io/github/issues/Zacsluss/ASCII_3D_Animator?style=for-the-badge&logo=github)](https://github.com/Zacsluss/ASCII_3D_Animator/issues)
-[![Pull Requests](https://img.shields.io/github/issues-pr/Zacsluss/ASCII_3D_Animator?style=for-the-badge&logo=github)](https://github.com/Zacsluss/ASCII_3D_Animator/pulls)
-
-🐛 Report bugs • 💡 Suggest features • 🎨 Add models • ⭐ Star repo
-
-**Want to contribute code?** Check out [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines, coding standards, and how to submit PRs.
+Bug reports, feature suggestions, and PRs are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
 
 ---
 
 <div align="center">
 
-## 🎉 **START CREATING NOW!**
-
-[![🚀 START SIMULATION!](https://img.shields.io/badge/🚀-START%20SIMULATION!-ff69b4?style=for-the-badge&labelColor=000000)](https://zacsluss.github.io/ASCII_3D_Animator)
-
-**Made with 💖 by [Zacsluss](https://github.com/Zacsluss)**
-
-📜 **License:** [MIT License](LICENSE) - Free to use, modify, and distribute!
+**Built by [Zachary Sluss](https://github.com/Zacsluss)** • MIT License
 
 [![GitHub stars](https://img.shields.io/github/stars/Zacsluss/ASCII_3D_Animator?style=social)](https://github.com/Zacsluss/ASCII_3D_Animator/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/Zacsluss/ASCII_3D_Animator?style=social)](https://github.com/Zacsluss/ASCII_3D_Animator/network)
-
-### 🏷️ Tags
-
-`ascii-art` `3d-animation` `threejs` `webgl` `interactive` `creative-coding` `javascript` `html5` `mobile-friendly` `offline-capable` `mit-license`
 
 </div>
