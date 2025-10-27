@@ -7,20 +7,20 @@
 
 <!-- Main Action Buttons -->
 <p align="center">
-  <a href="https://zacsluss.github.io/ASCII_3D_Animator">
+  <a href="https://zacsluss.github.io/ascii_3d_animator">
     <img src="https://img.shields.io/badge/🎨_TRY-LIVE_DEMO-2d7a3e?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white" alt="Live Demo"/>
   </a>
-  <a href="https://github.com/Zacsluss/ASCII_3D_Animator/archive/refs/heads/main.zip">
+  <a href="https://github.com/Zacsluss/ascii_3d_animator/archive/refs/heads/main.zip">
     <img src="https://img.shields.io/badge/⬇️_DOWNLOAD-ZIP-0366d6?style=for-the-badge&labelColor=000000&logo=download&logoColor=white" alt="Download"/>
   </a>
 </p>
 
 <!-- GitHub Stats Badges -->
 <p align="center">
-  <img src="https://img.shields.io/github/stars/Zacsluss/ASCII_3D_Animator?style=social" alt="Stars"/>
-  <img src="https://img.shields.io/github/forks/Zacsluss/ASCII_3D_Animator?style=social" alt="Forks"/>
-  <img src="https://img.shields.io/github/license/Zacsluss/ASCII_3D_Animator?style=flat-square" alt="License"/>
-  <img src="https://img.shields.io/github/last-commit/Zacsluss/ASCII_3D_Animator?style=flat-square&color=666666" alt="Last Commit"/>
+  <img src="https://img.shields.io/github/stars/Zacsluss/ascii_3d_animator?style=social" alt="Stars"/>
+  <img src="https://img.shields.io/github/forks/Zacsluss/ascii_3d_animator?style=social" alt="Forks"/>
+  <img src="https://img.shields.io/github/license/Zacsluss/ascii_3d_animator?style=flat-square" alt="License"/>
+  <img src="https://img.shields.io/github/last-commit/Zacsluss/ascii_3d_animator?style=flat-square&color=666666" alt="Last Commit"/>
 </p>
 
 </div>
@@ -139,7 +139,7 @@
 
 ### 🌐 Online
 
-**[Try Live Demo](https://zacsluss.github.io/ASCII_3D_Animator)**
+**[Try Live Demo](https://zacsluss.github.io/ascii_3d_animator)**
 
 Instant access, no installation
 
@@ -148,7 +148,7 @@ Instant access, no installation
 
 ### 💾 Offline
 
-**[Download ZIP](https://github.com/Zacsluss/ASCII_3D_Animator/archive/refs/heads/main.zip)**
+**[Download ZIP](https://github.com/Zacsluss/ascii_3d_animator/archive/refs/heads/main.zip)**
 
 Extract → Open `index.html`
 
