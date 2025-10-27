@@ -49,6 +49,20 @@
 
 <div align="center">
 
+### See it in action:
+
+<img src="animator.gif" alt="ASCII 3D Animator Preview" width="800"/>
+
+<br/>
+
+*Real-time 3D to ASCII conversion with interactive lighting controls*
+
+</div>
+
+<br/>
+
+<div align="center">
+
 <!-- Performance Metrics -->
 <table>
   <tr>
