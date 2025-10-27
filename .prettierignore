@@ -1,0 +1,24 @@
+# Prettier ignore patterns
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+dist/
+build/
+*.min.js
+
+# 3D Models
+*.glb
+*.gltf
+
+# Libraries
+lib/
+
+# Generated files
+coverage/
+docs/
+out/
+
+# Config files
+.github/

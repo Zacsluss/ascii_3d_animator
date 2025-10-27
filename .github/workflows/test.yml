@@ -1,0 +1,108 @@
+name: Tests & Quality Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm test
+
+      - name: Run test coverage
+        run: npm run test:coverage
+        if: matrix.node-version == '20.x'
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        if: matrix.node-version == '20.x'
+        with:
+          files: ./coverage/coverage-final.json
+          flags: unittests
+          fail_ci_if_error: false
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+# - name: Check formatting with Prettier
+#   run: npm run format:check
+
+      - name: Check for console statements
+        run: |
+          if grep -r "console\." js/ --exclude-dir=node_modules; then
+            echo "❌ Found console statements in production code"
+            exit 1
+          else
+            echo "✅ No console statements found"
+          fi
+
+      - name: Check file sizes
+        run: |
+          MAX_SIZE=200  # 200 KB max per JS file
+          find js/ -name "*.js" -size +${MAX_SIZE}k -exec ls -lh {} \; | tee large_files.txt
+          if [ -s large_files.txt ]; then
+            echo "❌ Some files exceed ${MAX_SIZE}KB:"
+            cat large_files.txt
+            exit 1
+          else
+            echo "✅ All files within size limits"
+          fi
+
+  e2e:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run E2E tests
+        run: npm run test:e2e

@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>ASCII 3D Animator</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <meta
+      name="description"
+      content="Transform 3D animated models into real-time ASCII art. Interactive controls and customizable themes."
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; connect-src 'self';"
+    />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="ASCII 3D Animator" />
+    <meta property="og:description" content="Transform 3D animated models into real-time ASCII art at 60 FPS" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zacsluss.github.io/ascii_3d_animator/" />
+    <meta property="og:image" content="https://zacsluss.github.io/ascii_3d_animator/animator.gif" />
+    <link type="text/css" rel="stylesheet" href="main.css?v=1" />
+    <link rel="modulepreload" href="./lib/three/three.core.js" />
+    <link rel="modulepreload" href="./lib/three/three.module.js" />
+  </head>
+  <body>
+    <!-- Skip to main content link for screen readers -->
+    <a href="#canvasContainer" class="skip-to-main" tabindex="1">Skip to main content</a>
+
+    <!-- Modern Left Sidebar UI -->
+    <aside id="sidebar" class="sidebar" role="complementary" aria-label="Control panel">
+      <div class="sidebar-header">
+        <div class="title-wrapper">
+          <div class="title-decoration" aria-hidden="true">[ ]</div>
+          <h1 class="main-title">
+            <span class="title-letter">A</span>
+            <span class="title-letter">S</span>
+            <span class="title-letter">C</span>
+            <span class="title-letter">I</span>
+            <span class="title-letter">I</span>
+            <span class="title-space"> </span>
+            <span class="title-letter">A</span>
+            <span class="title-letter">N</span>
+            <span class="title-letter">I</span>
+            <span class="title-letter">M</span>
+            <span class="title-letter">A</span>
+            <span class="title-letter">T</span>
+            <span class="title-letter">O</span>
+            <span class="title-letter">R</span>
+          </h1>
+          <div class="title-decoration" aria-hidden="true">[ ]</div>
+        </div>
+        <div class="title-tagline">Transform 3D to ASCII Art</div>
+      </div>
+
+      <div class="sidebar-content">
+        <!-- THEME SELECTOR - Main Attraction -->
+        <section class="theme-selector-section" aria-labelledby="theme-heading">
+          <div class="theme-selector-header">
+            <span class="theme-header-icon">🎨</span>
+            <h2 id="theme-heading" class="theme-selector-title">Choose Your Theme</h2>
+            <span class="theme-header-icon">✨</span>
+          </div>
+
+          <div class="theme-picker-wrapper">
+            <select id="themeSelector" class="theme-picklist" aria-label="Select ASCII theme">
+              <optgroup label="Standard">
+                <option value="classic">📟 Classic (Black on White)</option>
+                <option value="classicDark">🖤 Classic Dark (White on Black)</option>
+              </optgroup>
+              <optgroup label="Retro Terminal">
+                <option value="amber">🟠 Amber CRT - Vintage Monitor</option>
+                <option value="greenPhosphor">💚 Green Phosphor</option>
+                <option value="ibmBlue">💙 IBM Blue - Mainframe</option>
+                <option value="appleII">🍏 Apple II</option>
+              </optgroup>
+              <optgroup label="Neon / Cyberpunk">
+                <option value="neonCity">🏙️ Neon City - Electric Cyan</option>
+                <option value="purpleHaze">💜 Purple Haze</option>
+              </optgroup>
+              <optgroup label="Popular Themes">
+                <option value="dracula">🧛 Dracula</option>
+                <option value="nord" selected>❄️ Nord - Arctic</option>
+                <option value="solarizedDark">☀️ Solarized Dark</option>
+                <option value="gruvbox">🌾 Gruvbox - Warm Earth</option>
+                <option value="monokai">🎨 Monokai</option>
+              </optgroup>
+              <optgroup label="Nature">
+                <option value="ocean">🌊 Ocean - Deep Sea</option>
+                <option value="fire">🔥 Fire - Burning Flames</option>
+              </optgroup>
+              <optgroup label="Artistic">
+                <option value="blueprint">📐 Blueprint - Technical</option>
+                <option value="chalkboard">🖍️ Chalkboard</option>
+                <option value="newspaper">📰 Newspaper - Vintage Print</option>
+                <option value="xray">🩻 X-Ray - Medical</option>
+              </optgroup>
+              <optgroup label="Experimental">
+                <option value="psychedelic">🌈 Experimental Rainbow</option>
+              </optgroup>
+            </select>
+          </div>
+        </section>
+
+        <!-- Display Controls Section -->
+        <section class="control-section" aria-labelledby="display-heading">
+          <h3 id="display-heading">Display Controls</h3>
+          <div class="control-group">
+            <button
+              id="helpBtn"
+              class="btn btn-info"
+              title="Click for help - learn how to use this tool"
+              aria-label="Show help"
+            >
+              <span class="btn-icon" aria-hidden="true">❓</span>
+              Help & Controls
+            </button>
+          </div>
+          <div class="control-group">
+            <label class="slider-label" for="densitySlider">ASCII Density</label>
+            <input
+              id="densitySlider"
+              type="range"
+              min="0.5"
+              max="2"
+              step="0.1"
+              value="1.2"
+              class="slider"
+              title="More detail or faster speed? Drag to adjust"
+              aria-label="ASCII density"
+              aria-valuemin="0.5"
+              aria-valuemax="2"
+              aria-valuenow="1.2"
+            />
+            <div class="slider-value" id="densityValue" title="Detail level" aria-live="polite">
+              1.2
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="slider-label" for="customCharsInput">Custom ASCII Characters</label>
+            <input
+              id="customCharsInput"
+              type="text"
+              placeholder="Type custom characters (e.g. HELLO WORLD)"
+              class="text-input"
+              title="Type your name or any text - it becomes the art!"
+              aria-label="Custom ASCII characters"
+            />
+            <div class="button-row">
+              <button
+                id="applyCharsBtn"
+                class="btn btn-primary btn-small"
+                title="Use your text"
+                aria-label="Apply custom characters"
+              >
+                Apply
+              </button>
+              <button
+                id="resetCharsBtn"
+                class="btn btn-secondary btn-small"
+                title="Go back to normal characters"
+                aria-label="Reset to default characters"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Model Section -->
+        <section class="control-section" aria-labelledby="model-heading">
+          <h3 id="model-heading">Model</h3>
+          <div class="control-group">
+            <button
+              id="nextModel"
+              class="btn btn-primary"
+              title="Change to next model"
+              aria-label="Load next model"
+            >
+              <span class="btn-icon" aria-hidden="true">🔄</span>
+              Next Model
+            </button>
+            <div class="model-info" id="modelInfo" title="Current model" aria-live="polite">
+              Duck
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="slider-label" for="animSpeedSlider">Animation Speed</label>
+            <input
+              id="animSpeedSlider"
+              type="range"
+              min="0.1"
+              max="3"
+              step="0.1"
+              value="0.6"
+              class="slider"
+              title="Make animations faster or slower"
+              aria-label="Animation speed"
+              aria-valuemin="0.1"
+              aria-valuemax="3"
+              aria-valuenow="0.6"
+            />
+            <div
+              class="slider-value"
+              id="animSpeedValue"
+              title="Animation speed"
+              aria-live="polite"
+            >
+              0.6
+            </div>
+          </div>
+        </section>
+
+        <!-- Camera Section -->
+        <section class="control-section" aria-labelledby="camera-heading">
+          <h3 id="camera-heading">Camera</h3>
+          <div class="control-group">
+            <button
+              id="rotationToggle"
+              class="btn btn-secondary"
+              title="Start/stop auto spinning"
+              aria-label="Toggle auto-rotation"
+              aria-pressed="true"
+            >
+              <span class="btn-icon" aria-hidden="true">⟲</span>
+              Stop Rotation
+            </button>
+          </div>
+          <div class="control-group">
+            <label class="slider-label" for="rotSpeedSlider">Rotation Speed</label>
+            <input
+              id="rotSpeedSlider"
+              type="range"
+              min="0"
+              max="10"
+              step="0.1"
+              value="2"
+              class="slider"
+              title="How fast to spin around"
+              aria-label="Rotation speed"
+              aria-valuemin="0"
+              aria-valuemax="10"
+              aria-valuenow="2"
+            />
+            <div class="slider-value" id="rotSpeedValue" title="Spin speed" aria-live="polite">
+              2.0
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="slider-label" for="distanceSlider">Camera Distance</label>
+            <input
+              id="distanceSlider"
+              type="range"
+              min="250"
+              max="3000"
+              step="50"
+              value="1000"
+              class="slider"
+              title="Zoom: drag left = closer, right = farther"
+              aria-label="Camera distance"
+              aria-valuemin="250"
+              aria-valuemax="3000"
+              aria-valuenow="1000"
+            />
+            <div class="slider-value" id="distanceValue" title="Zoom level" aria-live="polite">
+              1000
+            </div>
+          </div>
+          <div class="control-group">
+            <button
+              id="resetCamera"
+              class="btn btn-warning"
+              title="Reset view to normal"
+              aria-label="Reset camera to default"
+            >
+              <span class="btn-icon" aria-hidden="true">⌂</span>
+              Reset Camera
+            </button>
+          </div>
+        </section>
+
+        <!-- Lighting Section -->
+        <section class="control-section" aria-labelledby="lighting-heading">
+          <h3 id="lighting-heading">Lighting</h3>
+          <div class="control-group">
+            <div class="lighting-presets" role="group" aria-label="Lighting presets">
+              <button
+                id="presetStudio"
+                class="btn btn-secondary preset-btn"
+                title="Balanced lighting - looks professional"
+                aria-label="Studio lighting"
+              >
+                Studio
+              </button>
+              <button
+                id="presetDramatic"
+                class="btn btn-secondary preset-btn"
+                title="Dramatic shadows - high contrast"
+                aria-label="Dramatic lighting"
+              >
+                Dramatic
+              </button>
+              <button
+                id="presetNatural"
+                class="btn btn-secondary preset-btn"
+                title="Soft lighting - looks natural"
+                aria-label="Natural lighting"
+              >
+                Natural
+              </button>
+              <button
+                id="presetMinimal"
+                class="btn btn-secondary preset-btn"
+                title="Simple clean lighting"
+                aria-label="Minimal lighting"
+              >
+                Minimal
+              </button>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="slider-label" for="mainLightSlider">Front Light Intensity</label>
+            <input
+              id="mainLightSlider"
+              type="range"
+              min="0"
+              max="15"
+              step="0.5"
+              value="10"
+              class="slider"
+              title="Main light from front - creates shadows"
+              aria-label="Front light intensity"
+              aria-valuemin="0"
+              aria-valuemax="15"
+              aria-valuenow="10"
+            />
+            <div
+              class="slider-value"
+              id="mainLightValue"
+              title="Front light brightness"
+              aria-live="polite"
+            >
+              10
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="slider-label" for="ambientLightSlider">Ambient Light</label>
+            <input
+              id="ambientLightSlider"
+              type="range"
+              min="0"
+              max="2"
+              step="0.05"
+              value="0.1"
+              class="slider"
+              title="Overall brightness - affects everything equally"
+              aria-label="Ambient light intensity"
+              aria-valuemin="0"
+              aria-valuemax="2"
+              aria-valuenow="0.1"
+            />
+            <div
+              class="slider-value"
+              id="ambientLightValue"
+              title="Overall brightness"
+              aria-live="polite"
+            >
+              0.1
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="slider-label" for="redLightSlider">Right Light Intensity</label>
+            <input
+              id="redLightSlider"
+              type="range"
+              min="0"
+              max="15"
+              step="0.5"
+              value="10"
+              class="slider"
+              title="Light from the right side"
+              aria-label="Right light intensity"
+              aria-valuemin="0"
+              aria-valuemax="15"
+              aria-valuenow="10"
+            />
+            <div
+              class="slider-value"
+              id="redLightValue"
+              title="Right light brightness"
+              aria-live="polite"
+            >
+              10
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="slider-label" for="blueLightSlider">Left Light Intensity</label>
+            <input
+              id="blueLightSlider"
+              type="range"
+              min="0"
+              max="15"
+              step="0.5"
+              value="10"
+              class="slider"
+              title="Light from the left side"
+              aria-label="Left light intensity"
+              aria-valuemin="0"
+              aria-valuemax="15"
+              aria-valuenow="10"
+            />
+            <div
+              class="slider-value"
+              id="blueLightValue"
+              title="Left light brightness"
+              aria-live="polite"
+            >
+              10
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="slider-label" for="spotLightSlider">Overhead Spotlight Intensity</label>
+            <input
+              id="spotLightSlider"
+              type="range"
+              min="0"
+              max="15"
+              step="0.5"
+              value="3"
+              class="slider"
+              title="Spotlight from above - like stage lighting"
+              aria-label="Spotlight intensity"
+              aria-valuemin="0"
+              aria-valuemax="15"
+              aria-valuenow="3"
+            />
+            <div
+              class="slider-value"
+              id="spotLightValue"
+              title="Top spotlight brightness"
+              aria-live="polite"
+            >
+              3
+            </div>
+          </div>
+        </section>
+
+        <!-- Export Section -->
+        <section class="control-section" aria-labelledby="export-heading">
+          <h3 id="export-heading">Export</h3>
+          <div class="control-group">
+            <button
+              id="copyBtn"
+              class="btn btn-success"
+              title="Copy art to paste anywhere"
+              aria-label="Copy ASCII to clipboard"
+            >
+              <span class="btn-icon" aria-hidden="true">📋</span>
+              Copy ASCII
+            </button>
+          </div>
+          <div class="control-group">
+            <button
+              id="downloadBtn"
+              class="btn btn-success"
+              title="Save as text file"
+              aria-label="Download ASCII as file"
+            >
+              <span class="btn-icon" aria-hidden="true">💾</span>
+              Download
+            </button>
+          </div>
+        </section>
+
+        <!-- Import Section -->
+        <section class="control-section" aria-labelledby="import-heading">
+          <h3 id="import-heading">Import</h3>
+          <div class="control-group">
+            <input
+              id="fileInput"
+              type="file"
+              style="display: none"
+              accept=".glb,.gltf"
+              aria-label="Upload 3D model file"
+            />
+            <button
+              id="uploadBtn"
+              class="btn btn-info"
+              title="Add your own 3D model"
+              aria-label="Upload custom model"
+            >
+              <span class="btn-icon" aria-hidden="true">📁</span>
+              Upload Model
+            </button>
+          </div>
+        </section>
+      </div>
+    </aside>
+
+    <!-- Canvas Container -->
+    <main id="canvasContainer" role="main" aria-label="ASCII art display canvas"></main>
+
+    <!-- Main Application Script -->
+    <script type="module" src="./js/app.js?v=1"></script>
+  </body>
+</html>
