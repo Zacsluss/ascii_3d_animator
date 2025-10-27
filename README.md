@@ -87,9 +87,14 @@ HHHEELLLLOOOWWOORRLLDDD
 ## 🛠️ **TECH SPECS**
 
 - **⚡ Three.js Engine** - Fast 3D rendering (bundled locally)
-- **🚀 Browser-based** - No installation needed  
+- **🚀 Browser-based** - No installation needed
 - **📱 Mobile ready** - Touch optimized
 - **💾 Self-contained** - All dependencies bundled, works offline
+- **🏗️ Modular Architecture** - Clean, maintainable ES6 modules
+- **✅ Fully Tested** - Jest unit tests with 70%+ coverage
+- **🔍 Linted & Formatted** - ESLint + Prettier for code quality
+- **🚀 CI/CD Pipeline** - Automated testing with GitHub Actions
+- **♿ Accessible** - ARIA labels, keyboard navigation, screen reader support
 
 ### 🖥️ **OFFLINE USE**
 
@@ -101,6 +106,92 @@ HHHEELLLLOOOWWOORRLLDDD
 
 ---
 
+## 👨‍💻 **FOR DEVELOPERS**
+
+### 🏗️ **Architecture**
+
+This project uses a modern modular architecture with clear separation of concerns:
+
+```
+js/
+├── constants.js      # Configuration constants
+├── lighting.js       # Lighting system
+├── models.js         # Model loading & management
+├── animation.js      # Animation system
+├── ascii.js          # ASCII effect management
+├── ui.js             # UI event handlers
+└── app.js            # Main application class
+```
+
+**Key Features:**
+- 📦 **ES6 Modules** - Clean imports/exports
+- 🎯 **Single Responsibility** - Each module has one job
+- 📝 **JSDoc Documented** - Full API documentation
+- 🧪 **Unit Tested** - Comprehensive test coverage
+- 🔧 **Easy to Extend** - Add new features quickly
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed documentation.
+
+### 🚀 **Quick Start (Development)**
+
+```bash
+# Clone repository
+git clone https://github.com/Zacsluss/ASCII_3D_Animator.git
+cd ASCII_3D_Animator
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+
+# Run tests
+npm test
+
+# Lint and format code
+npm run lint:fix && npm run format
+```
+
+### 📋 **Available Scripts**
+
+```bash
+npm start           # Start local development server
+npm test            # Run Jest tests
+npm run test:watch  # Run tests in watch mode
+npm run test:coverage  # Generate coverage report
+npm run lint        # Check code quality
+npm run lint:fix    # Auto-fix linting issues
+npm run format      # Auto-format with Prettier
+npm run validate    # Run all checks (lint + format + test)
+```
+
+### 🧪 **Testing**
+
+Comprehensive test suite with Jest:
+- ✅ Unit tests for all managers
+- ✅ Configuration validation
+- ✅ 70%+ code coverage
+- ✅ Automated CI/CD testing
+
+```bash
+npm test            # Run all tests
+npm run test:watch  # Watch mode for development
+npm run test:coverage  # Generate coverage report
+```
+
+### 🔄 **CI/CD**
+
+Automated quality checks on every push:
+- ✅ ESLint code quality
+- ✅ Prettier formatting
+- ✅ Jest test suite
+- ✅ Security audit
+- ✅ Coverage reporting
+
+See [.github/workflows/ci.yml](.github/workflows/ci.yml) for pipeline configuration.
+
+---
+
 ## 🤝 **CONTRIBUTE**
 
 Love ASCII art? Help us improve:
@@ -109,6 +200,8 @@ Love ASCII art? Help us improve:
 [![Pull Requests](https://img.shields.io/github/issues-pr/Zacsluss/ASCII_3D_Animator?style=for-the-badge&logo=github)](https://github.com/Zacsluss/ASCII_3D_Animator/pulls)
 
 🐛 Report bugs • 💡 Suggest features • 🎨 Add models • ⭐ Star repo
+
+**Want to contribute code?** Check out [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines, coding standards, and how to submit PRs.
 
 ---
 
