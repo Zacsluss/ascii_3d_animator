@@ -26,7 +26,7 @@ The technical challenge was building a real-time depth-to-character mapping syst
 
 ## Technical Stack
 
-Built with **Three.js** for WebGL rendering, structured as **ES6 modules** with clear separation of concerns.
+Built with **Three.js** for WebGL rendering, structured as **ES6 modules** with clear separation of concerns. Architecture follows single-responsibility principles across 7 modules: constants, lighting, models, animation, ASCII conversion, UI handlers, and application coordination.
 
 **Code Quality:**
 
@@ -34,9 +34,6 @@ Built with **Three.js** for WebGL rendering, structured as **ES6 modules** with 
 - ESLint + Prettier for code quality enforcement
 - GitHub Actions CI/CD pipeline
 - ARIA accessibility with keyboard navigation
-
-**Architecture:**
-Architecture follows single-responsibility principles across 7 modules: constants, lighting, models, animation, ASCII conversion, UI handlers, and application coordination.
 
 ## Quick Start
 
