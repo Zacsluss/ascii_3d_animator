@@ -5,9 +5,6 @@
 import { AnimationManager } from '../js/animation.js';
 import { CONFIG } from '../js/constants.js';
 
-// Mock Three.js
-jest.mock('../lib/three/three.module.js', () => require('../__mocks__/three.js'));
-
 describe('AnimationManager', () => {
   let animationManager;
 

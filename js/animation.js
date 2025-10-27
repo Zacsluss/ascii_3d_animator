@@ -38,9 +38,7 @@ export class AnimationManager {
     let defaultIndex = 0;
 
     if (preferredAnimation) {
-      const preferredClip = this.currentAnimations.find(
-        clip => clip.name === preferredAnimation
-      );
+      const preferredClip = this.currentAnimations.find((clip) => clip.name === preferredAnimation);
       if (preferredClip) {
         defaultClip = preferredClip;
         defaultIndex = this.currentAnimations.indexOf(preferredClip);
@@ -70,7 +68,7 @@ export class AnimationManager {
 
   /**
    * Switch to next animation in the list
-   * @returns {Object|null} Current animation info or null
+   * @returns {object | null} Current animation info or null
    */
   switchToNext() {
     if (this.currentAnimations.length === 0 || !this.mixer) {
@@ -85,7 +83,7 @@ export class AnimationManager {
     return {
       name: nextClip.name,
       index: this.currentAnimationIndex,
-      total: this.currentAnimations.length
+      total: this.currentAnimations.length,
     };
   }
 
@@ -114,7 +112,7 @@ export class AnimationManager {
 
   /**
    * Get information about current animations
-   * @returns {Object} Animation info
+   * @returns {object} Animation info
    */
   getInfo() {
     return {
@@ -122,7 +120,7 @@ export class AnimationManager {
       count: this.currentAnimations.length,
       currentIndex: this.currentAnimationIndex,
       currentName: this.currentAnimations[this.currentAnimationIndex]?.name || null,
-      speed: this.animationSpeed
+      speed: this.animationSpeed,
     };
   }
 

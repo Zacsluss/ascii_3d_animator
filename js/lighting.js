@@ -14,7 +14,7 @@ export class LightingManager {
       ambient: null,
       red: null,
       blue: null,
-      spotlight: null
+      spotlight: null,
     };
 
     this.initializeLights();
@@ -48,7 +48,11 @@ export class LightingManager {
 
     // Overhead spotlight
     this.lights.spotlight = new THREE.SpotLight(COLORS.WHITE, defaultPreset.spotlight);
-    this.lights.spotlight.position.set(POSITIONS.SPOTLIGHT.x, POSITIONS.SPOTLIGHT.y, POSITIONS.SPOTLIGHT.z);
+    this.lights.spotlight.position.set(
+      POSITIONS.SPOTLIGHT.x,
+      POSITIONS.SPOTLIGHT.y,
+      POSITIONS.SPOTLIGHT.z
+    );
     this.lights.spotlight.target.position.set(0, 0, 0);
     this.lights.spotlight.angle = Math.PI / 4;
     this.lights.spotlight.penumbra = 0.2;
@@ -86,7 +90,7 @@ export class LightingManager {
 
   /**
    * Get current light intensities
-   * @returns {Object} Current intensities for all lights
+   * @returns {object} Current intensities for all lights
    */
   getIntensities() {
     return {
@@ -94,7 +98,7 @@ export class LightingManager {
       ambient: this.lights.ambient?.intensity || 0,
       red: this.lights.red?.intensity || 0,
       blue: this.lights.blue?.intensity || 0,
-      spotlight: this.lights.spotlight?.intensity || 0
+      spotlight: this.lights.spotlight?.intensity || 0,
     };
   }
 }

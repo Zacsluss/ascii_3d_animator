@@ -52,11 +52,13 @@ ASCII_3D_Animator/
 **Purpose:** Centralized configuration management
 
 **Responsibilities:**
+
 - Define all magic numbers and configuration values
 - Provide type-safe configuration objects
 - Ensure consistency across the application
 
 **Key Exports:**
+
 - `CONFIG` - Main configuration object containing:
   - ASCII rendering settings
   - Camera parameters
@@ -66,6 +68,7 @@ ASCII_3D_Animator/
   - Scene settings
 
 **Usage:**
+
 ```javascript
 import { CONFIG } from './constants.js';
 const density = CONFIG.ASCII.DEFAULT_SCALE;
@@ -78,18 +81,21 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 **Purpose:** Manage all scene lighting
 
 **Responsibilities:**
+
 - Initialize and configure lights (point, ambient, spotlight)
 - Apply lighting presets (studio, dramatic, natural, minimal)
 - Control individual light intensities
 - Provide light state information
 
 **Key Methods:**
+
 - `initializeLights()` - Create all lights in the scene
 - `setPreset(presetName)` - Apply named lighting preset
 - `setIntensity(lightName, intensity)` - Control individual lights
 - `getIntensities()` - Retrieve current light values
 
 **Lighting System:**
+
 - **Main Light:** Front key light for primary illumination
 - **Ambient Light:** Overall scene fill light
 - **Red/Blue Lights:** Rim lights for separation and depth
@@ -102,6 +108,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 **Purpose:** Load and manage 3D models
 
 **Responsibilities:**
+
 - Load GLTF/GLB model files
 - Scale and center models appropriately
 - Configure materials for proper lighting response
@@ -109,6 +116,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 - Cycle through available models
 
 **Key Methods:**
+
 - `loadModel(modelName)` - Async load model by name
 - `processModel(gltf, config)` - Scale, center, configure materials
 - `configureMaterial(mesh)` - Ensure materials respond to lights
@@ -116,6 +124,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 - `switchToNext()` - Load next model in sequence
 
 **Material Handling:**
+
 - Converts MeshBasicMaterial to MeshLambertMaterial (lighting support)
 - Configures PBR materials (metalness, roughness)
 - Ensures all meshes cast/receive shadows
@@ -127,6 +136,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 **Purpose:** Control 3D model animations
 
 **Responsibilities:**
+
 - Initialize AnimationMixer for loaded models
 - Play and control animation clips
 - Cycle through available animations
@@ -134,6 +144,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 - Update animation state each frame
 
 **Key Methods:**
+
 - `initialize(model, animations, preferredAnimation)` - Set up animations
 - `playAnimation(clip)` - Play specific animation clip
 - `switchToNext()` - Cycle to next animation
@@ -141,6 +152,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 - `update(delta)` - Update animation state (call every frame)
 
 **Features:**
+
 - Supports multiple animations per model
 - Configurable preferred default animation
 - Smooth animation switching
@@ -153,6 +165,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 **Purpose:** Manage ASCII rendering effect
 
 **Responsibilities:**
+
 - Initialize and configure AsciiEffect
 - Control ASCII character density (detail level)
 - Update character sets for custom rendering
@@ -160,6 +173,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 - Handle effect resizing
 
 **Key Methods:**
+
 - `initialize()` - Create ASCII effect
 - `updateCharacters(customChars)` - Use custom character set
 - `setScale(factor)` - Adjust rendering density
@@ -167,6 +181,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 - `render(scene, camera)` - Render ASCII frame
 
 **Custom Characters:**
+
 - Converts user text into ASCII gradient
 - Creates appropriate light-to-dark character progression
 - Repeats characters to ensure sufficient density
@@ -178,6 +193,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 **Purpose:** Handle all user interface interactions
 
 **Responsibilities:**
+
 - Set up event listeners for all controls
 - Update UI state based on app changes
 - Show notifications and modals
@@ -185,6 +201,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 - Manage slider values and displays
 
 **Key Features:**
+
 - **Controls Setup:**
   - Theme toggle
   - Density slider
@@ -206,6 +223,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 **Purpose:** Coordinate all modules and application lifecycle
 
 **Responsibilities:**
+
 - Initialize Three.js scene, camera, renderer
 - Create and coordinate all managers
 - Run main animation loop
@@ -213,6 +231,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 - Provide public API for UI interactions
 
 **Key Methods:**
+
 - `initialize()` - Set up entire application
 - `animate()` - Main render loop
 - `switchModel()` - Change 3D model
@@ -223,6 +242,7 @@ const density = CONFIG.ASCII.DEFAULT_SCALE;
 - `resetCamera()` - Return to defaults
 
 **Initialization Flow:**
+
 1. Create Three.js scene and camera
 2. Initialize renderer with shadow mapping
 3. Create LightingManager (adds lights to scene)
@@ -283,6 +303,7 @@ User adjusts light slider
 Each major system (Lighting, Models, Animation, ASCII, UI) is encapsulated in a manager class with clear responsibilities.
 
 **Benefits:**
+
 - Clear separation of concerns
 - Easy to test in isolation
 - Simple to extend or replace
@@ -297,6 +318,7 @@ const modelManager = new ModelManager(scene);
 ```
 
 **Benefits:**
+
 - Loose coupling between modules
 - Easy to mock dependencies in tests
 - Flexible initialization order
@@ -306,11 +328,12 @@ const modelManager = new ModelManager(scene);
 The App class provides a simplified interface to complex subsystems:
 
 ```javascript
-app.switchModel()  // Instead of: modelManager.switchToNext() + animationManager.initialize()
-app.setLightingPreset('dramatic')  // Instead of: manually setting each light
+app.switchModel(); // Instead of: modelManager.switchToNext() + animationManager.initialize()
+app.setLightingPreset('dramatic'); // Instead of: manually setting each light
 ```
 
 **Benefits:**
+
 - Simpler API for UI layer
 - Hides complexity
 - Consistent interface
@@ -324,6 +347,7 @@ button.addEventListener('click', () => app.switchAnimation());
 ```
 
 **Benefits:**
+
 - Decoupled UI from business logic
 - Easy to add new UI controls
 - Testable without DOM
@@ -344,6 +368,7 @@ export const CONFIG = {
 ```
 
 **Benefits:**
+
 - No magic numbers in code
 - Easy to tune parameters
 - Single source of truth
@@ -478,7 +503,7 @@ All interactive elements have ARIA labels:
 
 ```html
 <button aria-label="Toggle theme">...</button>
-<input aria-label="ASCII density" aria-valuenow="1.2">
+<input aria-label="ASCII density" aria-valuenow="1.2" />
 ```
 
 ### Keyboard Navigation
@@ -599,6 +624,7 @@ The application is a static site that can be deployed to:
 ### CI/CD
 
 GitHub Actions automatically:
+
 - Runs linting on every push
 - Executes tests
 - Checks code formatting

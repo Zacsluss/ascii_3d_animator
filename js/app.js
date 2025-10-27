@@ -132,11 +132,7 @@ export class AsciiAnimatorApp {
     const modelName = CONFIG.MODELS.NAMES[0];
     const result = await this.modelManager.loadModel(modelName);
 
-    this.animationManager.initialize(
-      result.model,
-      result.animations,
-      result.preferredAnimation
-    );
+    this.animationManager.initialize(result.model, result.animations, result.preferredAnimation);
 
     this.camera.lookAt(0, 0, 0);
 
@@ -183,11 +179,7 @@ export class AsciiAnimatorApp {
     const modelName = await this.modelManager.switchToNext();
     const result = await this.modelManager.loadModel(modelName);
 
-    this.animationManager.initialize(
-      result.model,
-      result.animations,
-      result.preferredAnimation
-    );
+    this.animationManager.initialize(result.model, result.animations, result.preferredAnimation);
 
     return modelName;
   }
@@ -201,6 +193,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Set ASCII density
+   * @param scale
    */
   setAsciiDensity(scale) {
     this.asciiManager.setScale(scale);
@@ -208,6 +201,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Update ASCII characters
+   * @param chars
    */
   updateAsciiCharacters(chars) {
     this.asciiManager.updateCharacters(chars);
@@ -218,6 +212,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Set animation speed
+   * @param speed
    */
   setAnimationSpeed(speed) {
     this.animationManager.setSpeed(speed);
@@ -233,6 +228,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Set rotation speed
+   * @param speed
    */
   setRotationSpeed(speed) {
     this.controls.autoRotateSpeed = speed;
@@ -240,6 +236,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Set camera distance
+   * @param distance
    */
   setCameraDistance(distance) {
     const direction = this.camera.position.clone().normalize();
@@ -258,6 +255,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Set lighting preset
+   * @param preset
    */
   setLightingPreset(preset) {
     this.lightingManager.setPreset(preset);
@@ -265,6 +263,8 @@ export class AsciiAnimatorApp {
 
   /**
    * Set individual light intensity
+   * @param lightName
+   * @param intensity
    */
   setLightIntensity(lightName, intensity) {
     this.lightingManager.setIntensity(lightName, intensity);
@@ -279,6 +279,7 @@ export class AsciiAnimatorApp {
 
   /**
    * Set theme (dark or light)
+   * @param isDark
    */
   setTheme(isDark) {
     this.asciiManager.setTheme(isDark);
