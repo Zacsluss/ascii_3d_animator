@@ -79,8 +79,8 @@
       <sub><b>Light System</b></sub>
     </td>
     <td align="center">
-      <img src="https://img.shields.io/badge/Coverage-70%25-8B6914?style=flat-square&logo=jest&logoColor=white"/><br/>
-      <sub><b>Test Suite</b></sub>
+      <img src="https://img.shields.io/badge/Browser-Compatible-0055A4?style=flat-square&logo=googlechrome&logoColor=white"/><br/>
+      <sub><b>Cross-Platform</b></sub>
     </td>
   </tr>
 </table>
@@ -109,7 +109,7 @@
 - **5-point lighting system** - Studio, Dramatic, Natural, Minimal presets
 - **Custom character sets** - Type your name, use symbols, personalize it
 - **Camera controls** - Rotate, zoom, pan with mouse/touch
-- **Professional testing** - 70%+ coverage with Jest, ESLint, Prettier
+- **Zero dependencies** - Runs completely offline, no external services
 
 </td>
 <td width="50%">
@@ -121,7 +121,7 @@
 | Frame Rate      | 60 FPS (Desktop)      |
 | 3D Models       | 4 Animated            |
 | Lighting Points | 5 Individual Controls |
-| Test Coverage   | 70%+                  |
+| File Size       | ~80 MB (All Assets)   |
 | Mobile Support  | Full Touch Controls   |
 | Offline Capable | 100%                  |
 
@@ -135,7 +135,7 @@
 
 <table>
 <tr>
-<td width="33%" align="center">
+<td width="50%" align="center">
 
 ### 🌐 Online
 
@@ -144,7 +144,7 @@
 Instant access, no installation
 
 </td>
-<td width="33%" align="center">
+<td width="50%" align="center">
 
 ### 💾 Offline
 
@@ -153,35 +153,10 @@ Instant access, no installation
 Extract → Open `index.html`
 
 </td>
-<td width="33%" align="center">
-
-### 👨‍💻 Development
-
-```bash
-git clone <repo>
-npm install
-npm start
-```
-
-</td>
 </tr>
 </table>
 
 <br/>
-
-<details>
-<summary><b>📋 Development Commands</b></summary>
-
-```bash
-npm install        # Install dependencies
-npm start          # Local dev server
-npm test           # Run test suite
-npm run lint       # Check code quality
-npm run format     # Auto-format code
-npm run validate   # Lint + format + test
-```
-
-</details>
 
 ---
 
@@ -211,9 +186,9 @@ npm run validate   # Lint + format + test
 
 ![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-8B7500?style=for-the-badge&logo=javascript&logoColor=white)
-![Jest](https://img.shields.io/badge/Jest-7A1A1A?style=for-the-badge&logo=jest&logoColor=white)
-![ESLint](https://img.shields.io/badge/ESLint-3C2A70?style=for-the-badge&logo=eslint&logoColor=white)
-![Prettier](https://img.shields.io/badge/Prettier-8B6914?style=for-the-badge&logo=prettier&logoColor=white)
+![WebGL](https://img.shields.io/badge/WebGL-7A1A1A?style=for-the-badge&logo=webgl&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-3C2A70?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-8B6914?style=for-the-badge&logo=css3&logoColor=white)
 
 </div>
 
@@ -240,12 +215,12 @@ npm run validate   # Lint + format + test
 
 ### ✅ Code Quality
 
-- **Jest** - 70%+ test coverage
-- **ESLint** - Code quality enforcement
-- **Prettier** - Consistent formatting
-- **GitHub Actions** - CI/CD pipeline
+- **Modular ES6** - Clean, organized architecture
+- **Semantic HTML** - Proper document structure
 - **ARIA** - Accessibility with keyboard nav
-- **JSDoc** - Full documentation
+- **JSDoc** - Comprehensive code documentation
+- **Performance** - Optimized rendering pipeline
+- **Responsive** - Mobile and desktop support
 
 </td>
 </tr>
@@ -267,18 +242,6 @@ This project specifically explores:
 - ✅ **Maintainable architecture** with testable, modular code
 
 **The challenge wasn't just making it work—it was making it fast enough for smooth animation while keeping the codebase maintainable and testable.**
-
----
-
-## 🤝 Contributing
-
-Bug reports, feature suggestions, and PRs are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
-
-<div align="center">
-
-### Fork it, make it yours! No credit needed. 🚀
-
-</div>
 
 ---
 

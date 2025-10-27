@@ -113,5 +113,8 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 .yarn/install-state.gz
 .pnp.*
 
-# Lock files (keep for consistency)
-!package-lock.json
+# Development configs
+*.config.json
+.eslintrc*
+.prettierrc*
+.prettierignore
