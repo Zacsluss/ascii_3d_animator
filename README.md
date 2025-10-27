@@ -8,10 +8,10 @@
 <!-- Main Action Buttons -->
 <p align="center">
   <a href="https://zacsluss.github.io/ASCII_3D_Animator">
-    <img src="https://img.shields.io/badge/🎨_TRY-LIVE_DEMO-00ff88?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white" alt="Live Demo"/>
+    <img src="https://img.shields.io/badge/🎨_TRY-LIVE_DEMO-2d7a3e?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white" alt="Live Demo"/>
   </a>
   <a href="https://github.com/Zacsluss/ASCII_3D_Animator/archive/refs/heads/main.zip">
-    <img src="https://img.shields.io/badge/⬇️_DOWNLOAD-ZIP-4078c0?style=for-the-badge&labelColor=000000&logo=download&logoColor=white" alt="Download"/>
+    <img src="https://img.shields.io/badge/⬇️_DOWNLOAD-ZIP-0366d6?style=for-the-badge&labelColor=000000&logo=download&logoColor=white" alt="Download"/>
   </a>
 </p>
 
