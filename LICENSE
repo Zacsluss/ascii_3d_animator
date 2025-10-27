@@ -19,23 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-THIRD-PARTY ASSETS:
-
-This project includes 3D models licensed under Creative Commons Attribution 4.0:
-
-1. Model 1 (2.glb): "Duck_Walk (Free)" by Nyilonelycompany
-   License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
-   Source: https://skfb.ly/owq7o
-
-2. Rat Model (3.glb): "Black Rat ( Free download )" by Nestaeric  
-   License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
-   Source: https://skfb.ly/p9TYP
-
-3. Doge Model (1.glb): "Animated Dog, Shiba Inu" by quander
-   License: CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/)
-   Source: https://skfb.ly/6SrJO
-
-Three.js library is licensed under MIT License.
