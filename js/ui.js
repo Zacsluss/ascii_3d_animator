@@ -292,11 +292,6 @@ export class UIManager {
       URL.revokeObjectURL(url);
       this.showNotification('ASCII art downloaded!', 'success');
     });
-
-    // Screenshot (placeholder)
-    document.getElementById('screenshotBtn')?.addEventListener('click', () => {
-      this.showNotification('Screenshot feature coming soon!', 'info');
-    });
   }
 
   /**
