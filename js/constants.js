@@ -37,9 +37,9 @@ export const CONFIG = {
 
   // Rotation Settings
   ROTATION: {
-    DEFAULT_SPEED: 0.3,
+    DEFAULT_SPEED: 2.0,
     MIN_SPEED: 0,
-    MAX_SPEED: 2.0,
+    MAX_SPEED: 10.0,
     POINTER_MULTIPLIER: 2,
     DAMPING: true,
     ROTATE_SPEED: 0.8,
