@@ -274,25 +274,65 @@ This project specifically explores:
 <td width="50%">
 
 #### Desktop (1920×1080)
-| Metric | Value |
-|:------:|:-----:|
-| Frame Rate | 60 FPS |
-| Load Time | 1.2s |
-| Memory Usage | ~180 MB |
-| Render Time | ~16ms/frame |
-| Model File Size | ~80 MB total |
+
+<table>
+<tr>
+<th align="center">Metric</th>
+<th align="center">Value</th>
+</tr>
+<tr>
+<td align="center">Frame Rate</td>
+<td align="center">60 FPS</td>
+</tr>
+<tr>
+<td align="center">Load Time</td>
+<td align="center">1.2s</td>
+</tr>
+<tr>
+<td align="center">Memory Usage</td>
+<td align="center">~180 MB</td>
+</tr>
+<tr>
+<td align="center">Render Time</td>
+<td align="center">~16ms/frame</td>
+</tr>
+<tr>
+<td align="center">Model File Size</td>
+<td align="center">~80 MB total</td>
+</tr>
+</table>
 
 </td>
 <td width="50%">
 
 #### Mobile (iPhone 12)
-| Metric | Value |
-|:------:|:-----:|
-| Frame Rate | 30-45 FPS |
-| Load Time | 2.8s |
-| Memory Usage | ~120 MB |
-| Render Time | ~22ms/frame |
-| Touch Response | <16ms |
+
+<table>
+<tr>
+<th align="center">Metric</th>
+<th align="center">Value</th>
+</tr>
+<tr>
+<td align="center">Frame Rate</td>
+<td align="center">30-45 FPS</td>
+</tr>
+<tr>
+<td align="center">Load Time</td>
+<td align="center">2.8s</td>
+</tr>
+<tr>
+<td align="center">Memory Usage</td>
+<td align="center">~120 MB</td>
+</tr>
+<tr>
+<td align="center">Render Time</td>
+<td align="center">~22ms/frame</td>
+</tr>
+<tr>
+<td align="center">Touch Response</td>
+<td align="center">&lt;16ms</td>
+</tr>
+</table>
 
 </td>
 </tr>
