@@ -267,14 +267,11 @@ This project specifically explores:
 
 ### Real numbers from my production build
 
-</div>
-
-<table>
+<table style="margin: 0 auto;">
 <tr>
 <td width="50%">
 
 #### Desktop (1920×1080)
-
 | Metric | Value |
 |:------:|:-----:|
 | Frame Rate | 60 FPS |
@@ -287,7 +284,6 @@ This project specifically explores:
 <td width="50%">
 
 #### Mobile (iPhone 12)
-
 | Metric | Value |
 |:------:|:-----:|
 | Frame Rate | 30-45 FPS |
@@ -299,6 +295,8 @@ This project specifically explores:
 </td>
 </tr>
 </table>
+
+</div>
 
 <details>
 <summary><b>📦 Bundle size breakdown</b></summary>
