@@ -278,30 +278,30 @@ This project specifically explores:
 <table>
 <thead>
 <tr>
-<th align="center" style="text-align: center;">Metric</th>
-<th align="center" style="text-align: center;">Value</th>
+<th align="center" style="text-align: center;"><div align="center">Metric</div></th>
+<th align="center" style="text-align: center;"><div align="center">Value</div></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center" style="text-align: center;">Frame Rate</td>
-<td align="center" style="text-align: center;">60 FPS</td>
+<td align="center" style="text-align: center;"><div align="center">Frame Rate</div></td>
+<td align="center" style="text-align: center;"><div align="center">60 FPS</div></td>
 </tr>
 <tr>
-<td align="center" style="text-align: center;">Load Time</td>
-<td align="center" style="text-align: center;">1.2s</td>
+<td align="center" style="text-align: center;"><div align="center">Load Time</div></td>
+<td align="center" style="text-align: center;"><div align="center">1.2s</div></td>
 </tr>
 <tr>
-<td align="center" style="text-align: center;">Memory Usage</td>
-<td align="center" style="text-align: center;">~180 MB</td>
+<td align="center" style="text-align: center;"><div align="center">Memory Usage</div></td>
+<td align="center" style="text-align: center;"><div align="center">~180 MB</div></td>
 </tr>
 <tr>
-<td align="center" style="text-align: center;">Render Time</td>
-<td align="center" style="text-align: center;">~16ms/frame</td>
+<td align="center" style="text-align: center;"><div align="center">Render Time</div></td>
+<td align="center" style="text-align: center;"><div align="center">~16ms/frame</div></td>
 </tr>
 <tr>
-<td align="center" style="text-align: center;">Model File Size</td>
-<td align="center" style="text-align: center;">~80 MB total</td>
+<td align="center" style="text-align: center;"><div align="center">Model File Size</div></td>
+<td align="center" style="text-align: center;"><div align="center">~80 MB total</div></td>
 </tr>
 </tbody>
 </table>
@@ -314,30 +314,30 @@ This project specifically explores:
 <table>
 <thead>
 <tr>
-<th align="center" style="text-align: center;">Metric</th>
-<th align="center" style="text-align: center;">Value</th>
+<th align="center" style="text-align: center;"><div align="center">Metric</div></th>
+<th align="center" style="text-align: center;"><div align="center">Value</div></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center" style="text-align: center;">Frame Rate</td>
-<td align="center" style="text-align: center;">30-45 FPS</td>
+<td align="center" style="text-align: center;"><div align="center">Frame Rate</div></td>
+<td align="center" style="text-align: center;"><div align="center">30-45 FPS</div></td>
 </tr>
 <tr>
-<td align="center" style="text-align: center;">Load Time</td>
-<td align="center" style="text-align: center;">2.8s</td>
+<td align="center" style="text-align: center;"><div align="center">Load Time</div></td>
+<td align="center" style="text-align: center;"><div align="center">2.8s</div></td>
 </tr>
 <tr>
-<td align="center" style="text-align: center;">Memory Usage</td>
-<td align="center" style="text-align: center;">~120 MB</td>
+<td align="center" style="text-align: center;"><div align="center">Memory Usage</div></td>
+<td align="center" style="text-align: center;"><div align="center">~120 MB</div></td>
 </tr>
 <tr>
-<td align="center" style="text-align: center;">Render Time</td>
-<td align="center" style="text-align: center;">~22ms/frame</td>
+<td align="center" style="text-align: center;"><div align="center">Render Time</div></td>
+<td align="center" style="text-align: center;"><div align="center">~22ms/frame</div></td>
 </tr>
 <tr>
-<td align="center" style="text-align: center;">Touch Response</td>
-<td align="center" style="text-align: center;">&lt;16ms</td>
+<td align="center" style="text-align: center;"><div align="center">Touch Response</div></td>
+<td align="center" style="text-align: center;"><div align="center">&lt;16ms</div></td>
 </tr>
 </tbody>
 </table>
