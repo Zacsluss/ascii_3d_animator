@@ -275,7 +275,7 @@ This project specifically explores:
 
 #### Desktop (1920×1080)
 | Metric | Value |
-|--------|-------|
+|:------:|:-----:|
 | Frame Rate | 60 FPS |
 | Load Time | 1.2s |
 | Memory Usage | ~180 MB |
@@ -287,7 +287,7 @@ This project specifically explores:
 
 #### Mobile (iPhone 12)
 | Metric | Value |
-|--------|-------|
+|:------:|:-----:|
 | Frame Rate | 30-45 FPS |
 | Load Time | 2.8s |
 | Memory Usage | ~120 MB |
