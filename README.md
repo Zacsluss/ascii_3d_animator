@@ -275,72 +275,26 @@ This project specifically explores:
 
 #### Desktop (1920×1080)
 
-<table>
-<thead>
-<tr>
-<th align="center" style="text-align: center;"><div align="center">Metric</div></th>
-<th align="center" style="text-align: center;"><div align="center">Value</div></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center" style="text-align: center;"><div align="center">Frame Rate</div></td>
-<td align="center" style="text-align: center;"><div align="center">60 FPS</div></td>
-</tr>
-<tr>
-<td align="center" style="text-align: center;"><div align="center">Load Time</div></td>
-<td align="center" style="text-align: center;"><div align="center">1.2s</div></td>
-</tr>
-<tr>
-<td align="center" style="text-align: center;"><div align="center">Memory Usage</div></td>
-<td align="center" style="text-align: center;"><div align="center">~180 MB</div></td>
-</tr>
-<tr>
-<td align="center" style="text-align: center;"><div align="center">Render Time</div></td>
-<td align="center" style="text-align: center;"><div align="center">~16ms/frame</div></td>
-</tr>
-<tr>
-<td align="center" style="text-align: center;"><div align="center">Model File Size</div></td>
-<td align="center" style="text-align: center;"><div align="center">~80 MB total</div></td>
-</tr>
-</tbody>
-</table>
+| Metric | Value |
+|:------:|:-----:|
+| Frame Rate | 60 FPS |
+| Load Time | 1.2s |
+| Memory Usage | ~180 MB |
+| Render Time | ~16ms/frame |
+| Model File Size | ~80 MB total |
 
 </td>
 <td width="50%">
 
 #### Mobile (iPhone 12)
 
-<table>
-<thead>
-<tr>
-<th align="center" style="text-align: center;"><div align="center">Metric</div></th>
-<th align="center" style="text-align: center;"><div align="center">Value</div></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center" style="text-align: center;"><div align="center">Frame Rate</div></td>
-<td align="center" style="text-align: center;"><div align="center">30-45 FPS</div></td>
-</tr>
-<tr>
-<td align="center" style="text-align: center;"><div align="center">Load Time</div></td>
-<td align="center" style="text-align: center;"><div align="center">2.8s</div></td>
-</tr>
-<tr>
-<td align="center" style="text-align: center;"><div align="center">Memory Usage</div></td>
-<td align="center" style="text-align: center;"><div align="center">~120 MB</div></td>
-</tr>
-<tr>
-<td align="center" style="text-align: center;"><div align="center">Render Time</div></td>
-<td align="center" style="text-align: center;"><div align="center">~22ms/frame</div></td>
-</tr>
-<tr>
-<td align="center" style="text-align: center;"><div align="center">Touch Response</div></td>
-<td align="center" style="text-align: center;"><div align="center">&lt;16ms</div></td>
-</tr>
-</tbody>
-</table>
+| Metric | Value |
+|:------:|:-----:|
+| Frame Rate | 30-45 FPS |
+| Load Time | 2.8s |
+| Memory Usage | ~120 MB |
+| Render Time | ~22ms/frame |
+| Touch Response | <16ms |
 
 </td>
 </tr>
