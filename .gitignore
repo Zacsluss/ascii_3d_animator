@@ -16,6 +16,10 @@ build/
 *.min.js
 *.map
 
+# Documentation
+docs/
+out/
+
 # Environment variables
 .env
 .env.local

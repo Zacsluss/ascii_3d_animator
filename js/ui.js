@@ -4,6 +4,7 @@
  */
 
 import { CONFIG } from './constants.js';
+import { validateFileSize, validateFileExtension } from './utils.js';
 
 export class UIManager {
   constructor(app) {
@@ -127,9 +128,14 @@ export class UIManager {
     // Rotation toggle
     document.getElementById('rotationToggle')?.addEventListener('click', (e) => {
       const isRotating = this.app.toggleAutoRotation();
-      e.target.innerHTML = isRotating
-        ? '<span class="btn-icon">⏸</span>Stop Rotation'
-        : '<span class="btn-icon">⟲</span>Start Rotation';
+      // Safe DOM manipulation instead of innerHTML
+      const icon = document.createElement('span');
+      icon.className = 'btn-icon';
+      icon.textContent = isRotating ? '⏸' : '⟲';
+      const text = document.createTextNode(isRotating ? 'Stop Rotation' : 'Start Rotation');
+      e.target.textContent = '';
+      e.target.appendChild(icon);
+      e.target.appendChild(text);
     });
 
     // Rotation speed slider
@@ -307,7 +313,22 @@ export class UIManager {
     fileInput?.addEventListener('change', (event) => {
       const file = event.target.files[0];
       if (file) {
+        // Validate file extension
+        if (!validateFileExtension(file, ['.glb', '.gltf'])) {
+          this.showNotification('Invalid file type. Please upload .glb or .gltf files only.', 'error');
+          event.target.value = ''; // Clear the input
+          return;
+        }
+
+        // Validate file size (max 100MB)
+        if (!validateFileSize(file, 100)) {
+          this.showNotification('File too large. Maximum size is 100MB.', 'error');
+          event.target.value = ''; // Clear the input
+          return;
+        }
+
         this.showNotification(`Selected file: ${file.name}`, 'info');
+        // TODO: Implement actual model loading from file
       }
     });
   }
@@ -440,19 +461,23 @@ export class UIManager {
     `;
 
     const closeBtn = document.createElement('button');
-    closeBtn.innerHTML = '✕';
+    closeBtn.textContent = '✕';
     closeBtn.style.cssText = `
       position: absolute; top: 15px; right: 20px; background: none;
       border: none; font-size: 24px; cursor: pointer; color: #666;
       padding: 5px; line-height: 1;
     `;
+    closeBtn.setAttribute('aria-label', 'Close modal');
 
     closeBtn.addEventListener('click', () => document.body.removeChild(modal));
     modal.addEventListener('click', (e) => {
       if (e.target === modal) document.body.removeChild(modal);
     });
 
-    modalContent.innerHTML = content;
+    // Create content container and safely insert text
+    const contentDiv = document.createElement('div');
+    contentDiv.textContent = content;
+    modalContent.appendChild(contentDiv);
     modalContent.appendChild(closeBtn);
     modal.appendChild(modalContent);
     document.body.appendChild(modal);

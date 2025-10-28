@@ -11,6 +11,7 @@ import { ModelManager } from './models.js';
 import { AnimationManager } from './animation.js';
 import { AsciiManager } from './ascii.js';
 import { UIManager } from './ui.js';
+import { debounce } from './utils.js';
 
 export class AsciiAnimatorApp {
   constructor() {
@@ -58,8 +59,8 @@ export class AsciiAnimatorApp {
     // Start animation loop
     this.renderer.setAnimationLoop(() => this.animate());
 
-    // Handle window resize
-    window.addEventListener('resize', () => this.onWindowResize());
+    // Handle window resize with debouncing for better performance
+    window.addEventListener('resize', debounce(() => this.onWindowResize(), 250));
 
     // Set initial theme to dark
     document.body.classList.add('dark');
@@ -207,6 +208,10 @@ export class AsciiAnimatorApp {
    */
   updateAsciiCharacters(chars) {
     this.asciiManager.updateCharacters(chars);
+    // Dispose old controls to prevent memory leak
+    if (this.controls) {
+      this.controls.dispose();
+    }
     // Recreate controls with new ASCII element
     this.controls = new OrbitControls(this.camera, this.asciiManager.getDomElement());
     this.setupControls();
@@ -306,6 +311,22 @@ export class AsciiAnimatorApp {
   }
 }
 
-// Initialize app when DOM is loaded
+// Initialize app when DOM is loaded with error handling
 const app = new AsciiAnimatorApp();
-app.initialize();
+app.initialize().catch((error) => {
+  console.error('Failed to initialize ASCII Animator:', error);
+
+  // Display user-friendly error message
+  const errorDiv = document.createElement('div');
+  errorDiv.style.cssText = `
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: #ff4444; color: white; padding: 20px 40px; border-radius: 8px;
+    font-family: Arial, sans-serif; text-align: center; z-index: 10000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  `;
+  errorDiv.innerHTML = `
+    <h2 style="margin: 0 0 10px 0;">⚠️ Failed to Load</h2>
+    <p style="margin: 0;">Could not initialize the 3D animator. Please refresh the page or check your browser console for details.</p>
+  `;
+  document.body.appendChild(errorDiv);
+});
