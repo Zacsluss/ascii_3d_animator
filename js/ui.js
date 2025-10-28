@@ -474,9 +474,11 @@ export class UIManager {
       if (e.target === modal) document.body.removeChild(modal);
     });
 
-    // Create content container and safely insert text
+    // Create content container
+    // Note: Using innerHTML here is safe because content comes from hardcoded
+    // application strings (like help modal), not from user input
     const contentDiv = document.createElement('div');
-    contentDiv.textContent = content;
+    contentDiv.innerHTML = content;
     modalContent.appendChild(contentDiv);
     modalContent.appendChild(closeBtn);
     modal.appendChild(modalContent);
