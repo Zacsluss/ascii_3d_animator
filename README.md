@@ -6,7 +6,7 @@
 <br/>
 
 <!-- Animated Typing Subtitle -->
-<img src="https://readme-typing-svg.demolab.com/?lines=60+FPS+real-time+rendering;5-point+professional+lighting+system;100%25+offline+capable+•+Zero+dependencies&font=Fira+Code&center=true&vCenter=true&width=700&height=50&size=22&duration=3000&pause=1000&color=FFFFFF" alt="Typing SVG" />
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=700&height=50&lines=60+FPS+real-time+rendering;5-point+professional+lighting+system;100%25+offline+capable+%E2%80%A2+Zero+dependencies" alt="Typing SVG" /></a>
 
 <br/>
 
