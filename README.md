@@ -435,7 +435,7 @@ I'm into WebGL, particle systems, shader programming, AI/ML, digital art, and 36
 
 <br/>
 
-[Resume (DOCX)](public/Zachary%20Sluss%20Resume.docx)
+[Download Resume](public/resume.pdf)
 
 <br/>
 
