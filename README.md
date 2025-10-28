@@ -81,9 +81,9 @@ Built with Three.js, WebGL, and a lot of caffeine.
 <details>
 <summary><b>Jump to a section</b></summary>
 
-- [🛠️ Tech Stack](#️-tech-stack)
+- [🛠️ Tech Stack](#-tech-stack)
 - [🎨 Usage & Controls](#-usage--controls)
-- [🏗️ Architecture](#️-architecture)
+- [🏗️ Architecture](#-architecture)
 - [💭 Why I Built This](#-why-i-built-this)
 - [📊 Performance Benchmarks](#-performance-benchmarks)
 - [🚀 Quick Start](#-quick-start)
