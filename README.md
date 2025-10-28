@@ -276,30 +276,34 @@ This project specifically explores:
 #### Desktop (1920×1080)
 
 <table>
+<thead>
 <tr>
-<th style="text-align: center">Metric</th>
-<th style="text-align: center">Value</th>
+<th align="center" style="text-align: center;">Metric</th>
+<th align="center" style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" style="text-align: center;">Frame Rate</td>
+<td align="center" style="text-align: center;">60 FPS</td>
 </tr>
 <tr>
-<td style="text-align: center">Frame Rate</td>
-<td style="text-align: center">60 FPS</td>
+<td align="center" style="text-align: center;">Load Time</td>
+<td align="center" style="text-align: center;">1.2s</td>
 </tr>
 <tr>
-<td style="text-align: center">Load Time</td>
-<td style="text-align: center">1.2s</td>
+<td align="center" style="text-align: center;">Memory Usage</td>
+<td align="center" style="text-align: center;">~180 MB</td>
 </tr>
 <tr>
-<td style="text-align: center">Memory Usage</td>
-<td style="text-align: center">~180 MB</td>
+<td align="center" style="text-align: center;">Render Time</td>
+<td align="center" style="text-align: center;">~16ms/frame</td>
 </tr>
 <tr>
-<td style="text-align: center">Render Time</td>
-<td style="text-align: center">~16ms/frame</td>
+<td align="center" style="text-align: center;">Model File Size</td>
+<td align="center" style="text-align: center;">~80 MB total</td>
 </tr>
-<tr>
-<td style="text-align: center">Model File Size</td>
-<td style="text-align: center">~80 MB total</td>
-</tr>
+</tbody>
 </table>
 
 </td>
@@ -308,30 +312,34 @@ This project specifically explores:
 #### Mobile (iPhone 12)
 
 <table>
+<thead>
 <tr>
-<th style="text-align: center">Metric</th>
-<th style="text-align: center">Value</th>
+<th align="center" style="text-align: center;">Metric</th>
+<th align="center" style="text-align: center;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" style="text-align: center;">Frame Rate</td>
+<td align="center" style="text-align: center;">30-45 FPS</td>
 </tr>
 <tr>
-<td style="text-align: center">Frame Rate</td>
-<td style="text-align: center">30-45 FPS</td>
+<td align="center" style="text-align: center;">Load Time</td>
+<td align="center" style="text-align: center;">2.8s</td>
 </tr>
 <tr>
-<td style="text-align: center">Load Time</td>
-<td style="text-align: center">2.8s</td>
+<td align="center" style="text-align: center;">Memory Usage</td>
+<td align="center" style="text-align: center;">~120 MB</td>
 </tr>
 <tr>
-<td style="text-align: center">Memory Usage</td>
-<td style="text-align: center">~120 MB</td>
+<td align="center" style="text-align: center;">Render Time</td>
+<td align="center" style="text-align: center;">~22ms/frame</td>
 </tr>
 <tr>
-<td style="text-align: center">Render Time</td>
-<td style="text-align: center">~22ms/frame</td>
+<td align="center" style="text-align: center;">Touch Response</td>
+<td align="center" style="text-align: center;">&lt;16ms</td>
 </tr>
-<tr>
-<td style="text-align: center">Touch Response</td>
-<td style="text-align: center">&lt;16ms</td>
-</tr>
+</tbody>
 </table>
 
 </td>
