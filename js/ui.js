@@ -362,19 +362,34 @@ export class UIManager {
       return;
     }
 
+    // Handle psychedelic theme class
+    if (theme.psychedelic) {
+      document.body.classList.add('psychedelic');
+    } else {
+      document.body.classList.remove('psychedelic');
+    }
+
     // Update ASCII effect colors via the asciiManager
     if (this.app.asciiManager && this.app.asciiManager.effect) {
       const domElement = this.app.asciiManager.effect.domElement;
 
-      // Set background and foreground colors
-      domElement.style.backgroundColor = theme.bg;
-      domElement.style.color = theme.fg;
-
-      // Add glow effect if theme has it
-      if (theme.glow) {
-        domElement.style.textShadow = `0 0 10px ${theme.fg}, 0 0 20px ${theme.fg}, 0 0 30px ${theme.fg}`;
+      // Handle psychedelic theme specially - let CSS animations control everything
+      if (theme.psychedelic) {
+        // Clear inline styles so CSS animations can take control
+        domElement.style.backgroundColor = theme.bg;
+        domElement.style.color = '';  // Clear color - let CSS animation handle it
+        domElement.style.textShadow = '';
       } else {
-        domElement.style.textShadow = '0 0 1px #000, 0 0 1px #000, 1px 0 0 #000, 0 1px 0 #000';
+        // Set background and foreground colors for normal themes
+        domElement.style.backgroundColor = theme.bg;
+        domElement.style.color = theme.fg;
+
+        // Add glow effect if theme has it
+        if (theme.glow) {
+          domElement.style.textShadow = `0 0 10px ${theme.fg}, 0 0 20px ${theme.fg}, 0 0 30px ${theme.fg}`;
+        } else {
+          domElement.style.textShadow = '0 0 1px #000, 0 0 1px #000, 1px 0 0 #000, 0 1px 0 #000';
+        }
       }
     }
 
