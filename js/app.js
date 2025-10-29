@@ -62,9 +62,7 @@ export class AsciiAnimatorApp {
     // Handle window resize with debouncing for better performance
     window.addEventListener('resize', debounce(() => this.onWindowResize(), 250));
 
-    // Set initial theme to dark
-    document.body.classList.add('dark');
-    this.asciiManager.setTheme(true);
+    // Initial theme will be set by UIManager based on selected dropdown value
   }
 
   /**

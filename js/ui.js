@@ -10,6 +10,7 @@ export class UIManager {
   constructor(app) {
     this.app = app;
     this.setupEventListeners();
+    this.applyInitialTheme();
   }
 
   /**
@@ -56,6 +57,17 @@ export class UIManager {
 
     // Canvas interactions
     this.setupCanvasInteractions();
+  }
+
+  /**
+   * Apply initial theme based on selected option in dropdown
+   */
+  applyInitialTheme() {
+    const themeSelector = document.getElementById('themeSelector');
+    if (themeSelector) {
+      const selectedTheme = themeSelector.value;
+      this.applyTheme(selectedTheme);
+    }
   }
 
   /**
