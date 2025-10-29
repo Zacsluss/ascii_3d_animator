@@ -69,6 +69,7 @@ Built with Three.js, WebGL, and a lot of caffeine.
 - ✨ Real-time ASCII conversion—not pre-rendered, fully interactive
 - 🎮 4 animated 3D models (Duck, Rat, Doge, Alien) with custom loader support
 - 🔬 5-point lighting system with professional presets (Studio, Dramatic, Natural, Minimal)
+- 🎨 20+ visual themes—from retro CRT to experimental rainbow animations
 - 📱 Mobile-optimized with full touch controls (rotate, zoom, pan)
 - 🎯 Custom character sets—personalize with any text or symbols
 
@@ -184,18 +185,28 @@ Use the 5-point lighting system:
 - 🌿 **Natural** - Soft, even lighting
 - 🔘 **Minimal** - Single light source
 
-### 3. Customize Characters
+### 3. Choose a Theme
+Select from 20+ visual themes including:
+- 🎨 **Standard** - Classic and Classic Dark
+- 🖥️ **Retro** - Amber CRT, Green Phosphor, IBM Blue, Apple II
+- 🌃 **Neon/Cyberpunk** - Neon City, Purple Haze
+- 🎭 **Popular** - Dracula, Nord, Solarized, Gruvbox, Monokai
+- 🌊 **Nature** - Ocean, Fire
+- 🎨 **Artistic** - Blueprint, Chalkboard, Newspaper, X-Ray
+- 🌈 **Experimental Rainbow** - *NEW!* Animated rainbow color cycling with Matrix-style characters
+
+### 4. Customize Characters
 Enter any text in the character field to personalize the ASCII palette:
 - Type your name: `ZAC`
 - Use symbols: `@#$%&*`
 - Emoji mode: `😀🎉✨`
 
-### 4. Camera Controls
+### 5. Camera Controls
 - **Mouse drag** - Rotate camera
 - **Scroll wheel** - Zoom in/out
 - **Touch gestures** - Mobile support (pinch, pan)
 
-### 5. Export
+### 6. Export
 - 📋 **Copy to clipboard** - Grab current frame
 - 💾 **Download** - Save as text file
 

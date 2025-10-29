@@ -11,7 +11,7 @@
       name="description"
       content="Transform 3D animated models into real-time ASCII art. Fully interactive and customizable."
     />
-    <link type="text/css" rel="stylesheet" href="main.css" />
+    <link type="text/css" rel="stylesheet" href="main.css?v=14" />
     <link rel="modulepreload" href="./lib/three/three.core.js" />
     <link rel="modulepreload" href="./lib/three/three.module.js" />
   </head>
@@ -84,13 +84,15 @@
               <optgroup label="Nature">
                 <option value="ocean">🌊 Ocean - Deep Sea</option>
                 <option value="fire">🔥 Fire - Burning Flames</option>
-                <option value="aurora">🌌 Aurora - Northern Lights</option>
               </optgroup>
               <optgroup label="Artistic">
                 <option value="blueprint">📐 Blueprint - Technical</option>
                 <option value="chalkboard">🖍️ Chalkboard</option>
                 <option value="newspaper">📰 Newspaper - Vintage Print</option>
                 <option value="xray">🩻 X-Ray - Medical</option>
+              </optgroup>
+              <optgroup label="Experimental">
+                <option value="psychedelic">🌈 Experimental Rainbow</option>
               </optgroup>
             </select>
           </div>
@@ -495,6 +497,6 @@
     <main id="canvasContainer" role="main" aria-label="ASCII art display canvas"></main>
 
     <!-- Main Application Script -->
-    <script type="module" src="./js/app.js?v=2"></script>
+    <script type="module" src="./js/app.js?v=12"></script>
   </body>
 </html>

@@ -944,6 +944,63 @@ body.dark #canvasContainer {
     0 1px 0 #000;
 }
 
+/* Psychedelic Theme Effects */
+@keyframes psychedelic-rainbow {
+  0% {
+    color: #ff0080;
+    text-shadow:
+      0 0 10px #ff0080,
+      0 0 20px #ff0080,
+      0 0 30px #ff0080;
+  }
+  16% {
+    color: #ff8c00;
+    text-shadow:
+      0 0 10px #ff8c00,
+      0 0 20px #ff8c00,
+      0 0 30px #ff8c00;
+  }
+  33% {
+    color: #ffff00;
+    text-shadow:
+      0 0 10px #ffff00,
+      0 0 20px #ffff00,
+      0 0 30px #ffff00;
+  }
+  50% {
+    color: #00ff00;
+    text-shadow:
+      0 0 10px #00ff00,
+      0 0 20px #00ff00,
+      0 0 30px #00ff00;
+  }
+  66% {
+    color: #00ffff;
+    text-shadow:
+      0 0 10px #00ffff,
+      0 0 20px #00ffff,
+      0 0 30px #00ffff;
+  }
+  83% {
+    color: #8800ff;
+    text-shadow:
+      0 0 10px #8800ff,
+      0 0 20px #8800ff,
+      0 0 30px #8800ff;
+  }
+  100% {
+    color: #ff0080;
+    text-shadow:
+      0 0 10px #ff0080,
+      0 0 20px #ff0080,
+      0 0 30px #ff0080;
+  }
+}
+
+body.psychedelic #canvasContainer > div {
+  animation: psychedelic-rainbow 4s linear infinite;
+}
+
 /* Scrollbar Styling */
 .sidebar::-webkit-scrollbar {
   width: 4px;
