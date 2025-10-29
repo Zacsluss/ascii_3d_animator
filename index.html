@@ -46,20 +46,59 @@
       </div>
 
       <div class="sidebar-content">
-        <!-- Theme & Display Section -->
-        <section class="control-section" aria-labelledby="display-heading">
-          <h3 id="display-heading">Display</h3>
-          <div class="control-group">
-            <button
-              id="themeToggle"
-              class="btn btn-primary"
-              title="Switch colors: dark or light background"
-              aria-label="Toggle theme"
-            >
-              <span class="btn-icon" aria-hidden="true">🌓</span>
-              Toggle Theme
-            </button>
+        <!-- THEME SELECTOR - Main Attraction -->
+        <section class="theme-selector-section" aria-labelledby="theme-heading">
+          <div class="theme-selector-header">
+            <span class="theme-header-icon">🎨</span>
+            <h2 id="theme-heading" class="theme-selector-title">Choose Your Theme</h2>
+            <span class="theme-header-icon">✨</span>
           </div>
+
+          <div class="theme-picker-wrapper">
+            <select
+              id="themeSelector"
+              class="theme-picklist"
+              aria-label="Select ASCII theme"
+            >
+              <optgroup label="Standard">
+                <option value="classic">📟 Classic (Black on White)</option>
+                <option value="classicDark" selected>🖤 Classic Dark (White on Black)</option>
+              </optgroup>
+              <optgroup label="Retro Terminal">
+                <option value="amber">🟠 Amber CRT - Vintage Monitor</option>
+                <option value="greenPhosphor">💚 Green Phosphor</option>
+                <option value="ibmBlue">💙 IBM Blue - Mainframe</option>
+                <option value="appleII">🍏 Apple II</option>
+              </optgroup>
+              <optgroup label="Neon / Cyberpunk">
+                <option value="neonCity">🏙️ Neon City - Electric Cyan</option>
+                <option value="purpleHaze">💜 Purple Haze</option>
+              </optgroup>
+              <optgroup label="Popular Themes">
+                <option value="dracula">🧛 Dracula</option>
+                <option value="nord">❄️ Nord - Arctic</option>
+                <option value="solarizedDark">☀️ Solarized Dark</option>
+                <option value="gruvbox">🌾 Gruvbox - Warm Earth</option>
+                <option value="monokai">🎨 Monokai</option>
+              </optgroup>
+              <optgroup label="Nature">
+                <option value="ocean">🌊 Ocean - Deep Sea</option>
+                <option value="fire">🔥 Fire - Burning Flames</option>
+                <option value="aurora">🌌 Aurora - Northern Lights</option>
+              </optgroup>
+              <optgroup label="Artistic">
+                <option value="blueprint">📐 Blueprint - Technical</option>
+                <option value="chalkboard">🖍️ Chalkboard</option>
+                <option value="newspaper">📰 Newspaper - Vintage Print</option>
+                <option value="xray">🩻 X-Ray - Medical</option>
+              </optgroup>
+            </select>
+          </div>
+        </section>
+
+        <!-- Display Controls Section -->
+        <section class="control-section" aria-labelledby="display-heading">
+          <h3 id="display-heading">Display Controls</h3>
           <div class="control-group">
             <button
               id="helpBtn"

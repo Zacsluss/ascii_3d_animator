@@ -16,9 +16,9 @@ export class UIManager {
    * Set up all event listeners
    */
   setupEventListeners() {
-    // Theme toggle
-    document.getElementById('themeToggle')?.addEventListener('click', () => {
-      this.toggleTheme();
+    // Theme selector
+    document.getElementById('themeSelector')?.addEventListener('change', (e) => {
+      this.applyTheme(e.target.value);
     });
 
     // Help button
@@ -349,6 +349,40 @@ export class UIManager {
   toggleTheme() {
     const isDark = document.body.classList.toggle('dark');
     this.app.setTheme(isDark);
+  }
+
+  /**
+   * Apply selected theme
+   * @param {string} themeKey - The key of the theme to apply
+   */
+  applyTheme(themeKey) {
+    const theme = CONFIG.THEMES[themeKey];
+    if (!theme) {
+      console.error(`Theme not found: ${themeKey}`);
+      return;
+    }
+
+    // Update ASCII effect colors via the asciiManager
+    if (this.app.asciiManager && this.app.asciiManager.effect) {
+      const domElement = this.app.asciiManager.effect.domElement;
+
+      // Set background and foreground colors
+      domElement.style.backgroundColor = theme.bg;
+      domElement.style.color = theme.fg;
+
+      // Add glow effect if theme has it
+      if (theme.glow) {
+        domElement.style.textShadow = `0 0 10px ${theme.fg}, 0 0 20px ${theme.fg}, 0 0 30px ${theme.fg}`;
+      } else {
+        domElement.style.textShadow = '0 0 1px #000, 0 0 1px #000, 1px 0 0 #000, 0 1px 0 #000';
+      }
+    }
+
+    // Update ASCII characters (this recreates OrbitControls properly)
+    this.app.updateAsciiCharacters(theme.chars);
+
+    // Show notification
+    this.showNotification(`Theme changed to ${theme.name}`, 'success');
   }
 
   /**
