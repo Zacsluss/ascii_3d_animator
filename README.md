@@ -65,7 +65,11 @@ Built with Three.js, WebGL, and a lot of caffeine.
 
 </div>
 
-**Key Features:**
+<details>
+<summary><b>✨ Key Features</b></summary>
+
+<br/>
+
 - ✨ Real-time ASCII conversion—not pre-rendered, fully interactive
 - 🎮 4 animated 3D models (Duck, Rat, Doge, Alien) with custom loader support
 - 🔬 5-point lighting system with professional presets (Studio, Dramatic, Natural, Minimal)
@@ -74,6 +78,8 @@ Built with Three.js, WebGL, and a lot of caffeine.
 - 🎯 Custom character sets—personalize with any text or symbols
 
 **Tech:** Three.js • WebGL • ES6 Modules • Vanilla JavaScript
+
+</details>
 
 ---
 
@@ -103,7 +109,14 @@ Built with Three.js, WebGL, and a lot of caffeine.
 
 <img src="https://skillicons.dev/icons?i=js,html,css,threejs,vscode,git,github" alt="Tech Stack" />
 
-### Core Dependencies
+</div>
+
+<details>
+<summary><b>📦 Core Dependencies</b></summary>
+
+<br/>
+
+<div align="center">
 
 <table>
 <tr>
@@ -127,6 +140,8 @@ Built with Three.js, WebGL, and a lot of caffeine.
 </table>
 
 </div>
+
+</details>
 
 <details>
 <summary><b>📦 See the full dependency list</b></summary>
@@ -274,6 +289,11 @@ This project specifically explores:
 
 ## 📊 Performance Benchmarks
 
+<details>
+<summary><b>📈 See the real performance numbers</b></summary>
+
+<br/>
+
 <div align="center">
 
 ### Real numbers from my production build
@@ -310,6 +330,8 @@ This project specifically explores:
 </table>
 
 </div>
+
+</details>
 
 <details>
 <summary><b>📦 Bundle size breakdown</b></summary>
@@ -352,6 +374,11 @@ Total               ~80 MB uncompressed
 
 </div>
 
+<details>
+<summary><b>📋 Installation instructions</b></summary>
+
+<br/>
+
 ```bash
 # 1️⃣ Clone this repo
 git clone https://github.com/Zacsluss/ascii_3d_animator.git
@@ -370,6 +397,8 @@ python -m http.server 8000
 # Add your own .glb models to models/ directory
 # Modify main.css for styling changes
 ```
+
+</details>
 
 <details>
 <summary><b>🔧 How to customize it for yourself</b></summary>
