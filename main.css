@@ -118,8 +118,8 @@ body.dark {
   position: fixed;
   top: 0;
   left: 0;
-  width: 280px;
-  height: 100vh;
+  width: calc(280px / 0.85);
+  height: calc(100vh / 0.85);
   background: var(--glass-bg-dark);
   backdrop-filter: var(--glass-blur) saturate(180%);
   -webkit-backdrop-filter: var(--glass-blur) saturate(180%);
@@ -1078,9 +1078,9 @@ body.psychedelic #canvasContainer > div {
 /* Mobile Devices */
 @media (max-width: 600px) {
   .sidebar {
-    width: 100%;
+    width: calc(100% / 0.85);
     height: auto;
-    max-height: 50vh;
+    max-height: calc(50vh / 0.85);
     position: fixed;
     bottom: 0;
     top: auto;
