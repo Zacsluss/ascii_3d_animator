@@ -294,7 +294,7 @@ export const CONFIG = {
 
   // Model Configuration
   MODELS: {
-    NAMES: ['duck', 'rat', 'doge', 'alien'],
+    NAMES: ['rat', 'duck', 'doge', 'alien'],
     CONFIGS: {
       duck: {
         path: './duck_walk.glb',
