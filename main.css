@@ -131,6 +131,8 @@ body.dark {
   z-index: 1000;
   border-right: 1px solid var(--glass-border);
   contain: layout style paint;
+  transform: scale(0.85);
+  transform-origin: top left;
 }
 
 .sidebar-header {
@@ -1084,6 +1086,8 @@ body.psychedelic #canvasContainer > div {
     top: auto;
     border-right: none;
     border-top: 1px solid var(--glass-border);
+    transform: scale(0.85);
+    transform-origin: bottom left;
   }
 
   .sidebar-header {
