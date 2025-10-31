@@ -185,6 +185,17 @@ export class AsciiAnimatorApp {
   }
 
   /**
+   * Load a model from a user-uploaded file
+   * @param {File} file - The file to load
+   * @returns {Promise<object>} Result containing fileName
+   */
+  async loadModelFromFile(file) {
+    const result = await this.modelManager.loadModelFromFile(file);
+    this.animationManager.initialize(result.model, result.animations, result.preferredAnimation);
+    return result;
+  }
+
+  /**
    * Switch to next animation
    * @returns {string} The name of the newly loaded animation
    */

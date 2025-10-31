@@ -14,7 +14,6 @@ export class ModelManager {
     this.currentModel = null;
     this.currentModelIndex = 0;
     this.modelLoadVersion = 0;
-    this.onModelLoadCallback = null;
   }
 
   /**
@@ -54,6 +53,59 @@ export class ModelManager {
         },
         undefined,
         (error) => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+  /**
+   * Load a model from a file (user upload)
+   * @param {File} file - The file object to load
+   * @returns {Promise} Promise that resolves when model is loaded
+   */
+  async loadModelFromFile(file) {
+    // Cleanup old model
+    this.disposeCurrentModel();
+
+    const thisLoadVersion = ++this.modelLoadVersion;
+
+    // Create a URL for the file
+    const url = URL.createObjectURL(file);
+
+    // Use default config for uploaded models
+    const config = {
+      scaleMultiplier: 6.0,
+      preferredAnimation: null,
+    };
+
+    return new Promise((resolve, reject) => {
+      this.loader.load(
+        url,
+        (gltf) => {
+          // Revoke the object URL to free memory
+          URL.revokeObjectURL(url);
+
+          // Skip if a newer load has occurred
+          if (thisLoadVersion !== this.modelLoadVersion) {
+            return;
+          }
+
+          this.currentModel = gltf.scene;
+          this.processModel(gltf, config);
+          this.scene.add(this.currentModel);
+
+          resolve({
+            model: this.currentModel,
+            animations: gltf.animations,
+            preferredAnimation: config.preferredAnimation,
+            fileName: file.name,
+          });
+        },
+        undefined,
+        (error) => {
+          // Revoke the object URL even on error
+          URL.revokeObjectURL(url);
           reject(error);
         }
       );
