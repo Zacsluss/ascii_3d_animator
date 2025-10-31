@@ -9,8 +9,53 @@ import { validateFileSize, validateFileExtension } from './utils.js';
 export class UIManager {
   constructor(app) {
     this.app = app;
+    this.cacheElements();
     this.setupEventListeners();
     this.applyInitialTheme();
+  }
+
+  /**
+   * Cache DOM element references for better performance
+   */
+  cacheElements() {
+    this.elements = {
+      themeSelector: document.getElementById('themeSelector'),
+      helpBtn: document.getElementById('helpBtn'),
+      densitySlider: document.getElementById('densitySlider'),
+      densityValue: document.getElementById('densityValue'),
+      customCharsInput: document.getElementById('customCharsInput'),
+      applyCharsBtn: document.getElementById('applyCharsBtn'),
+      resetCharsBtn: document.getElementById('resetCharsBtn'),
+      nextModel: document.getElementById('nextModel'),
+      modelInfo: document.getElementById('modelInfo'),
+      animSpeedSlider: document.getElementById('animSpeedSlider'),
+      animSpeedValue: document.getElementById('animSpeedValue'),
+      rotationToggle: document.getElementById('rotationToggle'),
+      rotSpeedSlider: document.getElementById('rotSpeedSlider'),
+      rotSpeedValue: document.getElementById('rotSpeedValue'),
+      distanceSlider: document.getElementById('distanceSlider'),
+      distanceValue: document.getElementById('distanceValue'),
+      resetCamera: document.getElementById('resetCamera'),
+      presetStudio: document.getElementById('presetStudio'),
+      presetDramatic: document.getElementById('presetDramatic'),
+      presetNatural: document.getElementById('presetNatural'),
+      presetMinimal: document.getElementById('presetMinimal'),
+      mainLightSlider: document.getElementById('mainLightSlider'),
+      mainLightValue: document.getElementById('mainLightValue'),
+      ambientLightSlider: document.getElementById('ambientLightSlider'),
+      ambientLightValue: document.getElementById('ambientLightValue'),
+      redLightSlider: document.getElementById('redLightSlider'),
+      redLightValue: document.getElementById('redLightValue'),
+      blueLightSlider: document.getElementById('blueLightSlider'),
+      blueLightValue: document.getElementById('blueLightValue'),
+      spotLightSlider: document.getElementById('spotLightSlider'),
+      spotLightValue: document.getElementById('spotLightValue'),
+      copyBtn: document.getElementById('copyBtn'),
+      downloadBtn: document.getElementById('downloadBtn'),
+      fileInput: document.getElementById('fileInput'),
+      uploadBtn: document.getElementById('uploadBtn'),
+      canvasContainer: document.getElementById('canvasContainer'),
+    };
   }
 
   /**
@@ -18,12 +63,12 @@ export class UIManager {
    */
   setupEventListeners() {
     // Theme selector
-    document.getElementById('themeSelector')?.addEventListener('change', (e) => {
+    this.elements.themeSelector?.addEventListener('change', (e) => {
       this.applyTheme(e.target.value);
     });
 
     // Help button
-    document.getElementById('helpBtn')?.addEventListener('click', () => {
+    this.elements.helpBtn?.addEventListener('click', () => {
       this.showHelpModal();
     });
 
@@ -34,7 +79,7 @@ export class UIManager {
     this.setupCustomCharacters();
 
     // Next Model button
-    document.getElementById('nextModel')?.addEventListener('click', async () => {
+    this.elements.nextModel?.addEventListener('click', async () => {
       const modelName = await this.app.switchModel();
       this.updateModelInfo(modelName);
       this.showNotification(`Loaded ${modelName} model`, 'success');
@@ -63,9 +108,8 @@ export class UIManager {
    * Apply initial theme based on selected option in dropdown
    */
   applyInitialTheme() {
-    const themeSelector = document.getElementById('themeSelector');
-    if (themeSelector) {
-      const selectedTheme = themeSelector.value;
+    if (this.elements.themeSelector) {
+      const selectedTheme = this.elements.themeSelector.value;
       this.applyTheme(selectedTheme);
     }
   }
@@ -74,43 +118,36 @@ export class UIManager {
    * Setup density slider
    */
   setupDensitySlider() {
-    const slider = document.getElementById('densitySlider');
-    const valueDisplay = document.getElementById('densityValue');
-
     const updateDensity = () => {
-      const value = parseFloat(slider.value);
+      const value = parseFloat(this.elements.densitySlider.value);
       this.app.setAsciiDensity(value);
-      valueDisplay.textContent = value.toFixed(1);
+      this.elements.densityValue.textContent = value.toFixed(1);
     };
 
-    slider?.addEventListener('input', updateDensity);
-    slider?.addEventListener('change', updateDensity);
+    this.elements.densitySlider?.addEventListener('input', updateDensity);
+    this.elements.densitySlider?.addEventListener('change', updateDensity);
   }
 
   /**
    * Setup custom characters input
    */
   setupCustomCharacters() {
-    const input = document.getElementById('customCharsInput');
-    const applyBtn = document.getElementById('applyCharsBtn');
-    const resetBtn = document.getElementById('resetCharsBtn');
-
-    applyBtn?.addEventListener('click', () => {
-      const customText = input.value.trim();
+    this.elements.applyCharsBtn?.addEventListener('click', () => {
+      const customText = this.elements.customCharsInput.value.trim();
       this.app.updateAsciiCharacters(customText);
       this.showNotification('Custom characters applied!', 'success');
     });
 
-    input?.addEventListener('keypress', (e) => {
+    this.elements.customCharsInput?.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
-        const customText = input.value.trim();
+        const customText = this.elements.customCharsInput.value.trim();
         this.app.updateAsciiCharacters(customText);
         this.showNotification('Custom characters applied!', 'success');
       }
     });
 
-    resetBtn?.addEventListener('click', () => {
-      input.value = '';
+    this.elements.resetCharsBtn?.addEventListener('click', () => {
+      this.elements.customCharsInput.value = '';
       this.app.updateAsciiCharacters('');
       this.showNotification('Reset to default characters', 'info');
     });
@@ -120,17 +157,14 @@ export class UIManager {
    * Setup animation speed slider
    */
   setupAnimationSpeedSlider() {
-    const slider = document.getElementById('animSpeedSlider');
-    const valueDisplay = document.getElementById('animSpeedValue');
-
     const updateSpeed = () => {
-      const speed = parseFloat(slider.value);
-      valueDisplay.textContent = speed.toFixed(1);
+      const speed = parseFloat(this.elements.animSpeedSlider.value);
+      this.elements.animSpeedValue.textContent = speed.toFixed(1);
       this.app.setAnimationSpeed(speed);
     };
 
-    slider?.addEventListener('input', updateSpeed);
-    slider?.addEventListener('change', updateSpeed);
+    this.elements.animSpeedSlider?.addEventListener('input', updateSpeed);
+    this.elements.animSpeedSlider?.addEventListener('change', updateSpeed);
   }
 
   /**
@@ -138,7 +172,7 @@ export class UIManager {
    */
   setupCameraControls() {
     // Rotation toggle
-    document.getElementById('rotationToggle')?.addEventListener('click', (e) => {
+    this.elements.rotationToggle?.addEventListener('click', (e) => {
       const isRotating = this.app.toggleAutoRotation();
       // Safe DOM manipulation instead of innerHTML
       const icon = document.createElement('span');
@@ -151,25 +185,21 @@ export class UIManager {
     });
 
     // Rotation speed slider
-    const rotSpeedSlider = document.getElementById('rotSpeedSlider');
-    const rotSpeedValue = document.getElementById('rotSpeedValue');
-    rotSpeedSlider?.addEventListener('input', () => {
-      const speed = parseFloat(rotSpeedSlider.value);
-      rotSpeedValue.textContent = speed.toFixed(1);
+    this.elements.rotSpeedSlider?.addEventListener('input', () => {
+      const speed = parseFloat(this.elements.rotSpeedSlider.value);
+      this.elements.rotSpeedValue.textContent = speed.toFixed(1);
       this.app.setRotationSpeed(speed);
     });
 
     // Camera distance slider
-    const distanceSlider = document.getElementById('distanceSlider');
-    const distanceValue = document.getElementById('distanceValue');
-    distanceSlider?.addEventListener('input', () => {
-      const distance = parseFloat(distanceSlider.value);
-      distanceValue.textContent = distance;
+    this.elements.distanceSlider?.addEventListener('input', () => {
+      const distance = parseFloat(this.elements.distanceSlider.value);
+      this.elements.distanceValue.textContent = distance;
       this.app.setCameraDistance(distance);
     });
 
     // Reset camera button
-    document.getElementById('resetCamera')?.addEventListener('click', () => {
+    this.elements.resetCamera?.addEventListener('click', () => {
       this.app.resetCamera();
       this.resetSliderValues();
       this.showNotification('Camera reset', 'info');
@@ -181,16 +211,16 @@ export class UIManager {
    */
   setupLightingControls() {
     // Preset buttons
-    document.getElementById('presetStudio')?.addEventListener('click', () => {
+    this.elements.presetStudio?.addEventListener('click', () => {
       this.applyLightingPreset('studio');
     });
-    document.getElementById('presetDramatic')?.addEventListener('click', () => {
+    this.elements.presetDramatic?.addEventListener('click', () => {
       this.applyLightingPreset('dramatic');
     });
-    document.getElementById('presetNatural')?.addEventListener('click', () => {
+    this.elements.presetNatural?.addEventListener('click', () => {
       this.applyLightingPreset('natural');
     });
-    document.getElementById('presetMinimal')?.addEventListener('click', () => {
+    this.elements.presetMinimal?.addEventListener('click', () => {
       this.applyLightingPreset('minimal');
     });
 
@@ -280,7 +310,7 @@ export class UIManager {
    */
   setupExportControls() {
     // Copy ASCII
-    document.getElementById('copyBtn')?.addEventListener('click', async () => {
+    this.elements.copyBtn?.addEventListener('click', async () => {
       try {
         const text = this.app.getAsciiText();
         await navigator.clipboard.writeText(text);
@@ -291,7 +321,7 @@ export class UIManager {
     });
 
     // Download ASCII
-    document.getElementById('downloadBtn')?.addEventListener('click', () => {
+    this.elements.downloadBtn?.addEventListener('click', () => {
       const text = this.app.getAsciiText();
       const blob = new Blob([text], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
@@ -310,14 +340,11 @@ export class UIManager {
    * Setup file upload
    */
   setupFileUpload() {
-    const fileInput = document.getElementById('fileInput');
-    const uploadBtn = document.getElementById('uploadBtn');
-
-    uploadBtn?.addEventListener('click', () => {
-      fileInput?.click();
+    this.elements.uploadBtn?.addEventListener('click', () => {
+      this.elements.fileInput?.click();
     });
 
-    fileInput?.addEventListener('change', (event) => {
+    this.elements.fileInput?.addEventListener('change', async (event) => {
       const file = event.target.files[0];
       if (file) {
         // Validate file extension
@@ -334,8 +361,19 @@ export class UIManager {
           return;
         }
 
-        this.showNotification(`Selected file: ${file.name}`, 'info');
-        // TODO: Implement actual model loading from file
+        this.showNotification(`Loading ${file.name}...`, 'info');
+
+        try {
+          const result = await this.app.loadModelFromFile(file);
+          if (this.elements.modelInfo) {
+            this.elements.modelInfo.textContent = result.fileName.replace(/\.(glb|gltf)$/i, '');
+          }
+          this.showNotification(`Successfully loaded ${result.fileName}!`, 'success');
+        } catch (error) {
+          this.showNotification(`Failed to load model: ${error.message}`, 'error');
+        } finally {
+          event.target.value = ''; // Clear the input for next upload
+        }
       }
     });
   }
@@ -344,9 +382,7 @@ export class UIManager {
    * Setup canvas interactions (right-click for animation switching)
    */
   setupCanvasInteractions() {
-    const container = document.getElementById('canvasContainer');
-
-    container?.addEventListener('contextmenu', (event) => {
+    this.elements.canvasContainer?.addEventListener('contextmenu', (event) => {
       event.preventDefault();
       const animInfo = this.app.switchAnimation();
       if (animInfo) {
@@ -417,9 +453,8 @@ export class UIManager {
    * @param {string} modelName - The name of the model to display
    */
   updateModelInfo(modelName) {
-    const modelInfo = document.getElementById('modelInfo');
-    if (modelInfo) {
-      modelInfo.textContent = modelName.charAt(0).toUpperCase() + modelName.slice(1);
+    if (this.elements.modelInfo) {
+      this.elements.modelInfo.textContent = modelName.charAt(0).toUpperCase() + modelName.slice(1);
     }
   }
 
