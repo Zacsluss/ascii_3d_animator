@@ -379,6 +379,13 @@ body.dark {
   }
 }
 
+.theme-selector-section:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.28) 0%, rgba(118, 75, 162, 0.28) 100%);
+  border-color: rgba(102, 126, 234, 0.5);
+  transform: translateX(2px);
+  box-shadow: 0 15px 50px rgba(102, 126, 234, 0.4);
+}
+
 .theme-selector-header {
   display: flex;
   align-items: center;
