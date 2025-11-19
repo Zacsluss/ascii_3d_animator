@@ -80,9 +80,16 @@ export class UIManager {
 
     // Next Model button
     this.elements.nextModel?.addEventListener('click', async () => {
-      const modelName = await this.app.switchModel();
-      this.updateModelInfo(modelName);
-      this.showNotification(`Loaded ${modelName} model`, 'success');
+      this.showLoadingOverlay('Loading model...');
+      try {
+        const modelName = await this.app.switchModel();
+        this.updateModelInfo(modelName);
+        this.showNotification(`Loaded ${modelName} model`, 'success');
+      } catch (error) {
+        this.showNotification(`Failed to load model: ${error.message}`, 'error');
+      } finally {
+        this.hideLoadingOverlay();
+      }
     });
 
     // Animation Speed slider
@@ -129,18 +136,50 @@ export class UIManager {
   }
 
   /**
+   * Sanitize custom character input
+   * @param {string} chars - Raw character input
+   * @returns {string} Sanitized character string
+   */
+  sanitizeCharacterInput(chars) {
+    // Remove control characters, zero-width characters, and other invisible chars
+    let sanitized = chars.replace(/[\x00-\x1F\x7F-\x9F\u200B-\u200D\uFEFF]/g, '');
+
+    // Limit length to prevent DOM overload (max 100 characters)
+    sanitized = sanitized.slice(0, 100);
+
+    // Remove duplicate characters to optimize rendering
+    sanitized = [...new Set(sanitized)].join('');
+
+    return sanitized;
+  }
+
+  /**
    * Setup custom characters input
    */
   setupCustomCharacters() {
     this.elements.applyCharsBtn?.addEventListener('click', () => {
-      const customText = this.elements.customCharsInput.value.trim();
+      let customText = this.elements.customCharsInput.value.trim();
+      customText = this.sanitizeCharacterInput(customText);
+
+      // Update input to show sanitized version
+      if (this.elements.customCharsInput.value !== customText) {
+        this.elements.customCharsInput.value = customText;
+      }
+
       this.app.updateAsciiCharacters(customText);
       this.showNotification('Custom characters applied!', 'success');
     });
 
     this.elements.customCharsInput?.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
-        const customText = this.elements.customCharsInput.value.trim();
+        let customText = this.elements.customCharsInput.value.trim();
+        customText = this.sanitizeCharacterInput(customText);
+
+        // Update input to show sanitized version
+        if (this.elements.customCharsInput.value !== customText) {
+          this.elements.customCharsInput.value = customText;
+        }
+
         this.app.updateAsciiCharacters(customText);
         this.showNotification('Custom characters applied!', 'success');
       }
@@ -612,6 +651,63 @@ export class UIManager {
         }
       }, 300);
     }, CONFIG.UI.NOTIFICATION_DURATION);
+  }
+
+  /**
+   * Show loading overlay
+   * @param {string} message - The loading message to display
+   */
+  showLoadingOverlay(message) {
+    // Remove existing overlay if present
+    this.hideLoadingOverlay();
+
+    const overlay = document.createElement('div');
+    overlay.id = 'loadingOverlay';
+    overlay.style.cssText = `
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7); z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(5px);
+    `;
+
+    overlay.innerHTML = `
+      <div style="
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 30px 50px; border-radius: 12px; text-align: center;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      ">
+        <div style="
+          width: 50px; height: 50px; border: 4px solid rgba(255,255,255,0.3);
+          border-top-color: white; border-radius: 50%; margin: 0 auto 20px;
+          animation: spin 1s linear infinite;
+        "></div>
+        <p style="
+          color: white; font-size: 18px; font-weight: 600; margin: 0;
+          font-family: 'Geist', sans-serif;
+        ">${message}</p>
+      </div>
+    `;
+
+    // Add spin animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    `;
+    overlay.appendChild(style);
+
+    document.body.appendChild(overlay);
+  }
+
+  /**
+   * Hide loading overlay
+   */
+  hideLoadingOverlay() {
+    const overlay = document.getElementById('loadingOverlay');
+    if (overlay) {
+      overlay.remove();
+    }
   }
 
   /**
