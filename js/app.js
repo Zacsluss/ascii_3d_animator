@@ -62,6 +62,12 @@ export class AsciiAnimatorApp {
     // Handle window resize with debouncing for better performance
     window.addEventListener('resize', debounce(() => this.onWindowResize(), 250));
 
+    // Handle WebGL context loss
+    this.setupWebGLContextHandling();
+
+    // Handle visibility change for pause/resume
+    this.setupVisibilityHandling();
+
     // Initial theme will be set by UIManager based on selected dropdown value
   }
 
@@ -125,6 +131,70 @@ export class AsciiAnimatorApp {
   }
 
   /**
+   * Setup WebGL context loss/restore handling
+   */
+  setupWebGLContextHandling() {
+    this.renderer.domElement.addEventListener('webglcontextlost', (event) => {
+      event.preventDefault();
+      console.warn('WebGL context lost. Attempting to restore...');
+
+      // Stop animation loop
+      this.renderer.setAnimationLoop(null);
+
+      // Show notification to user
+      const errorDiv = document.createElement('div');
+      errorDiv.id = 'webgl-context-error';
+      errorDiv.style.cssText = `
+        position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        background: #ff9800; color: white; padding: 20px 40px; border-radius: 8px;
+        font-family: Arial, sans-serif; text-align: center; z-index: 10000;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      `;
+      errorDiv.innerHTML = `
+        <h2 style="margin: 0 0 10px 0;">⚠️ Graphics Context Lost</h2>
+        <p style="margin: 0;">Attempting to restore... Please wait.</p>
+      `;
+      document.body.appendChild(errorDiv);
+    });
+
+    this.renderer.domElement.addEventListener('webglcontextrestored', () => {
+      console.log('WebGL context restored successfully');
+
+      // Remove error message
+      const errorDiv = document.getElementById('webgl-context-error');
+      if (errorDiv) {
+        document.body.removeChild(errorDiv);
+      }
+
+      // Restart animation loop
+      this.renderer.setAnimationLoop(() => this.animate());
+
+      // Reload current model to restore GPU resources
+      const currentModelName = this.modelManager.getCurrentModelName();
+      this.modelManager.loadModel(currentModelName).then((result) => {
+        this.animationManager.initialize(result.model, result.animations, result.preferredAnimation);
+      });
+    });
+  }
+
+  /**
+   * Setup visibility change handling for pause/resume
+   */
+  setupVisibilityHandling() {
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        // Page is hidden, pause clock
+        this.clock.stop();
+      } else {
+        // Page is visible again, resume clock
+        this.clock.start();
+        // Get delta to clear accumulated time
+        this.clock.getDelta();
+      }
+    });
+  }
+
+  /**
    * Load the initial model
    */
   async loadInitialModel() {
@@ -146,10 +216,44 @@ export class AsciiAnimatorApp {
    * Main animation loop
    */
   animate() {
-    const delta = this.clock.getDelta();
-    this.animationManager.update(delta);
-    this.controls.update();
-    this.asciiManager.render(this.scene, this.camera);
+    try {
+      const rawDelta = this.clock.getDelta();
+      const delta = Math.min(rawDelta, CONFIG.ANIMATION.MAX_DELTA); // Clamp delta
+
+      this.animationManager.update(delta);
+      this.controls.update();
+      this.asciiManager.render(this.scene, this.camera);
+    } catch (error) {
+      console.error('Render loop error:', error);
+      this.handleRenderError(error);
+    }
+  }
+
+  /**
+   * Handle rendering errors
+   * @param {Error} error - The error that occurred
+   */
+  handleRenderError(error) {
+    // Stop animation loop to prevent error spam
+    this.renderer.setAnimationLoop(null);
+
+    // Show user-friendly error
+    const errorDiv = document.createElement('div');
+    errorDiv.style.cssText = `
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: #ff4444; color: white; padding: 20px 40px; border-radius: 8px;
+      font-family: Arial, sans-serif; text-align: center; z-index: 10000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    `;
+    errorDiv.innerHTML = `
+      <h2 style="margin: 0 0 10px 0;">⚠️ Rendering Error</h2>
+      <p style="margin: 0 0 15px 0;">Something went wrong with the animation. Please refresh the page.</p>
+      <button onclick="location.reload()" style="
+        background: white; color: #ff4444; border: none; padding: 10px 20px;
+        border-radius: 4px; cursor: pointer; font-weight: bold;
+      ">Reload Page</button>
+    `;
+    document.body.appendChild(errorDiv);
   }
 
   /**
@@ -204,11 +308,15 @@ export class AsciiAnimatorApp {
   }
 
   /**
-   * Set ASCII density
+   * Set ASCII density with validation
    * @param {number} scale - The ASCII scale/density value
    */
   setAsciiDensity(scale) {
-    this.asciiManager.setScale(scale);
+    const clampedScale = Math.max(
+      CONFIG.ASCII.MIN_SCALE,
+      Math.min(CONFIG.ASCII.MAX_SCALE, scale)
+    );
+    this.asciiManager.setScale(clampedScale);
   }
 
   /**
@@ -227,11 +335,15 @@ export class AsciiAnimatorApp {
   }
 
   /**
-   * Set animation speed
+   * Set animation speed with validation
    * @param {number} speed - The animation speed multiplier
    */
   setAnimationSpeed(speed) {
-    this.animationManager.setSpeed(speed);
+    const clampedSpeed = Math.max(
+      CONFIG.ANIMATION.MIN_SPEED,
+      Math.min(CONFIG.ANIMATION.MAX_SPEED, speed)
+    );
+    this.animationManager.setSpeed(clampedSpeed);
   }
 
   /**
@@ -244,11 +356,15 @@ export class AsciiAnimatorApp {
   }
 
   /**
-   * Set rotation speed
+   * Set rotation speed with validation
    * @param {number} speed - The rotation speed value
    */
   setRotationSpeed(speed) {
-    this.controls.autoRotateSpeed = speed;
+    const clampedSpeed = Math.max(
+      CONFIG.ROTATION.MIN_SPEED,
+      Math.min(CONFIG.ROTATION.MAX_SPEED, speed)
+    );
+    this.controls.autoRotateSpeed = clampedSpeed;
   }
 
   /**
@@ -279,12 +395,14 @@ export class AsciiAnimatorApp {
   }
 
   /**
-   * Set individual light intensity
+   * Set individual light intensity with validation
    * @param {string} lightName - The name of the light to modify
    * @param {number} intensity - The intensity value for the light
    */
   setLightIntensity(lightName, intensity) {
-    this.lightingManager.setIntensity(lightName, intensity);
+    // Clamp intensity to reasonable range (0-20)
+    const clampedIntensity = Math.max(0, Math.min(20, intensity));
+    this.lightingManager.setIntensity(lightName, clampedIntensity);
   }
 
   /**

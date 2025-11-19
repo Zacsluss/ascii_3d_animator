@@ -15,7 +15,10 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:; connect-src 'self';"
     />
-    <link type="text/css" rel="stylesheet" href="main.css?v=101" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link type="text/css" rel="stylesheet" href="main.css?v=102" />
     <link rel="modulepreload" href="./lib/three/three.core.js" />
     <link rel="modulepreload" href="./lib/three/three.module.js" />
   </head>
