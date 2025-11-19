@@ -445,7 +445,6 @@ export class UIManager {
   applyTheme(themeKey) {
     const theme = CONFIG.THEMES[themeKey];
     if (!theme) {
-      console.error(`Theme not found: ${themeKey}`);
       return;
     }
 
