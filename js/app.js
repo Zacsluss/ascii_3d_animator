@@ -136,7 +136,6 @@ export class AsciiAnimatorApp {
   setupWebGLContextHandling() {
     this.renderer.domElement.addEventListener('webglcontextlost', (event) => {
       event.preventDefault();
-      console.warn('WebGL context lost. Attempting to restore...');
 
       // Stop animation loop
       this.renderer.setAnimationLoop(null);
@@ -158,8 +157,6 @@ export class AsciiAnimatorApp {
     });
 
     this.renderer.domElement.addEventListener('webglcontextrestored', () => {
-      console.log('WebGL context restored successfully');
-
       // Remove error message
       const errorDiv = document.getElementById('webgl-context-error');
       if (errorDiv) {
@@ -224,7 +221,6 @@ export class AsciiAnimatorApp {
       this.controls.update();
       this.asciiManager.render(this.scene, this.camera);
     } catch (error) {
-      console.error('Render loop error:', error);
       this.handleRenderError(error);
     }
   }
@@ -441,8 +437,6 @@ export class AsciiAnimatorApp {
 // Initialize app when DOM is loaded with error handling
 const app = new AsciiAnimatorApp();
 app.initialize().catch((error) => {
-  console.error('Failed to initialize ASCII Animator:', error);
-
   // Display user-friendly error message
   const errorDiv = document.createElement('div');
   errorDiv.style.cssText = `
