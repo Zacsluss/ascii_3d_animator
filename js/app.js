@@ -60,7 +60,10 @@ export class AsciiAnimatorApp {
     this.renderer.setAnimationLoop(() => this.animate());
 
     // Handle window resize with debouncing for better performance
-    window.addEventListener('resize', debounce(() => this.onWindowResize(), 250));
+    window.addEventListener(
+      'resize',
+      debounce(() => this.onWindowResize(), 250),
+    );
 
     // Handle WebGL context loss
     this.setupWebGLContextHandling();
@@ -85,12 +88,12 @@ export class AsciiAnimatorApp {
       CONFIG.CAMERA.FOV,
       width / height,
       CONFIG.CAMERA.NEAR,
-      CONFIG.CAMERA.FAR
+      CONFIG.CAMERA.FAR,
     );
     this.camera.position.set(
       CONFIG.CAMERA.DEFAULT_POSITION.x,
       CONFIG.CAMERA.DEFAULT_POSITION.y,
-      CONFIG.CAMERA.DEFAULT_POSITION.z
+      CONFIG.CAMERA.DEFAULT_POSITION.z,
     );
   }
 
@@ -169,7 +172,11 @@ export class AsciiAnimatorApp {
       // Reload current model to restore GPU resources
       const currentModelName = this.modelManager.getCurrentModelName();
       this.modelManager.loadModel(currentModelName).then((result) => {
-        this.animationManager.initialize(result.model, result.animations, result.preferredAnimation);
+        this.animationManager.initialize(
+          result.model,
+          result.animations,
+          result.preferredAnimation,
+        );
       });
     });
   }
@@ -308,10 +315,7 @@ export class AsciiAnimatorApp {
    * @param {number} scale - The ASCII scale/density value
    */
   setAsciiDensity(scale) {
-    const clampedScale = Math.max(
-      CONFIG.ASCII.MIN_SCALE,
-      Math.min(CONFIG.ASCII.MAX_SCALE, scale)
-    );
+    const clampedScale = Math.max(CONFIG.ASCII.MIN_SCALE, Math.min(CONFIG.ASCII.MAX_SCALE, scale));
     this.asciiManager.setScale(clampedScale);
   }
 
@@ -337,7 +341,7 @@ export class AsciiAnimatorApp {
   setAnimationSpeed(speed) {
     const clampedSpeed = Math.max(
       CONFIG.ANIMATION.MIN_SPEED,
-      Math.min(CONFIG.ANIMATION.MAX_SPEED, speed)
+      Math.min(CONFIG.ANIMATION.MAX_SPEED, speed),
     );
     this.animationManager.setSpeed(clampedSpeed);
   }
@@ -358,7 +362,7 @@ export class AsciiAnimatorApp {
   setRotationSpeed(speed) {
     const clampedSpeed = Math.max(
       CONFIG.ROTATION.MIN_SPEED,
-      Math.min(CONFIG.ROTATION.MAX_SPEED, speed)
+      Math.min(CONFIG.ROTATION.MAX_SPEED, speed),
     );
     this.controls.autoRotateSpeed = clampedSpeed;
   }

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2024-11-20
 
 ### Added
+
 - Initial public release
 - Real-time ASCII 3D rendering at 60 FPS
 - 5-point professional lighting system with presets
@@ -27,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Architectural Decision Records (ADRs)
 
 ### Security
+
 - Content Security Policy headers
 - Input sanitization for custom characters
 - XSS protection via meta tags
@@ -37,17 +39,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.9.0] - 2024-10-15
 
 ### Added
+
 - Rainbow theme with matrix-style animation
 - Theme selector with category grouping
 - Model loading overlay with spinner
 - File upload validation for custom models
 
 ### Changed
+
 - Reduced ASCII density for better mobile performance
 - Optimized DOM rendering pipeline (60 FPS on desktop)
 - Improved touch gesture handling
 
 ### Fixed
+
 - Memory leaks from WebGL resource disposal
 - Race conditions in model loading
 - Animation glitches after tab backgrounding
@@ -57,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.5.0] - 2024-09-01
 
 ### Added
+
 - Initial prototype
 - Basic ASCII rendering engine
 - Three.js integration

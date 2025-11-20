@@ -176,8 +176,8 @@ test.describe('ASCII 3D Animator - Smoke Tests', () => {
     await page.waitForTimeout(2000);
 
     // Check that no critical errors occurred
-    const criticalErrors = errors.filter((err) =>
-      err.includes('TypeError') || err.includes('ReferenceError')
+    const criticalErrors = errors.filter(
+      (err) => err.includes('TypeError') || err.includes('ReferenceError'),
     );
     expect(criticalErrors.length).toBe(0);
   });

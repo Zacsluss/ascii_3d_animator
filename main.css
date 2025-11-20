@@ -126,7 +126,9 @@ body.dark {
   color: var(--color-white);
   padding: 0;
   overflow-y: auto;
-  box-shadow: var(--shadow-xl), inset -1px 0 0 var(--glass-border);
+  box-shadow:
+    var(--shadow-xl),
+    inset -1px 0 0 var(--glass-border);
   transition: all var(--transition-slow) ease;
   z-index: 1000;
   border-right: 1px solid var(--glass-border);
@@ -396,16 +398,20 @@ body.dark {
 
 .theme-header-icon {
   font-size: 28px;
-  animation: bounce 2s ease-in-out infinite, icon-glow 3s ease-in-out infinite;
+  animation:
+    bounce 2s ease-in-out infinite,
+    icon-glow 3s ease-in-out infinite;
   filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.6));
 }
 
 @keyframes icon-glow {
-  0%, 100% {
+  0%,
+  100% {
     filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.6));
   }
   50% {
-    filter: drop-shadow(0 0 20px rgba(102, 126, 234, 1)) drop-shadow(0 0 30px rgba(118, 75, 162, 0.8));
+    filter: drop-shadow(0 0 20px rgba(102, 126, 234, 1))
+      drop-shadow(0 0 30px rgba(118, 75, 162, 0.8));
   }
 }
 
@@ -426,12 +432,15 @@ body.dark {
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     text-shadow: 0 0 15px rgba(102, 126, 234, 0.7);
     background-position: 0% 50%;
   }
   50% {
-    text-shadow: 0 0 30px rgba(102, 126, 234, 1), 0 0 40px rgba(118, 75, 162, 0.8);
+    text-shadow:
+      0 0 30px rgba(102, 126, 234, 1),
+      0 0 40px rgba(118, 75, 162, 0.8);
     background-position: 100% 50%;
   }
 }
@@ -467,7 +476,9 @@ body.dark {
   transition: all var(--transition-slow) ease;
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 8px 24px rgba(102, 126, 234, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -481,13 +492,17 @@ body.dark {
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.25) 0%, rgba(118, 75, 162, 0.25) 100%);
   border-color: rgba(102, 126, 234, 0.5);
   transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 12px 32px rgba(102, 126, 234, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .theme-picklist:focus {
   outline: none;
   border-color: var(--focus-ring-color);
-  box-shadow: var(--focus-ring), 0 10px 30px rgba(102, 126, 234, 0.5);
+  box-shadow:
+    var(--focus-ring),
+    0 10px 30px rgba(102, 126, 234, 0.5);
   background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
 }
 
@@ -728,7 +743,9 @@ body.dark {
 
 .slider:hover {
   background: linear-gradient(90deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25), 0 0 12px rgba(102, 126, 234, 0.2);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.25),
+    0 0 12px rgba(102, 126, 234, 0.2);
 }
 
 .slider:focus-visible {
@@ -920,7 +937,9 @@ body.dark {
 .preset-btn.active {
   background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-700) 100%);
   border-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 20px rgba(90, 103, 216, 0.5), var(--shadow-md);
+  box-shadow:
+    0 0 20px rgba(90, 103, 216, 0.5),
+    var(--shadow-md);
   transform: scale(1.02);
 }
 
@@ -1028,7 +1047,8 @@ body.psychedelic #canvasContainer > div {
 }
 
 @keyframes scrollbar-pulse {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow:
       0 0 15px rgba(102, 126, 234, 0.8),
       0 0 25px rgba(118, 75, 162, 0.6);
@@ -1191,4 +1211,3 @@ body.dark .control-section:hover {
 body.dark .control-section h3 {
   border-bottom-color: rgba(255, 255, 255, 0.08);
 }
-

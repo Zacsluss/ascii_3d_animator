@@ -142,6 +142,7 @@ export class UIManager {
    */
   sanitizeCharacterInput(chars) {
     // Remove control characters, zero-width characters, and other invisible chars
+    // eslint-disable-next-line no-control-regex
     let sanitized = chars.replace(/[\x00-\x1F\x7F-\x9F\u200B-\u200D\uFEFF]/g, '');
 
     // Limit length to prevent DOM overload (max 100 characters)
@@ -306,7 +307,7 @@ export class UIManager {
 
     this.showNotification(
       `${presetName.charAt(0).toUpperCase() + presetName.slice(1)} lighting applied`,
-      'success'
+      'success',
     );
   }
 
@@ -340,8 +341,12 @@ export class UIManager {
   updateSliderValue(sliderId, valueId, value, decimals) {
     const slider = document.getElementById(sliderId);
     const valueDisplay = document.getElementById(valueId);
-    if (slider) slider.value = value;
-    if (valueDisplay) valueDisplay.textContent = value.toFixed(decimals);
+    if (slider) {
+      slider.value = value;
+    }
+    if (valueDisplay) {
+      valueDisplay.textContent = value.toFixed(decimals);
+    }
   }
 
   /**
@@ -388,7 +393,10 @@ export class UIManager {
       if (file) {
         // Validate file extension
         if (!validateFileExtension(file, ['.glb', '.gltf'])) {
-          this.showNotification('Invalid file type. Please upload .glb or .gltf files only.', 'error');
+          this.showNotification(
+            'Invalid file type. Please upload .glb or .gltf files only.',
+            'error',
+          );
           event.target.value = ''; // Clear the input
           return;
         }
@@ -463,7 +471,7 @@ export class UIManager {
       if (theme.psychedelic) {
         // Clear inline styles so CSS animations can take control
         domElement.style.backgroundColor = theme.bg;
-        domElement.style.color = '';  // Clear color - let CSS animation handle it
+        domElement.style.color = ''; // Clear color - let CSS animation handle it
         domElement.style.textShadow = '';
       } else {
         // Set background and foreground colors for normal themes
@@ -600,7 +608,9 @@ export class UIManager {
 
     closeBtn.addEventListener('click', () => document.body.removeChild(modal));
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) document.body.removeChild(modal);
+      if (e.target === modal) {
+        document.body.removeChild(modal);
+      }
     });
 
     // Create content container

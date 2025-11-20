@@ -6,6 +6,7 @@
 <br/>
 
 <!-- Animated Typing Subtitle -->
+
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=FFFFFF&center=true&vCenter=true&width=700&height=50&lines=60+FPS+real-time+rendering;5-point+professional+lighting+system;100%25+offline+capable+%E2%80%A2+Zero+dependencies" alt="Typing SVG" /></a>
 
 <br/>
@@ -53,11 +54,12 @@ Real-time 3D model conversion to animated ASCII art at 60 FPS. Features a 5-poin
 
 <img src="animator.gif" alt="ASCII 3D Animator Preview" width="800"/>
 
-*Real-time 3D to ASCII conversion with interactive lighting controls*
+_Real-time 3D to ASCII conversion with interactive lighting controls_
 
 </div>
 
 **Key Features:**
+
 - ✨ Real-time ASCII rendering (not pre-rendered)
 - 🎮 4 animated 3D models with custom loader support
 - 🔬 Professional 5-point lighting system with presets
@@ -90,24 +92,29 @@ python -m http.server 8000
 ## 🎮 Usage
 
 ### Controls
+
 - **Mouse drag** - Rotate camera
 - **Scroll wheel** - Zoom in/out
 - **Touch gestures** - Full mobile support (pinch, pan)
 
 ### Lighting Presets
+
 - 🎬 **Studio** - Balanced 3-point setup
 - 🎭 **Dramatic** - High contrast with shadows
 - 🌿 **Natural** - Soft, even lighting
 - 🔘 **Minimal** - Single light source
 
 ### Visual Themes
+
 Choose from 20+ themes including:
+
 - 🖥️ **Retro** - Amber CRT, Green Phosphor, IBM Blue
 - 🌃 **Neon** - Cyberpunk, Purple Haze
 - 🎭 **Popular** - Dracula, Nord, Solarized, Gruvbox
 - 🌈 **Experimental** - Animated rainbow with Matrix effects
 
 ### Customize
+
 - **Characters:** Type your name or symbols (`@#$%&*`) for custom ASCII palettes
 - **Export:** Copy to clipboard or download as text file
 
@@ -136,12 +143,14 @@ graph TD
 ```
 
 **Design Patterns:**
+
 - Manager Pattern for separation of concerns
 - Facade Pattern via AsciiAnimatorApp coordinator
 - Dependency Injection for testability
 - Single Responsibility Principle throughout
 
 **Code Quality:**
+
 - JSDoc comments on every function (100% coverage)
 - Zero console statements (production-ready)
 - Semantic HTML with ARIA accessibility
@@ -154,6 +163,7 @@ graph TD
 This project demonstrates production-grade frontend engineering:
 
 ### Technical Skills
+
 - ✅ **Architecture:** Manager pattern, SOLID principles, dependency injection
 - ✅ **Performance:** 60 FPS optimization, delta clamping, resource management
 - ✅ **Security:** Input validation, sanitization, CSP headers
@@ -161,24 +171,28 @@ This project demonstrates production-grade frontend engineering:
 - ✅ **Testing:** Vitest with mocks, unit + integration tests
 
 ### Key Challenges Solved
+
 1. **Performance:** Optimized DOM rendering from 15 FPS to 60 FPS (50,000 elements)
 2. **Memory Management:** Implemented proper WebGL resource disposal (geometries, materials, textures)
 3. **Race Conditions:** Load versioning to handle rapid model switching
 4. **Mobile UX:** Touch controls with <16ms latency on real devices
 
 ### Metrics
+
 - **Lines of Code:** ~1,500 (excluding tests/docs)
 - **Performance:** 60 FPS desktop, 30-45 FPS mobile
 - **Load Time:** 1.2s desktop, 2.8s mobile
 - **Memory:** ~180MB desktop, ~120MB mobile
 
 ### Architecture Decisions
+
 - **No build process:** Deliberate choice for offline-first capability
 - **Vanilla JS:** Demonstrates platform mastery without framework dependencies
 - **Local bundling:** All 80MB assets included for true offline capability
 - **Manager pattern:** Easy to test, maintain, and extend
 
 ### Questions I Can Answer
+
 - "Walk me through the rendering pipeline from 3D model to ASCII output"
 - "How did you handle WebGL memory leaks?"
 - "What would you change to scale this to 10,000 concurrent users?"
@@ -190,18 +204,19 @@ This project demonstrates production-grade frontend engineering:
 
 <div align="center">
 
-| Metric | Desktop (1920×1080) | Mobile (iPhone 12) |
-|--------|---------------------|-------------------|
-| Frame Rate | 60 FPS | 30-45 FPS |
-| Load Time | 1.2s | 2.8s |
-| Memory Usage | ~180 MB | ~120 MB |
-| Render Time | ~16ms/frame | ~22ms/frame |
+| Metric       | Desktop (1920×1080) | Mobile (iPhone 12) |
+| ------------ | ------------------- | ------------------ |
+| Frame Rate   | 60 FPS              | 30-45 FPS          |
+| Load Time    | 1.2s                | 2.8s               |
+| Memory Usage | ~180 MB             | ~120 MB            |
+| Render Time  | ~16ms/frame         | ~22ms/frame        |
 
 </div>
 
 **Bundle Size:** ~80MB total (2.1MB code + 78MB 3D models)
 
 **Optimization Strategies:**
+
 - Local library bundling (no CDN latency)
 - Efficient GLTF model compression
 - Modular ES6 imports
@@ -220,6 +235,7 @@ This is a **portfolio/demo project** optimized for offline capability and code c
 - **Model Pivot Points:** Some models rotate off-center (baked into GLTF geometry)
 
 **For production scale (10,000+ users), I would architect differently:**
+
 - CDN-hosted models with streaming
 - Canvas 2D renderer for mobile
 - Backend API for model gallery
