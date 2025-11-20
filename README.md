@@ -20,13 +20,23 @@
   </a>
 </p>
 
-<!-- GitHub Stats Badges -->
+<!-- Quality & Stats Badges -->
+<p align="center">
+  <a href="https://github.com/Zacsluss/ascii_3d_animator/actions/workflows/test.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/Zacsluss/ascii_3d_animator/test.yml?branch=main&label=tests&logo=github&style=flat-square" alt="Tests"/>
+  </a>
+  <a href="https://codecov.io/gh/Zacsluss/ascii_3d_animator">
+    <img src="https://img.shields.io/codecov/c/github/Zacsluss/ascii_3d_animator?logo=codecov&style=flat-square" alt="Coverage"/>
+  </a>
+  <img src="https://img.shields.io/github/license/Zacsluss/ascii_3d_animator?style=flat-square&color=555555" alt="License"/>
+  <img src="https://img.shields.io/github/last-commit/Zacsluss/ascii_3d_animator?style=flat-square&color=666666" alt="Last Commit"/>
+</p>
+
+<!-- Social Badges -->
 <p align="center">
   <img src="https://img.shields.io/github/stars/Zacsluss/ascii_3d_animator?style=social" alt="Stars"/>
   <img src="https://img.shields.io/github/forks/Zacsluss/ascii_3d_animator?style=social" alt="Forks"/>
   <img src="https://img.shields.io/github/watchers/Zacsluss/ascii_3d_animator?style=social" alt="Watchers"/>
-  <img src="https://img.shields.io/github/license/Zacsluss/ascii_3d_animator?style=flat-square&color=555555" alt="License"/>
-  <img src="https://img.shields.io/github/last-commit/Zacsluss/ascii_3d_animator?style=flat-square&color=666666" alt="Last Commit"/>
 </p>
 
 </div>
