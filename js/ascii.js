@@ -62,7 +62,9 @@ export class AsciiManager {
    * - scaleFactor=0.5: Render 400px worth of chars, scale(2.0) = 0.5x density (chars appear larger)
    */
   updateScale() {
-    if (!this.effect || !this.container) return;
+    if (!this.effect || !this.container) {
+      return;
+    }
 
     // Get current container dimensions
     const rect = this.container.getBoundingClientRect();

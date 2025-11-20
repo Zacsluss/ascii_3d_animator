@@ -40,5 +40,5 @@ export function validateFileSize(file, maxSizeMB) {
  */
 export function validateFileExtension(file, allowedExtensions) {
   const fileName = file.name.toLowerCase();
-  return allowedExtensions.some(ext => fileName.endsWith(ext));
+  return allowedExtensions.some((ext) => fileName.endsWith(ext));
 }

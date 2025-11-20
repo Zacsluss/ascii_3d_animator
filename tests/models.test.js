@@ -52,7 +52,11 @@ vi.mock('../lib/three/three.module.js', () => ({
     }),
   })),
   Vector3: vi.fn(() => ({ x: 0, y: 0, z: 0 })),
-  MeshLambertMaterial: vi.fn((params) => ({ ...mockMaterial, type: 'MeshLambertMaterial', ...params })),
+  MeshLambertMaterial: vi.fn((params) => ({
+    ...mockMaterial,
+    type: 'MeshLambertMaterial',
+    ...params,
+  })),
   Color: vi.fn((color) => ({ r: 1, g: 1, b: 1 })),
 }));
 

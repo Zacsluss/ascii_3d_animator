@@ -22,22 +22,17 @@
     "quotes": ["error", "single", { "avoidEscape": true }],
     "semi": ["error", "always"],
     "indent": ["error", 2],
-    "linebreak-style": ["error", "unix"],
     "max-len": ["warn", { "code": 100, "ignoreUrls": true, "ignoreStrings": true }],
     "no-multiple-empty-lines": ["error", { "max": 1 }],
     "no-trailing-spaces": "error",
-    "space-before-function-paren": ["error", {
-      "anonymous": "always",
-      "named": "never",
-      "asyncArrow": "always"
-    }]
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ]
   },
-  "ignorePatterns": [
-    "node_modules/",
-    "lib/",
-    "*.min.js",
-    "dist/",
-    "build/",
-    "coverage/"
-  ]
+  "ignorePatterns": ["node_modules/", "lib/", "*.min.js", "dist/", "build/", "coverage/"]
 }

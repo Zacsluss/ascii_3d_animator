@@ -54,7 +54,9 @@ export class AnimationManager {
    * @param {THREE.AnimationClip} clip - Animation clip to play
    */
   playAnimation(clip) {
-    if (!this.mixer || !clip) return;
+    if (!this.mixer || !clip) {
+      return;
+    }
 
     if (this.currentPlayingAction) {
       this.currentPlayingAction.stop();
@@ -103,7 +105,9 @@ export class AnimationManager {
    * @param {number} delta - Time delta (optional, uses internal clock if not provided)
    */
   update(delta = null) {
-    if (!this.mixer) return;
+    if (!this.mixer) {
+      return;
+    }
 
     const dt = delta !== null ? delta : this.clock.getDelta();
     const clampedDelta = Math.min(dt, CONFIG.ANIMATION.MAX_DELTA);

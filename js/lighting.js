@@ -51,7 +51,7 @@ export class LightingManager {
     this.lights.spotlight.position.set(
       POSITIONS.SPOTLIGHT.x,
       POSITIONS.SPOTLIGHT.y,
-      POSITIONS.SPOTLIGHT.z
+      POSITIONS.SPOTLIGHT.z,
     );
     this.lights.spotlight.target.position.set(0, 0, 0);
     this.lights.spotlight.angle = Math.PI / 4;
@@ -68,7 +68,9 @@ export class LightingManager {
    */
   setPreset(presetName) {
     const preset = CONFIG.LIGHTING.PRESETS[presetName];
-    if (!preset) return;
+    if (!preset) {
+      return;
+    }
 
     this.lights.main.intensity = preset.main;
     this.lights.ambient.intensity = preset.ambient;

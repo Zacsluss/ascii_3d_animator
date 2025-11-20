@@ -54,7 +54,7 @@ export class ModelManager {
         undefined,
         (error) => {
           reject(error);
-        }
+        },
       );
     });
   }
@@ -107,7 +107,7 @@ export class ModelManager {
           // Revoke the object URL even on error
           URL.revokeObjectURL(url);
           reject(error);
-        }
+        },
       );
     });
   }
@@ -149,7 +149,9 @@ export class ModelManager {
    * @param {THREE.Mesh} mesh - Mesh to configure
    */
   configureMaterial(mesh) {
-    if (!mesh.material) return;
+    if (!mesh.material) {
+      return;
+    }
 
     const material = mesh.material;
 
@@ -157,9 +159,8 @@ export class ModelManager {
     if (material.type === 'MeshStandardMaterial' || material.type === 'MeshPhysicalMaterial') {
       material.metalness = 0.1;
       material.roughness = 0.8;
-    }
-    // Convert MeshBasicMaterial to MeshLambertMaterial (Basic doesn't respond to lights)
-    else if (material.type === 'MeshBasicMaterial' || material.type === 'MeshLambertMaterial') {
+    } else if (material.type === 'MeshBasicMaterial' || material.type === 'MeshLambertMaterial') {
+      // Convert MeshBasicMaterial to MeshLambertMaterial (Basic doesn't respond to lights)
       if (material.type === 'MeshBasicMaterial') {
         const oldMaterial = material;
         mesh.material = new THREE.MeshLambertMaterial({
@@ -169,9 +170,8 @@ export class ModelManager {
           opacity: oldMaterial.opacity,
         });
       }
-    }
-    // Convert unknown material types to Lambert
-    else {
+    } else {
+      // Convert unknown material types to Lambert
       const oldMaterial = material;
       mesh.material = new THREE.MeshLambertMaterial({
         color: oldMaterial.color || new THREE.Color(0xffffff),
@@ -188,20 +188,28 @@ export class ModelManager {
    * Dispose of current model and free memory
    */
   disposeCurrentModel() {
-    if (!this.currentModel) return;
+    if (!this.currentModel) {
+      return;
+    }
 
     this.currentModel.traverse((child) => {
       if (child.isMesh) {
-        if (child.geometry) child.geometry.dispose();
+        if (child.geometry) {
+          child.geometry.dispose();
+        }
 
         if (child.material) {
           if (Array.isArray(child.material)) {
             child.material.forEach((mat) => {
-              if (mat.map) mat.map.dispose();
+              if (mat.map) {
+                mat.map.dispose();
+              }
               mat.dispose();
             });
           } else {
-            if (child.material.map) child.material.map.dispose();
+            if (child.material.map) {
+              child.material.map.dispose();
+            }
             child.material.dispose();
           }
         }
