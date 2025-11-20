@@ -15,8 +15,7 @@ build/
 *.min.js
 *.map
 
-# Documentation
-docs/
+# Documentation (auto-generated)
 out/
 
 # Environment variables
@@ -116,22 +115,11 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 .yarn/install-state.gz
 .pnp.*
 
-# Development configs
-*.config.json
-.eslintrc*
-.prettierrc*
-.prettierignore
-
 # Claude Code tooling
 .claude/
 
-# Testing
-tests/
-vitest.config.js
-
 # Development configs
 jsdoc.json
-package.json
 
 # Failed experiments
 rat_centered_torso.glb
