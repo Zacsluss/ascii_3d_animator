@@ -14,7 +14,7 @@
 <!-- Main Action Buttons -->
 <p align="center">
   <a href="https://zacsluss.github.io/ascii_3d_animator">
-    <img src="https://img.shields.io/badge/🚀_VIEW-LIVE_DEMO-2e8b57?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white" alt="Live Site"/>
+    <img src="https://img.shields.io/badge/🚀_LAUNCH-APP-2e8b57?style=for-the-badge&labelColor=000000&logo=vercel&logoColor=white" alt="Launch App"/>
   </a>
   <a href="https://github.com/Zacsluss/ascii_3d_animator/archive/refs/heads/main.zip">
     <img src="https://img.shields.io/badge/⬇️_DOWNLOAD-PROJECT-d97706?style=for-the-badge&labelColor=000000&logo=github&logoColor=white" alt="Download"/>
