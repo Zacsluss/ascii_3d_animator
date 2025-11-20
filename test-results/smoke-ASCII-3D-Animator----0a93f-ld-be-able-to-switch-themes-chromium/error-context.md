@@ -1,0 +1,170 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#canvasContainer"
+  - complementary "Control panel" [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]: "[ ]"
+        - heading "A S C I I A N I M A T O R" [level=1] [ref=e7]:
+          - generic [ref=e8]: A
+          - generic [ref=e9]: S
+          - generic [ref=e10]: C
+          - generic [ref=e11]: I
+          - generic [ref=e12]: I
+          - generic [ref=e13]: A
+          - generic [ref=e14]: "N"
+          - generic [ref=e15]: I
+          - generic [ref=e16]: M
+          - generic [ref=e17]: A
+          - generic [ref=e18]: T
+          - generic [ref=e19]: O
+          - generic [ref=e20]: R
+        - generic [ref=e21]: "[ ]"
+      - generic [ref=e22]: Transform 3D to ASCII Art
+    - generic [ref=e23]:
+      - region "Choose Your Theme" [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e26]: 🎨
+          - heading "Choose Your Theme" [level=2] [ref=e27]
+          - generic [ref=e28]: ✨
+        - combobox "Select ASCII theme" [ref=e30] [cursor=pointer]:
+          - option "📟 Classic (Black on White)"
+          - option "🖤 Classic Dark (White on Black)"
+          - option "🟠 Amber CRT - Vintage Monitor"
+          - option "💚 Green Phosphor"
+          - option "💙 IBM Blue - Mainframe"
+          - option "🍏 Apple II"
+          - option "🏙️ Neon City - Electric Cyan"
+          - option "💜 Purple Haze"
+          - option "🧛 Dracula"
+          - option "❄️ Nord - Arctic" [selected]
+          - option "☀️ Solarized Dark"
+          - option "🌾 Gruvbox - Warm Earth"
+          - option "🎨 Monokai"
+          - option "🌊 Ocean - Deep Sea"
+          - option "🔥 Fire - Burning Flames"
+          - option "📐 Blueprint - Technical"
+          - option "🖍️ Chalkboard"
+          - option "📰 Newspaper - Vintage Print"
+          - option "🩻 X-Ray - Medical"
+          - option "🌈 Experimental Rainbow"
+      - region "Display Controls" [ref=e31]:
+        - heading "Display Controls" [level=3] [ref=e32]
+        - button "Show help" [ref=e34] [cursor=pointer]:
+          - generic [ref=e35]: ❓
+          - text: Help & Controls
+        - generic [ref=e36]:
+          - generic [ref=e37]: ASCII Density
+          - slider "ASCII density" [ref=e38] [cursor=pointer]: "1.2"
+          - generic "Detail level" [ref=e39]: "1.2"
+        - generic [ref=e40]:
+          - generic [ref=e41]: Custom ASCII Characters
+          - textbox "Custom ASCII characters" [ref=e42]:
+            - /placeholder: Type custom characters (e.g. HELLO WORLD)
+          - generic [ref=e43]:
+            - button "Apply custom characters" [ref=e44] [cursor=pointer]: Apply
+            - button "Reset to default characters" [ref=e45] [cursor=pointer]: Reset
+      - region "Model" [ref=e46]:
+        - heading "Model" [level=3] [ref=e47]
+        - generic [ref=e48]:
+          - button "Load next model" [ref=e49] [cursor=pointer]:
+            - generic [ref=e50]: 🔄
+            - text: Next Model
+          - generic "Current model" [ref=e51]: Rat
+        - generic [ref=e52]:
+          - generic [ref=e53]: Animation Speed
+          - slider "Animation speed" [ref=e54] [cursor=pointer]: "0.6"
+          - generic "Animation speed" [ref=e55]: "0.6"
+      - region "Camera" [ref=e56]:
+        - heading "Camera" [level=3] [ref=e57]
+        - button "Toggle auto-rotation" [pressed] [ref=e59] [cursor=pointer]:
+          - generic [ref=e60]: ⟲
+          - text: Stop Rotation
+        - generic [ref=e61]:
+          - generic [ref=e62]: Rotation Speed
+          - slider "Rotation speed" [ref=e63] [cursor=pointer]: "2"
+          - generic "Spin speed" [ref=e64]: "2.0"
+        - generic [ref=e65]:
+          - generic [ref=e66]: Camera Distance
+          - slider "Camera distance" [ref=e67] [cursor=pointer]: "1000"
+          - generic "Zoom level" [ref=e68]: "1000"
+        - button "Reset camera to default" [ref=e70] [cursor=pointer]:
+          - generic [ref=e71]: ⌂
+          - text: Reset Camera
+      - region "Lighting" [ref=e72]:
+        - heading "Lighting" [level=3] [ref=e73]
+        - group "Lighting presets" [ref=e75]:
+          - button "Studio lighting" [ref=e76] [cursor=pointer]: Studio
+          - button "Dramatic lighting" [ref=e77] [cursor=pointer]: Dramatic
+          - button "Natural lighting" [ref=e78] [cursor=pointer]: Natural
+          - button "Minimal lighting" [ref=e79] [cursor=pointer]: Minimal
+        - generic [ref=e80]:
+          - generic [ref=e81]: Front Light Intensity
+          - slider "Front light intensity" [ref=e82] [cursor=pointer]: "10"
+          - generic "Front light brightness" [ref=e83]: "10"
+        - generic [ref=e84]:
+          - generic [ref=e85]: Ambient Light
+          - slider "Ambient light intensity" [ref=e86] [cursor=pointer]: "0.1"
+          - generic "Overall brightness" [ref=e87]: "0.1"
+        - generic [ref=e88]:
+          - generic [ref=e89]: Right Light Intensity
+          - slider "Right light intensity" [ref=e90] [cursor=pointer]: "10"
+          - generic "Right light brightness" [ref=e91]: "10"
+        - generic [ref=e92]:
+          - generic [ref=e93]: Left Light Intensity
+          - slider "Left light intensity" [ref=e94] [cursor=pointer]: "10"
+          - generic "Left light brightness" [ref=e95]: "10"
+        - generic [ref=e96]:
+          - generic [ref=e97]: Overhead Spotlight Intensity
+          - slider "Spotlight intensity" [ref=e98] [cursor=pointer]: "3"
+          - generic "Top spotlight brightness" [ref=e99]: "3"
+      - region "Export" [ref=e100]:
+        - heading "Export" [level=3] [ref=e101]
+        - button "Copy ASCII to clipboard" [ref=e103] [cursor=pointer]:
+          - generic [ref=e104]: 📋
+          - text: Copy ASCII
+        - button "Download ASCII as file" [ref=e106] [cursor=pointer]:
+          - generic [ref=e107]: 💾
+          - text: Download
+      - region "Import" [ref=e108]:
+        - heading "Import" [level=3] [ref=e109]
+        - button "Upload custom model" [ref=e111] [cursor=pointer]:
+          - generic [ref=e112]: 📁
+          - text: Upload Model
+  - main "ASCII art display canvas" [ref=e113]:
+    - table [ref=e115]:
+      - rowgroup [ref=e116]:
+        - row [ref=e117]:
+          - cell [ref=e118]:
+            - text: "}8@$%$$$$$$$O $"
+            - text: MoM*$@$$$$$$$$$$$$$$ b$$
+            - text: ohpwW%$%$$$$$$$$$$$$$$$$$$@ $$$$$
+            - text: qOqw&W&&88*$$$$$$$$$$$$$$$$$z$$$$$$$$$$$$$$$$.
+            - text: "wCJOphd*WhW@$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$}"
+            - text: LCJuzJZmkqd%#%$$$$$$c$$$$$$$ZL$$$$$$$$$$$$$$$$$$O [
+            - text: qLpuxvzY0Omwa$$$$$$$&8$$$$$$dqoB&$$$$$$$8$$$$$$$$$$
+            - text: fQOJ|//ffzC\0%B%%$$o**o*$$$$ahpQ0b8$$$$$$$$$$$$$$$$$$
+            - text: Q0Wq(||||(\\ZqdM#**M00QLqm$oq0Umk@h*o$$$$$$$$$$$$$$$$$ '
+            - text: "Y$$$O)||(((((()MokpJXn)(XU{1XX|rwm$$$$L$$$$$$$$$$$$$$$$$$ ` X ,"
+            - text: "[ u$$$$p))((())))Jokxft1))|j}}){1jq%bZ{$}#$$$$$$$$$$$$$$$$$$ J Z ?"
+            - text: b$$$$$v))))))))dkdqcx111111|1z%B@qWwB$@$$$$B$B$$$$$$$$$$$$$w ?,
+            - text: "1@$$$$$$$11)))QOmq|/f}}{{{111}](txvdbo*%%$@BMMW$$$$$$$$$$$$$C , f zz"
+            - text: "m$$$$$$$$111)1mm#kqXJ[}}[[{[]??~()fXcQmZpb8awboWW$$$$$$$$$$$ b"
+            - text: "-$w}#$$$$$${1111{XC&odqZ~~L?][_f-+++][({_?}}11YCmwM#$$$$@$$$$$+ ;`"
+            - text: "$+$ $ ($ [{1{/kwpm#a#ax!ii_i!_+i~+~!iij)i?x}{|}ZQ@$$$}{0B$ [C"
+            - text: "{1{)UMba#$$o@!!!i!!!!!+Li~i!!c$bmiQ%]%!\\!kB!$"
+            - text: "{1jmZB@$$$$$B&#[1(Y!~-[ju z, ,,Jhz#{$$at$"
+            - text: 11JaMa*$$$$$$%M#@@h I 0
+            - text: "}{{v*$$$$$$$$aM$$8U \""
+            - text: "}#$$$$$$$$$$$$$~"
+            - text: O_h$$$$$$$$
+            - text: ;~vB$$$$$$)
+            - text: "!8Q$$$$$U"
+            - text: "}$$$$$$"
+            - text: u$$$$$$&\$$
+            - text: $O $ ]$ %$
+            - text: C v)
+```
