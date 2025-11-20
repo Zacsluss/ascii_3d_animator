@@ -24,7 +24,7 @@ const createMockLight = (color, intensity = 0) => ({
 });
 
 vi.mock('../lib/three/three.module.js', () => ({
-  PointLight: vi.fn((color, intensity, distance, decay) => createMockLight(color, intensity)),
+  PointLight: vi.fn((color, intensity, _distance, _decay) => createMockLight(color, intensity)),
   AmbientLight: vi.fn((color, intensity) => createMockLight(color, intensity)),
   SpotLight: vi.fn((color, intensity) => ({
     ...createMockLight(color, intensity),

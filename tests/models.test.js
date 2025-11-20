@@ -57,7 +57,7 @@ vi.mock('../lib/three/three.module.js', () => ({
     type: 'MeshLambertMaterial',
     ...params,
   })),
-  Color: vi.fn((color) => ({ r: 1, g: 1, b: 1 })),
+  Color: vi.fn((_color) => ({ r: 1, g: 1, b: 1 })),
 }));
 
 describe('ModelManager', () => {
