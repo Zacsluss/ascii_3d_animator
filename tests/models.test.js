@@ -36,26 +36,24 @@ vi.mock('../lib/three/GLTFLoader.js', () => ({
 }));
 
 vi.mock('../lib/three/three.module.js', () => ({
-  default: {
-    Box3: vi.fn(() => ({
-      setFromObject: vi.fn().mockReturnThis(),
-      getSize: vi.fn((v) => {
-        v.x = 100;
-        v.y = 100;
-        v.z = 100;
-        return v;
-      }),
-      getCenter: vi.fn((v) => {
-        v.x = 0;
-        v.y = 0;
-        v.z = 0;
-        return v;
-      }),
-    })),
-    Vector3: vi.fn(() => ({ x: 0, y: 0, z: 0 })),
-    MeshLambertMaterial: vi.fn((params) => ({ ...mockMaterial, type: 'MeshLambertMaterial', ...params })),
-    Color: vi.fn((color) => ({ r: 1, g: 1, b: 1 })),
-  },
+  Box3: vi.fn(() => ({
+    setFromObject: vi.fn().mockReturnThis(),
+    getSize: vi.fn((v) => {
+      v.x = 100;
+      v.y = 100;
+      v.z = 100;
+      return v;
+    }),
+    getCenter: vi.fn((v) => {
+      v.x = 0;
+      v.y = 0;
+      v.z = 0;
+      return v;
+    }),
+  })),
+  Vector3: vi.fn(() => ({ x: 0, y: 0, z: 0 })),
+  MeshLambertMaterial: vi.fn((params) => ({ ...mockMaterial, type: 'MeshLambertMaterial', ...params })),
+  Color: vi.fn((color) => ({ r: 1, g: 1, b: 1 })),
 }));
 
 describe('ModelManager', () => {

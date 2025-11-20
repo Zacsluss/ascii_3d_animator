@@ -22,11 +22,9 @@ const mockClock = {
 };
 
 vi.mock('../lib/three/three.module.js', () => ({
-  default: {
-    AnimationMixer: vi.fn(() => mockAnimationMixer),
-    Clock: vi.fn(() => mockClock),
-    LoopRepeat: 2201,
-  },
+  AnimationMixer: vi.fn(() => mockAnimationMixer),
+  Clock: vi.fn(() => mockClock),
+  LoopRepeat: 2201,
 }));
 
 describe('AnimationManager', () => {
