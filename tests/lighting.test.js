@@ -7,11 +7,11 @@ const mockScene = {
   add: vi.fn(),
 };
 
-const mockLight = {
+const createMockLight = (color, intensity = 0) => ({
   position: {
     set: vi.fn(),
   },
-  intensity: 0,
+  intensity: intensity,
   target: {
     position: {
       set: vi.fn(),
@@ -21,14 +21,15 @@ const mockLight = {
   penumbra: 0,
   decay: 0,
   distance: 0,
-};
+});
 
 vi.mock('../lib/three/three.module.js', () => ({
-  default: {
-    PointLight: vi.fn(() => ({ ...mockLight })),
-    AmbientLight: vi.fn(() => ({ ...mockLight })),
-    SpotLight: vi.fn(() => ({ ...mockLight, target: { position: { set: vi.fn() } } })),
-  },
+  PointLight: vi.fn((color, intensity, distance, decay) => createMockLight(color, intensity)),
+  AmbientLight: vi.fn((color, intensity) => createMockLight(color, intensity)),
+  SpotLight: vi.fn((color, intensity) => ({
+    ...createMockLight(color, intensity),
+    target: { position: { set: vi.fn() } },
+  })),
 }));
 
 describe('LightingManager', () => {
