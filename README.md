@@ -44,6 +44,7 @@
 I work on enterprise platforms by day and build unusually fun projects by night. This tool converts **3D animated models** into **real-time ASCII art** at 60 FPS. Not pre-rendered frames—actual live WebGL rendering with interactive lighting controls.
 
 **What makes it interesting:**
+
 - Custom 5-point lighting system with professional presets
 - 20+ visual themes (retro CRT, neon cyberpunk, matrix rainbow)
 - 100% offline capable—no CDN, no build process, no dependencies
@@ -55,7 +56,7 @@ Built with Three.js, WebGL, and pure vanilla JavaScript!
 
 <img src="animator.gif" alt="ASCII 3D Animator Preview" width="800"/>
 
-*Real-time 3D to ASCII conversion with interactive lighting controls*
+_Real-time 3D to ASCII conversion with interactive lighting controls_
 
 </div>
 
@@ -70,6 +71,7 @@ Built with Three.js, WebGL, and pure vanilla JavaScript!
 </div>
 
 **Key Features:**
+
 - ✨ Real-time ASCII rendering (not pre-rendered frames)
 - 🎮 4 animated 3D models with custom GLTF loader support
 - 🔬 Professional 5-point lighting system with studio presets
@@ -238,6 +240,7 @@ graph LR
 <td width="50%">
 
 #### Desktop (1920×1080)
+
 <table>
 <tr><th align="center">Metric</th><th align="center">Value</th></tr>
 <tr><td align="center">Frame Rate</td><td align="center">60 FPS</td></tr>
@@ -250,6 +253,7 @@ graph LR
 <td width="50%">
 
 #### Mobile (iPhone 12)
+
 <table>
 <tr><th align="center">Metric</th><th align="center">Value</th></tr>
 <tr><td align="center">Frame Rate</td><td align="center">30-45 FPS</td></tr>
@@ -279,12 +283,14 @@ Total                   ~80 MB   (uncompressed, offline-first)
 ```
 
 **Why so large?**
+
 - ✅ 100% offline capability (no CDN dependencies)
 - ✅ Includes all Three.js libraries locally
 - ✅ 4 high-quality animated 3D models bundled
 - ✅ Deliberate trade-off: bundle size for offline-first UX
 
 **For production scale, I would architect differently:**
+
 - CDN-hosted libraries (Three.js from jsDelivr)
 - Lazy-loaded models (stream on-demand)
 - Asset compression (gzip + brotli)
@@ -328,6 +334,7 @@ python -m http.server 8000
 **That's it!** No npm install, no build process, no dependencies to manage.
 
 **Available npm scripts (dev only):**
+
 - `npm test` — Run unit tests with Vitest
 - `npm run test:coverage` — Generate coverage report
 - `npm run lint` — Check code with ESLint
@@ -345,11 +352,13 @@ python -m http.server 8000
 <br/>
 
 ### Desktop Controls
+
 - **Mouse drag** - Rotate camera around model
 - **Scroll wheel** - Zoom in/out
 - **Next Model button** - Cycle through 4 animated models
 
 ### Mobile Controls
+
 - **Touch drag** - Rotate camera
 - **Pinch gesture** - Zoom in/out
 - **Tap buttons** - Change models, themes, lighting
@@ -377,17 +386,20 @@ python -m http.server 8000
 Choose from 20+ themes including:
 
 **🖥️ Retro:**
+
 - Amber CRT
 - Green Phosphor
 - IBM Blue
 - White Monochrome
 
 **🌃 Neon:**
+
 - Cyberpunk (pink/cyan)
 - Purple Haze
 - Miami Vice
 
 **🎭 Popular:**
+
 - Dracula
 - Nord
 - Solarized Dark
@@ -395,6 +407,7 @@ Choose from 20+ themes including:
 - Monokai
 
 **🌈 Experimental:**
+
 - Matrix Rainbow (animated)
 
 </details>
@@ -405,6 +418,7 @@ Choose from 20+ themes including:
 <br/>
 
 Type any text to create custom ASCII palettes:
+
 - Your name: `ZACHARY`
 - Symbols: `@#$%&*+=`
 - Numbers: `0123456789`
@@ -443,24 +457,28 @@ Characters are sorted by visual density for optimal shading.
 <br/>
 
 ### Architecture & Design Patterns
+
 - ✅ **Manager Pattern** - Separation of concerns with single responsibility
 - ✅ **Facade Pattern** - AsciiAnimatorApp coordinates all managers
 - ✅ **Dependency Injection** - Managers receive dependencies for testability
 - ✅ **SOLID Principles** - Clean, maintainable, extensible code
 
 ### Performance Optimization
+
 - ✅ **60 FPS rendering** - Optimized DOM updates and WebGL calls
 - ✅ **Delta clamping** - Prevents spiral of death on slow devices
 - ✅ **Resource management** - Proper disposal of geometries, materials, textures
 - ✅ **Memory efficiency** - ~180MB desktop, ~120MB mobile
 
 ### Security & Quality
+
 - ✅ **Input validation** - Sanitization for custom character sets
 - ✅ **CSP headers** - Content Security Policy for XSS protection
 - ✅ **No console statements** - Production-ready code
 - ✅ **Error boundaries** - Graceful degradation on WebGL failures
 
 ### Testing & Documentation
+
 - ✅ **109 passing tests** - Vitest with mocks and isolation
 - ✅ **85% code coverage** - Unit + integration tests
 - ✅ **100% JSDoc coverage** - Every function documented
@@ -481,18 +499,21 @@ Characters are sorted by visual density for optimal shading.
 <br/>
 
 ### Metrics
+
 - **Lines of Code:** ~1,500 (excluding tests/docs)
 - **Performance:** 60 FPS desktop, 30-45 FPS mobile
 - **Load Time:** 1.2s desktop, 2.8s mobile
 - **Memory:** ~180MB desktop, ~120MB mobile
 
 ### Architecture Decisions
+
 - **No build process:** Deliberate choice for offline-first capability
 - **Vanilla JS:** Demonstrates platform mastery without framework dependencies
 - **Local bundling:** All 80MB assets included for true offline capability
 - **Manager pattern:** Easy to test, maintain, and extend
 
 ### Questions I Can Answer
+
 - "Walk me through the rendering pipeline from 3D model to ASCII output"
 - "How did you handle WebGL memory leaks?"
 - "What would you change to scale this to 10,000 concurrent users?"
@@ -513,6 +534,7 @@ This is a **portfolio/demo project** optimized for offline capability and code c
 - **Model Pivot Points:** Some models rotate off-center (baked into GLTF geometry)
 
 **For production scale (10,000+ users), I would architect differently:**
+
 - CDN-hosted models with streaming
 - Canvas 2D renderer for mobile
 - Backend API for model gallery
