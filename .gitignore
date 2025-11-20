@@ -126,3 +126,7 @@ rat_centered_torso.glb
 
 # Personal files
 public/resume.pdf
+
+# Playwright test artifacts
+playwright-report/
+test-results/
