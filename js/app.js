@@ -236,7 +236,7 @@ export class AsciiAnimatorApp {
    * Handle rendering errors
    * @param {Error} error - The error that occurred
    */
-  handleRenderError(error) {
+  handleRenderError(_error) {
     // Stop animation loop to prevent error spam
     this.renderer.setAnimationLoop(null);
 
@@ -440,7 +440,7 @@ export class AsciiAnimatorApp {
 
 // Initialize app when DOM is loaded with error handling
 const app = new AsciiAnimatorApp();
-app.initialize().catch((error) => {
+app.initialize().catch((_error) => {
   // Display user-friendly error message
   const errorDiv = document.createElement('div');
   errorDiv.style.cssText = `

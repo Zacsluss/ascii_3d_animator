@@ -111,7 +111,6 @@ describe('AsciiManager', () => {
     });
 
     it('should recreate effect', () => {
-      const oldEffect = asciiManager.effect;
       asciiManager.updateCharacters('TEST');
       // Effect should be recreated (a new instance)
       expect(mockContainer.removeChild).toHaveBeenCalled();
