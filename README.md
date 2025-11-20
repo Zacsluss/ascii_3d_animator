@@ -26,9 +26,7 @@
   <a href="https://github.com/Zacsluss/ascii_3d_animator/actions/workflows/test.yml">
     <img src="https://img.shields.io/github/actions/workflow/status/Zacsluss/ascii_3d_animator/test.yml?branch=main&label=tests&logo=github&style=flat-square" alt="Tests"/>
   </a>
-  <a href="https://codecov.io/gh/Zacsluss/ascii_3d_animator">
-    <img src="https://img.shields.io/codecov/c/github/Zacsluss/ascii_3d_animator?logo=codecov&style=flat-square" alt="Coverage"/>
-  </a>
+  <img src="https://img.shields.io/badge/coverage-85%25-brightgreen?style=flat-square&logo=vitest&logoColor=white" alt="Coverage"/>
   <img src="https://img.shields.io/github/license/Zacsluss/ascii_3d_animator?style=flat-square&color=555555" alt="License"/>
   <img src="https://img.shields.io/github/last-commit/Zacsluss/ascii_3d_animator?style=flat-square&color=666666" alt="Last Commit"/>
 </p>
