@@ -25,9 +25,7 @@
   <img src="https://img.shields.io/github/stars/Zacsluss/ascii_3d_animator?style=social" alt="Stars"/>
   <img src="https://img.shields.io/github/forks/Zacsluss/ascii_3d_animator?style=social" alt="Forks"/>
   <img src="https://img.shields.io/github/watchers/Zacsluss/ascii_3d_animator?style=social" alt="Watchers"/>
-  <a href="https://github.com/Zacsluss/ascii_3d_animator/actions/workflows/test.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/Zacsluss/ascii_3d_animator/test.yml?branch=main&label=tests&logo=github&style=flat-square" alt="Tests"/>
-  </a>
+  <img src="https://img.shields.io/github/actions/workflow/status/Zacsluss/ascii_3d_animator/test.yml?branch=main&label=tests&logo=github&style=flat-square" alt="Tests"/>
   <img src="https://img.shields.io/badge/coverage-85%25-brightgreen?style=flat-square&logo=vitest&logoColor=white" alt="Coverage"/>
   <img src="https://img.shields.io/github/license/Zacsluss/ascii_3d_animator?style=flat-square&color=555555" alt="License"/>
   <img src="https://img.shields.io/github/last-commit/Zacsluss/ascii_3d_animator?style=flat-square&color=666666" alt="Last Commit"/>
