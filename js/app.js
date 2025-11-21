@@ -451,7 +451,7 @@ app.initialize().catch((_error) => {
   `;
   errorDiv.innerHTML = `
     <h2 style="margin: 0 0 10px 0;">⚠️ Failed to Load</h2>
-    <p style="margin: 0;">Could not initialize. Please refresh or check console.</p>
+    <p style="margin: 0;">Could not initialize. Please refresh the page.</p>
   `;
   document.body.appendChild(errorDiv);
 });
