@@ -250,7 +250,7 @@ export class AsciiAnimatorApp {
     `;
     errorDiv.innerHTML = `
       <h2 style="margin: 0 0 10px 0;">⚠️ Rendering Error</h2>
-      <p style="margin: 0 0 15px 0;">Something went wrong with the animation. Please refresh the page.</p>
+      <p style="margin: 0 0 15px 0;">Something went wrong. Please refresh.</p>
       <button onclick="location.reload()" style="
         background: white; color: #ff4444; border: none; padding: 10px 20px;
         border-radius: 4px; cursor: pointer; font-weight: bold;
@@ -451,7 +451,7 @@ app.initialize().catch((_error) => {
   `;
   errorDiv.innerHTML = `
     <h2 style="margin: 0 0 10px 0;">⚠️ Failed to Load</h2>
-    <p style="margin: 0;">Could not initialize the 3D animator. Please refresh the page or check your browser console for details.</p>
+    <p style="margin: 0;">Could not initialize. Please refresh or check console.</p>
   `;
   document.body.appendChild(errorDiv);
 });

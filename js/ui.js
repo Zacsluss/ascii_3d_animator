@@ -480,7 +480,8 @@ export class UIManager {
 
         // Add glow effect if theme has it
         if (theme.glow) {
-          domElement.style.textShadow = `0 0 10px ${theme.fg}, 0 0 20px ${theme.fg}, 0 0 30px ${theme.fg}`;
+          const glow = `0 0 10px ${theme.fg}, 0 0 20px ${theme.fg}, 0 0 30px ${theme.fg}`;
+          domElement.style.textShadow = glow;
         } else {
           domElement.style.textShadow = '0 0 1px #000, 0 0 1px #000, 1px 0 0 #000, 0 1px 0 #000';
         }
@@ -518,6 +519,7 @@ export class UIManager {
    * Show help modal
    */
   showHelpModal() {
+    /* eslint-disable max-len */
     const helpContent = `
       <div style="font-family: 'Geist', sans-serif; line-height: 1.6; color: #333;">
         <h2 style="margin-top: 0; color: #2d3748; font-size: 1.8em; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px;">How to Use ASCII Animator</h2>
@@ -572,6 +574,7 @@ export class UIManager {
         </div>
       </div>
     `;
+    /* eslint-enable max-len */
 
     this.showModal('Help & Controls', helpContent);
   }
