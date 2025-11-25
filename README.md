@@ -80,12 +80,14 @@ Built with Three.js r169, WebGL, and vanilla JavaScript to showcase creative tec
 <td width="50%">
 
 **🎬 Real-Time 3D to ASCII Conversion**
+
 - 60 FPS WebGL rendering pipeline
 - Custom ASCII effect engine
 - Dynamic character density control
 - Sub-pixel anti-aliasing
 
 **💡 Professional 5-Point Lighting**
+
 - Main light (directional white)
 - Red accent light (right side)
 - Blue accent light (left side)
@@ -96,6 +98,7 @@ Built with Three.js r169, WebGL, and vanilla JavaScript to showcase creative tec
 <td width="50%">
 
 **🎨 20+ Visual Themes**
+
 - **Retro**: Amber CRT, Green Phosphor, IBM Blue
 - **Neon**: Neon City, Purple Haze
 - **Themed**: Dracula, Nord, Solarized, Gruvbox
@@ -104,6 +107,7 @@ Built with Three.js r169, WebGL, and vanilla JavaScript to showcase creative tec
 - **Experimental**: Psychedelic Rainbow
 
 **🎮 Interactive Controls**
+
 - Mouse drag to rotate
 - Scroll to zoom
 - Right-click for animation menu
@@ -119,6 +123,7 @@ Built with Three.js r169, WebGL, and vanilla JavaScript to showcase creative tec
 <summary>💡 <b>Studio Lighting</b></summary>
 
 Balanced professional lighting for general viewing:
+
 - Main: 12.0 intensity
 - Ambient: 0.3 (soft fill)
 - Red/Blue accents: 4.0 each
@@ -130,6 +135,7 @@ Balanced professional lighting for general viewing:
 <summary>🎭 <b>Dramatic Lighting</b></summary>
 
 High-contrast cinematic lighting:
+
 - Main: 15.0 intensity
 - Ambient: 0.05 (minimal fill)
 - Red accent: 8.0 (strong)
@@ -142,6 +148,7 @@ High-contrast cinematic lighting:
 <summary>☀️ <b>Natural Lighting</b></summary>
 
 Soft realistic daylight simulation:
+
 - Main: 8.0 intensity
 - Ambient: 0.6 (bright fill)
 - Red/Blue accents: 2.0 each (subtle)
@@ -153,6 +160,7 @@ Soft realistic daylight simulation:
 <summary>✨ <b>Minimal Lighting</b></summary>
 
 Clean simple lighting:
+
 - Main: 10.0 intensity
 - Ambient: 0.2
 - No accent lights
@@ -162,12 +170,12 @@ Clean simple lighting:
 
 ### 3D Models Included
 
-| Model | Animations | Scale | Format |
-|-------|-----------|-------|--------|
-| 🦆 Duck | Walk cycle | 5.0x | GLB |
-| 🐀 Rat | Walk A1 | 8.0x | GLB |
-| 🐕 Doge | Shake | 6.0x | GLB |
-| 👽 Alien | Idle | 6.0x | GLB |
+| Model    | Animations | Scale | Format |
+| -------- | ---------- | ----- | ------ |
+| 🦆 Duck  | Walk cycle | 5.0x  | GLB    |
+| 🐀 Rat   | Walk A1    | 8.0x  | GLB    |
+| 🐕 Doge  | Shake      | 6.0x  | GLB    |
+| 👽 Alien | Idle       | 6.0x  | GLB    |
 
 ### Theme Categories
 
@@ -348,24 +356,28 @@ Psychedelic rainbow cascade effect with dynamic color shifting across the entire
 <summary>💭 <b>Technical decisions explained</b></summary>
 
 **Three.js r169 (Bundled Locally)**
+
 - Industry-standard WebGL framework
 - Bundled locally (~80MB) for offline-first architecture
 - No CDN dependencies = works without internet
 - Trade-off: Larger repo size vs. 100% reliability
 
 **Vanilla JavaScript (No Framework)**
+
 - Demonstrates core JavaScript proficiency
 - Zero framework overhead
 - Faster load times
 - Simpler debugging
 
 **Vitest + Playwright**
+
 - Modern testing stack with ESM support
 - Fast test execution with watch mode
 - Comprehensive E2E coverage
 - 85% code coverage maintained
 
 **GitHub Actions CI/CD**
+
 - Automated testing on every push
 - Lint + format checks
 - E2E tests in headless Chromium
@@ -450,6 +462,7 @@ class App {
 ```
 
 **Key Features:**
+
 - Animation delta capping (max 33ms for 30 FPS minimum)
 - Automatic model scaling to 150 unit target
 - Error handling with graceful fallbacks
@@ -472,12 +485,14 @@ class AsciiManager {
 ```
 
 **Technical Details:**
+
 - Base density: 50,000 characters
 - Font: Geist monospace 900 weight
 - Character set: 67 chars (default)
 - Sub-pixel anti-aliasing
 
 **Character Sets:**
+
 - Standard: ` .,:;i|~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$`
 - Block: `▓▒░█│─┌┐└┘├┤┬┴┼`
 - Wave: `~≈∿⋍∽∼≋≈∿`
@@ -499,6 +514,7 @@ class LightingManager {
 ```
 
 **Light Configuration:**
+
 - **Main Light**: Directional white (0, 150, 800)
 - **Ambient**: Scene fill lighting
 - **Red Accent**: PointLight at (200, 50, 200)
@@ -506,6 +522,7 @@ class LightingManager {
 - **Spotlight**: Top-down (0, 1000, 0)
 
 **Presets:**
+
 - Studio: Balanced (main: 12, ambient: 0.3)
 - Dramatic: High contrast (main: 15, ambient: 0.05)
 - Natural: Soft (main: 8, ambient: 0.6)
@@ -528,6 +545,7 @@ class ModelManager {
 ```
 
 **Model Pipeline:**
+
 1. Load GLB file via GLTFLoader
 2. Calculate bounding box
 3. Scale to target size (150 units)
@@ -552,6 +570,7 @@ class UIManager {
 ```
 
 **Features:**
+
 - Real-time slider feedback
 - Theme selector with 20+ options
 - Lighting preset buttons
@@ -586,21 +605,25 @@ graph LR
 <summary>⚡ <b>Optimization techniques used</b></summary>
 
 **Frame Rate Management**
+
 - Delta capping at 33ms (prevents spiral of death)
 - RequestAnimationFrame for 60 FPS target
 - Automatic downgrade on slow devices
 
 **Memory Management**
+
 - Single scene, camera, renderer instance
 - Proper disposal on model changes
 - OrbitControls damping for smooth interaction
 
 **Load Time Optimization**
+
 - Local Three.js bundle (no CDN latency)
 - Module preloading via `<link rel="modulepreload">`
 - Deferred non-critical scripts
 
 **Rendering Performance**
+
 - ASCII density control (0.5x - 3.0x)
 - WebGL shadow map optimization
 - PCFSoftShadowMap for quality/performance balance
@@ -676,11 +699,11 @@ No installation needed - visit the live demo:
 <details>
 <summary>🖱️ <b>Mouse Controls</b></summary>
 
-| Action | Control |
-|--------|---------|
-| Rotate model | Left-click + drag |
-| Zoom in/out | Scroll wheel |
-| Pan camera | Right-click + drag |
+| Action           | Control              |
+| ---------------- | -------------------- |
+| Rotate model     | Left-click + drag    |
+| Zoom in/out      | Scroll wheel         |
+| Pan camera       | Right-click + drag   |
 | Change animation | Right-click on model |
 
 </details>
@@ -688,24 +711,24 @@ No installation needed - visit the live demo:
 <details>
 <summary>📱 <b>Touch Controls (Mobile)</b></summary>
 
-| Action | Gesture |
-|--------|---------|
+| Action       | Gesture         |
+| ------------ | --------------- |
 | Rotate model | One-finger drag |
-| Zoom | Pinch |
-| Pan camera | Two-finger drag |
+| Zoom         | Pinch           |
+| Pan camera   | Two-finger drag |
 
 </details>
 
 <details>
 <summary>⌨️ <b>Keyboard Shortcuts</b></summary>
 
-| Key | Action |
-|-----|--------|
+| Key     | Action                 |
+| ------- | ---------------------- |
 | `Space` | Pause/Resume animation |
-| `M` | Cycle to next model |
-| `T` | Open theme selector |
-| `R` | Reset camera position |
-| `H` | Show help modal |
+| `M`     | Cycle to next model    |
+| `T`     | Open theme selector    |
+| `R`     | Reset camera position  |
+| `H`     | Show help modal        |
 
 </details>
 
@@ -716,12 +739,13 @@ No installation needed - visit the live demo:
 
 ```javascript
 // In js/constants.js, line 13
-DEFAULT_CHARS: ' .\'`^",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$'
+DEFAULT_CHARS: ' .\'`^",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$';
 
 // Or use the UI "Custom ASCII Characters" input field
 ```
 
 **Character Set Examples:**
+
 - High detail: `$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^\`\'. `
 - Block style: `▓▒░█│─┌┐└┘├┤┬┴┼═║╔╗╚╝╠╣╦╩╬`
 - Minimal: ` .:-=+*#%@`
@@ -855,6 +879,7 @@ Visit: http://localhost:8080
 The ASCII effect converts each pixel region into a character based on brightness:
 
 **Algorithm:**
+
 1. Sample WebGL frame buffer
 2. Divide into character-sized regions
 3. Calculate average brightness per region
@@ -862,6 +887,7 @@ The ASCII effect converts each pixel region into a character based on brightness
 5. Render character with CSS styling
 
 **Character Mapping Function:**
+
 ```javascript
 function brightnessToChar(brightness, charset) {
   const index = Math.floor(brightness * (charset.length - 1));
@@ -870,6 +896,7 @@ function brightnessToChar(brightness, charset) {
 ```
 
 **Optimization:**
+
 - Pre-calculated character metrics
 - Bitmap font rendering
 - Sub-pixel positioning
@@ -899,6 +926,7 @@ function animate(timestamp) {
 ```
 
 **Features:**
+
 - Skeletal animation support
 - Smooth blending between clips
 - Delta time correction
@@ -927,11 +955,13 @@ AMBIENT: uniform fill
 ```
 
 **Intensity Calculations:**
+
 - Studio preset optimized for balanced visibility
 - Dramatic preset emphasizes shadows (low ambient)
 - Natural preset simulates daylight (high ambient)
 
 **Color Theory:**
+
 - Red/Blue accents create depth perception
 - Complementary color rim lighting
 - White main light preserves model colors
@@ -959,6 +989,7 @@ function applyTheme(theme) {
 ```
 
 **Psychedelic Rainbow Mode:**
+
 - Per-character hue rotation
 - Animated color cycling
 - Performance-optimized CSS animations
@@ -978,11 +1009,12 @@ const state = {
   density: 1.2,
   rotationSpeed: 2.0,
   animationSpeed: 0.6,
-  isPaused: false
+  isPaused: false,
 };
 ```
 
 **Event Flow:**
+
 1. User interaction → UI Manager
 2. UI Manager → App Controller (state update)
 3. App Controller → Specific Manager (scene/light/model/ascii)
@@ -990,6 +1022,7 @@ const state = {
 5. Scene → Renderer → Display
 
 **Benefits:**
+
 - Single source of truth
 - Predictable updates
 - Easy debugging
@@ -1001,21 +1034,23 @@ const state = {
 <summary>⚡ <b>Performance Benchmarks</b></summary>
 
 **Test Environment:**
+
 - Chrome 120
 - M2 MacBook Pro
 - 60 Hz display
 
-| Metric | Value |
-|--------|-------|
-| Average FPS | 60 |
-| Frame time | 16.6ms |
+| Metric       | Value   |
+| ------------ | ------- |
+| Average FPS  | 60      |
+| Frame time   | 16.6ms  |
 | Memory usage | ~120 MB |
-| CPU usage | 15-25% |
-| Initial load | 1.2s |
-| Model load | 0.3s |
-| Theme switch | <16ms |
+| CPU usage    | 15-25%  |
+| Initial load | 1.2s    |
+| Model load   | 0.3s    |
+| Theme switch | <16ms   |
 
 **Optimization Results:**
+
 - Delta capping reduced worst-case lag by 80%
 - Local Three.js bundle = 0ms CDN latency
 - Module preloading = 200ms faster load
@@ -1029,19 +1064,23 @@ const state = {
 **Content Security Policy (CSP):**
 
 ```html
-<meta http-equiv="Content-Security-Policy"
-      content="default-src 'self';
+<meta
+  http-equiv="Content-Security-Policy"
+  content="default-src 'self';
                style-src 'self' 'unsafe-inline';
                script-src 'self';
-               img-src 'self' data:;">
+               img-src 'self' data:;"
+/>
 ```
 
 **Additional Headers:**
+
 - `X-Frame-Options: SAMEORIGIN` - Prevents clickjacking
 - `X-Content-Type-Options: nosniff` - MIME type security
 - `Referrer-Policy: strict-origin-when-cross-origin` - Privacy protection
 
 **Input Validation:**
+
 - Custom ASCII character sanitization
 - Slider range enforcement
 - XSS prevention on user inputs
@@ -1052,6 +1091,7 @@ const state = {
 <summary>♿ <b>Accessibility Features</b></summary>
 
 **WCAG 2.1 AA Compliance:**
+
 - Skip to main content link
 - Semantic HTML structure
 - ARIA labels on all controls
@@ -1061,6 +1101,7 @@ const state = {
 - High contrast themes available
 
 **Keyboard Shortcuts:**
+
 - Tab navigation through controls
 - Space to pause/resume
 - Enter to activate buttons
@@ -1080,12 +1121,12 @@ const state = {
 
 <div align="center">
 
-| Metric | Value |
-|--------|-------|
-| **Total Tests** | 109 |
-| **Unit Tests** | 106 |
-| **E2E Tests** | 3 |
-| **Code Coverage** | 85% |
+| Metric             | Value |
+| ------------------ | ----- |
+| **Total Tests**    | 109   |
+| **Unit Tests**     | 106   |
+| **E2E Tests**      | 3     |
+| **Code Coverage**  | 85%   |
 | **Test Execution** | ~2.5s |
 
 </div>
@@ -1096,6 +1137,7 @@ const state = {
 <summary>✅ <b>Unit Tests (106 tests)</b></summary>
 
 **Animation Manager (`animation.test.js`)** - 18 tests
+
 - AnimationMixer creation and lifecycle
 - Animation clip loading and validation
 - Speed control and delta time handling
@@ -1103,6 +1145,7 @@ const state = {
 - Pause/resume functionality
 
 **ASCII Manager (`ascii.test.js`)** - 22 tests
+
 - Effect creation and DOM integration
 - Character set updates and validation
 - Density scaling (0.5x - 3.0x)
@@ -1110,12 +1153,14 @@ const state = {
 - Performance optimization
 
 **Constants (`constants.test.js`)** - 8 tests
+
 - Configuration structure validation
 - Theme data integrity
 - Lighting preset consistency
 - Model configuration verification
 
 **Lighting Manager (`lighting.test.js`)** - 24 tests
+
 - 5-point light creation
 - Preset application and switching
 - Individual light intensity control
@@ -1123,6 +1168,7 @@ const state = {
 - Scene integration
 
 **Model Manager (`models.test.js`)** - 19 tests
+
 - GLB model loading pipeline
 - Automatic scaling algorithm
 - Animation extraction and setup
@@ -1130,6 +1176,7 @@ const state = {
 - Memory cleanup
 
 **Utils (`utils.test.js`)** - 15 tests
+
 - Math helper functions
 - DOM manipulation utilities
 - Event handler wrappers
@@ -1167,6 +1214,7 @@ test('should be able to switch themes', async ({ page }) => {
 ```
 
 **Tests verify:**
+
 - Application loads without errors
 - All UI controls are present and visible
 - Theme switching functionality works
@@ -1229,6 +1277,7 @@ npm run lint:fix
 ```
 
 **Rules enforced:**
+
 - No unused variables
 - Consistent code style
 - No console statements in production
@@ -1249,6 +1298,7 @@ npm run format:check
 ```
 
 **Settings:**
+
 - 2-space indentation
 - Single quotes
 - Semicolons required
@@ -1301,6 +1351,7 @@ chore: maintenance tasks
 ```
 
 **Husky pre-commit hooks:**
+
 - Run ESLint
 - Run Prettier
 - Validate commit message format
@@ -1321,6 +1372,7 @@ chore: maintenance tasks
 <summary>❌ <b>Black screen / Nothing renders</b></summary>
 
 **Symptoms:**
+
 - Application loads but canvas is black
 - No error messages in console
 
@@ -1331,11 +1383,13 @@ chore: maintenance tasks
    - If WebGL is disabled, enable it in browser settings
 
 2. **Check browser console:**
+
    ```
    F12 → Console tab → Look for errors
    ```
 
 3. **Clear browser cache:**
+
    ```
    Ctrl/Cmd + Shift + R (hard refresh)
    ```
@@ -1356,6 +1410,7 @@ chore: maintenance tasks
 <summary>🐌 <b>Low FPS / Laggy performance</b></summary>
 
 **Symptoms:**
+
 - Choppy animation
 - Delayed response to controls
 - High CPU usage
@@ -1390,17 +1445,20 @@ chore: maintenance tasks
 <summary>🎨 <b>Theme not changing / Stuck on one theme</b></summary>
 
 **Symptoms:**
+
 - Theme selector doesn't respond
 - Colors don't update
 
 **Solutions:**
 
 1. **Hard refresh:**
+
    ```
    Ctrl/Cmd + Shift + R
    ```
 
 2. **Clear localStorage:**
+
    ```javascript
    // In browser console (F12)
    localStorage.clear();
@@ -1420,6 +1478,7 @@ chore: maintenance tasks
 <summary>🎬 <b>Animation not playing</b></summary>
 
 **Symptoms:**
+
 - Model is visible but frozen
 - Right-click menu doesn't show animations
 
@@ -1447,6 +1506,7 @@ chore: maintenance tasks
 <summary>🖱️ <b>Mouse controls not working</b></summary>
 
 **Symptoms:**
+
 - Can't rotate model
 - Zoom doesn't work
 - Right-click menu doesn't appear
@@ -1475,6 +1535,7 @@ chore: maintenance tasks
 <summary>📱 <b>Mobile / Touch controls not responding</b></summary>
 
 **Symptoms:**
+
 - Touch gestures don't work
 - Can't rotate or zoom on mobile
 
@@ -1503,6 +1564,7 @@ chore: maintenance tasks
 <summary>🚫 <b>File not loading / 404 errors</b></summary>
 
 **Symptoms:**
+
 - Browser console shows 404 errors
 - Models or scripts not loading
 
@@ -1513,6 +1575,7 @@ chore: maintenance tasks
    - Use: `python -m http.server 8000`
 
 2. **Verify file structure:**
+
    ```
    ascii_3d_animator/
    ├── index.html
@@ -1539,12 +1602,14 @@ chore: maintenance tasks
 <summary>💾 <b>localStorage quota exceeded</b></summary>
 
 **Symptoms:**
+
 - "QuotaExceededError" in console
 - Settings not saving
 
 **Solutions:**
 
 1. **Clear localStorage:**
+
    ```javascript
    // In browser console (F12)
    localStorage.clear();
@@ -1578,25 +1643,26 @@ chore: maintenance tasks
 ```javascript
 export const CONFIG = {
   ASCII: {
-    DEFAULT_SCALE: 1.2,        // 0.5 - 3.0
-    BASE_DENSITY: 50000,       // 30000 - 100000
-    FONT_SIZE: '20px',         // 10px - 30px
-    FONT_WEIGHT: '900',        // 400 - 900
+    DEFAULT_SCALE: 1.2, // 0.5 - 3.0
+    BASE_DENSITY: 50000, // 30000 - 100000
+    FONT_SIZE: '20px', // 10px - 30px
+    FONT_WEIGHT: '900', // 400 - 900
   },
 
   CAMERA: {
-    FOV: 70,                   // 50 - 90
-    DEFAULT_DISTANCE: 1000,    // 500 - 2000
+    FOV: 70, // 50 - 90
+    DEFAULT_DISTANCE: 1000, // 500 - 2000
   },
 
   ANIMATION: {
-    DEFAULT_SPEED: 0.6,        // 0.1 - 3.0
-    MAX_DELTA: 0.033,          // Frame time cap
+    DEFAULT_SPEED: 0.6, // 0.1 - 3.0
+    MAX_DELTA: 0.033, // Frame time cap
   },
 };
 ```
 
 **Common Tweaks:**
+
 - **Higher density** = More detail, slower performance
 - **Lower FOV** = Less distortion, narrower view
 - **Higher MAX_DELTA** = More forgiving on slow devices
@@ -1628,8 +1694,7 @@ myTheme: {
 
 ```javascript
 // In UI manager, modify applyTheme():
-domElement.style.background =
-  `linear-gradient(135deg, ${theme.bg1} 0%, ${theme.bg2} 100%)`;
+domElement.style.background = `linear-gradient(135deg, ${theme.bg1} 0%, ${theme.bg2} 100%)`;
 ```
 
 </details>
@@ -1652,12 +1717,11 @@ custom: {
 **Add preset button in `index.html`:**
 
 ```html
-<button onclick="app.applyLightingPreset('custom')">
-  Custom
-</button>
+<button onclick="app.applyLightingPreset('custom')">Custom</button>
 ```
 
 **Light Intensity Guidelines:**
+
 - Main: 8-12 (balanced), 15+ (dramatic)
 - Ambient: 0.1 (dark), 0.6 (bright)
 - Accents: 0 (none), 4-6 (moderate), 10+ (strong)
@@ -1669,12 +1733,14 @@ custom: {
 <summary>🎬 <b>Adding Custom 3D Models</b></summary>
 
 **1. Prepare GLB model:**
+
 - Format: GLB (binary GLTF)
 - Size: < 5MB recommended
 - Animations: Embedded in GLB
 - Tools: Blender, Sketchfab
 
 **2. Add to `public/models/`:**
+
 ```bash
 cp custom_model.glb public/models/
 ```
@@ -1697,6 +1763,7 @@ MODELS: {
 **4. Model appears in "Next Model" rotation.**
 
 **Finding Animation Names:**
+
 ```javascript
 // Check browser console when loading model
 // Logs: "Available animations: Walk, Run, Jump"
@@ -1711,28 +1778,29 @@ MODELS: {
 
 ```javascript
 // High detail (70 chars)
-' .\'`^",:;Il!i><~+_-?][}{1)(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$'
+' .\'`^",:;Il!i><~+_-?][}{1)(|/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$';
 
 // Block art (15 chars)
-'░▒▓█■□▪▫▬▭▮▯▰▱▲'
+'░▒▓█■□▪▫▬▭▮▯▰▱▲';
 
 // Line drawing (20 chars)
-'─│┌┐└┘├┤┬┴┼═║╔╗╚╝╠╣╦╩╬'
+'─│┌┐└┘├┤┬┴┼═║╔╗╚╝╠╣╦╩╬';
 
 // Minimal (10 chars)
-' .:-=+*#%@'
+' .:-=+*#%@';
 
 // Numbers only
-'0123456789'
+'0123456789';
 
 // Letters only
-'abcdefghijklmnopqrstuvwxyz'
+'abcdefghijklmnopqrstuvwxyz';
 
 // Braille (256 combinations!)
-'⠀⠁⠂⠃⠄⠅⠆⠇⠈⠉⠊⠋...'
+'⠀⠁⠂⠃⠄⠅⠆⠇⠈⠉⠊⠋...';
 ```
 
 **Guidelines:**
+
 - Order: Light to dark (left = empty, right = solid)
 - Length: 10-70 chars optimal
 - Spacing: First char should be space
@@ -1748,8 +1816,7 @@ MODELS: {
 ```html
 <div class="control-row">
   <label for="customSlider">Custom Setting</label>
-  <input type="range" id="customSlider"
-         min="0" max="10" step="0.1" value="5">
+  <input type="range" id="customSlider" min="0" max="10" step="0.1" value="5" />
   <span id="customValue">5.0</span>
 </div>
 ```
@@ -1923,22 +1990,26 @@ Contributions are welcome! Here's how you can help:
 <summary>🔧 <b>Submit a Pull Request</b></summary>
 
 **1. Fork and clone:**
+
 ```bash
 git clone https://github.com/yourusername/ascii_3d_animator.git
 cd ascii_3d_animator
 ```
 
 **2. Create a feature branch:**
+
 ```bash
 git checkout -b feature/your-feature-name
 ```
 
 **3. Make your changes:**
+
 - Follow existing code style
 - Add tests for new features
 - Update documentation
 
 **4. Run tests:**
+
 ```bash
 npm test
 npm run lint
@@ -1946,17 +2017,20 @@ npm run test:e2e
 ```
 
 **5. Commit with conventional commits:**
+
 ```bash
 git commit -m "feat: add new theme"
 git commit -m "fix: resolve lighting bug"
 ```
 
 **6. Push and create PR:**
+
 ```bash
 git push origin feature/your-feature-name
 ```
 
 **7. PR checklist:**
+
 - [ ] Tests pass
 - [ ] Linter passes
 - [ ] Documentation updated
@@ -1969,6 +2043,7 @@ git push origin feature/your-feature-name
 <summary>📝 <b>Code Style Guide</b></summary>
 
 **JavaScript:**
+
 - 2-space indentation
 - Single quotes for strings
 - Semicolons required
@@ -1976,6 +2051,7 @@ git push origin feature/your-feature-name
 - Descriptive variable names
 
 **Example:**
+
 ```javascript
 /**
  * Calculate average brightness of a pixel region
@@ -1993,12 +2069,14 @@ function calculateBrightness(pixels, x, y) {
 ```
 
 **CSS:**
+
 - BEM naming convention
 - Mobile-first approach
 - CSS custom properties for themes
 - Comments for complex selectors
 
 **Git:**
+
 - Conventional commits
 - One feature per commit
 - Clear commit messages
@@ -2011,20 +2089,24 @@ function calculateBrightness(pixels, x, y) {
 <summary>🙏 <b>Attributions</b></summary>
 
 **Libraries:**
+
 - [Three.js](https://threejs.org/) - 3D rendering engine (MIT License)
 - [Vitest](https://vitest.dev/) - Unit testing framework (MIT License)
 - [Playwright](https://playwright.dev/) - E2E testing (Apache-2.0 License)
 
 **3D Models:**
+
 - Duck model - [Poly Pizza](https://poly.pizza) (CC0)
 - Rat model - [Quaternius](https://quaternius.com) (CC0)
 - Doge model - [Sketchfab](https://sketchfab.com) (CC-BY)
 - Alien model - [Free3D](https://free3d.com) (CC0)
 
 **Fonts:**
+
 - Geist Mono - [Vercel](https://vercel.com/font) (OFL)
 
 **Inspiration:**
+
 - Classic ASCII art generators
 - ASCII Effect by [Mr.doob](https://github.com/mrdoob)
 - Retro terminal aesthetics
@@ -2046,6 +2128,7 @@ function calculateBrightness(pixels, x, y) {
 I'm a software engineer who builds unusually fun projects. This ASCII 3D Animator demonstrates creative technical implementation, attention to detail, and production-quality code.
 
 **What I do:**
+
 - Enterprise platforms by day
 - Creative experiments by night
 - Full-stack development
