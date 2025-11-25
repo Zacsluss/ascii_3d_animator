@@ -68,13 +68,24 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 
 <br/>
 
-- [What This Does](#-what-this-does)
-- [Tech Stack](#-tech-stack)
-- [How It Works - Architecture](#-how-it-works---architecture)
-- [Quick Start](#-quick-start)
-- [Technical Deep Dive](#-technical-deep-dive)
-- [License & Contributing](#-license--contributing)
-- [About & Connect](#-about--connect)
+- [🎯 What This Does](#-what-this-does)
+- [⚡ Tech Stack](#-tech-stack)
+- [🏗️ How It Works - Architecture](#-how-it-works---architecture)
+- [🚀 Quick Start](#-quick-start)
+  - [📋 Prerequisites](#-prerequisites)
+  - [💻 Local Development](#-local-development)
+  - [🏗️ Production Build](#-production-build)
+  - [🌐 Deploy to GitHub Pages](#-deploy-to-github-pages)
+  - [🎨 Customize for Yourself](#-customize-for-yourself)
+- [🔬 Technical Deep Dive](#-technical-deep-dive)
+  - [🎨 ASCII Shader Implementation](#-ascii-shader-implementation)
+  - [💡 5-Point Lighting System](#-5-point-lighting-system)
+  - [📊 Performance Benchmarks](#-performance-benchmarks)
+  - [🧪 Testing & Code Quality](#-testing--code-quality)
+  - [⚙️ Advanced Configuration](#-advanced-configuration)
+  - [🐛 Troubleshooting](#-troubleshooting)
+- [📜 License & Contributing](#-license--contributing)
+- [👤 About & Connect](#-about--connect)
 
 </details>
 
