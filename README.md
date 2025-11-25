@@ -142,6 +142,8 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 
 </div>
 
+<div align="center">
+
 ### Core Dependencies
 
 <table>
@@ -164,6 +166,8 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 </td>
 </tr>
 </table>
+
+</div>
 
 <details>
 <summary>📦 <b>Full dependency list</b></summary>
