@@ -133,86 +133,36 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 ### What Powers This Project
 
 <p>
-  <img src="https://skillicons.dev/icons?i=js,html,css,threejs,webgl" alt="Core Technologies"/>
+  <img src="https://skillicons.dev/icons?i=js,html,css,threejs" alt="Core Technologies"/>
 </p>
 
 <p>
-  <img src="https://skillicons.dev/icons?i=vitest,playwright,github,vscode,git" alt="Development Tools"/>
+  <img src="https://skillicons.dev/icons?i=vitest,github,vscode,git" alt="Development Tools"/>
 </p>
 
 </div>
 
-<div align="center">
-
 ### Core Dependencies
 
-</div>
-
-<table align="center">
-<thead>
+<table>
 <tr>
-<th align="left" width="25%">Category</th>
-<th align="left" width="25%">Technology</th>
-<th align="center" width="15%">Version</th>
-<th align="left" width="35%">Purpose</th>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/Three.js-r169-000000?style=for-the-badge&logo=three.js&logoColor=white"/><br/>
+<sub><b>3D Graphics</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/WebGL-2.0-990000?style=for-the-badge&logo=webgl&logoColor=white"/><br/>
+<sub><b>Rendering Engine</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/Vitest-2.1.9-729b1b?style=for-the-badge&logo=vitest&logoColor=white"/><br/>
+<sub><b>Testing</b></sub>
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/ESLint-8.57.1-4B32C3?style=for-the-badge&logo=eslint&logoColor=white"/><br/>
+<sub><b>Code Quality</b></sub>
+</td>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td rowspan="3"><b>Rendering</b></td>
-<td>Three.js</td>
-<td align="center">r169</td>
-<td>3D WebGL rendering engine</td>
-</tr>
-<tr>
-<td>WebGL 2.0</td>
-<td align="center">-</td>
-<td>Hardware-accelerated graphics</td>
-</tr>
-<tr>
-<td>AsciiEffect</td>
-<td align="center">Custom</td>
-<td>ASCII conversion shader</td>
-</tr>
-<tr>
-<td rowspan="3"><b>Testing</b></td>
-<td>Vitest</td>
-<td align="center">^2.1.9</td>
-<td>Unit testing (106 tests)</td>
-</tr>
-<tr>
-<td>Playwright</td>
-<td align="center">^1.56.1</td>
-<td>E2E testing (3 tests)</td>
-</tr>
-<tr>
-<td>@vitest/coverage-v8</td>
-<td align="center">^2.1.9</td>
-<td>Code coverage (85%)</td>
-</tr>
-<tr>
-<td rowspan="2"><b>Code Quality</b></td>
-<td>ESLint</td>
-<td align="center">^8.57.1</td>
-<td>Static analysis</td>
-</tr>
-<tr>
-<td>Prettier</td>
-<td align="center">^3.6.2</td>
-<td>Code formatting</td>
-</tr>
-<tr>
-<td rowspan="2"><b>Git Workflow</b></td>
-<td>Husky</td>
-<td align="center">^8.0.3</td>
-<td>Git hooks</td>
-</tr>
-<tr>
-<td>Commitlint</td>
-<td align="center">^18.0.0</td>
-<td>Conventional commits</td>
-</tr>
-</tbody>
 </table>
 
 <details>
