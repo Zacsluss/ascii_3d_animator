@@ -979,6 +979,10 @@ By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**
 
 **Found this helpful?** Give it a ⭐ to show support!
 
+**Want to contribute?** See [contributing guidelines](#contributing) above.
+
+**Need help?** [Open an issue](https://github.com/Zacsluss/ascii_3d_animator/issues) or email me.
+
 ---
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,12,20&height=100&section=footer"/>
