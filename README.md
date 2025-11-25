@@ -958,7 +958,7 @@ By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**
 ### 📫 Let's Connect
 
 <a href="https://zacsluss.github.io/portfolio">
-  <img src="https://img.shields.io/badge/PORTFOLIO-ZACSLUSS.GITHUB.IO-00ff88?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=444444" alt="Portfolio"/>
+  <img src="https://img.shields.io/badge/PORTFOLIO-ZACSLUSS.GITHUB.IO-2e8b57?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=2d4f3e" alt="Portfolio"/>
 </a>
 <a href="https://github.com/Zacsluss">
   <img src="https://img.shields.io/badge/GITHUB-@ZACSLUSS-1e90ff?style=for-the-badge&logo=github&logoColor=white&labelColor=181717" alt="GitHub"/>
