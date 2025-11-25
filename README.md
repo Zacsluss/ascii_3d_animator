@@ -144,67 +144,71 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 
 ### Core Dependencies
 
-<table>
+<table align="center">
+<thead>
 <tr>
-<th width="25%">Category</th>
-<th width="25%">Technology</th>
-<th width="15%">Version</th>
-<th width="35%">Purpose</th>
+<th align="left" width="25%">Category</th>
+<th align="left" width="25%">Technology</th>
+<th align="center" width="15%">Version</th>
+<th align="left" width="35%">Purpose</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td rowspan="3"><b>Rendering</b></td>
 <td>Three.js</td>
-<td>r169</td>
+<td align="center">r169</td>
 <td>3D WebGL rendering engine</td>
 </tr>
 <tr>
 <td>WebGL 2.0</td>
-<td>-</td>
+<td align="center">-</td>
 <td>Hardware-accelerated graphics</td>
 </tr>
 <tr>
 <td>AsciiEffect</td>
-<td>Custom</td>
+<td align="center">Custom</td>
 <td>ASCII conversion shader</td>
 </tr>
 <tr>
 <td rowspan="3"><b>Testing</b></td>
 <td>Vitest</td>
-<td>^2.1.9</td>
+<td align="center">^2.1.9</td>
 <td>Unit testing (106 tests)</td>
 </tr>
 <tr>
 <td>Playwright</td>
-<td>^1.56.1</td>
+<td align="center">^1.56.1</td>
 <td>E2E testing (3 tests)</td>
 </tr>
 <tr>
 <td>@vitest/coverage-v8</td>
-<td>^2.1.9</td>
+<td align="center">^2.1.9</td>
 <td>Code coverage (85%)</td>
 </tr>
 <tr>
 <td rowspan="2"><b>Code Quality</b></td>
 <td>ESLint</td>
-<td>^8.57.1</td>
+<td align="center">^8.57.1</td>
 <td>Static analysis</td>
 </tr>
 <tr>
 <td>Prettier</td>
-<td>^3.6.2</td>
+<td align="center">^3.6.2</td>
 <td>Code formatting</td>
 </tr>
 <tr>
 <td rowspan="2"><b>Git Workflow</b></td>
 <td>Husky</td>
-<td>^8.0.3</td>
+<td align="center">^8.0.3</td>
 <td>Git hooks</td>
 </tr>
 <tr>
 <td>Commitlint</td>
-<td>^18.0.0</td>
+<td align="center">^18.0.0</td>
 <td>Conventional commits</td>
 </tr>
+</tbody>
 </table>
 
 <details>
