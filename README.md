@@ -938,13 +938,9 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 <div align="center">
 
-### Hi, I'm Zac 👋
+By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect** at Computershare, managing multi-million-dollar Salesforce ecosystems and enterprise integrations across 20+ countries. By night, I build projects like this.
 
-I'm a software engineer who builds unusually fun projects. This ASCII 3D Animator showcases creative technical implementation, WebGL optimization, and production-quality vanilla JavaScript.
-
-By day, I architect enterprise CRM platforms and Salesforce integrations. By night, I experiment with WebGL, particle systems, shader programming, and 3D graphics.
-
-**What I'm into:** WebGL rendering, real-time graphics, performance optimization, creative coding, 3D visualization, retro aesthetics, and building things that make people say "wait, how does that work?"
+**Always learning, always building.**
 
 ---
 
