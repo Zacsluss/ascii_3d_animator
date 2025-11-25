@@ -958,19 +958,20 @@ By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**
 ### 📫 Let's Connect
 
 <a href="https://zacsluss.github.io/portfolio">
-  <img src="https://img.shields.io/badge/Portfolio-zacsluss.github.io/portfolio-00ff88?style=for-the-badge&logo=githubpages&logoColor=white" alt="Portfolio"/>
+  <img src="https://img.shields.io/badge/PORTFOLIO-ZACSLUSS.GITHUB.IO-00ff88?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=444444" alt="Portfolio"/>
 </a>
 <a href="https://github.com/Zacsluss">
-  <img src="https://img.shields.io/badge/GitHub-@Zacsluss-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
+  <img src="https://img.shields.io/badge/GITHUB-@ZACSLUSS-1e90ff?style=for-the-badge&logo=github&logoColor=white&labelColor=181717" alt="GitHub"/>
 </a>
 <a href="https://www.linkedin.com/in/zachary-sluss/">
-  <img src="https://img.shields.io/badge/LinkedIn-Zachary_Sluss-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+  <img src="https://img.shields.io/badge/LINKEDIN-ZACHARY_SLUSS-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0077B5" alt="LinkedIn"/>
 </a>
+
 <a href="mailto:zacharyjsluss@gmail.com">
-  <img src="https://img.shields.io/badge/Email-zacharyjsluss@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
+  <img src="https://img.shields.io/badge/EMAIL-ZACHARYJSLUSS@GMAIL.COM-EA4335?style=for-the-badge&logo=gmail&logoColor=white&labelColor=555555" alt="Email"/>
 </a>
 <a href="https://zacsluss.github.io/ascii_3d_animator/public/resume.pdf">
-  <img src="https://img.shields.io/badge/Resume-Download_PDF-9B59B6?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Resume"/>
+  <img src="https://img.shields.io/badge/RESUME-DOWNLOAD_PDF-9B59B6?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&labelColor=444444" alt="Resume"/>
 </a>
 
 <br/>
