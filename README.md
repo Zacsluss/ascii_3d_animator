@@ -142,7 +142,11 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 
 </div>
 
+<div align="center">
+
 ### Core Dependencies
+
+</div>
 
 <table align="center">
 <thead>
@@ -992,6 +996,9 @@ By day, I architect enterprise CRM platforms and Salesforce integrations. By nig
 
 ### 📫 Let's Connect
 
+<a href="https://zacsluss.github.io/portfolio">
+  <img src="https://img.shields.io/badge/Portfolio-zacsluss.github.io/portfolio-00ff88?style=for-the-badge&logo=githubpages&logoColor=white" alt="Portfolio"/>
+</a>
 <a href="https://github.com/Zacsluss">
   <img src="https://img.shields.io/badge/GitHub-@Zacsluss-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
 </a>
@@ -1002,7 +1009,7 @@ By day, I architect enterprise CRM platforms and Salesforce integrations. By nig
   <img src="https://img.shields.io/badge/Email-zacharyjsluss@gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
 </a>
 <a href="https://zacsluss.github.io/ascii_3d_animator/public/resume.pdf">
-  <img src="https://img.shields.io/badge/Resume-Download_PDF-00ff88?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Resume"/>
+  <img src="https://img.shields.io/badge/Resume-Download_PDF-9B59B6?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="Resume"/>
 </a>
 
 <br/>
