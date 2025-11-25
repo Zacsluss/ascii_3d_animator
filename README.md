@@ -36,9 +36,9 @@
 <!-- 2. QUICK INTRO (Always Visible) -->
 <!-- ============================================================================ -->
 
-## 👋 Real-Time WebGL ASCII Art Renderer
+## 👋 Hey, I'm Zac
 
-**ASCII 3D Animator** converts animated 3D models into live ASCII art at 60 FPS. Not pre-rendered frames—actual real-time WebGL rendering with interactive controls, professional lighting, and 20+ visual themes. Built as a portfolio piece to showcase creative technical implementation, performance optimization, and production-quality vanilla JavaScript.
+I work on enterprise platforms by day and build unusually fun projects by night. This ASCII 3D Animator converts animated 3D models into live ASCII art at **60 FPS** using a custom WebGL shader—not pre-rendered frames, actual real-time rendering with 50,000+ characters updating every frame.
 
 **What makes it interesting:**
 
@@ -47,7 +47,7 @@
 - **100% offline capable** - No CDN dependencies, no build process, no npm install needed—just open `index.html`
 - **Production ready** - 109 tests (85% coverage), GitHub Actions CI/CD, ESLint + Prettier + Conventional Commits
 
-**Built with Three.js r169, WebGL 2.0, and vanilla JavaScript**
+Built with Three.js r169, WebGL 2.0, and vanilla JavaScript.
 
 <div align="center">
 
@@ -68,8 +68,8 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 
 <br/>
 
-- [🎯 What This Does](#-what-this-does)
-- [⚡ Tech Stack](#-tech-stack)
+- [⚡ What This Does](#-what-this-does)
+- [🛠️ Tech Stack](#️-tech-stack)
 - [🏗️ How It Works - Architecture](#-how-it-works---architecture)
 - [🚀 Quick Start](#-quick-start)
   - [📋 Prerequisites](#-prerequisites)
@@ -77,7 +77,7 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
   - [🏗️ Production Build](#-production-build)
   - [🌐 Deploy to GitHub Pages](#-deploy-to-github-pages)
   - [🎨 Customize for Yourself](#-customize-for-yourself)
-- [🔬 Technical Deep Dive](#-technical-deep-dive)
+- [📊 Technical Deep Dive](#-technical-deep-dive)
   - [🎨 ASCII Shader Implementation](#-ascii-shader-implementation)
   - [💡 5-Point Lighting System](#-5-point-lighting-system)
   - [📊 Performance Benchmarks](#-performance-benchmarks)
@@ -85,7 +85,7 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
   - [⚙️ Advanced Configuration](#-advanced-configuration)
   - [🐛 Troubleshooting](#-troubleshooting)
 - [📜 License & Contributing](#-license--contributing)
-- [👤 About & Connect](#-about--connect)
+- [📬 About & Connect](#-about--connect)
 
 </details>
 
@@ -96,7 +96,7 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 <!-- ============================================================================ -->
 
 <details>
-<summary><b>🎯 What This Does</b></summary>
+<summary><b>⚡ What This Does</b></summary>
 
 <br/>
 
@@ -135,7 +135,7 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 <!-- ============================================================================ -->
 
 <details open>
-<summary><b>⚡ Tech Stack</b></summary>
+<summary><b>🛠️ Tech Stack</b></summary>
 
 <br/>
 
@@ -473,7 +473,7 @@ Or drag-and-drop your folder at https://app.netlify.com/drop
 <!-- ============================================================================ -->
 
 <details>
-<summary><b>🔬 Technical Deep Dive</b></summary>
+<summary><b>📊 Technical Deep Dive</b></summary>
 
 <br/>
 
@@ -943,7 +943,7 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 <!-- ============================================================================ -->
 
 <details open>
-<summary><b>👤 About & Connect</b></summary>
+<summary><b>📬 About & Connect</b></summary>
 
 <br/>
 
