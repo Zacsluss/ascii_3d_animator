@@ -38,6 +38,7 @@
 I work on enterprise platforms by day and build performance-focused projects by night. This ASCII 3D Animator renders animated 3D models as live ASCII art at **60 FPS** using a custom WebGL shader pipeline—actual real-time conversion, not pre-rendered frames.
 
 **Key achievements:**
+
 - **50,000+ characters/frame** at 60 FPS on modern hardware
 - **5-point lighting system** with professional presets
 - **20+ visual themes** from retro CRT to modern minimalist
@@ -59,12 +60,12 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 
 <div align="center">
 
-| Approach | FPS | Characters | Real-time? | Themes | Lighting |
-|----------|-----|------------|------------|--------|----------|
-| **This Project** | **60** | **50,000+** | **✅ Yes** | **20+** | **5-point** |
-| Pre-rendered ASCII | 24-30 | 10,000 | ❌ No | Limited | Basic |
-| Terminal-based | 10-15 | 5,000 | ❌ No | 1-2 | None |
-| Canvas 2D | 30 | 20,000 | ✅ Yes | 5-10 | Simple |
+| Approach           | FPS    | Characters  | Real-time? | Themes  | Lighting    |
+| ------------------ | ------ | ----------- | ---------- | ------- | ----------- |
+| **This Project**   | **60** | **50,000+** | **✅ Yes** | **20+** | **5-point** |
+| Pre-rendered ASCII | 24-30  | 10,000      | ❌ No      | Limited | Basic       |
+| Terminal-based     | 10-15  | 5,000       | ❌ No      | 1-2     | None        |
+| Canvas 2D          | 30     | 20,000      | ✅ Yes     | 5-10    | Simple      |
 
 </div>
 
@@ -134,7 +135,6 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 
 ---
 
-
 <details open>
 <summary><b>🏗️ Architecture</b></summary>
 
@@ -167,7 +167,6 @@ graph TB
 
 ---
 
-
 <details>
 <summary><b>🚀 Quick Start</b></summary>
 
@@ -184,6 +183,7 @@ python -m http.server 8000
 **Requirements:** Chrome 90+, Firefox 88+, or Safari 14+ with WebGL 2.0
 
 **Development:**
+
 ```bash
 npm install        # Install dev tools
 npm test          # Run 109 tests
@@ -196,7 +196,6 @@ npm run lint      # Check code quality
 
 ---
 
-
 <details>
 <summary><b>📊 Performance & Configuration</b></summary>
 
@@ -204,17 +203,18 @@ npm run lint      # Check code quality
 
 ### Performance Metrics
 
-| Metric | Desktop | Mobile |
-|--------|---------|---------|
-| **Frame Rate** | 60 FPS | 30-45 FPS |
-| **Memory** | ~120 MB | ~90 MB |
-| **Initial Load** | ~8s | ~15s |
-| **Cached Load** | <0.5s | <1s |
-| **Characters** | 50,000+ | 40,000+ |
+| Metric           | Desktop | Mobile    |
+| ---------------- | ------- | --------- |
+| **Frame Rate**   | 60 FPS  | 30-45 FPS |
+| **Memory**       | ~120 MB | ~90 MB    |
+| **Initial Load** | ~8s     | ~15s      |
+| **Cached Load**  | <0.5s   | <1s       |
+| **Characters**   | 50,000+ | 40,000+   |
 
 ### Custom Configuration
 
 Edit `js/constants.js` to customize:
+
 - **Performance:** `BASE_DENSITY` (30000-100000)
 - **Themes:** Add to `THEMES` object
 - **Models:** Drop GLB files in `public/models/`
@@ -223,7 +223,6 @@ Edit `js/constants.js` to customize:
 </details>
 
 ---
-
 
 <details>
 <summary><b>📜 License</b></summary>
@@ -243,7 +242,6 @@ Free to use, modify, and distribute. See [LICENSE](LICENSE) for full text.
 </details>
 
 ---
-
 
 <details open>
 <summary><b>📬 About & Connect</b></summary>
