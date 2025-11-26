@@ -13,8 +13,8 @@
 <br/>
 
 <p align="center">
-  <a href="https://zacsluss.github.io/ascii_3d_animator"><img src="https://img.shields.io/badge/🎨_LAUNCH-SIMULATOR-17a2b8?style=for-the-badge&labelColor=2d6a4f&logo=webgl&logoColor=white" alt="Launch Simulator"/></a>
-  <a href="https://github.com/Zacsluss/ascii_3d_animator/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/📦_DOWNLOAD-SOURCE-e67e22?style=for-the-badge&labelColor=d35400&logo=github&logoColor=white" alt="Download Source"/></a>
+  <a href="https://zacsluss.github.io/ascii_3d_animator"><img src="https://img.shields.io/badge/🎨_LAUNCH-SIMULATOR-17a2b8?style=for-the-badge&labelColor=2d6a4f" alt="Launch Simulator"/></a>
+  <a href="https://github.com/Zacsluss/ascii_3d_animator/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/📦_DOWNLOAD-SOURCE-e67e22?style=for-the-badge&labelColor=d35400" alt="Download Source"/></a>
 </p>
 
 <p align="center">
