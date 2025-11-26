@@ -56,21 +56,6 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 
 ---
 
-## ⚡ Why This Project?
-
-<div align="center">
-
-| Approach           | FPS    | Characters  | Real-time? | Themes  | Lighting    |
-| ------------------ | ------ | ----------- | ---------- | ------- | ----------- |
-| **This Project**   | **60** | **50,000+** | **✅ Yes** | **20+** | **5-point** |
-| Pre-rendered ASCII | 24-30  | 10,000      | ❌ No      | Limited | Basic       |
-| Terminal-based     | 10-15  | 5,000       | ❌ No      | 1-2     | None        |
-| Canvas 2D          | 30     | 20,000      | ✅ Yes     | 5-10    | Simple      |
-
-</div>
-
----
-
 <details>
 <summary><b>📚 Table of Contents</b></summary>
 
@@ -219,6 +204,24 @@ Edit `js/constants.js` to customize:
 - **Themes:** Add to `THEMES` object
 - **Models:** Drop GLB files in `public/models/`
 - **Lighting:** Modify `LIGHTING.PRESETS`
+
+<details>
+<summary><b>⚡ Why This Project?</b></summary>
+
+<br/>
+
+<div align="center">
+
+| Approach           | FPS    | Characters  | Real-time? | Themes  | Lighting    |
+| ------------------ | ------ | ----------- | ---------- | ------- | ----------- |
+| **This Project**   | **60** | **50,000+** | **✅ Yes** | **20+** | **5-point** |
+| Pre-rendered ASCII | 24-30  | 10,000      | ❌ No      | Limited | Basic       |
+| Terminal-based     | 10-15  | 5,000       | ❌ No      | 1-2     | None        |
+| Canvas 2D          | 30     | 20,000      | ✅ Yes     | 5-10    | Simple      |
+
+</div>
+
+</details>
 
 </details>
 
