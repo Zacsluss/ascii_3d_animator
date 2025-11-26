@@ -947,11 +947,11 @@ See [CHANGELOG.md](CHANGELOG.md) for version history.
 
 <br/>
 
+<div align="center">
+
 By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect** at Computershare, managing multi-million-dollar Salesforce ecosystems and enterprise integrations across 20+ countries. By night, I build projects like this.
 
 **Always learning, always building.**
-
-<div align="center">
 
 <a href="https://zacsluss.github.io/portfolio/">
   <img src="https://img.shields.io/badge/Portfolio-zacsluss.github.io-2e7d5a?style=for-the-badge&logo=vercel&logoColor=white"/>
