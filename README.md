@@ -980,6 +980,8 @@ By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**
 
 ---
 
+Built with Three.js, WebGL 2.0, and vanilla JavaScript • Designed to work forever
+
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,12,20&height=100&section=footer"/>
 
 </div>
