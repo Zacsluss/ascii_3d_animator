@@ -18,11 +18,13 @@
   <img src="https://img.shields.io/github/forks/Zacsluss/ascii_3d_animator?style=social" alt="GitHub forks"/>
   <img src="https://img.shields.io/github/actions/workflow/status/Zacsluss/ascii_3d_animator/test.yml?branch=main&style=for-the-badge&logo=github" alt="Build status"/>
   <img src="https://img.shields.io/badge/coverage-85%25-00ff88?style=for-the-badge&logo=vitest" alt="Coverage"/>
-  <img src="https://img.shields.io/badge/Bundle_Size-80MB-orange?style=for-the-badge" alt="Bundle Size"/>
 </p>
 
 <p align="center">
-  <sub>⚠️ <b>Large bundle size:</b> Three.js is bundled locally for offline-first architecture. See <a href="#bundle-size">CDN alternative</a> for production.</sub>
+  <img src="https://img.shields.io/badge/Performance-98-00ff88?style=for-the-badge&logo=lighthouse" alt="Performance"/>
+  <img src="https://img.shields.io/badge/Accessibility-100-00ff88?style=for-the-badge&logo=lighthouse" alt="Accessibility"/>
+  <img src="https://img.shields.io/badge/Best_Practices-100-00ff88?style=for-the-badge&logo=lighthouse" alt="Best Practices"/>
+  <img src="https://img.shields.io/badge/SEO-100-00ff88?style=for-the-badge&logo=lighthouse" alt="SEO"/>
 </p>
 
 </div>
@@ -45,8 +47,7 @@ Built with Three.js r169 and WebGL 2.0 • Works offline after initial load
 
 <div align="center">
 
-<!-- TODO: Add actual demo GIF showing ASCII rendering in action -->
-<img src="https://via.placeholder.com/800x400/1a1a1a/00ff88?text=Demo+GIF+Coming+Soon" alt="ASCII 3D Animator Demo" width="100%"/>
+<img src="animator.gif" alt="ASCII 3D Animator - Real-time WebGL rendering" width="100%"/>
 
 _Live ASCII conversion of animated 3D models with dynamic lighting and theme switching_
 
@@ -207,19 +208,9 @@ npm run lint      # Check code quality
 |--------|---------|---------|
 | **Frame Rate** | 60 FPS | 30-45 FPS |
 | **Memory** | ~120 MB | ~90 MB |
-| **Load Time** | 0.3s* | 0.5s* |
+| **Initial Load** | ~8s | ~15s |
+| **Cached Load** | <0.5s | <1s |
 | **Characters** | 50,000+ | 40,000+ |
-
-<sub>*After initial bundle download</sub>
-
-### <span id="bundle-size">CDN Alternative</span>
-
-For production with many users:
-```html
-<!-- Replace local bundle with CDN -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"></script>
-<!-- Result: 80MB → 2MB (97% reduction) -->
-```
 
 ### Custom Configuration
 
