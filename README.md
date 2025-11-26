@@ -951,27 +951,22 @@ By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**
 
 **Always learning, always building.**
 
----
-
 <div align="center">
 
-### 📫 Let's Connect
-
-<a href="https://zacsluss.github.io/portfolio">
-  <img src="https://img.shields.io/badge/PORTFOLIO-ZACSLUSS.GITHUB.IO-2e8b57?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=2d4f3e" alt="Portfolio"/>
+<a href="https://zacsluss.github.io/portfolio/">
+  <img src="https://img.shields.io/badge/Portfolio-zacsluss.github.io-2e7d5a?style=for-the-badge&logo=vercel&logoColor=white"/>
 </a>
 <a href="https://github.com/Zacsluss">
-  <img src="https://img.shields.io/badge/GITHUB-@ZACSLUSS-1e90ff?style=for-the-badge&logo=github&logoColor=white&labelColor=181717" alt="GitHub"/>
+  <img src="https://img.shields.io/badge/GitHub-@Zacsluss-181717?style=for-the-badge&logo=github&logoColor=white"/>
 </a>
-<a href="https://www.linkedin.com/in/zachary-sluss/">
-  <img src="https://img.shields.io/badge/LINKEDIN-ZACHARY_SLUSS-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0077B5" alt="LinkedIn"/>
+<a href="https://linkedin.com/in/zacharyjsluss">
+  <img src="https://img.shields.io/badge/LinkedIn-Zachary_Sluss-064789?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>
-
 <a href="mailto:zacharyjsluss@gmail.com">
-  <img src="https://img.shields.io/badge/EMAIL-ZACHARYJSLUSS@GMAIL.COM-EA4335?style=for-the-badge&logo=gmail&logoColor=white&labelColor=555555" alt="Email"/>
+  <img src="https://img.shields.io/badge/Email-zacharyjsluss@gmail.com-b91c1c?style=for-the-badge&logo=gmail&logoColor=white"/>
 </a>
-<a href="https://zacsluss.github.io/ascii_3d_animator/public/resume.pdf">
-  <img src="https://img.shields.io/badge/RESUME-DOWNLOAD_PDF-9B59B6?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&labelColor=444444" alt="Resume"/>
+<a href="https://zacsluss.github.io/portfolio/resume.pdf">
+  <img src="https://img.shields.io/badge/Resume-Download_PDF-7c3aed?style=for-the-badge&logo=adobeacrobatreader&logoColor=white"/>
 </a>
 
 <br/>
@@ -979,7 +974,7 @@ By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**
 
 **Found this helpful?** Give it a ⭐ to show support!
 
-**Want to contribute?** See [contributing guidelines](#contributing) above.
+**Want to contribute?** See [contributing guidelines](#-license--contributing) above.
 
 **Need help?** [Open an issue](https://github.com/Zacsluss/ascii_3d_animator/issues) or email me.
 
