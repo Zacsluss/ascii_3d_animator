@@ -35,7 +35,7 @@
 
 ## 👋 Hey, I'm Zac
 
-I work on enterprise platforms by day and build performance-focused projects by night. This ASCII 3D Animator renders animated 3D models as live ASCII art at **60 FPS** using a custom WebGL shader pipeline — actual real-time conversion, not pre-rendered frames.
+I work on enterprise platforms by day and build performance-focused projects by night. This ASCII 3D Animator renders animated 3D models as live ASCII art at **60 FPS** using a custom WebGL shader pipeline - actual real-time conversion, not pre-rendered frames.
 
 **Key achievements:**
 
@@ -175,7 +175,7 @@ npm test          # Run 109 tests
 npm run lint      # Check code quality
 ```
 
-**Deploy:** Push to GitHub → Enable Pages → Live at `yourusername.github.io/ascii_3d_animator`
+**Deploy:** Push to GitHub → Enable Pages → Live at `zacsluss.github.io/ascii_3d_animator`
 
 </details>
 
@@ -202,7 +202,7 @@ Edit `js/constants.js` to customize:
 
 - **Performance:** `BASE_DENSITY` (30000-100000)
 - **Themes:** Add to `THEMES` object
-- **Models:** Drop GLB files in `public/models/`
+- **Models:** Drop GLB files in root directory
 - **Lighting:** Modify `LIGHTING.PRESETS`
 
 <details>
@@ -253,7 +253,7 @@ Free to use, modify, and distribute. See [LICENSE](LICENSE) for full text.
 
 <div align="center">
 
-By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect** at Computershare, managing multi-million-dollar Salesforce ecosystems and enterprise integrations across 20+ countries. By night, I build projects like this.
+By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**, managing multi-million-dollar Salesforce ecosystems and enterprise integrations across 20+ countries. By night, I build projects like this.
 
 **Always learning, always building.**
 

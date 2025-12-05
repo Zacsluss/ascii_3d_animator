@@ -30,8 +30,6 @@ out/
 *.swp
 *.swo
 *~
-.DS_Store
-Thumbs.db
 *.sublime-project
 *.sublime-workspace
 
@@ -126,7 +124,6 @@ jsdoc.json
 rat_centered_torso.glb
 
 # Personal files
-public/resume.pdf
 
 # Playwright test artifacts
 playwright-report/

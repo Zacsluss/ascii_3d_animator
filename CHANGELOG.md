@@ -67,7 +67,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Basic ASCII rendering engine
 - Three.js integration
 - OrbitControls camera system
-
-[1.0.0]: #
-[0.9.0]: #
-[0.5.0]: #

@@ -23,6 +23,11 @@
   ],
   "author": "Zachary Sluss",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zacsluss/ascii_3d_animator.git"
+  },
+  "homepage": "https://zacsluss.github.io/ascii_3d_animator/",
   "devDependencies": {
     "@commitlint/cli": "^18.0.0",
     "@commitlint/config-conventional": "^18.0.0",
