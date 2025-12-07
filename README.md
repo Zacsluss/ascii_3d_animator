@@ -61,23 +61,12 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 
 <br/>
 
-- [⚡ What This Does](#-what-this-does)
+- [👋 Hey, I'm Zac](#-hey-im-zac)
 - [🛠️ Tech Stack](#️-tech-stack)
-- [🏗️ How It Works - Architecture](#-how-it-works---architecture)
+- [🏗️ Architecture](#️-architecture)
 - [🚀 Quick Start](#-quick-start)
-  - [📋 Prerequisites](#-prerequisites)
-  - [💻 Local Development](#-local-development)
-  - [🏗️ Production Build](#-production-build)
-  - [🌐 Deploy to GitHub Pages](#-deploy-to-github-pages)
-  - [🎨 Customize for Yourself](#-customize-for-yourself)
-- [📊 Technical Deep Dive](#-technical-deep-dive)
-  - [🎨 ASCII Shader Implementation](#-ascii-shader-implementation)
-  - [💡 5-Point Lighting System](#-5-point-lighting-system)
-  - [📊 Performance Benchmarks](#-performance-benchmarks)
-  - [🧪 Testing & Code Quality](#-testing--code-quality)
-  - [⚙️ Advanced Configuration](#-advanced-configuration)
-  - [🐛 Troubleshooting](#-troubleshooting)
-- [📜 License & Contributing](#-license--contributing)
+- [📊 Performance & Configuration](#-performance--configuration)
+- [📜 License](#-license)
 - [📬 About & Connect](#-about--connect)
 
 </details>
@@ -278,7 +267,7 @@ By day, I work as a **Principal CRM & Enterprise Platforms Solutions Architect**
 
 **Found this helpful?** Give it a ⭐ to show support!
 
-**Want to contribute?** See [contributing guidelines](#-license--contributing) above.
+**Want to contribute?** See [contributing guidelines](#-license) above.
 
 **Need help?** [Open an issue](https://github.com/Zacsluss/ascii_3d_animator/issues) or email me.
 
