@@ -62,8 +62,8 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 <br/>
 
 - [👋 Hey, I'm Zac](#-hey-im-zac)
-- [🛠️ Tech Stack](#️-tech-stack)
-- [🏗️ Architecture](#️-architecture)
+- [🛠️ Tech Stack](#-tech-stack)
+- [🏗️ Architecture](#-architecture)
 - [🚀 Quick Start](#-quick-start)
 - [📊 Performance & Configuration](#-performance--configuration)
 - [📜 License](#-license)
@@ -73,8 +73,10 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 
 ---
 
+## 🛠️ Tech Stack
+
 <details open>
-<summary><b>🛠️ Tech Stack</b></summary>
+<summary><b>View Tech Stack Details</b></summary>
 
 <div align="center">
 <br/>
@@ -109,8 +111,10 @@ _Live ASCII conversion of animated 3D models with dynamic lighting and theme swi
 
 ---
 
+## 🏗️ Architecture
+
 <details open>
-<summary><b>🏗️ Architecture</b></summary>
+<summary><b>View Architecture Diagram</b></summary>
 
 <br/>
 
@@ -141,8 +145,10 @@ graph TB
 
 ---
 
+## 🚀 Quick Start
+
 <details>
-<summary><b>🚀 Quick Start</b></summary>
+<summary><b>View Quick Start Guide</b></summary>
 
 <br/>
 
@@ -170,8 +176,10 @@ npm run lint      # Check code quality
 
 ---
 
+## 📊 Performance & Configuration
+
 <details>
-<summary><b>📊 Performance & Configuration</b></summary>
+<summary><b>View Performance Metrics & Configuration Options</b></summary>
 
 <br/>
 
@@ -216,8 +224,10 @@ Edit `js/constants.js` to customize:
 
 ---
 
+## 📜 License
+
 <details>
-<summary><b>📜 License</b></summary>
+<summary><b>View License Information</b></summary>
 
 <br/>
 
@@ -235,8 +245,10 @@ Free to use, modify, and distribute. See [LICENSE](LICENSE) for full text.
 
 ---
 
+## 📬 About & Connect
+
 <details open>
-<summary><b>📬 About & Connect</b></summary>
+<summary><b>View Contact Information</b></summary>
 
 <br/>
 
