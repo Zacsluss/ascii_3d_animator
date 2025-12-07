@@ -96,7 +96,7 @@ export class AsciiManager {
     let chars;
 
     if (!customChars || customChars.trim() === '') {
-      // Use default gradient: ' .\'`^",:;Il!i...' (60+ chars from dark to bright)
+      // Use default gradient: ' .\'`^",:;Il!i' and more (60+ chars from dark to bright)
       chars = CONFIG.ASCII.DEFAULT_CHARS;
     } else {
       // ASCII rendering works by mapping depth/brightness values to characters

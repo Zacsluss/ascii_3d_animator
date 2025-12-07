@@ -240,7 +240,7 @@ Edit `js/constants.js` to customize:
 
 Free to use, modify, and distribute. See [LICENSE](LICENSE) for full text.
 
-**Contributing:** Fork → Branch → Test → PR with conventional commits (`feat:`, `fix:`, etc.)
+**Contributing:** Fork → Branch → Test → PR with conventional commits (`feat: `, `fix: `, etc.)
 
 </details>
 

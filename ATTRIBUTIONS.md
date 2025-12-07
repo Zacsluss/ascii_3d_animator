@@ -15,7 +15,7 @@ All 3D models are licensed under Creative Commons Attribution 4.0 International 
 
 ### 2. Black Rat Model (rat_animated.glb)
 
-- **Title**: "Black Rat ( Free download )"
+- **Title**: "Black Rat (Free download)"
 - **Author**: Nestaeric
 - **License**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - **Source**: https://skfb.ly/p9TYP
